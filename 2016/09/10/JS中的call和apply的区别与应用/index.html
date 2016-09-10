@@ -15,12 +15,28 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="萱儿的博客">
-<meta property="og:url" content="https://yoursite.com/archives/index.html">
+<meta name="description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中的call和apply的区别与应用">
+<meta property="og:url" content="https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/index.html">
 <meta property="og:site_name" content="萱儿的博客">
+<meta property="og:description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
+<meta property="og:updated_time" content="2016-09-10T02:44:57.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="萱儿的博客">
+<meta name="twitter:title" content="JS中的call和apply的区别与应用">
+<meta name="twitter:description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +68,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | 萱儿的博客</title>
+<title>JS中的call和apply的区别与应用 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +78,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -234,234 +250,215 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-JS中的call和apply的区别与应用" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/10/JS中的call和apply的区别与应用/" class="archive-article-date">
-      <time datetime="2016-09-10T02:41:30.000Z" itemprop="datePublished">09-10</time>
+    <div class="article-meta">
+      <a href="/2016/09/10/JS中的call和apply的区别与应用/" class="article-date">
+      <time datetime="2016-09-10T02:41:30.000Z" itemprop="datePublished">2016-09-10</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/10/JS中的call和apply的区别与应用/">JS中的call和apply的区别与应用</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS中的call和apply的区别与应用
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##一.方法定义</p>
+<p>###1、call()方法:<br>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
+<p>定义：调用一个对象的一个方法，以另一个对象替换当前对象。</p>
+<p>参数:<br>thisObj可选项。将被用作当前对象的对象。<br>arg1, arg2, , argN<br>可选项。将被传递方法参数序列。</p>
+<p>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</p>
+<p>###2、apply()方法：</p>
+<p>语法：apply([thisObj[,argArray]])</p>
+<p>定义：应用某一对象的一个方法，用另一个对象替换当前对象。</p>
+<p>参数：thisObj<br>可选项。将被用作当前对象的对象。<br>argArray<br>可选项。将被传递给该函数的参数数组。</p>
+<p>说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
+<p>##二.call()和apply()相同点</p>
+<p>a） 产生的效果或作用完全相同；</p>
+<p>b） 至少有一个参数；</p>
+<p>c） 第一个参数必须有且是一个对象（Object）。</p>
+<p>##三.call()和apply()的区别</p>
+<p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
+<p>##四.call()和apply()常用实例</p>
+<p>###实例一：</p>
+<pre><code>function Animal(){    
+this.name = &quot;Animal&quot;;    
+this.showName = function(){    
+    alert(this.name);    
+}    
+}    
+
+function Cat(){    
+this.name = &quot;Cat&quot;;    
+}    
+
+var animal = new Animal();    
+var cat = new Cat();    
+
+//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    
+//输入结果为&quot;Cat&quot;    
+animal.showName.call(cat,&quot;,&quot;);    
+//animal.showName.apply(cat,[]);  
+</code></pre><p>注意：call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。</p>
+<p>###实例二：实现继承</p>
+<pre><code>function Animal(name){      
+this.name = name;      
+this.showName = function(){      
+    alert(this.name);      
+}      
+}      
+
+ function Cat(name){    
+Animal.call(this, name);    
+}      
+
+var cat = new Cat(&quot;Black Cat&quot;);     
+cat.showName();  
+</code></pre><p>注意：Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了。</p>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/10/JS中的arguments对象/" class="archive-article-date">
-      <time datetime="2016-09-10T01:23:55.000Z" itemprop="datePublished">09-10</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/09/10/JS中的call和apply的区别与应用/">JS中的call和apply的区别与应用</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
+        <p><span>Created:</span>2016-09-10, 10:41:30</p>
+        <p><span>Updated:</span>2016-09-10, 10:44:57</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/09/10/JS中的call和apply的区别与应用/" title="JS中的call和apply的区别与应用">https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/10/JS中的arguments对象/">
+                    JS中的arguments对象
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/02/Github-README中展示Demo/" class="archive-article-date">
-      <time datetime="2016-09-02T01:39:12.000Z" itemprop="datePublished">09-02</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/02/Github-README中展示Demo/">Github-README中展示Demo</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JS中的call和apply的区别与应用　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/01/block，inline和inline-block概念和区别/" class="archive-article-date">
-      <time datetime="2016-09-01T15:50:48.000Z" itemprop="datePublished">09-01</time>
-</a>
+</div>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/01/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/01/position定位和z-index的使用/" class="archive-article-date">
-      <time datetime="2016-09-01T15:49:24.000Z" itemprop="datePublished">09-01</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/01/position定位和z-index的使用/">position定位和z-index的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/01/使用选择器在页面中插入内容/" class="archive-article-date">
-      <time datetime="2016-09-01T15:45:28.000Z" itemprop="datePublished">09-01</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/01/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/09/01/最基本的HTML5网页骨架/" class="archive-article-date">
-      <time datetime="2016-09-01T15:35:55.000Z" itemprop="datePublished">09-01</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/10/JS中的arguments对象/" title="Next: JS中的arguments对象">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的call和apply的区别与应用/">JS中的call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/Github-README中展示Demo/">Github-README中展示Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
