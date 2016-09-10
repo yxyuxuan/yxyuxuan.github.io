@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -237,7 +237,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
   
@@ -270,25 +270,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##一.方法定义</p>
-<p>###1、call()方法:<br>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
+        <h2 id="一-方法定义"><a href="#一-方法定义" class="headerlink" title="一.方法定义"></a>一.方法定义</h2><h3 id="1、call-方法"><a href="#1、call-方法" class="headerlink" title="1、call()方法:"></a>1、call()方法:</h3><p>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
 <p>定义：调用一个对象的一个方法，以另一个对象替换当前对象。</p>
 <p>参数:<br>thisObj可选项。将被用作当前对象的对象。<br>arg1, arg2, , argN<br>可选项。将被传递方法参数序列。</p>
 <p>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</p>
-<p>###2、apply()方法：</p>
-<p>语法：apply([thisObj[,argArray]])</p>
+<h3 id="2、apply-方法："><a href="#2、apply-方法：" class="headerlink" title="2、apply()方法："></a>2、apply()方法：</h3><p>语法：apply([thisObj[,argArray]])</p>
 <p>定义：应用某一对象的一个方法，用另一个对象替换当前对象。</p>
 <p>参数：thisObj<br>可选项。将被用作当前对象的对象。<br>argArray<br>可选项。将被传递给该函数的参数数组。</p>
 <p>说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<p>##二.call()和apply()相同点</p>
-<p>a） 产生的效果或作用完全相同；</p>
+<h2 id="二-call-和apply-相同点"><a href="#二-call-和apply-相同点" class="headerlink" title="二.call()和apply()相同点"></a>二.call()和apply()相同点</h2><p>a） 产生的效果或作用完全相同；</p>
 <p>b） 至少有一个参数；</p>
 <p>c） 第一个参数必须有且是一个对象（Object）。</p>
-<p>##三.call()和apply()的区别</p>
-<p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
-<p>##四.call()和apply()常用实例</p>
-<p>###实例一：</p>
-<pre><code>function Animal(){    
+<h2 id="三-call-和apply-的区别"><a href="#三-call-和apply-的区别" class="headerlink" title="三.call()和apply()的区别"></a>三.call()和apply()的区别</h2><p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
+<h2 id="四-call-和apply-常用实例"><a href="#四-call-和apply-常用实例" class="headerlink" title="四.call()和apply()常用实例"></a>四.call()和apply()常用实例</h2><h3 id="实例一："><a href="#实例一：" class="headerlink" title="实例一："></a>实例一：</h3><pre><code>function Animal(){    
 this.name = &quot;Animal&quot;;    
 this.showName = function(){    
     alert(this.name);    
@@ -307,8 +301,7 @@ var cat = new Cat();
 animal.showName.call(cat,&quot;,&quot;);    
 //animal.showName.apply(cat,[]);  
 </code></pre><p>注意：call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。</p>
-<p>###实例二：实现继承</p>
-<pre><code>function Animal(name){      
+<h3 id="实例二：实现继承"><a href="#实例二：实现继承" class="headerlink" title="实例二：实现继承"></a>实例二：实现继承</h3><pre><code>function Animal(name){      
 this.name = name;      
 this.showName = function(){      
     alert(this.name);      
@@ -1005,14 +998,14 @@ H、废除plaintext元素，使用“text/plian” MIME类型代替
                 2016 yuxuan
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1021,7 +1014,7 @@ H、废除plaintext元素，使用“text/plian” MIME类型代替
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1054,9 +1047,9 @@ H、废除plaintext元素，使用“text/plian” MIME类型代替
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
