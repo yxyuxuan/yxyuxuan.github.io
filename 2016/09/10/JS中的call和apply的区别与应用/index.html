@@ -15,25 +15,28 @@
 
 
 
-<meta name="description" content="一.方法定义1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+<meta name="description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
 定义：调用一个对象的一个方法，以另一个对象替换当前对象。
 参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
-说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从">
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中的call和apply的区别与应用">
 <meta property="og:url" content="https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="一.方法定义1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+<meta property="og:description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
 定义：调用一个对象的一个方法，以另一个对象替换当前对象。
 参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
-说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从">
-<meta property="og:updated_time" content="2016-09-10T02:48:35.806Z">
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
+<meta property="og:updated_time" content="2016-09-10T02:50:14.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的call和apply的区别与应用">
-<meta name="twitter:description" content="一.方法定义1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
+<meta name="twitter:description" content="##一.方法定义
+###1、call()方法:语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])
 定义：调用一个对象的一个方法，以另一个对象替换当前对象。
 参数:thisObj可选项。将被用作当前对象的对象。arg1, arg2, , argN可选项。将被传递方法参数序列。
-说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从">
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -287,19 +290,25 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-方法定义"><a href="#一-方法定义" class="headerlink" title="一.方法定义"></a>一.方法定义</h2><h3 id="1、call-方法"><a href="#1、call-方法" class="headerlink" title="1、call()方法:"></a>1、call()方法:</h3><p>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
+        <p>##一.方法定义</p>
+<p>###1、call()方法:<br>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
 <p>定义：调用一个对象的一个方法，以另一个对象替换当前对象。</p>
 <p>参数:<br>thisObj可选项。将被用作当前对象的对象。<br>arg1, arg2, , argN<br>可选项。将被传递方法参数序列。</p>
 <p>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</p>
-<h3 id="2、apply-方法："><a href="#2、apply-方法：" class="headerlink" title="2、apply()方法："></a>2、apply()方法：</h3><p>语法：apply([thisObj[,argArray]])</p>
+<p>###2、apply()方法：</p>
+<p>语法：apply([thisObj[,argArray]])</p>
 <p>定义：应用某一对象的一个方法，用另一个对象替换当前对象。</p>
 <p>参数：thisObj<br>可选项。将被用作当前对象的对象。<br>argArray<br>可选项。将被传递给该函数的参数数组。</p>
 <p>说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<h2 id="二-call-和apply-相同点"><a href="#二-call-和apply-相同点" class="headerlink" title="二.call()和apply()相同点"></a>二.call()和apply()相同点</h2><p>a） 产生的效果或作用完全相同；</p>
+<p>##二.call()和apply()相同点</p>
+<p>a） 产生的效果或作用完全相同；</p>
 <p>b） 至少有一个参数；</p>
 <p>c） 第一个参数必须有且是一个对象（Object）。</p>
-<h2 id="三-call-和apply-的区别"><a href="#三-call-和apply-的区别" class="headerlink" title="三.call()和apply()的区别"></a>三.call()和apply()的区别</h2><p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
-<h2 id="四-call-和apply-常用实例"><a href="#四-call-和apply-常用实例" class="headerlink" title="四.call()和apply()常用实例"></a>四.call()和apply()常用实例</h2><h3 id="实例一："><a href="#实例一：" class="headerlink" title="实例一："></a>实例一：</h3><pre><code>function Animal(){    
+<p>##三.call()和apply()的区别</p>
+<p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
+<p>##四.call()和apply()常用实例</p>
+<p>###实例一：</p>
+<pre><code>function Animal(){    
 this.name = &quot;Animal&quot;;    
 this.showName = function(){    
     alert(this.name);    
@@ -318,7 +327,8 @@ var cat = new Cat();
 animal.showName.call(cat,&quot;,&quot;);    
 //animal.showName.apply(cat,[]);  
 </code></pre><p>注意：call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。</p>
-<h3 id="实例二：实现继承"><a href="#实例二：实现继承" class="headerlink" title="实例二：实现继承"></a>实例二：实现继承</h3><pre><code>function Animal(name){      
+<p>###实例二：实现继承</p>
+<pre><code>function Animal(name){      
 this.name = name;      
 this.showName = function(){      
     alert(this.name);      
@@ -343,7 +353,7 @@ cat.showName();
         <p><span>本文标题:</span><a href="/2016/09/10/JS中的call和apply的区别与应用/">JS中的call和apply的区别与应用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
         <p><span>发布时间:</span>2016-09-10, 10:41:30</p>
-        <p><span>最后更新:</span>2016-09-10, 10:48:35</p>
+        <p><span>最后更新:</span>2016-09-10, 10:50:14</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/10/JS中的call和apply的区别与应用/" title="JS中的call和apply的区别与应用">https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/</a>
             <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/09/10/JS中的call和apply的区别与应用/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -373,7 +383,7 @@ cat.showName();
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-方法定义"><span class="toc-number">1.</span> <span class="toc-text">一.方法定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、call-方法"><span class="toc-number">1.1.</span> <span class="toc-text">1、call()方法:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、apply-方法："><span class="toc-number">1.2.</span> <span class="toc-text">2、apply()方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-call-和apply-相同点"><span class="toc-number">2.</span> <span class="toc-text">二.call()和apply()相同点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-call-和apply-的区别"><span class="toc-number">3.</span> <span class="toc-text">三.call()和apply()的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-call-和apply-常用实例"><span class="toc-number">4.</span> <span class="toc-text">四.call()和apply()常用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例一："><span class="toc-number">4.1.</span> <span class="toc-text">实例一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例二：实现继承"><span class="toc-number">4.2.</span> <span class="toc-text">实例二：实现继承</span></a></li></ol></li></ol>
+            
         
     </div>
     <style>
