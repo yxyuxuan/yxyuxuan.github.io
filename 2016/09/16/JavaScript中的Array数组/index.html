@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="yuxuan" />
+
+
+
+<meta name="description" content="目录
+介绍：介绍 Array 数组对象的说明、定义方式以及属性。
+
+实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。
+
+静态方法：介绍 Array 对象的静态方法：Ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的Array数组">
+<meta property="og:url" content="https://yoursite.com/2016/09/16/JavaScript中的Array数组/index.html">
+<meta property="og:site_name" content="萱儿的博客">
+<meta property="og:description" content="目录
+介绍：介绍 Array 数组对象的说明、定义方式以及属性。
+
+实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。
+
+静态方法：介绍 Array 对象的静态方法：Ar">
+<meta property="og:updated_time" content="2016-09-16T14:21:28.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的Array数组">
+<meta name="twitter:description" content="目录
+介绍：介绍 Array 数组对象的说明、定义方式以及属性。
+
+实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。
+
+静态方法：介绍 Array 对象的静态方法：Ar">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="萱儿的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>JavaScript中的Array数组 | 萱儿的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/2.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">yuxuan</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/yxyuxuan/yxyuxuan.github.io">我的GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yuxuan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/2.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">yuxuan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-JavaScript中的Array数组" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/16/JavaScript中的Array数组/" class="article-date">
+      <time datetime="2016-09-16T14:14:29.000Z" itemprop="datePublished">2016-09-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript中的Array数组
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
+<li><p>介绍：介绍 Array 数组对象的说明、定义方式以及属性。</p>
+</li>
+<li><p>实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。</p>
+</li>
+<li><p>静态方法：介绍 Array 对象的静态方法：Array.isArray()。</p>
+</li>
+<li><p>实际操作：对 Array 进行示例操作：索引、for遍历、浅度复制、深度复制等操作。</p>
+</li>
+</ol>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><h3 id="1-1-说明"><a href="#1-1-说明" class="headerlink" title="1.1 说明"></a>1.1 说明</h3><pre><code>数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 --《JavaScript权威指南(第六版)》
+</code></pre><h3 id="1-2-定义方式"><a href="#1-2-定义方式" class="headerlink" title="1.2 定义方式"></a>1.2 定义方式</h3><p>var names = new Array(“张三”, “李四”, “王五”);<br>//或者<br>var names = [“张三”, “李四”, “王五”];</p>
+<h3 id="1-3-属性"><a href="#1-3-属性" class="headerlink" title="1.3 属性"></a>1.3 属性</h3><p>length：表示数组内的元素长度。</p>
+<h2 id="2-实例方法"><a href="#2-实例方法" class="headerlink" title="2. 实例方法"></a>2. 实例方法</h2><p>常用方法：</p>
+<pre><code>1) unshift() ：在数组头部插入元素
+
+2) shift() ：移除并返回数组的第一个元素
+
+3) push() ：在数组尾部插入元素
+
+4) pop() ：移除并返回数组的最后一个元素
+</code></pre><h3 id="2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组"><a href="#2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组" class="headerlink" title="2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组"></a>2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组</h3><p>参数：</p>
+<pre><code>①value1,value2.....valueN ：任意多个值
+</code></pre><p>返回值：</p>
+<pre><code>{Array} 一个新的数组，包含原先的Array和新加入的元素。
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+var demoArray2 = demoArray.concat(&apos;e&apos;);
+console.log(demoArray); // =&gt; demoArray:[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]  原数组不发生变更
+console.log(demoArray2); // =&gt; [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;]
+</code></pre><h3 id="2-2-every-：依次遍历元素，判断每个元素是否都为true"><a href="#2-2-every-：依次遍历元素，判断每个元素是否都为true" class="headerlink" title="2.2 every() ：依次遍历元素，判断每个元素是否都为true"></a>2.2 every() ：依次遍历元素，判断每个元素是否都为true</h3><p>参数：</p>
+<pre><code>function(value,index,self){} ：每个元素都会使用此函数判断是否为true，当判断到一个为false时，立即结束遍历。
+
+value ：数组遍历的元素
+
+index ：元素序号
+
+self ：Array本身
+</code></pre><p>返回值：</p>
+<pre><code>{Boolean} ：只有每个元素都为true才返回true；只要一个为false，就返回false。
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [1, 2, 3];
+var rs = demoArray.every(function (value, index, self) {
+return value &gt; 0;
+});
+console.log(rs); // =&gt; true
+</code></pre><h3 id="2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组"><a href="#2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组" class="headerlink" title="2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组"></a>2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组</h3><p>参数：</p>
+<pre><code>function(value,index,self){} ：每个元素依次调用此函数，返回包含符合条件元素的新的数组。
+
+value ：数组遍历的元素
+
+index ：元素序号
+
+self ：Array本身
+</code></pre><p>返回值：</p>
+<pre><code>{Array} 一个包含符合条件元素的新的数组
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [1, 2, 3];
+var rs = demoArray.filter(function (value, index, self) {
+return value &gt; 0;
+});
+console.log(rs); // =&gt; [1, 2, 3]
+</code></pre><h3 id="2-4-forEach-：依次遍历元素，执行指定的函数；无返回值"><a href="#2-4-forEach-：依次遍历元素，执行指定的函数；无返回值" class="headerlink" title="2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值"></a>2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值</h3><p>参数：</p>
+<pre><code>function(value,index,self){} ：每个元素依次调用此函数
+
+value ：数组遍历的元素
+
+index ：元素序号
+
+self ：Array本身
+</code></pre><p>返回值：无</p>
+<p>示例：</p>
+<pre><code>var demoArray = [1, 2, 3];
+demoArray.forEach(function (value, index, self) {
+console.log(value); // =&gt; 依次输出：1  2  3
+});
+</code></pre><h3 id="2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
+<pre><code>①value ：要在数组中查找的值。
+
+②start ：开始查找的序号位置，如果省略，则为0.
+</code></pre><p>返回值：</p>
+<pre><code>{Int} ：返回数组中第一个匹配value的序号，若不存在，返回-1
+</code></pre><p>示例：</p>
+<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;); // =&gt;0
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;, 1); // =&gt;-1
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;d&apos;); // =&gt;-1
+[1, 2, 3].indexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
+</code></pre><h3 id="2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串"><a href="#2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串" class="headerlink" title="2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串"></a>2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串</h3><p>参数：</p>
+<pre><code>①sparator {String}：各元素之间的分隔符，如果省略，默认以因为英文逗号&apos;,&apos;分隔。
+</code></pre><p>返回值：</p>
+<pre><code>{String} ：各元素以sparator为分隔符，拼接而成的一个字符串。
+</code></pre><p>示例：</p>
+<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(); // =&gt; &apos;a,b,c&apos;
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(&apos;-&apos;); // =&gt; &apos;a-b-c&apos;
+</code></pre><h3 id="2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
+<pre><code>①value ：要在数组中查找的值。
+
+②start ：开始查找的序号位置，如果省略，则从最后一个元素开始查找。
+</code></pre><p>返回值：</p>
+<pre><code>{Int} ：从右到左开始查找数组中第一个匹配value的序号，若不存在，返回-1
+</code></pre><p>示例：</p>
+<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;); // =&gt; 0
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;, 1); // =&gt; 0
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;d&apos;); // =&gt; -1
+[1, 2, 3].lastIndexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
+</code></pre><h3 id="2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组"><a href="#2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组" class="headerlink" title="2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组"></a>2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组</h3><p>参数：</p>
+<pre><code>①function(value,index,self){} ：每个元素依次调用此函数，返回计算好的元素
+
+value ：数组遍历的元素
+
+index ：元素序号
+
+self ：Array本身
+</code></pre><p>返回值：</p>
+<pre><code>{Array} 一个包含就算好的元素的新的数组
+</code></pre><p>示例：</p>
+<pre><code>[1, 2, 3].map(function (value, index, self) {
+return value * 2;
+}); // =&gt; [2, 4, 6]
+</code></pre><h3 id="2-9-pop-：移除并返回数组的最后一个元素"><a href="#2-9-pop-：移除并返回数组的最后一个元素" class="headerlink" title="2.9 pop() ：移除并返回数组的最后一个元素"></a>2.9 pop() ：移除并返回数组的最后一个元素</h3><p>参数：无</p>
+<p>返回值：</p>
+<pre><code>{Object} 数组的最后一个元素；若数组为空，返回undefined
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+demoArray.pop(); // =&gt; c
+demoArray.pop(); // =&gt; b
+demoArray.pop(); // =&gt; a
+demoArray.pop(); // =&gt; undefined
+</code></pre><h3 id="2-10-push-：把元素添加到数组尾部"><a href="#2-10-push-：把元素添加到数组尾部" class="headerlink" title="2.10 push() ：把元素添加到数组尾部"></a>2.10 push() ：把元素添加到数组尾部</h3><p>参数：</p>
+<pre><code>①value1,value2.....valueN ：任意多个值添加到数组尾部
+</code></pre><p>返回值：</p>
+<pre><code>{int} 数组新的长度 
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+demoArray.push(&apos;d&apos;); // =&gt; 4, demoArray ： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]
+demoArray.push(&apos;e&apos;, &apos;f&apos;); // =&gt; 6, demoArray ：[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
+console.log(demoArray); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
+</code></pre><h3 id="2-11-reverse-：反转数组元素的顺序"><a href="#2-11-reverse-：反转数组元素的顺序" class="headerlink" title="2.11 reverse() ：反转数组元素的顺序"></a>2.11 reverse() ：反转数组元素的顺序</h3><p>参数：无</p>
+<p>返回值：无(在原数组内进行元素顺序反转)。</p>
+<p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+demoArray.reverse();
+console.log(demoArray); // =&gt; [&quot;e&quot;, &quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot;]
+</code></pre><h3 id="2-12-shift-：移除并返回数组的第一个元素"><a href="#2-12-shift-：移除并返回数组的第一个元素" class="headerlink" title="2.12 shift() ：移除并返回数组的第一个元素"></a>2.12 shift() ：移除并返回数组的第一个元素</h3><p>参数：无</p>
+<p>返回值：</p>
+<pre><code>{Object} 数组的第一个元素；若数组为空，返回undefined。
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+demoArray.shift(); // =&gt; a
+demoArray.shift(); // =&gt; b
+demoArray.shift(); // =&gt; c
+demoArray.shift(); // =&gt; undefined
+</code></pre><h3 id="2-13-slice-startIndex-endIndex-：返回数组的一部分"><a href="#2-13-slice-startIndex-endIndex-：返回数组的一部分" class="headerlink" title="2.13 slice(startIndex,endIndex) ：返回数组的一部分"></a>2.13 slice(startIndex,endIndex) ：返回数组的一部分</h3><p>参数：</p>
+<pre><code>①startIndex ：开始处的序号；若为负数，表示从尾部开始计算，-1代表最后一个元素，-2倒数第二个，依此类推。
+
+②endIndex ： 结束处的元素后一个序号，没指定就是结尾。截取的元素不包含此处序号的元素，结尾为此处序号的前一个元素。
+</code></pre><p>返回值：</p>
+<pre><code>{Array} 一个新的数组，包含从startIndex到endIndex前一个元素的所有元素。
+</code></pre><p>示例：</p>
+<pre><code>[1, 2, 3, 4, 5, 6].slice(); // =&gt; [1, 2, 3, 4, 5, 6]
+[1, 2, 3, 4, 5, 6].slice(1); // =&gt; [2, 3, 4, 5, 6] ：从序号1开始截取
+[1, 2, 3, 4, 5, 6].slice(0, 4); // =&gt; [1, 2, 3, 4] ：截取序号0到序号3(序号4的前一个)的元素
+[1, 2, 3, 4, 5, 6].slice(-2); // =&gt; [5, 6] ：截取后面的2个元素
+</code></pre><h3 id="2-14-sort-opt-orderFunc-：按一定的规则进行排序"><a href="#2-14-sort-opt-orderFunc-：按一定的规则进行排序" class="headerlink" title="2.14 sort(opt_orderFunc) ：按一定的规则进行排序"></a>2.14 sort(opt_orderFunc) ：按一定的规则进行排序</h3><p>参数：</p>
+<pre><code>①opt_orderFunc(v1,v2) {Function}：可选的排序规则函数。若省略，将按照元素的字母进行从小到大排序。
+
+v1 ：遍历时前面的元素。
+
+v2 ：遍历时后面的元素。
+</code></pre><p>排序规则：</p>
+<pre><code>比较v1和v2，返回一个数字来表示v1和v2的排序规则：
+
+小于0 ：v1小于v2，v1排在v2的前面。
+
+等于0 ：v1等于v2，v1排在v2的前面。
+
+大于0 ：v1大于v2，v1排在v2的后面。
+</code></pre><p>返回值：无(在原先数组里进行排序操作)。</p>
+<p>示例：</p>
+<pre><code>[1, 3, 5, 2, 4, 11, 22].sort(); // =&gt; [1, 11, 2, 22, 3, 4, 5] ：这里都元素都被转换为字符，11的字符在2前
+
+[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
+return v1 - v2;
+}); // =&gt; [1, 2, 3, 4, 5, 11, 22] ：从小到大排序
+
+[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
+return -(v1 - v2); //取反，就可以转换为 从大到小
+}); // =&gt; [22, 11, 5, 4, 3, 2, 1]
+</code></pre><h3 id="2-15-splice-：插入、删除数组元素"><a href="#2-15-splice-：插入、删除数组元素" class="headerlink" title="2.15 splice() ：插入、删除数组元素"></a>2.15 splice() ：插入、删除数组元素</h3><p>参数：</p>
+<pre><code>①start {int} ：开始插入、删除或替换的起始序号。
+
+②deleteCount {int} ：要删除元素的个数，从start处开始计算。
+
+③value1,value2 ... valueN {Object} ：可选参数，表示要插入的元素，从start处开始插入。若②参不为0，那么先执行删除操作，再执行插入操作。
+</code></pre><p>返回值：</p>
+<pre><code>{Array}  返回一个包含删除元素的新的数组。若②参为0，表示没元素删除，返回一个空数组。
+</code></pre><p>示例：</p>
+<pre><code>// 1.删除
+var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+var demoArray2 = demoArray.splice(0, 2); // 删除从序号从0开始的2个元素，返回包含删除元素的数组：[&apos;a&apos;, &apos;b&apos;]
+console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;]
+console.log(demoArray); // =&gt; [&apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
+
+// 2.插入
+var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+var demoArray2 = demoArray.splice(0, 0, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;); // ②参为0，返回空数组
+console.log(demoArray2); // =&gt; [ ]
+console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
+
+// 3.先删除再插入
+var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+// 当②参不为0，那么先执行删除操作(删除序号从0开始的4个元素，返回包含被删除元素的数组)，再执行插入操作
+var demoArray2 = demoArray.splice(0, 4, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;);
+console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;] 
+console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;e&apos;]
+</code></pre><h3 id="2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串"><a href="#2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串" class="headerlink" title="2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串"></a>2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串</h3><p>参数：无</p>
+<p>返回值：</p>
+<pre><code>{String}  数组中所有元素通过一个英文逗号&apos;,&apos;拼接为一个字符串，并返回。与调用无参join()方法一样。
+</code></pre><p>示例：</p>
+<pre><code>[1, 2, 3, 4, 5].toString(); // =&gt; &apos;1,2,3,4,5&apos;
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;].toString(); // =&gt; &apos;a,b,c,d,e&apos;
+</code></pre><h3 id="2-17-unshift-：在数组头部插入元素"><a href="#2-17-unshift-：在数组头部插入元素" class="headerlink" title="2.17 unshift() ：在数组头部插入元素"></a>2.17 unshift() ：在数组头部插入元素</h3><p>参数：</p>
+<pre><code>①value1,value2.....valueN ：任意多个值添加到数组头部
+</code></pre><p>返回值：</p>
+<pre><code>{int} 数组新的长度 
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [];
+demoArray.unshift(&apos;a&apos;); // =&gt; demoArray:[&apos;a&apos;]
+demoArray.unshift(&apos;b&apos;); // =&gt; demoArray:[&apos;b&apos;, &apos;a&apos;]
+demoArray.unshift(&apos;c&apos;); // =&gt; demoArray:[&apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
+demoArray.unshift(&apos;d&apos;); // =&gt; demoArray:[&apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
+demoArray.unshift(&apos;e&apos;); // =&gt; demoArray:[&apos;e&apos;, &apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
+</code></pre><h2 id="3-静态方法"><a href="#3-静态方法" class="headerlink" title="3. 静态方法"></a>3. 静态方法</h2><h3 id="3-1-Array-isArray-：判断对象是否为数组"><a href="#3-1-Array-isArray-：判断对象是否为数组" class="headerlink" title="3.1 Array.isArray() ：判断对象是否为数组"></a>3.1 Array.isArray() ：判断对象是否为数组</h3><p>参数：</p>
+<pre><code>①value {Object}：任意对象
+</code></pre><p>返回值：</p>
+<pre><code>{Boolean}  返回判断结果。当为 true时，表示对象为数组；为false时，表示对象不是数组
+</code></pre><p>示例：</p>
+<pre><code>Array.isArray([]); // =&gt; true
+Array.isArray([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]); // =&gt; true
+Array.isArray(&apos;a&apos;); // =&gt; false
+Array.isArray(&apos;[1, 2, 3]&apos;); // =&gt; false
+</code></pre><h2 id="4-实际操作"><a href="#4-实际操作" class="headerlink" title="4. 实际操作"></a>4. 实际操作</h2><h3 id="4-1-索引"><a href="#4-1-索引" class="headerlink" title="4.1 索引"></a>4.1 索引</h3><p>说明：</p>
+<pre><code>每个元素在数组中有一个位置，以数字表示，称为索引。索引是从0开始计，即第一个元素的索引为0，第二个元素的索引为1，依此类推；
+
+    当获取一个数组不存在的索引时，返回 undefined。
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+demoArray[0]; // =&gt; 获取第一个元素:&apos;a&apos;
+demoArray[0] = 1;  // 设置第一个元素为 1
+console.log(demoArray); // =&gt; demoArray:[1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
+console.log(demoArray[9]); // =&gt; undefined ：当获取的索引不存在时，返回 undefined
+</code></pre><h3 id="4-2-for-语句"><a href="#4-2-for-语句" class="headerlink" title="4.2 for 语句"></a>4.2 for 语句</h3><p>说明：</p>
+<pre><code>可以通过for语句逐个遍历数组
+</code></pre><p>示例：</p>
+<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+for (var i = 0, length = demoArray.length; i &lt; length; i++) {
+console.log(demoArray[i]); // =&gt; 逐个输出数组内的元素
+}
+</code></pre><h3 id="4-3-浅度复制"><a href="#4-3-浅度复制" class="headerlink" title="4.3 浅度复制"></a>4.3 浅度复制</h3><p>说明：</p>
+<pre><code>Array类型是一种引用类型；当数组a复制给数组b时，对数组b进行元素修改，数组a也会发生修改。
+</code></pre><p>示例：</p>
+<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+var demoArrayB = demoArrayA; // 把数组A 赋值给数组B
+demoArrayB[0] = 1; // 对数组B 的元素进行修改
+console.log(demoArrayA); // =&gt; [1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素也发生了变更
+</code></pre><h3 id="4-4-深度复制"><a href="#4-4-深度复制" class="headerlink" title="4.4 深度复制"></a>4.4 深度复制</h3><p>说明：</p>
+<pre><code>使用concat()方法，返回新的数组；防止浅度复制的情况发生，对数组b进行元素修改操作，数组a不发生变更。
+</code></pre><p>示例：</p>
+<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+var demoArrayB = demoArrayA.concat(); // 使用concat()方法，返回新的数组
+demoArrayB[0] = 1; // 对数组B 的元素进行修改
+console.log(demoArrayA); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素没变更
+console.log(demoArrayB); // =&gt; [  1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组B 的元素发生了变更
+</code></pre><h3 id="4-5-判断2个数组是否相等"><a href="#4-5-判断2个数组是否相等" class="headerlink" title="4.5 判断2个数组是否相等"></a>4.5 判断2个数组是否相等</h3><p>说明：</p>
+<pre><code>Array数组为引用类型，所以哪怕 []===[] 都会返回false，所以可通过数组toString()方法返回的字符串判断是否相等。
+</code></pre><p>示例：</p>
+<pre><code>console.log([]===[]); // =&gt; false
+console.log([&apos;a&apos;, &apos;b&apos;] === [&apos;a&apos;, &apos;b&apos;]); // =&gt; false
+console.log([&apos;a&apos;, &apos;b&apos;].toString() === [&apos;a&apos;, &apos;b&apos;].toString()); // true
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
+        <p><span>Created:</span>2016-09-16, 22:14:29</p>
+        <p><span>Updated:</span>2016-09-16, 22:21:28</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/09/16/JavaScript中的Array数组/" title="JavaScript中的Array数组">https://yoursite.com/2016/09/16/JavaScript中的Array数组/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/09/16/JavaScript中的Array数组/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/16/JavaScript中的Math对象/">
+                    JavaScript中的Math对象
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1. 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-说明"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-定义方式"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 定义方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-属性"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-实例方法"><span class="toc-number">1.2.</span> <span class="toc-text">2. 实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-every-：依次遍历元素，判断每个元素是否都为true"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 every() ：依次遍历元素，判断每个元素是否都为true</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-forEach-：依次遍历元素，执行指定的函数；无返回值"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组"><span class="toc-number">1.2.8.</span> <span class="toc-text">2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-pop-：移除并返回数组的最后一个元素"><span class="toc-number">1.2.9.</span> <span class="toc-text">2.9 pop() ：移除并返回数组的最后一个元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-push-：把元素添加到数组尾部"><span class="toc-number">1.2.10.</span> <span class="toc-text">2.10 push() ：把元素添加到数组尾部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-reverse-：反转数组元素的顺序"><span class="toc-number">1.2.11.</span> <span class="toc-text">2.11 reverse() ：反转数组元素的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-shift-：移除并返回数组的第一个元素"><span class="toc-number">1.2.12.</span> <span class="toc-text">2.12 shift() ：移除并返回数组的第一个元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-slice-startIndex-endIndex-：返回数组的一部分"><span class="toc-number">1.2.13.</span> <span class="toc-text">2.13 slice(startIndex,endIndex) ：返回数组的一部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-sort-opt-orderFunc-：按一定的规则进行排序"><span class="toc-number">1.2.14.</span> <span class="toc-text">2.14 sort(opt_orderFunc) ：按一定的规则进行排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-splice-：插入、删除数组元素"><span class="toc-number">1.2.15.</span> <span class="toc-text">2.15 splice() ：插入、删除数组元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串"><span class="toc-number">1.2.16.</span> <span class="toc-text">2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-17-unshift-：在数组头部插入元素"><span class="toc-number">1.2.17.</span> <span class="toc-text">2.17 unshift() ：在数组头部插入元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-静态方法"><span class="toc-number">1.3.</span> <span class="toc-text">3. 静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Array-isArray-：判断对象是否为数组"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 Array.isArray() ：判断对象是否为数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-实际操作"><span class="toc-number">1.4.</span> <span class="toc-text">4. 实际操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-索引"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-for-语句"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-浅度复制"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 浅度复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-深度复制"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 深度复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-判断2个数组是否相等"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 判断2个数组是否相等</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JavaScript中的Array数组　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/16/JavaScript中的Math对象/" title="Next: JavaScript中的Math对象">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/Github-README中展示Demo/">Github-README中展示Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 yuxuan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
