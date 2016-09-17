@@ -15,37 +15,19 @@
 
 
 
-<meta name="description" content="浅说position定位及z-index使用使用前提
-z-index只能在position属性值为relative或absolute或fixed的元素上有效。
-
-基本原理
-z-index值可以控制定位元素在垂直于显示屏方向（Z 轴）上的堆叠顺序（stack order），值大的元素发生重叠时会在值小的元素上面。
-
-使用的相对性
-z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元素的z-">
+<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
+2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="position定位和z-index的使用">
-<meta property="og:url" content="https://yoursite.com/2016/09/01/position定位和z-index的使用/index.html">
+<meta property="og:title" content="block，inline和inline-block概念和区别">
+<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="浅说position定位及z-index使用使用前提
-z-index只能在position属性值为relative或absolute或fixed的元素上有效。
-
-基本原理
-z-index值可以控制定位元素在垂直于显示屏方向（Z 轴）上的堆叠顺序（stack order），值大的元素发生重叠时会在值小的元素上面。
-
-使用的相对性
-z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元素的z-">
-<meta property="og:updated_time" content="2016-09-17T12:23:04.859Z">
+<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
+2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="position定位和z-index的使用">
-<meta name="twitter:description" content="浅说position定位及z-index使用使用前提
-z-index只能在position属性值为relative或absolute或fixed的元素上有效。
-
-基本原理
-z-index值可以控制定位元素在垂直于显示屏方向（Z 轴）上的堆叠顺序（stack order），值大的元素发生重叠时会在值小的元素上面。
-
-使用的相对性
-z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元素的z-">
+<meta name="twitter:title" content="block，inline和inline-block概念和区别">
+<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
+2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -77,7 +59,7 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>position定位和z-index的使用 | 萱儿的博客</title>
+<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +241,11 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-position定位和z-index的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/01/position定位和z-index的使用/" class="article-date">
-      <time datetime="2016-09-01T15:49:24.000Z" itemprop="datePublished">2016-09-01</time>
+      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
+      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
 </a>
 
 
@@ -278,7 +260,7 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
         
   
     <h1 class="article-title" itemprop="name">
-      position定位和z-index的使用
+      block，inline和inline-block概念和区别
     </h1>
   
 
@@ -299,55 +281,44 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="浅说position定位及z-index使用"><a href="#浅说position定位及z-index使用" class="headerlink" title="浅说position定位及z-index使用"></a>浅说position定位及z-index使用</h2><h3 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h3><ul>
-<li>z-index只能在position属性值为relative或absolute或fixed的元素上有效。</li>
+        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
+<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
+<ul>
+<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
+<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
 </ul>
-<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><ul>
-<li>z-index值可以控制定位元素在垂直于显示屏方向（Z 轴）上的堆叠顺序（stack order），值大的元素发生重叠时会在值小的元素上面。</li>
-</ul>
-<h3 id="使用的相对性"><a href="#使用的相对性" class="headerlink" title="使用的相对性"></a>使用的相对性</h3><ul>
-<li><p>z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元素的z-index值（如果有）为子元素定义了堆叠顺序（css版堆叠“拼爹”）。向上追溯找不到含有z-index值的父元素的情况下，则可以视为自由的z-index元素，它可以与父元素的同级兄弟定位元素或其他自由的定位元素来比较z-index的值，决定其堆叠顺序。同级元素的z-index值如果相同，则堆叠顺序由元素在文档中的先后位置决定，后出现的会在上面。</p>
-</li>
-<li><p>如果当你发现一个z-index值较大的元素被值较小的元素遮挡了，请先检查它们之间的dom结点关系，多半是因为其父结点含有激活并设置了z-index值的position定位元素。</p>
-</li>
-<li><p>因为这个相对性，会引发浏览器表现不一致出现兼容问题。原因是ie6、7下面position值为非static的元素在未设置z-index值的情况下都会被隐含添加z-index:0，而Firefox/Chrome等现代浏览器会遵循标准默认z-index:auto不会产生值。</p>
-</li>
-<li><p>还有一点需要注意，负值的z-index也依照大小比较的原理，但一般来说负值的z-index会被透明的body覆盖导致点击等事件响应出现问题，请谨慎使用。</p>
-<h2 id="元素位置重叠的背景常识"><a href="#元素位置重叠的背景常识" class="headerlink" title="元素位置重叠的背景常识"></a>元素位置重叠的背景常识</h2></li>
-</ul>
-<p>html文档中的元素默认处于普通流（normal flow）中，也就是说其顺序由元素在文档中的先后位置决定，此时一般不会产生重叠（但指定负边距可能产生重叠）。当我们用css为某个元素指定float浮动或者position定位后，元素的定位将会依情况发生如下改变：</p>
+<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
+<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
+<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
+<p>##block，inline和inlinke-block细节对比</p>
+<ul>
+<li><p>display:block</p>
 <ol>
-<li><p>指定float值left/right</p>
-<p>行内元素也会隐形变成块元素，元素会脱离文档的普通流，向左或右浮动，直到其外边缘碰到包含框或另一个浮动框。 </p>
+<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
+<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
+<li>block元素可以设置margin和padding属性。</li>
+</ol>
 </li>
-<li><p>指定position值relative</p>
-<p>可以相对于其在普通流中的位置偏移，原本所占的空间仍保留。</p>
+<li><p>display:inline</p>
+<ol>
+<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
 </li>
-<li><p>指定position值absolute</p>
-<p> 行内元素也会隐形变成块元素，元素会脱离文档的普通流，相对于最近的已定位祖先元素偏移，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块偏移。</p>
+<li><p>inline元素设置width,height属性无效。</p>
 </li>
-<li><p>指定position值fixed</p>
-<p> 元素会脱离文档的普通流，相对于浏览器窗口偏移，固定在浏览器的某个位置。</p>
+<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
 </li>
 </ol>
-<p>以上四种情况下，文档中的元素都将可能被浮动/定位元素覆盖产生重叠。</p>
-<h2 id="元素位置重叠的可能原因"><a href="#元素位置重叠的可能原因" class="headerlink" title="元素位置重叠的可能原因"></a>元素位置重叠的可能原因</h2><ol>
-<li><p>负边距/float浮动</p>
-<p> margin为负值时元素会依参考线向外偏移。margin-left/margin-top的参考线为左边的元素/上面的元素（如无兄弟元素则为父元素的左内侧/上内侧）,margin-right和margin-bottom的参考线为元素本身的border右侧/border下侧。一般可以利用负边距来就行布局，但没有计算好的话就可能造成元素重叠。堆叠顺序由元素在文档中的先后位置决定，后出现的会在上面。浮动元素会脱离文档的普通流，有可能覆盖或遮挡掉文档中的元素。</p>
 </li>
-<li><p>position的relative/absolute/fixed定位</p>
-<p> 当为元素设置position值为relative/absolute/fixed后，元素发生的偏移可能产生重叠，且z-index属性被激活。z-index值可以控制定位元素在垂直于显示屏方向（Z 轴）上的堆叠顺序（stack order），值大的元素发生重叠时会在值小的元素上面。</p>
-</li>
-<li><p>window窗口元素引发的重叠</p>
-<p> 浏览器解析页面时，先判断元素的类型：窗口元素优于非窗口元素显示（也就是窗口元素会覆盖在其它非窗口元素之上），同为非窗口类型才能在激活z-index属性控制堆叠顺序。</p>
-</li>
-<li><p>Flash元素属于window窗口元素</p>
-<p> 所以如果页面上flash元素和其他元素发生重叠，需要先将flash嵌入的wmode属性的window（窗口，默认的会造成上面所说的问题）改为非窗口模式：opaque（非窗口不透明）或者 transparent（非窗口透明）。</p>
-</li>
-<li><p>ie6下select属于window类型控件</p>
-<p> 同理，它也产生窗口元素的遮挡问题。解决方法使用iframe（原理：ie6下普通元素无法覆盖select，iframe可以覆盖select，普通元素可以覆盖iframe）/用div模拟实现select的效果。我一般会为被select遮挡的div在内部追加（appendChild）一个空的子iframe，设置position:absolute脱离文档流空间、width:100%;height:100%;覆盖整个父div、z-index:-1;确保值要小于父div的z-index值让父div覆盖显示在iframe上面，借助这个iframe来覆盖select。</p>
-</li>
+<li><p>display:inline-block</p>
+<ol>
+<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
 </ol>
+</li>
+</ul>
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
+<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
+<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
+</ul>
 
       
     </div>
@@ -356,13 +327,13 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/01/position定位和z-index的使用/">position定位和z-index的使用</a></p>
+        <p><span>本文标题:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
-        <p><span>发布时间:</span>2016-09-01, 23:49:24</p>
-        <p><span>最后更新:</span>2016-09-17, 20:23:04</p>
+        <p><span>发布时间:</span>2016-07-27, 23:50:48</p>
+        <p><span>最后更新:</span>2016-09-17, 20:34:05</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/01/position定位和z-index的使用/" title="position定位和z-index的使用">https://yoursite.com/2016/09/01/position定位和z-index的使用/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/09/01/position定位和z-index的使用/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -375,15 +346,15 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/01/block，inline和inline-block概念和区别/">
-                    block，inline和inline-block概念和区别
+                <a href="/2016/08/01/最基本的HTML5网页骨架/">
+                    最基本的HTML5网页骨架
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/01/使用选择器在页面中插入内容/">
-                    使用选择器在页面中插入内容
+                <a href="/2016/07/26/position定位和z-index的使用/">
+                    position定位和z-index的使用
                 </a>
             </div>
         
@@ -395,7 +366,7 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浅说position定位及z-index使用"><span class="toc-number">1.</span> <span class="toc-text">浅说position定位及z-index使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用前提"><span class="toc-number">1.1.</span> <span class="toc-text">使用前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本原理"><span class="toc-number">1.2.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用的相对性"><span class="toc-number">1.3.</span> <span class="toc-text">使用的相对性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元素位置重叠的背景常识"><span class="toc-number">2.</span> <span class="toc-text">元素位置重叠的背景常识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元素位置重叠的可能原因"><span class="toc-number">3.</span> <span class="toc-text">元素位置重叠的可能原因</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
         
     </div>
     <style>
@@ -431,7 +402,7 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"position定位和z-index的使用　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -451,7 +422,7 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/01/block，inline和inline-block概念和区别/" title="上一篇: block，inline和inline-block概念和区别">
+            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="上一篇: 最基本的HTML5网页骨架">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -459,13 +430,13 @@ z-index值只决定同一父元素中的同级子元素的堆叠顺序。父元�
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/01/使用选择器在页面中插入内容/" title="下一篇: 使用选择器在页面中插入内容">
+            <a href="/2016/07/26/position定位和z-index的使用/" title="下一篇: position定位和z-index的使用">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/CSS3新增的属性/">CSS3新增的属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的String对象/">JavaScript中的String对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/Github-README中展示Demo/">Github-README中展示Demo</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/CSS3新增的属性/">CSS3新增的属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的String对象/">JavaScript中的String对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/21/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/Github-README中展示Demo/">Github-README中展示Demo</a></li></ul>
 
 
 
