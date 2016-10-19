@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="yuxuan" />
+
+
+
+<meta name="description" content="关于Git的常用命令。整理如下：
+
+1.创建版本库$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：$ git init
+Initialized empty Git repository in /Users/michael/learngit/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用命令">
+<meta property="og:url" content="https://yoursite.com/2016/10/12/Git常用命令/index.html">
+<meta property="og:site_name" content="萱儿的博客">
+<meta property="og:description" content="关于Git的常用命令。整理如下：
+
+1.创建版本库$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：$ git init
+Initialized empty Git repository in /Users/michael/learngit/">
+<meta property="og:updated_time" content="2016-10-19T11:54:01.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git常用命令">
+<meta name="twitter:description" content="关于Git的常用命令。整理如下：
+
+1.创建版本库$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：$ git init
+Initialized empty Git repository in /Users/michael/learngit/">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="萱儿的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Git常用命令 | 萱儿的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/2.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">yuxuan</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/yxyuxuan/yxyuxuan.github.io">我的GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yuxuan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/2.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">yuxuan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/12/Git常用命令/" class="article-date">
+      <time datetime="2016-10-12T11:52:30.000Z" itemprop="datePublished">2016-10-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git常用命令
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p><strong>关于Git的常用命令。整理如下</strong>：</p>
+</blockquote>
+<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h3><pre><code>$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+</code></pre><h3 id="2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><a href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：" class="headerlink" title="2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："></a>2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</h3><pre><code>$ git init
+Initialized empty Git repository in /Users/michael/learngit/.git/
+</code></pre><h3 id="3-添加文件到Git仓库，分两步："><a href="#3-添加文件到Git仓库，分两步：" class="headerlink" title="3.添加文件到Git仓库，分两步："></a>3.添加文件到Git仓库，分两步：</h3><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
+<pre><code>$ git add readme.txt
+</code></pre><p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
+<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
+<pre><code>$ git commit -m &quot;wrote a readme file&quot;
+[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+</code></pre><p>###4.要随时掌握工作区的状态，使用git status命令。</p>
+<pre><code>git diff readme.txt
+</code></pre><p>如果git status告诉你有文件被修改过，可以用git diff readme.txt查看修改内容。</p>
+<h3 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5.版本回退"></a>5.版本回退</h3><pre><code>git log  //显示从最近到最远的提交日志，以便确定要回退到哪个版本，每次提交都有一个唯一的id。
+
+git reflog  //用来记录你的每一次命令，以便确定要回到未来的哪个版本。
+
+把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
+$ git reset --hard HEAD^
+HEAD is now at ea34578 add distributed
+</code></pre><p>返回某个指定id号的那个版本的提交：</p>
+<pre><code>$ git reset --hard 3628164
+</code></pre><p>查看readme.txt的内容是不是版本add distributed：</p>
+<pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software.
+</code></pre><p>git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。</p>
+<p>例子：将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。</p>
+<pre><code>$ git checkout 09bd8cc1 hello.txt
+</code></pre><h3 id="6-撤销修改"><a href="#6-撤销修改" class="headerlink" title="6.撤销修改"></a>6.撤销修改</h3><pre><code>git checkout -- file  //丢弃工作区的修改：
+
+$ git checkout -- readme.txt
+命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+git add到暂存区了，git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区，
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+</code></pre><h3 id="7-删除文件"><a href="#7-删除文件" class="headerlink" title="7.删除文件"></a>7.删除文件</h3><p>一种是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
+<pre><code>$ git rm test.txt
+rm &apos;test.txt&apos;
+
+$ git commit -m &quot;remove test.txt&quot;
+[master d17efd8] remove test.txt
+1 file changed, 1 deletion(-)
+
+$ delete mode 100644 test.txt
+现在，文件就从版本库中被删除了。
+</code></pre><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<pre><code>$ git checkout -- test.txt
+
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+</code></pre><h3 id="8-远程仓库"><a href="#8-远程仓库" class="headerlink" title="8.远程仓库"></a>8.远程仓库</h3><h4 id="第一种：添加远程库："><a href="#第一种：添加远程库：" class="headerlink" title="第一种：添加远程库："></a>第一种：添加远程库：</h4><pre><code>1.mkdir learngit
+
+2.cd learngit
+
+3.git init
+
+4.添加文件
+
+5.git add .
+
+6.git commit -m &quot;test&quot;
+
+7.在github上创建仓库，复制地址
+
+8. git remote add origin git@github.com:michaelliao/learngit.git
+
+9.git push -u origin master
+</code></pre><ul>
+<li><p>注意：</p>
+<pre><code>若出错：fatal: refusing to merge unrelated histories
+
+解决：git pull origin master --allow-unrelated-histories//github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。
+</code></pre></li>
+<li><p>最后依次用命令：</p>
+<p>   git add .<br>   git commit -m “commit2”<br>   git push origin master:master</p>
+</li>
+</ul>
+<h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
+
+2.克隆：git clone  git@github.com:michaelliao/learngit.git
+
+3.添加文件
+
+4.git add .
+
+5.git commit -m &quot;test&quot;
+
+6.git push -u origin master
+</code></pre><h3 id="9-分支管理"><a href="#9-分支管理" class="headerlink" title="9.分支管理"></a>9.分支管理</h3><h4 id="a-创建与合并分支："><a href="#a-创建与合并分支：" class="headerlink" title="a.创建与合并分支："></a>a.创建与合并分支：</h4><pre><code>1.创建分支：git branch dev
+
+2.切换到分支：git checkout dev
+
+创建+切换分支：git checkout -b dev
+
+3.查看当前分支：gir branch 
+
+4.将指定分支合并到当前分支,假如当前分支为:master：git merge dev
+
+5.删除dev分支：git branch -d dev
+
+强行删除，需要使用命令:git branch -D dev。
+</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ul>
+<li><p>1.用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit</p>
+<p>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+</li>
+</ul>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
+<ul>
+<li><p>2.把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+</li>
+<li><p>3.工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；</p>
+</li>
+</ul>
+<p>另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
+<h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>1.查看远程库的详细信息：git remote -v
+
+2.推送分支：git push origin master
+
+3.抓取分支：
+</code></pre><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<h3 id="10-标签管理："><a href="#10-标签管理：" class="headerlink" title="10.标签管理："></a>10.标签管理：</h3><h4 id="a-创建标签："><a href="#a-创建标签：" class="headerlink" title="a.创建标签："></a>a.创建标签：</h4><p>  首先，切换到需要打标签的分支上：git checkout branch-name然后打标签：git tag tag-name。git tag查看所有标签。</p>
+<p>  如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>  方法是找到历史提交的commit id，然后打上就可以了： </p>
+<pre><code>$git log --pretty=oneline --abbrev-commit
+
+6a5819e merged bug fix 101
+cc17032 fix bug 1017825a50 merge with no-ff
+6224937 add merge
+59bc1cb conflict fixed
+400b400 &amp; simple
+75a857c AND simple
+fec145a branch test
+d17efd8 remove test.txt
+...
+</code></pre><p>比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：</p>
+<pre><code>$ git tag v0.9 6224937
+
+再用命令git tag查看标签.
+git show &lt;tagname&gt;查看标签信息
+
+创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164
+
+通过-s用私钥签名一个标签：
+$ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
+</code></pre><h3 id="11-操作标签："><a href="#11-操作标签：" class="headerlink" title="11.操作标签："></a>11.操作标签：</h3><pre><code>命令git push origin &lt;tagname&gt;可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d &lt;tagname&gt;可以删除一个本地标签；
+
+命令git push origin :refs/tags/&lt;tagname&gt;可以删除一个远程标签。
+</code></pre><h3 id="12-配置别名："><a href="#12-配置别名：" class="headerlink" title="12.配置别名："></a>12.配置别名：</h3><pre><code>$ git config --global alias.st status  //用st表示status
+
+然后用git st就可以查看状态。 
+</code></pre><h3 id="13-忽略文件："><a href="#13-忽略文件：" class="headerlink" title="13.忽略文件："></a>13.忽略文件：</h3><p>大部分项目中，有些文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：</p>
+<p>在项目根目录创建.gitignore文件，在文件中列出不需要提交的文件名，文件夹名，每个一行，.gitignore文件需要提交，就像普通文件一样。</p>
+<p>通常会被ignore的文件有：</p>
+<ol>
+<li>log文件</li>
+<li>task runner builds</li>
+<li>node_modules等文件夹</li>
+<li>IDEs生成的文件</li>
+<li>个人笔记</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/12/Git常用命令/">Git常用命令</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
+        <p><span>发布时间:</span>2016-10-12, 19:52:30</p>
+        <p><span>最后更新:</span>2016-10-19, 19:54:01</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/12/Git常用命令/" title="Git常用命令">https://yoursite.com/2016/10/12/Git常用命令/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/10/12/Git常用命令/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/18/CSS3中box-sizing属性/">
+                    CSS3中box-sizing属性
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建版本库"><span class="toc-number">1.</span> <span class="toc-text">1.创建版本库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><span class="toc-number">2.</span> <span class="toc-text">2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-添加文件到Git仓库，分两步："><span class="toc-number">3.</span> <span class="toc-text">3.添加文件到Git仓库，分两步：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-版本回退"><span class="toc-number">4.</span> <span class="toc-text">5.版本回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-撤销修改"><span class="toc-number">5.</span> <span class="toc-text">6.撤销修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-删除文件"><span class="toc-number">6.</span> <span class="toc-text">7.删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-远程仓库"><span class="toc-number">7.</span> <span class="toc-text">8.远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一种：添加远程库："><span class="toc-number">7.1.</span> <span class="toc-text">第一种：添加远程库：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二种：从远程克隆仓库"><span class="toc-number">7.2.</span> <span class="toc-text">第二种：从远程克隆仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-分支管理"><span class="toc-number">8.</span> <span class="toc-text">9.分支管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-创建与合并分支："><span class="toc-number">8.1.</span> <span class="toc-text">a.创建与合并分支：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-解决冲突："><span class="toc-number">8.2.</span> <span class="toc-text">b.解决冲突：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-多人协作："><span class="toc-number">8.3.</span> <span class="toc-text">c.多人协作：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-标签管理："><span class="toc-number">9.</span> <span class="toc-text">10.标签管理：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-创建标签："><span class="toc-number">9.1.</span> <span class="toc-text">a.创建标签：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-操作标签："><span class="toc-number">10.</span> <span class="toc-text">11.操作标签：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-配置别名："><span class="toc-number">11.</span> <span class="toc-text">12.配置别名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-忽略文件："><span class="toc-number">12.</span> <span class="toc-text">13.忽略文件：</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Git常用命令　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/18/CSS3中box-sizing属性/" title="下一篇: CSS3中box-sizing属性">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/Git常用命令/">Git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/CSS3中box-sizing属性/">CSS3中box-sizing属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/CSS3新增的属性/">CSS3新增的属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的String对象/">JavaScript中的String对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/21/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/Github-README中展示Demo/">Github-README中展示Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/关于hexo的使用/">关于hexo的使用</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 yuxuan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
