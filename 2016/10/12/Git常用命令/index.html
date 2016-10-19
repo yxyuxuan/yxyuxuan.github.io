@@ -35,7 +35,7 @@ $ pwd
 /Users/michael/learngit
 2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：$ git init
 Initialized empty Git repository in /Users/michael/learngit/">
-<meta property="og:updated_time" content="2016-10-19T11:58:55.201Z">
+<meta property="og:updated_time" content="2016-10-19T12:05:57.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用命令">
 <meta name="twitter:description" content="关于Git的常用命令。整理如下：
@@ -375,17 +375,15 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 8. git remote add origin git@github.com:michaelliao/learngit.git
 
 9.git push -u origin master
-</code></pre><ul>
-<li><p>注意：</p>
-<pre><code>若出错：fatal: refusing to merge unrelated histories
-
-解决：git pull origin master --allow-unrelated-histories//github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。
-</code></pre></li>
-<li><p>最后依次用命令：</p>
-<p>   git add .<br>   git commit -m “commit2”<br>   git push origin master:master</p>
-</li>
-</ul>
-<h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
+</code></pre><p><strong>注意：</strong></p>
+<p>  若出错：fatal: refusing to merge unrelated histories</p>
+<p>  解决：git pull origin master –allow-unrelated-histories</p>
+<p>  //github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。</p>
+<p>  最后依次用命令：</p>
+<pre><code>git add .              
+git commit -m &quot;commit2&quot;                    
+git push origin master:master
+</code></pre><h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
 
 2.克隆：git clone  git@github.com:michaelliao/learngit.git
 
@@ -409,19 +407,14 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 5.删除dev分支：git branch -d dev
 
 强行删除，需要使用命令:git branch -D dev。
-</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ul>
-<li><p>1.用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit</p>
-<p>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ol>
+<li><p>用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit<br>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
 </li>
-</ul>
-<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
-<ul>
-<li><p>2.把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+<li><p>把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
 </li>
-<li><p>3.工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；</p>
+<li><p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
 </li>
-</ul>
-<p>另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
+</ol>
 <h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>1.查看远程库的详细信息：git remote -v
 
 2.推送分支：git push origin master
@@ -488,7 +481,7 @@ $ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
         <p><span>本文标题:</span><a href="/2016/10/12/Git常用命令/">Git常用命令</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
         <p><span>发布时间:</span>2016-10-12, 19:52:30</p>
-        <p><span>最后更新:</span>2016-10-19, 19:58:55</p>
+        <p><span>最后更新:</span>2016-10-19, 20:05:57</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/12/Git常用命令/" title="Git常用命令">https://yoursite.com/2016/10/12/Git常用命令/</a>
             <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/10/12/Git常用命令/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
