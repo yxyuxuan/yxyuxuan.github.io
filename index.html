@@ -614,10 +614,10 @@ console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);
 Server is running at http://127.0.0.1:8080/
 </code></pre><h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：" target="_blank" rel="external">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
 </code></pre><h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
-<li><p>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</p>
-</li>
-<li><p>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</p>
-</li>
+<li>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</li>
+</ul>
+<ul>
+<li>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</li>
 </ul>
 
       

@@ -33,7 +33,7 @@ request对象封装了HTTP请求，我们调用request对象的属">
 要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
 
 request对象封装了HTTP请求，我们调用request对象的属">
-<meta property="og:updated_time" content="2016-10-21T13:37:34.536Z">
+<meta property="og:updated_time" content="2016-10-21T13:58:29.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Node.js实现HTTP服务器程序">
 <meta name="twitter:description" content="最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序
@@ -339,10 +339,10 @@ console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);
 Server is running at http://127.0.0.1:8080/
 </code></pre><h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：" target="_blank" rel="external">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
 </code></pre><h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
-<li><p>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</p>
-</li>
-<li><p>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</p>
-</li>
+<li>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</li>
+</ul>
+<ul>
+<li>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</li>
 </ul>
 
       
@@ -355,7 +355,7 @@ Server is running at http://127.0.0.1:8080/
         <p><span>本文标题:</span><a href="/2016/10/21/用Node-js实现HTTP服务器程序/">用Node.js实现HTTP服务器程序</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
         <p><span>发布时间:</span>2016-10-21, 20:57:26</p>
-        <p><span>最后更新:</span>2016-10-21, 21:37:34</p>
+        <p><span>最后更新:</span>2016-10-21, 21:58:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/21/用Node-js实现HTTP服务器程序/" title="用Node.js实现HTTP服务器程序">https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/</a>
             <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
