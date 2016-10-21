@@ -29,7 +29,7 @@ stream是Node.js提供的又一个仅在服务区端可用的模块，目的是�
 stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。
 
 什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输">
-<meta property="og:updated_time" content="2016-10-21T14:01:48.877Z">
+<meta property="og:updated_time" content="2016-10-21T14:04:17.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js中的Stream模块">
 <meta name="twitter:description" content="注意：
@@ -385,11 +385,8 @@ writerStream.on(&apos;error&apos;, function(err){
 hello world !
 </code></pre></li>
 </ol>
-<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><ul>
-<li><p>管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
-<p>以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
-</li>
-</ul>
+<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><p> 管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
+<p> 以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
 <ol>
 <li><p>设置 input.txt 文件内容如下：</p>
 <pre><code>Hello! my name is yuxuan.
@@ -470,7 +467,7 @@ console.log(&quot;文件解压完成。&quot;);
         <p><span>本文标题:</span><a href="/2016/10/20/Node-js中的Stream模块/">Node.js中的Stream模块</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
         <p><span>发布时间:</span>2016-10-20, 21:12:32</p>
-        <p><span>最后更新:</span>2016-10-21, 22:01:48</p>
+        <p><span>最后更新:</span>2016-10-21, 22:04:17</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/20/Node-js中的Stream模块/" title="Node.js中的Stream模块">https://yoursite.com/2016/10/20/Node-js中的Stream模块/</a>
             <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/10/20/Node-js中的Stream模块/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
