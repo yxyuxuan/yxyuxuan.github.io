@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note-js/">Note.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
                     </div>
                 </section>
                 
@@ -241,6 +241,310 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Note-js中的events模块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/23/Note-js中的events模块/" class="article-date">
+      <time datetime="2016-10-23T13:16:55.000Z" itemprop="datePublished">2016-10-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/23/Note-js中的events模块/">Note.js中的events模块</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>注意：</strong></p>
+<ol>
+<li><p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
+</li>
+<li><p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-EventEmitter类"><a href="#一-EventEmitter类" class="headerlink" title="一.EventEmitter类"></a>一.EventEmitter类</h3><p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。可以通过require(“events”);来访问该模块。</p>
+<pre><code>// 引入 events 模块
+var events = require(&apos;events&apos;);
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+</code></pre><p>EventEmitter 对象如果在实例化时发生错误，会触发 ‘error’ 事件。当添加新的监听器时，’newListener’ 事件会触发，当监听器被移除时，’removeListener’ 事件被触发。</p>
+<h3 id="二-EventEmitter-的用法："><a href="#二-EventEmitter-的用法：" class="headerlink" title="二.EventEmitter 的用法："></a>二.EventEmitter 的用法：</h3><pre><code>//event.js 文件
+var EventEmitter = require(&apos;events&apos;).EventEmitter; 
+var event = new EventEmitter(); 
+event.on(&apos;some_event&apos;, function() { 
+    console.log(&apos;some_event 事件触发&apos;); 
+}); 
+setTimeout(function() { 
+    event.emit(&apos;some_event&apos;); 
+}, 1000); 
+</code></pre><p>执行结果如下：<br>运行这段代码，1 秒后控制台输出了 ‘some_event 事件触发’。其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。</p>
+<pre><code>$ node event.js 
+some_event 事件触发
+</code></pre><p>EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。</p>
+<p>当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。<br>让我们以下面的例子解释这个过程：</p>
+<pre><code>//event.js 文件
+var events = require(&apos;events&apos;); 
+var emitter = new events.EventEmitter(); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener1&apos;, arg1, arg2); 
+}); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener2&apos;, arg1, arg2); 
+}); 
+emitter.emit(&apos;someEvent&apos;, &apos;arg1 参数&apos;, &apos;arg2 参数&apos;); 
+</code></pre><p>执行以上代码，运行的结果如下：</p>
+<pre><code>$ node event.js 
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数
+</code></pre><p>以上例子中，emitter 为事件 someEvent 注册了两个事件监听器，然后触发了 someEvent 事件。<br>运行结果中可以看到两个事件监听器回调函数被先后调用。 这就是EventEmitter最简单的用法。</p>
+<h3 id="三-EventEmitter-的属性"><a href="#三-EventEmitter-的属性" class="headerlink" title="三.EventEmitter 的属性"></a>三.EventEmitter 的属性</h3><p>EventEmitter 提供了多个属性，如 on 和 emit。on 函数用于绑定事件函数，emit 属性用于触发一个事件。接下来我们来具体看下 EventEmitter 的属性介绍。</p>
+<ol>
+<li><p>addListener(event, listener)<br>为指定事件添加一个监听器到监听器数组的尾部。</p>
+</li>
+<li><p>on(event, listener)<br>为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。</p>
+<pre><code>erver.on(&apos;connection&apos;, function (stream) {
+    console.(&apos;someone connected!&apos;);
+});
+</code></pre></li>
+<li><p>once(event, listener)<br>为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。</p>
+<pre><code>server.once(&apos;connection&apos;, function (stream){
+    console.log(&apos;Ah, we have our first user!&apos;);
+});
+</code></pre></li>
+<li><p>removeListener(event, listener)<br>移除指定事件的某个监听器，监听器 必须是该事件已经注册过的监听器。</p>
+<pre><code>var callback = function(stream) {
+       console.log(&apos;someone connected!&apos;);
+};
+server.on(&apos;connection&apos;, callback);
+// ...
+server.removeListener(&apos;connection&apos;, callback);
+</code></pre></li>
+<li><p>removeAllListeners([event])<br>移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。</p>
+</li>
+<li><p>setMaxListeners(n)<br>默认情况下， EventEmitters 如果你添加的监听器超过 10 个就会输出警告信息。 setMaxListeners 函数用于提高监听器的默认限制的数量。</p>
+</li>
+<li><p>listeners(event)<br>返回指定事件的监听器数组。</p>
+</li>
+<li><p>emit(event, [arg1], [arg2], […])<br>按参数的顺序执行每个监听器，如果事件有注册监听返回 true，否则返回 false。</p>
+</li>
+</ol>
+<h3 id="四-继承-EventEmitter"><a href="#四-继承-EventEmitter" class="headerlink" title="四.继承 EventEmitter"></a>四.继承 EventEmitter</h3><ul>
+<li><p>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</p>
+</li>
+<li><p>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note-js/">Note.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node-js中的fs模块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/21/Node-js中的fs模块/" class="article-date">
+      <time datetime="2016-10-21T14:14:51.000Z" itemprop="datePublished">2016-10-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/21/Node-js中的fs模块/">Node.js中的fs模块</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。</p>
+</blockquote>
+<h3 id="一-同步读文件"><a href="#一-同步读文件" class="headerlink" title="一.同步读文件"></a>一.同步读文件</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+var data = fs.readFileSync(&apos;input.txt&apos;);
+
+console.log(data.toString());
+console.log(&quot;程序执行结束!&quot;);
+</code></pre></li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code>$ node main.js
+
+ 你好，我是于禤。
+Hello!my name is yuxuan.
+程序执行结束!
+</code></pre></li>
+</ol>
+<h3 id="二-异步读文件"><a href="#二-异步读文件" class="headerlink" title="二.异步读文件"></a>二.异步读文件</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+    Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+fs.readFile(&apos;input.txt&apos;, function (err, data) {
+    if (err) return console.error(err);
+    console.log(data.toString());
+});
+
+console.log(&quot;程序执行结束!&quot;);
+</code></pre></li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code> 程序执行结束!
+ 你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+</ol>
+<h3 id="三-写文件（fs-writeFile-）"><a href="#三-写文件（fs-writeFile-）" class="headerlink" title="三.写文件（fs.writeFile()）"></a>三.写文件（fs.writeFile()）</h3><ol>
+<li><p>创建一个空文件 output.txt</p>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+
+var data = &apos;Hello, Node.js&apos;;
+fs.writeFile(&apos;output.txt&apos;, data, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(&apos;ok.&apos;);
+    }
+});
+</code></pre></li>
+<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js</p>
+</li>
+</ol>
+<p><strong>注意：</strong>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
+<ol>
+<li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+var data = &apos;Hello, Node.js&apos;;
+fs.writeFileSync(&apos;output.txt&apos;, data);
+</code></pre></li>
+</ol>
+<h3 id="四-获取文件的详细信息（fs-stat-）"><a href="#四-获取文件的详细信息（fs-stat-）" class="headerlink" title="四.获取文件的详细信息（fs.stat()）"></a>四.获取文件的详细信息（fs.stat()）</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+
+fs.stat(&apos;input.txt&apos;, function (err, stat) {
+if (err) {
+    console.log(err);
+} else {
+    // 是否是文件:
+    console.log(&apos;isFile: &apos; + stat.isFile());
+    // 是否是目录:
+    console.log(&apos;isDirectory: &apos; + stat.isDirectory());
+    if (stat.isFile()) {
+        // 文件大小:
+        console.log(&apos;size: &apos; + stat.size);
+        // 创建时间, Date对象:
+        console.log(&apos;birth time: &apos; + stat.birthtime);
+        // 修改时间, Date对象:
+        console.log(&apos;modified time: &apos; + stat.mtime);
+        }
+ }
+});
+</code></pre></li>
+<li><p>运行结果如下：</p>
+<pre><code>isFile: true
+isDirectory: false
+size: 51
+birth time: Thu Oct 20 2016 13:40:21 GMT+0800 (中国标准时间)
+modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-用Node-js实现HTTP服务器程序" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -270,7 +574,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="用Node-js实现一个HTTP服务器程序"><a href="#用Node-js实现一个HTTP服务器程序" class="headerlink" title="用Node.js实现一个HTTP服务器程序"></a>用Node.js实现一个HTTP服务器程序</h1><blockquote>
+        <blockquote>
 <p>最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序</p>
 </blockquote>
 <p><strong>注意：</strong></p>
@@ -329,6 +633,234 @@ Server is running at http://127.0.0.1:8080/
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node-js中的Stream模块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/20/Node-js中的Stream模块/" class="article-date">
+      <time datetime="2016-10-20T13:12:32.000Z" itemprop="datePublished">2016-10-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/20/Node-js中的Stream模块/">Node.js中的Stream模块</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>注意：</strong></p>
+<ol>
+<li><p>stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。</p>
+</li>
+<li><p>什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输入流（stdin）。</p>
+</li>
+<li><p>Node.js，Stream 有四种流类型：</p>
+<ul>
+<li>Readable - 可读操作。</li>
+<li>Writable - 可写操作。</li>
+<li>Duplex - 可读可写操作.</li>
+<li>Transform - 操作被写入数据，然后读出结果。</li>
+</ul>
+</li>
+<li><p>所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：</p>
+<ul>
+<li>data - 当有数据可读时触发。</li>
+<li>end - 没有更多的数据可读时触发。</li>
+<li>error - 在接收和写入过程中发生错误时触发。</li>
+<li>finish - 所有数据已被写入到底层系统时触发。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="一-从流中读取数据"><a href="#一-从流中读取数据" class="headerlink" title="一.从流中读取数据"></a>一.从流中读取数据</h3><ol>
+<li><p>创建 input.txt 文件，内容如下：</p>
+<pre><code>hello world !
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;&apos;;
+
+// 创建可读流
+var readerStream = fs.createReadStream(&apos;input.txt&apos;);
+
+// 设置编码为 utf8。
+readerStream.setEncoding(&apos;UTF8&apos;);
+
+// 处理流事件 --&gt; data, end, and error
+readerStream.on(&apos;data&apos;, function(chunk) {
+       data += chunk;
+   });
+
+readerStream.on(&apos;end&apos;,function(){
+       console.log(data);
+});
+
+readerStream.on(&apos;error&apos;, function(err){
+       console.log(err.stack);
+});
+
+    console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+</ol>
+<ol>
+<li><p>以上代码执行结果如下：</p>
+<pre><code>程序执行完毕
+hello world !
+</code></pre></li>
+</ol>
+<h3 id="二-写入流"><a href="#二-写入流" class="headerlink" title="二.写入流"></a>二.写入流</h3><ol>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;hello world !&apos;;
+
+// 创建一个可以写入的流，写入到文件 output.txt 中
+var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
+
+// 使用 utf8 编码写入数据
+writerStream.write(data,&apos;UTF8&apos;);
+
+// 标记文件末尾
+writerStream.end();
+
+// 处理流事件 --&gt; data, end, and error
+writerStream.on(&apos;finish&apos;, function() {
+    console.log(&quot;写入完成。&quot;);
+});
+
+writerStream.on(&apos;error&apos;, function(err){
+       console.log(err.stack);
+});
+
+    console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+<li><p>以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：</p>
+<pre><code>   $ node main.js 
+程序执行完毕
+写入完成。
+</code></pre></li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code>$ cat output.txt 
+hello world !
+</code></pre></li>
+</ol>
+<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><ul>
+<li><p>管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
+<p>以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
+</li>
+</ul>
+<ol>
+<li><p>设置 input.txt 文件内容如下：</p>
+<pre><code>Hello! my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+// 创建一个可读流
+var readerStream = fs.createReadStream(&apos;input.txt&apos;);
+
+// 创建一个可写流
+var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
+
+// 管道读写操作
+// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
+readerStream.pipe(writerStream);
+
+console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node main.js 
+程序执行完毕
+</code></pre></li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code>$ cat output.txt 
+Hello! my name is yuxuan.
+</code></pre></li>
+</ol>
+<h3 id="四-链式流"><a href="#四-链式流" class="headerlink" title="四.链式流"></a>四.链式流</h3><ul>
+<li>链式是通过连接输出流到另外一个流并创建多个对个流操作链的机制。链式流一般用于管道操作。<br>接下来我们就是用管道和链式来压缩和解压文件。</li>
+</ul>
+<p><strong>a. 压缩文件</strong></p>
+<ol>
+<li><p>创建 compress.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+// 压缩 input.txt 文件为 input.txt.gz
+fs.createReadStream(&apos;input.txt&apos;)
+.pipe(zlib.createGzip())
+.pipe(fs.createWriteStream(&apos;input.txt.gz&apos;));
+
+console.log(&quot;文件压缩完成。&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node compress.js 
+文件压缩完成。
+</code></pre></li>
+<li><p>执行完以上操作后，我们可以看到当前目录下生成了 input.txt 的压缩文件 input.txt.gz。</p>
+</li>
+</ol>
+<p><strong>b. 解压该文件</strong></p>
+<ol>
+<li><p>创建 decompress.js 文件，代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+    // 解压 input.txt.gz 文件为 input.txt
+fs.createReadStream(&apos;input.txt.gz&apos;)
+  .pipe(zlib.createGunzip())
+  .pipe(fs.createWriteStream(&apos;input.txt&apos;));
+
+console.log(&quot;文件解压完成。&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node decompress.js 
+ 文件解压完成。
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note-js/">Note.js</a></li></ul>
     </div>
 
       
@@ -1471,339 +2003,6 @@ console.log(demoArrayB); // =&gt; [  1, &apos;b&apos;, &apos;c&apos;, &apos;d&ap
 <pre><code>console.log([]===[]); // =&gt; false
 console.log([&apos;a&apos;, &apos;b&apos;] === [&apos;a&apos;, &apos;b&apos;]); // =&gt; false
 console.log([&apos;a&apos;, &apos;b&apos;].toString() === [&apos;a&apos;, &apos;b&apos;].toString()); // true
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript中的Math对象" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/16/JavaScript中的Math对象/" class="article-date">
-      <time datetime="2016-09-16T14:07:04.000Z" itemprop="datePublished">2016-09-16</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="Math的描述"><a href="#Math的描述" class="headerlink" title="Math的描述"></a>Math的描述</h2><pre><code>Math，中文&quot;数学&quot;，此对象提供数学计算的函数与常量
-Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
-</code></pre><h2 id="JavaScript中的Math函数与属性的使用语法"><a href="#JavaScript中的Math函数与属性的使用语法" class="headerlink" title="JavaScript中的Math函数与属性的使用语法"></a>JavaScript中的Math函数与属性的使用语法</h2><pre><code>Math.方法名(参数1,参数2,...);
-Math.属性;
-可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
-Math的相关函数全部为静态函数，应该直接调用
-</code></pre><h2 id="JavaScript中的Math函数与属性按功能分类"><a href="#JavaScript中的Math函数与属性按功能分类" class="headerlink" title="JavaScript中的Math函数与属性按功能分类"></a>JavaScript中的Math函数与属性按功能分类</h2><h3 id="1-Math三角函数与属性"><a href="#1-Math三角函数与属性" class="headerlink" title="1.Math三角函数与属性"></a>1.Math三角函数与属性</h3><pre><code>Math.sin() -- 返回数字的正弦值
-Math.cos() -- 返回数字的余弦值
-Math.tan() -- 返回数字的正切值
-Math.asin() -- 返回数字的反正弦值
-Math.acos() -- 返回数字的反余弦值
-Math.atan() -- 返回数字的反正切值
-Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
-Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
-</code></pre><h3 id="2-Math自然对数相关函数与属性"><a href="#2-Math自然对数相关函数与属性" class="headerlink" title="2.Math自然对数相关函数与属性"></a>2.Math自然对数相关函数与属性</h3><pre><code>Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
-Math.log() -- 返回数字的自然对数
-Math.E 属性 -- 返回自然对数的底数，E约等于2.718
-Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
-Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
-Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
-Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
-</code></pre><h3 id="3-Math四舍五入类函数"><a href="#3-Math四舍五入类函数" class="headerlink" title="3.Math四舍五入类函数"></a>3.Math四舍五入类函数</h3><pre><code>Math.abs() -- 返回数字的绝对值
-Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
-Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
-Math.round() -- 返回数字最接近的整数，四舍五入
-</code></pre><h3 id="4-Math最大最小类函数"><a href="#4-Math最大最小类函数" class="headerlink" title="4.Math最大最小类函数"></a>4.Math最大最小类函数</h3><pre><code>Math.max() -- 返回数个数字中较大的值
-Math.min() -- 返回数个数字中较小的值
-</code></pre><h3 id="5-Math幂指类函数"><a href="#5-Math幂指类函数" class="headerlink" title="5.Math幂指类函数"></a>5.Math幂指类函数</h3><pre><code>Math.pow() -- 返回底数的指定次幂
-Math.sqrt() -- 返回数字的平方根
-Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
-Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
-</code></pre><h3 id="6-Math随机数函数"><a href="#6-Math随机数函数" class="headerlink" title="6.Math随机数函数"></a>6.Math随机数函数</h3><pre><code>Math.random() -- 返回0和1之间的伪随机数
-</code></pre><h3 id="7-Math函数按字母排序"><a href="#7-Math函数按字母排序" class="headerlink" title="7.Math函数按字母排序"></a>7.Math函数按字母排序</h3><pre><code>Math.abs() -- 返回数字的绝对值
-Math.acos() -- 返回数字的反余弦值
-Math.asin() -- 返回数字的反正弦值
-Math.atan() -- 返回数字的反正切值
-Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
-Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
-Math.cos() -- 返回数字的余弦值
-Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
-Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
-Math.log() -- 返回数字的自然对数
-Math.max() -- 返回数个数字中较大的值
-Math.min() -- 返回数个数字中较小的值
-Math.pow() -- 返回底数的指定次幂
-Math.random() -- 返回0和1之间的伪随机数
-Math.round() -- 返回数字最接近的整数，四舍五入
-Math.sin() -- 返回数字的正弦值
-Math.sqrt() -- 返回数字的平方根
-Math.tan() -- 返回数字的正切值
-</code></pre><h3 id="8-JavaScript-Math属性按字母排序"><a href="#8-JavaScript-Math属性按字母排序" class="headerlink" title="8.JavaScript_Math属性按字母排序"></a>8.JavaScript_Math属性按字母排序</h3><pre><code>Math.E 属性 -- 返回自然对数的底数，E约等于2.718
-Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
-Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
-Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
-Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
-Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
-Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
-Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS中call和apply的区别与应用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/10/JS中call和apply的区别与应用/" class="article-date">
-      <time datetime="2016-09-10T03:44:30.000Z" itemprop="datePublished">2016-09-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="一-方法定义"><a href="#一-方法定义" class="headerlink" title="一.方法定义"></a>一.方法定义</h2><h3 id="1、call-方法"><a href="#1、call-方法" class="headerlink" title="1、call()方法:"></a>1、call()方法:</h3><p>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
-<p>定义：调用一个对象的一个方法，以另一个对象替换当前对象。</p>
-<p>参数:<br>thisObj可选项。将被用作当前对象的对象。<br>arg1, arg2, , argN<br>可选项。将被传递方法参数序列。</p>
-<p>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</p>
-<h3 id="2、apply-方法："><a href="#2、apply-方法：" class="headerlink" title="2、apply()方法："></a>2、apply()方法：</h3><p>语法：apply([thisObj[,argArray]])</p>
-<p>定义：应用某一对象的一个方法，用另一个对象替换当前对象。</p>
-<p>参数：thisObj<br>可选项。将被用作当前对象的对象。<br>argArray<br>可选项。将被传递给该函数的参数数组。</p>
-<p>说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<h2 id="二-call-和apply-相同点"><a href="#二-call-和apply-相同点" class="headerlink" title="二.call()和apply()相同点"></a>二.call()和apply()相同点</h2><p>a） 产生的效果或作用完全相同；</p>
-<p>b） 至少有一个参数；</p>
-<p>c） 第一个参数必须有且是一个对象（Object）。</p>
-<h2 id="三-call-和apply-的区别"><a href="#三-call-和apply-的区别" class="headerlink" title="三.call()和apply()的区别"></a>三.call()和apply()的区别</h2><p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
-<h2 id="四-call-和apply-常用实例"><a href="#四-call-和apply-常用实例" class="headerlink" title="四.call()和apply()常用实例"></a>四.call()和apply()常用实例</h2><h3 id="实例一："><a href="#实例一：" class="headerlink" title="实例一："></a>实例一：</h3><pre><code>function Animal(){    
-this.name = &quot;Animal&quot;;    
-this.showName = function(){    
-    alert(this.name);    
-}    
-}    
-
-function Cat(){    
-this.name = &quot;Cat&quot;;    
-}    
-
-var animal = new Animal();    
-var cat = new Cat();    
-
-//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    
-//输入结果为&quot;Cat&quot;    
-animal.showName.call(cat,&quot;,&quot;);    
-//animal.showName.apply(cat,[]);  
-</code></pre><p>注意：call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。</p>
-<h3 id="实例二：实现继承"><a href="#实例二：实现继承" class="headerlink" title="实例二：实现继承"></a>实例二：实现继承</h3><pre><code>function Animal(name){      
-this.name = name;      
-this.showName = function(){      
-    alert(this.name);      
-}      
-}      
-
- function Cat(name){    
-Animal.call(this, name);    
-}      
-
-var cat = new Cat(&quot;Black Cat&quot;);     
-cat.showName();  
-</code></pre><p>注意：Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS中的arguments对象" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/10/JS中的arguments对象/" class="article-date">
-      <time datetime="2016-09-10T01:23:55.000Z" itemprop="datePublished">2016-09-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>1.</strong> 在JavaScript中，arguments对象是比较特别的一个对象，实际上是当前函数的一个内置属性。arguments非常类似Array，但实际上又不是一个Array实例。可以通过如下代码得以证实（当然，实际上，在函数funcArg中，调用arguments是不必要写成funcArg.arguments，直接写arguments即可）。</p>
-<pre><code>Array.prototype.testArg = &quot;test&quot;;
-function funcArg() {
-    alert(funcArg.arguments.testArg);  
-    alert(funcArg.arguments[0]);
-}
-alert(new Array().testArg); // result: &quot;test&quot;
-funcArg(10);                // result: &quot;undefined&quot;  &quot;10&quot;
-</code></pre><p><strong>2.</strong> arguments对象的长度是由实参个数而不是形参个数决定的。形参是函数内部重新开辟内存空间存储的变量，但是其与arguments对象内存空间并不重叠。对于arguments和值都存在的情况下，两者值是同步的，但是针对其中一个无值的情况下，对于此无值的情形值不会得以同步。如下代码可以得以验证。</p>
-<pre><code>function f(a, b, c){
-    alert(arguments.length);   // result: &quot;2&quot;
-       a = 100;
-    alert(arguments[0]);       // result: &quot;100&quot;
-    arguments[0] = &quot;qqyumidi&quot;;
-    alert(a);                  // result: &quot;qqyumidi&quot;
-    alert(c);                  // result: &quot;undefined&quot;
-    c = 2012;
-    alert(arguments[2]);       // result: &quot;undefined&quot;
-}
-f(1, 2);
-</code></pre><p>但是实参和形参之间是相互影响的，比如如果修改了 arguments[0]=”hello”那么a 的值也会变成hello.</p>
-<p><strong>3.</strong> 由JavaScript中函数的声明和调用特性，可以看出JavaScript中函数是不能重载的。<br>根据其他语言中重载的依据：”函数返回值不同或形参个数不同”，我们可以得出上述结论：</p>
-<p>第一：Javascript函数的声明是没有返回值类型这一说法的；</p>
-<p>第二：JavaScript中形参的个数严格意义上来讲只是为了方便在函数中的变量操作，实际上实参已经存储在arguments对象中了。</p>
-<p>另外，从JavaScript函数本身深入理解为什么JavaScript中函数是不能重载的：在JavaScript中，函数其实也是对象，函数名是关于函数的引用，或者说函数名本身就是变量。对于如下所示的函数声明与函数表达式，其实含以上是一样的（在不考虑函数声明与函数表达式区别的前提下），非常有利于我们理解JavaScript中函数是不能重载的这一特性。<br>    function f(a){<br>        return a + 10;<br>    }</p>
-<pre><code>function f(a){
-    return a - 10;
-}
-
-// 在不考虑函数声明与函数表达式区别的前提下，其等价于如下
-
-var f = function(a){
-       return a + 10;
-}
-
-var f = function(a){
-       return a - 10;
-}
-</code></pre><p>Javascript并没有重载函数的功能，但是Arguments对象能够模拟重载。</p>
-<pre><code>function hi(){
-if(arguments[0]==&quot;andy&quot;){
-     return;
-}
-alert(arguments[0]);
-</code></pre><p><strong>4</strong>、arguments对象中有一个非常有用的属性：callee。arguments.callee返回此arguments对象所在的当前函数引用。在使用函数递归调用时推荐使用arguments.callee代替函数名本身。表示对函数对象本身的引用，也就是所指定的 Function 对象的正文，这有利于实现无名函数的递归或者保证函数的封装性。</p>
-<pre><code>function count(a){
-       if(a==1){
-        return 1;
-} 
-return a + arguments.callee(--a);
-}
-var mm = count(10);
-alert(mm);
 </code></pre>
       
     </div>

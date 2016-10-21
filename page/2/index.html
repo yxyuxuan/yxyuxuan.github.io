@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note-js/">Note.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,339 @@
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-JavaScript中的Math对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/16/JavaScript中的Math对象/" class="article-date">
+      <time datetime="2016-09-16T14:07:04.000Z" itemprop="datePublished">2016-09-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Math的描述"><a href="#Math的描述" class="headerlink" title="Math的描述"></a>Math的描述</h2><pre><code>Math，中文&quot;数学&quot;，此对象提供数学计算的函数与常量
+Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
+</code></pre><h2 id="JavaScript中的Math函数与属性的使用语法"><a href="#JavaScript中的Math函数与属性的使用语法" class="headerlink" title="JavaScript中的Math函数与属性的使用语法"></a>JavaScript中的Math函数与属性的使用语法</h2><pre><code>Math.方法名(参数1,参数2,...);
+Math.属性;
+可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
+Math的相关函数全部为静态函数，应该直接调用
+</code></pre><h2 id="JavaScript中的Math函数与属性按功能分类"><a href="#JavaScript中的Math函数与属性按功能分类" class="headerlink" title="JavaScript中的Math函数与属性按功能分类"></a>JavaScript中的Math函数与属性按功能分类</h2><h3 id="1-Math三角函数与属性"><a href="#1-Math三角函数与属性" class="headerlink" title="1.Math三角函数与属性"></a>1.Math三角函数与属性</h3><pre><code>Math.sin() -- 返回数字的正弦值
+Math.cos() -- 返回数字的余弦值
+Math.tan() -- 返回数字的正切值
+Math.asin() -- 返回数字的反正弦值
+Math.acos() -- 返回数字的反余弦值
+Math.atan() -- 返回数字的反正切值
+Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
+Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
+</code></pre><h3 id="2-Math自然对数相关函数与属性"><a href="#2-Math自然对数相关函数与属性" class="headerlink" title="2.Math自然对数相关函数与属性"></a>2.Math自然对数相关函数与属性</h3><pre><code>Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
+Math.log() -- 返回数字的自然对数
+Math.E 属性 -- 返回自然对数的底数，E约等于2.718
+Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
+Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
+Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
+Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
+</code></pre><h3 id="3-Math四舍五入类函数"><a href="#3-Math四舍五入类函数" class="headerlink" title="3.Math四舍五入类函数"></a>3.Math四舍五入类函数</h3><pre><code>Math.abs() -- 返回数字的绝对值
+Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
+Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
+Math.round() -- 返回数字最接近的整数，四舍五入
+</code></pre><h3 id="4-Math最大最小类函数"><a href="#4-Math最大最小类函数" class="headerlink" title="4.Math最大最小类函数"></a>4.Math最大最小类函数</h3><pre><code>Math.max() -- 返回数个数字中较大的值
+Math.min() -- 返回数个数字中较小的值
+</code></pre><h3 id="5-Math幂指类函数"><a href="#5-Math幂指类函数" class="headerlink" title="5.Math幂指类函数"></a>5.Math幂指类函数</h3><pre><code>Math.pow() -- 返回底数的指定次幂
+Math.sqrt() -- 返回数字的平方根
+Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
+Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
+</code></pre><h3 id="6-Math随机数函数"><a href="#6-Math随机数函数" class="headerlink" title="6.Math随机数函数"></a>6.Math随机数函数</h3><pre><code>Math.random() -- 返回0和1之间的伪随机数
+</code></pre><h3 id="7-Math函数按字母排序"><a href="#7-Math函数按字母排序" class="headerlink" title="7.Math函数按字母排序"></a>7.Math函数按字母排序</h3><pre><code>Math.abs() -- 返回数字的绝对值
+Math.acos() -- 返回数字的反余弦值
+Math.asin() -- 返回数字的反正弦值
+Math.atan() -- 返回数字的反正切值
+Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
+Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
+Math.cos() -- 返回数字的余弦值
+Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
+Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
+Math.log() -- 返回数字的自然对数
+Math.max() -- 返回数个数字中较大的值
+Math.min() -- 返回数个数字中较小的值
+Math.pow() -- 返回底数的指定次幂
+Math.random() -- 返回0和1之间的伪随机数
+Math.round() -- 返回数字最接近的整数，四舍五入
+Math.sin() -- 返回数字的正弦值
+Math.sqrt() -- 返回数字的平方根
+Math.tan() -- 返回数字的正切值
+</code></pre><h3 id="8-JavaScript-Math属性按字母排序"><a href="#8-JavaScript-Math属性按字母排序" class="headerlink" title="8.JavaScript_Math属性按字母排序"></a>8.JavaScript_Math属性按字母排序</h3><pre><code>Math.E 属性 -- 返回自然对数的底数，E约等于2.718
+Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
+Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
+Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
+Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
+Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
+Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
+Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS中call和apply的区别与应用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/10/JS中call和apply的区别与应用/" class="article-date">
+      <time datetime="2016-09-10T03:44:30.000Z" itemprop="datePublished">2016-09-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-方法定义"><a href="#一-方法定义" class="headerlink" title="一.方法定义"></a>一.方法定义</h2><h3 id="1、call-方法"><a href="#1、call-方法" class="headerlink" title="1、call()方法:"></a>1、call()方法:</h3><p>语法：call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p>
+<p>定义：调用一个对象的一个方法，以另一个对象替换当前对象。</p>
+<p>参数:<br>thisObj可选项。将被用作当前对象的对象。<br>arg1, arg2, , argN<br>可选项。将被传递方法参数序列。</p>
+<p>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</p>
+<h3 id="2、apply-方法："><a href="#2、apply-方法：" class="headerlink" title="2、apply()方法："></a>2、apply()方法：</h3><p>语法：apply([thisObj[,argArray]])</p>
+<p>定义：应用某一对象的一个方法，用另一个对象替换当前对象。</p>
+<p>参数：thisObj<br>可选项。将被用作当前对象的对象。<br>argArray<br>可选项。将被传递给该函数的参数数组。</p>
+<p>说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
+<h2 id="二-call-和apply-相同点"><a href="#二-call-和apply-相同点" class="headerlink" title="二.call()和apply()相同点"></a>二.call()和apply()相同点</h2><p>a） 产生的效果或作用完全相同；</p>
+<p>b） 至少有一个参数；</p>
+<p>c） 第一个参数必须有且是一个对象（Object）。</p>
+<h2 id="三-call-和apply-的区别"><a href="#三-call-和apply-的区别" class="headerlink" title="三.call()和apply()的区别"></a>三.call()和apply()的区别</h2><p>传递参数的方式。用法上不同，主要是参数不完全同。</p>
+<h2 id="四-call-和apply-常用实例"><a href="#四-call-和apply-常用实例" class="headerlink" title="四.call()和apply()常用实例"></a>四.call()和apply()常用实例</h2><h3 id="实例一："><a href="#实例一：" class="headerlink" title="实例一："></a>实例一：</h3><pre><code>function Animal(){    
+this.name = &quot;Animal&quot;;    
+this.showName = function(){    
+    alert(this.name);    
+}    
+}    
+
+function Cat(){    
+this.name = &quot;Cat&quot;;    
+}    
+
+var animal = new Animal();    
+var cat = new Cat();    
+
+//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    
+//输入结果为&quot;Cat&quot;    
+animal.showName.call(cat,&quot;,&quot;);    
+//animal.showName.apply(cat,[]);  
+</code></pre><p>注意：call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。</p>
+<h3 id="实例二：实现继承"><a href="#实例二：实现继承" class="headerlink" title="实例二：实现继承"></a>实例二：实现继承</h3><pre><code>function Animal(name){      
+this.name = name;      
+this.showName = function(){      
+    alert(this.name);      
+}      
+}      
+
+ function Cat(name){    
+Animal.call(this, name);    
+}      
+
+var cat = new Cat(&quot;Black Cat&quot;);     
+cat.showName();  
+</code></pre><p>注意：Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS中的arguments对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/10/JS中的arguments对象/" class="article-date">
+      <time datetime="2016-09-10T01:23:55.000Z" itemprop="datePublished">2016-09-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>1.</strong> 在JavaScript中，arguments对象是比较特别的一个对象，实际上是当前函数的一个内置属性。arguments非常类似Array，但实际上又不是一个Array实例。可以通过如下代码得以证实（当然，实际上，在函数funcArg中，调用arguments是不必要写成funcArg.arguments，直接写arguments即可）。</p>
+<pre><code>Array.prototype.testArg = &quot;test&quot;;
+function funcArg() {
+    alert(funcArg.arguments.testArg);  
+    alert(funcArg.arguments[0]);
+}
+alert(new Array().testArg); // result: &quot;test&quot;
+funcArg(10);                // result: &quot;undefined&quot;  &quot;10&quot;
+</code></pre><p><strong>2.</strong> arguments对象的长度是由实参个数而不是形参个数决定的。形参是函数内部重新开辟内存空间存储的变量，但是其与arguments对象内存空间并不重叠。对于arguments和值都存在的情况下，两者值是同步的，但是针对其中一个无值的情况下，对于此无值的情形值不会得以同步。如下代码可以得以验证。</p>
+<pre><code>function f(a, b, c){
+    alert(arguments.length);   // result: &quot;2&quot;
+       a = 100;
+    alert(arguments[0]);       // result: &quot;100&quot;
+    arguments[0] = &quot;qqyumidi&quot;;
+    alert(a);                  // result: &quot;qqyumidi&quot;
+    alert(c);                  // result: &quot;undefined&quot;
+    c = 2012;
+    alert(arguments[2]);       // result: &quot;undefined&quot;
+}
+f(1, 2);
+</code></pre><p>但是实参和形参之间是相互影响的，比如如果修改了 arguments[0]=”hello”那么a 的值也会变成hello.</p>
+<p><strong>3.</strong> 由JavaScript中函数的声明和调用特性，可以看出JavaScript中函数是不能重载的。<br>根据其他语言中重载的依据：”函数返回值不同或形参个数不同”，我们可以得出上述结论：</p>
+<p>第一：Javascript函数的声明是没有返回值类型这一说法的；</p>
+<p>第二：JavaScript中形参的个数严格意义上来讲只是为了方便在函数中的变量操作，实际上实参已经存储在arguments对象中了。</p>
+<p>另外，从JavaScript函数本身深入理解为什么JavaScript中函数是不能重载的：在JavaScript中，函数其实也是对象，函数名是关于函数的引用，或者说函数名本身就是变量。对于如下所示的函数声明与函数表达式，其实含以上是一样的（在不考虑函数声明与函数表达式区别的前提下），非常有利于我们理解JavaScript中函数是不能重载的这一特性。<br>    function f(a){<br>        return a + 10;<br>    }</p>
+<pre><code>function f(a){
+    return a - 10;
+}
+
+// 在不考虑函数声明与函数表达式区别的前提下，其等价于如下
+
+var f = function(a){
+       return a + 10;
+}
+
+var f = function(a){
+       return a - 10;
+}
+</code></pre><p>Javascript并没有重载函数的功能，但是Arguments对象能够模拟重载。</p>
+<pre><code>function hi(){
+if(arguments[0]==&quot;andy&quot;){
+     return;
+}
+alert(arguments[0]);
+</code></pre><p><strong>4</strong>、arguments对象中有一个非常有用的属性：callee。arguments.callee返回此arguments对象所在的当前函数引用。在使用函数递归调用时推荐使用arguments.callee代替函数名本身。表示对函数对象本身的引用，也就是所指定的 Function 对象的正文，这有利于实现无名函数的递归或者保证函数的封装性。</p>
+<pre><code>function count(a){
+       if(a==1){
+        return 1;
+} 
+return a + arguments.callee(--a);
+}
+var mm = count(10);
+alert(mm);
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-最基本的HTML5网页骨架" class="article article-type-post" itemscope itemprop="blogPost">
   

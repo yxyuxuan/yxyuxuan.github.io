@@ -15,44 +15,28 @@
 
 
 
-<meta name="description" content="步骤：第一步：新建一个仓库
-第二步：找到Settings
-第三步：找到GitHub Pages  
-第四步：查看分支
- 注意：我们生成githubPages的目的就是需要生成一个gh-pages分支(正常情况下只有一个master分支)
-第五步：将远程仓库克隆到本地
-git clone git@github.com:yxyuxuan/test.git
-第六步：将分支切换到gh-Pagescd te">
+<meta name="description" content="注意：
+
+stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。
+
+什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github-README中展示Demo">
-<meta property="og:url" content="https://yoursite.com/2016/07/02/Github-README中展示Demo/index.html">
+<meta property="og:title" content="Node.js中的Stream模块">
+<meta property="og:url" content="https://yoursite.com/2016/10/20/Node-js中的Stream模块/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="步骤：第一步：新建一个仓库
-第二步：找到Settings
-第三步：找到GitHub Pages  
-第四步：查看分支
- 注意：我们生成githubPages的目的就是需要生成一个gh-pages分支(正常情况下只有一个master分支)
-第五步：将远程仓库克隆到本地
-git clone git@github.com:yxyuxuan/test.git
-第六步：将分支切换到gh-Pagescd te">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/1.png">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/2.png">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/3.png">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/4.jpg">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/5.png">
-<meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/6.png">
-<meta property="og:updated_time" content="2016-09-17T12:32:16.551Z">
+<meta property="og:description" content="注意：
+
+stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。
+
+什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输">
+<meta property="og:updated_time" content="2016-10-21T13:19:34.409Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github-README中展示Demo">
-<meta name="twitter:description" content="步骤：第一步：新建一个仓库
-第二步：找到Settings
-第三步：找到GitHub Pages  
-第四步：查看分支
- 注意：我们生成githubPages的目的就是需要生成一个gh-pages分支(正常情况下只有一个master分支)
-第五步：将远程仓库克隆到本地
-git clone git@github.com:yxyuxuan/test.git
-第六步：将分支切换到gh-Pagescd te">
-<meta name="twitter:image" content="https://yxyuxuan.github.io/Markdown-repository/images/1.png">
+<meta name="twitter:title" content="Node.js中的Stream模块">
+<meta name="twitter:description" content="注意：
+
+stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。
+
+什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -84,7 +68,7 @@ git clone git@github.com:yxyuxuan/test.git
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Github-README中展示Demo | 萱儿的博客</title>
+<title>Node.js中的Stream模块 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -266,11 +250,11 @@ git clone git@github.com:yxyuxuan/test.git
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-Github-README中展示Demo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Node-js中的Stream模块" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/02/Github-README中展示Demo/" class="article-date">
-      <time datetime="2016-07-02T01:39:12.000Z" itemprop="datePublished">2016-07-02</time>
+      <a href="/2016/10/20/Node-js中的Stream模块/" class="article-date">
+      <time datetime="2016-10-20T13:12:32.000Z" itemprop="datePublished">2016-10-20</time>
 </a>
 
 
@@ -285,7 +269,7 @@ git clone git@github.com:yxyuxuan/test.git
         
   
     <h1 class="article-title" itemprop="name">
-      Github-README中展示Demo
+      Node.js中的Stream模块
     </h1>
   
 
@@ -296,7 +280,7 @@ git clone git@github.com:yxyuxuan/test.git
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note-js/">Note.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -306,22 +290,176 @@ git clone git@github.com:yxyuxuan/test.git
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><h3 id="第一步：新建一个仓库"><a href="#第一步：新建一个仓库" class="headerlink" title="第一步：新建一个仓库"></a>第一步：新建一个仓库</h3><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/1.png" alt=""></p>
-<h3 id="第二步：找到Settings"><a href="#第二步：找到Settings" class="headerlink" title="第二步：找到Settings"></a>第二步：找到Settings</h3><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/2.png" alt=""></p>
-<h3 id="第三步：找到GitHub-Pages"><a href="#第三步：找到GitHub-Pages" class="headerlink" title="第三步：找到GitHub Pages"></a>第三步：找到GitHub Pages</h3><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/3.png" alt=""><br><img src="https://yxyuxuan.github.io/Markdown-repository/images/4.jpg" alt="">  </p>
-<h3 id="第四步：查看分支"><a href="#第四步：查看分支" class="headerlink" title="第四步：查看分支"></a>第四步：查看分支</h3><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/5.png" alt=""></p>
-<p> 注意：我们生成githubPages的目的就是需要生成一个gh-pages分支(正常情况下只有一个master分支)</p>
-<h3 id="第五步：将远程仓库克隆到本地"><a href="#第五步：将远程仓库克隆到本地" class="headerlink" title="第五步：将远程仓库克隆到本地"></a>第五步：将远程仓库克隆到本地</h3><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/6.png" alt=""></p>
-<pre><code>git clone git@github.com:yxyuxuan/test.git
-</code></pre><h3 id="第六步：将分支切换到gh-Pages"><a href="#第六步：将分支切换到gh-Pages" class="headerlink" title="第六步：将分支切换到gh-Pages"></a>第六步：将分支切换到gh-Pages</h3><pre><code>cd test （进入到你克隆仓库的本地文件夹） 
+        <p><strong>注意：</strong></p>
+<ol>
+<li><p>stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。</p>
+</li>
+<li><p>什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输入流（stdin）。</p>
+</li>
+<li><p>Node.js，Stream 有四种流类型：</p>
+<ul>
+<li>Readable - 可读操作。</li>
+<li>Writable - 可写操作。</li>
+<li>Duplex - 可读可写操作.</li>
+<li>Transform - 操作被写入数据，然后读出结果。</li>
+</ul>
+</li>
+<li><p>所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：</p>
+<ul>
+<li>data - 当有数据可读时触发。</li>
+<li>end - 没有更多的数据可读时触发。</li>
+<li>error - 在接收和写入过程中发生错误时触发。</li>
+<li>finish - 所有数据已被写入到底层系统时触发。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="一-从流中读取数据"><a href="#一-从流中读取数据" class="headerlink" title="一.从流中读取数据"></a>一.从流中读取数据</h3><ol>
+<li><p>创建 input.txt 文件，内容如下：</p>
+<pre><code>hello world !
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;&apos;;
 
-git checkout gh-pages（将master分支切换到gh-pages分支上）
-</code></pre><h3 id="第七步：重新上传到github上"><a href="#第七步：重新上传到github上" class="headerlink" title="第七步：重新上传到github上"></a>第七步：重新上传到github上</h3><p>注意：将本地克隆的文件删了，只留下.git,然后把你想要展示demo页面相关的文件粘进去<br>接着，执行以下语句 </p>
-<pre><code>git add . （将本地所有文件加到仓库里） 
-git commit -m “message” （设置提交信息） 
-git push -u origin gh-pages （push文件到仓库中）
-</code></pre><h3 id="第八步：预览"><a href="#第八步：预览" class="headerlink" title="第八步：预览"></a>第八步：预览</h3><pre><code>https://yxyuxuan.github.io/test/index.html
-</code></pre>
+// 创建可读流
+var readerStream = fs.createReadStream(&apos;input.txt&apos;);
+
+// 设置编码为 utf8。
+readerStream.setEncoding(&apos;UTF8&apos;);
+
+// 处理流事件 --&gt; data, end, and error
+readerStream.on(&apos;data&apos;, function(chunk) {
+       data += chunk;
+   });
+
+readerStream.on(&apos;end&apos;,function(){
+       console.log(data);
+});
+
+readerStream.on(&apos;error&apos;, function(err){
+       console.log(err.stack);
+});
+
+    console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+</ol>
+<ol>
+<li><p>以上代码执行结果如下：</p>
+<pre><code>程序执行完毕
+hello world !
+</code></pre></li>
+</ol>
+<h3 id="二-写入流"><a href="#二-写入流" class="headerlink" title="二.写入流"></a>二.写入流</h3><ol>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;hello world !&apos;;
+
+// 创建一个可以写入的流，写入到文件 output.txt 中
+var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
+
+// 使用 utf8 编码写入数据
+writerStream.write(data,&apos;UTF8&apos;);
+
+// 标记文件末尾
+writerStream.end();
+
+// 处理流事件 --&gt; data, end, and error
+writerStream.on(&apos;finish&apos;, function() {
+    console.log(&quot;写入完成。&quot;);
+});
+
+writerStream.on(&apos;error&apos;, function(err){
+       console.log(err.stack);
+});
+
+    console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+<li><p>以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：</p>
+<pre><code>   $ node main.js 
+程序执行完毕
+写入完成。
+</code></pre></li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code>$ cat output.txt 
+hello world !
+</code></pre></li>
+</ol>
+<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><ul>
+<li><p>管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
+<p>以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
+</li>
+</ul>
+<ol>
+<li><p>设置 input.txt 文件内容如下：</p>
+<pre><code>Hello! my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+// 创建一个可读流
+var readerStream = fs.createReadStream(&apos;input.txt&apos;);
+
+// 创建一个可写流
+var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
+
+// 管道读写操作
+// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
+readerStream.pipe(writerStream);
+
+console.log(&quot;程序执行完毕&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node main.js 
+程序执行完毕
+</code></pre></li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code>$ cat output.txt 
+Hello! my name is yuxuan.
+</code></pre></li>
+</ol>
+<h3 id="四-链式流"><a href="#四-链式流" class="headerlink" title="四.链式流"></a>四.链式流</h3><ul>
+<li>链式是通过连接输出流到另外一个流并创建多个对个流操作链的机制。链式流一般用于管道操作。<br>接下来我们就是用管道和链式来压缩和解压文件。</li>
+</ul>
+<p><strong>a. 压缩文件</strong></p>
+<ol>
+<li><p>创建 compress.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+// 压缩 input.txt 文件为 input.txt.gz
+fs.createReadStream(&apos;input.txt&apos;)
+.pipe(zlib.createGzip())
+.pipe(fs.createWriteStream(&apos;input.txt.gz&apos;));
+
+console.log(&quot;文件压缩完成。&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node compress.js 
+文件压缩完成。
+</code></pre></li>
+<li><p>执行完以上操作后，我们可以看到当前目录下生成了 input.txt 的压缩文件 input.txt.gz。</p>
+</li>
+</ol>
+<p><strong>b. 解压该文件</strong></p>
+<ol>
+<li><p>创建 decompress.js 文件，代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+    // 解压 input.txt.gz 文件为 input.txt
+fs.createReadStream(&apos;input.txt.gz&apos;)
+  .pipe(zlib.createGunzip())
+  .pipe(fs.createWriteStream(&apos;input.txt&apos;));
+
+console.log(&quot;文件解压完成。&quot;);
+</code></pre></li>
+<li><p>代码执行结果如下：</p>
+<pre><code>$ node decompress.js 
+ 文件解压完成。
+</code></pre></li>
+</ol>
+
       
     </div>
     
@@ -329,13 +467,13 @@ git push -u origin gh-pages （push文件到仓库中）
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/07/02/Github-README中展示Demo/">Github-README中展示Demo</a></p>
+        <p><span>Title:</span><a href="/2016/10/20/Node-js中的Stream模块/">Node.js中的Stream模块</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-07-02, 09:39:12</p>
-        <p><span>Updated:</span>2016-09-17, 20:32:16</p>
+        <p><span>Created:</span>2016-10-20, 21:12:32</p>
+        <p><span>Updated:</span>2016-10-21, 21:19:34</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/07/02/Github-README中展示Demo/" title="Github-README中展示Demo">https://yoursite.com/2016/07/02/Github-README中展示Demo/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/07/02/Github-README中展示Demo/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/20/Node-js中的Stream模块/" title="Node.js中的Stream模块">https://yoursite.com/2016/10/20/Node-js中的Stream模块/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/20/Node-js中的Stream模块/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -348,15 +486,15 @@ git push -u origin gh-pages （push文件到仓库中）
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/07/21/使用选择器在页面中插入内容/">
-                    使用选择器在页面中插入内容
+                <a href="/2016/10/21/用Node-js实现HTTP服务器程序/">
+                    用Node.js实现HTTP服务器程序
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/01/关于hexo的使用/">
-                    关于hexo的使用
+                <a href="/2016/10/19/React注意点/">
+                    React注意点
                 </a>
             </div>
         
@@ -368,7 +506,7 @@ git push -u origin gh-pages （push文件到仓库中）
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤："><span class="toc-number">1.</span> <span class="toc-text">步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步：新建一个仓库"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：新建一个仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二步：找到Settings"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：找到Settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三步：找到GitHub-Pages"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：找到GitHub Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第四步：查看分支"><span class="toc-number">1.4.</span> <span class="toc-text">第四步：查看分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五步：将远程仓库克隆到本地"><span class="toc-number">1.5.</span> <span class="toc-text">第五步：将远程仓库克隆到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六步：将分支切换到gh-Pages"><span class="toc-number">1.6.</span> <span class="toc-text">第六步：将分支切换到gh-Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第七步：重新上传到github上"><span class="toc-number">1.7.</span> <span class="toc-text">第七步：重新上传到github上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第八步：预览"><span class="toc-number">1.8.</span> <span class="toc-text">第八步：预览</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-从流中读取数据"><span class="toc-number">1.</span> <span class="toc-text">一.从流中读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-写入流"><span class="toc-number">2.</span> <span class="toc-text">二.写入流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-管道流"><span class="toc-number">3.</span> <span class="toc-text">三.管道流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-链式流"><span class="toc-number">4.</span> <span class="toc-text">四.链式流</span></a></li></ol>
         
     </div>
     <style>
@@ -404,7 +542,7 @@ git push -u origin gh-pages （push文件到仓库中）
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Github-README中展示Demo　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Node.js中的Stream模块　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -424,7 +562,7 @@ git push -u origin gh-pages （push文件到仓库中）
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/07/21/使用选择器在页面中插入内容/" title="Pre: 使用选择器在页面中插入内容">
+            <a href="/2016/10/21/用Node-js实现HTTP服务器程序/" title="Pre: 用Node.js实现HTTP服务器程序">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -432,7 +570,7 @@ git push -u origin gh-pages （push文件到仓库中）
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/01/关于hexo的使用/" title="Next: 关于hexo的使用">
+            <a href="/2016/10/19/React注意点/" title="Next: React注意点">
                 <i class="fa fa-angle-right"></i>
             </a>
         
