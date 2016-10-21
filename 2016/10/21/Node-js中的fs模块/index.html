@@ -41,7 +41,7 @@ Hello!my name is yuxuan.
 var fs = require(&amp;quot;fs&amp;quot;);
 
 var">
-<meta property="og:updated_time" content="2016-10-21T13:19:13.515Z">
+<meta property="og:updated_time" content="2016-10-21T13:39:26.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js中的fs模块">
 <meta name="twitter:description" content="Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
@@ -368,11 +368,8 @@ fs.writeFile(&apos;output.txt&apos;, data, function (err) {
     }
 });
 </code></pre></li>
-<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js</p>
+<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js。<br>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
 </li>
-</ol>
-<p><strong>注意：</strong>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
-<ol>
 <li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
 <pre><code>var fs = require(&apos;fs&apos;);
 var data = &apos;Hello, Node.js&apos;;
@@ -425,7 +422,7 @@ modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
         <p><span>Title:</span><a href="/2016/10/21/Node-js中的fs模块/">Node.js中的fs模块</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
         <p><span>Created:</span>2016-10-21, 22:14:51</p>
-        <p><span>Updated:</span>2016-10-21, 21:19:13</p>
+        <p><span>Updated:</span>2016-10-21, 21:39:26</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2016/10/21/Node-js中的fs模块/" title="Node.js中的fs模块">https://yoursite.com/2016/10/21/Node-js中的fs模块/</a>
             <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/21/Node-js中的fs模块/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>

@@ -270,7 +270,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>注意：</strong></p>
+        <p> <strong>注意：</strong></p>
 <ol>
 <li><p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
 </li>
@@ -345,10 +345,10 @@ server.removeListener(&apos;connection&apos;, callback);
 </li>
 </ol>
 <h3 id="四-继承-EventEmitter"><a href="#四-继承-EventEmitter" class="headerlink" title="四.继承 EventEmitter"></a>四.继承 EventEmitter</h3><ul>
-<li><p>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</p>
-</li>
-<li><p>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</p>
-</li>
+<li>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</li>
+</ul>
+<ul>
+<li>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</li>
 </ul>
 
       
@@ -469,11 +469,8 @@ fs.writeFile(&apos;output.txt&apos;, data, function (err) {
     }
 });
 </code></pre></li>
-<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js</p>
+<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js。<br>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
 </li>
-</ol>
-<p><strong>注意：</strong>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
-<ol>
 <li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
 <pre><code>var fs = require(&apos;fs&apos;);
 var data = &apos;Hello, Node.js&apos;;
