@@ -15,31 +15,37 @@
 
 
 
-<meta name="description" content="Math的描述Math，中文&amp;quot;数学&amp;quot;，此对象提供数学计算的函数与常量
-Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
-JavaScript中的Math函数与属性的使用语法Math.方法名(参数1,参数2,...);
-Math.属性;
-可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
-Math的相关">
+<meta name="description" content="用Node.js实现一个HTTP服务器程序
+最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序
+
+注意：
+
+要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+
+request对象封装了H">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的Math对象">
-<meta property="og:url" content="https://yoursite.com/2016/09/16/JavaScript中的Math对象/index.html">
+<meta property="og:title" content="用Node.js实现HTTP服务器程序">
+<meta property="og:url" content="https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="Math的描述Math，中文&amp;quot;数学&amp;quot;，此对象提供数学计算的函数与常量
-Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
-JavaScript中的Math函数与属性的使用语法Math.方法名(参数1,参数2,...);
-Math.属性;
-可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
-Math的相关">
-<meta property="og:updated_time" content="2016-09-16T14:11:52.307Z">
+<meta property="og:description" content="用Node.js实现一个HTTP服务器程序
+最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序
+
+注意：
+
+要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+
+request对象封装了H">
+<meta property="og:updated_time" content="2016-10-21T12:58:53.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的Math对象">
-<meta name="twitter:description" content="Math的描述Math，中文&amp;quot;数学&amp;quot;，此对象提供数学计算的函数与常量
-Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
-JavaScript中的Math函数与属性的使用语法Math.方法名(参数1,参数2,...);
-Math.属性;
-可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
-Math的相关">
+<meta name="twitter:title" content="用Node.js实现HTTP服务器程序">
+<meta name="twitter:description" content="用Node.js实现一个HTTP服务器程序
+最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序
+
+注意：
+
+要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+
+request对象封装了H">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -71,7 +77,7 @@ Math的相关">
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>JavaScript中的Math对象 | 萱儿的博客</title>
+<title>用Node.js实现HTTP服务器程序 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -253,11 +259,11 @@ Math的相关">
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-JavaScript中的Math对象" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-用Node-js实现HTTP服务器程序" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/16/JavaScript中的Math对象/" class="article-date">
-      <time datetime="2016-09-16T14:07:04.000Z" itemprop="datePublished">2016-09-16</time>
+      <a href="/2016/10/21/用Node-js实现HTTP服务器程序/" class="article-date">
+      <time datetime="2016-10-21T12:57:26.000Z" itemprop="datePublished">2016-10-21</time>
 </a>
 
 
@@ -272,7 +278,7 @@ Math的相关">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript中的Math对象
+      用Node.js实现HTTP服务器程序
     </h1>
   
 
@@ -283,7 +289,7 @@ Math的相关">
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -293,65 +299,55 @@ Math的相关">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Math的描述"><a href="#Math的描述" class="headerlink" title="Math的描述"></a>Math的描述</h2><pre><code>Math，中文&quot;数学&quot;，此对象提供数学计算的函数与常量
-Math对象没有构造函数，是一个固有的对象，这是它与Date,String对象的区别
-</code></pre><h2 id="JavaScript中的Math函数与属性的使用语法"><a href="#JavaScript中的Math函数与属性的使用语法" class="headerlink" title="JavaScript中的Math函数与属性的使用语法"></a>JavaScript中的Math函数与属性的使用语法</h2><pre><code>Math.方法名(参数1,参数2,...);
-Math.属性;
-可以没有参数，比如Math.random()函数，或有多个参数，比如Math.max()函数
-Math的相关函数全部为静态函数，应该直接调用
-</code></pre><h2 id="JavaScript中的Math函数与属性按功能分类"><a href="#JavaScript中的Math函数与属性按功能分类" class="headerlink" title="JavaScript中的Math函数与属性按功能分类"></a>JavaScript中的Math函数与属性按功能分类</h2><h3 id="1-Math三角函数与属性"><a href="#1-Math三角函数与属性" class="headerlink" title="1.Math三角函数与属性"></a>1.Math三角函数与属性</h3><pre><code>Math.sin() -- 返回数字的正弦值
-Math.cos() -- 返回数字的余弦值
-Math.tan() -- 返回数字的正切值
-Math.asin() -- 返回数字的反正弦值
-Math.acos() -- 返回数字的反余弦值
-Math.atan() -- 返回数字的反正切值
-Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
-Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
-</code></pre><h3 id="2-Math自然对数相关函数与属性"><a href="#2-Math自然对数相关函数与属性" class="headerlink" title="2.Math自然对数相关函数与属性"></a>2.Math自然对数相关函数与属性</h3><pre><code>Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
-Math.log() -- 返回数字的自然对数
-Math.E 属性 -- 返回自然对数的底数，E约等于2.718
-Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
-Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
-Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
-Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
-</code></pre><h3 id="3-Math四舍五入类函数"><a href="#3-Math四舍五入类函数" class="headerlink" title="3.Math四舍五入类函数"></a>3.Math四舍五入类函数</h3><pre><code>Math.abs() -- 返回数字的绝对值
-Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
-Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
-Math.round() -- 返回数字最接近的整数，四舍五入
-</code></pre><h3 id="4-Math最大最小类函数"><a href="#4-Math最大最小类函数" class="headerlink" title="4.Math最大最小类函数"></a>4.Math最大最小类函数</h3><pre><code>Math.max() -- 返回数个数字中较大的值
-Math.min() -- 返回数个数字中较小的值
-</code></pre><h3 id="5-Math幂指类函数"><a href="#5-Math幂指类函数" class="headerlink" title="5.Math幂指类函数"></a>5.Math幂指类函数</h3><pre><code>Math.pow() -- 返回底数的指定次幂
-Math.sqrt() -- 返回数字的平方根
-Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
-Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
-</code></pre><h3 id="6-Math随机数函数"><a href="#6-Math随机数函数" class="headerlink" title="6.Math随机数函数"></a>6.Math随机数函数</h3><pre><code>Math.random() -- 返回0和1之间的伪随机数
-</code></pre><h3 id="7-Math函数按字母排序"><a href="#7-Math函数按字母排序" class="headerlink" title="7.Math函数按字母排序"></a>7.Math函数按字母排序</h3><pre><code>Math.abs() -- 返回数字的绝对值
-Math.acos() -- 返回数字的反余弦值
-Math.asin() -- 返回数字的反正弦值
-Math.atan() -- 返回数字的反正切值
-Math.atan2() -- 返回由x轴到点(x,y)的角度(以弧度为单位)
-Math.ceil() -- 返回大于等于数字参数的最小整数(取整函数)，对数字进行上舍入
-Math.cos() -- 返回数字的余弦值
-Math.exp() -- 返回E(自然对数的底数)的x次幂(指数)
-Math.floor() -- 返回小于等于数字参数的最大整数，对数字进行下舍入
-Math.log() -- 返回数字的自然对数
-Math.max() -- 返回数个数字中较大的值
-Math.min() -- 返回数个数字中较小的值
-Math.pow() -- 返回底数的指定次幂
-Math.random() -- 返回0和1之间的伪随机数
-Math.round() -- 返回数字最接近的整数，四舍五入
-Math.sin() -- 返回数字的正弦值
-Math.sqrt() -- 返回数字的平方根
-Math.tan() -- 返回数字的正切值
-</code></pre><h3 id="8-JavaScript-Math属性按字母排序"><a href="#8-JavaScript-Math属性按字母排序" class="headerlink" title="8.JavaScript_Math属性按字母排序"></a>8.JavaScript_Math属性按字母排序</h3><pre><code>Math.E 属性 -- 返回自然对数的底数，E约等于2.718
-Math.LN2 属性 -- 返回2的自然对数loge2，约等于0.693
-Math.LN10 属性 -- 返回10的自然对数loge2，约等于2.302
-Math.LOG2E 属性 -- 返回以2为底的E的对数log2e，约等于1.442
-Math.LOG10E 属性 -- 返回以10为底的E的对数log10e，越等于0.434
-Math.PI 属性 -- 返回圆的周长与其直径的比值(圆周率π)，约等于3.1415926
-Math.SQRT1_2 属性 -- 返回0.5的平方根，或2的平方根除1，约等于0.707
-Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
-</code></pre>
+        <h1 id="用Node-js实现一个HTTP服务器程序"><a href="#用Node-js实现一个HTTP服务器程序" class="headerlink" title="用Node.js实现一个HTTP服务器程序"></a>用Node.js实现一个HTTP服务器程序</h1><blockquote>
+<p>最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序</p>
+</blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li><p>要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。</p>
+</li>
+<li><p>request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；</p>
+</li>
+<li><p>response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-让我们先了解下-Node-js-应用是由哪几部分组成的："><a href="#一-让我们先了解下-Node-js-应用是由哪几部分组成的：" class="headerlink" title="一.让我们先了解下 Node.js 应用是由哪几部分组成的："></a>一.让我们先了解下 Node.js 应用是由哪几部分组成的：</h3><ol>
+<li><p><strong>引入 required 模块：</strong>我们可以使用 require 指令来载入 Node.js 模块。</p>
+</li>
+<li><p><strong>创建服务器</strong>：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
+</li>
+<li><p><strong>接收请求与响应请求:</strong>服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
+</li>
+</ol>
+<h3 id="二-Node-js实现一个HTTP服务器程序的步骤："><a href="#二-Node-js实现一个HTTP服务器程序的步骤：" class="headerlink" title="二.Node.js实现一个HTTP服务器程序的步骤："></a>二.Node.js实现一个HTTP服务器程序的步骤：</h3><h4 id="1-引入requried模块："><a href="#1-引入requried模块：" class="headerlink" title="1. 引入requried模块："></a>1. 引入requried模块：</h4><p>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，实例如下:</p>
+<pre><code>var http = require(&quot;http&quot;);
+</code></pre><h3 id="2-创建服务器，接收请求与响应请求："><a href="#2-创建服务器，接收请求与响应请求：" class="headerlink" title="2. 创建服务器，接收请求与响应请求："></a>2. 创建服务器，接收请求与响应请求：</h3><p>接下来我们使用 http.createServer() 方法创建服务器，并使用 listen 方法绑定 8080 端口。 函数通过 request, response 参数来接收和响应数据。实例如下：</p>
+<pre><code>// 创建http server，并传入回调函数:
+var server = http.createServer(function (request, response) {
+
+      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+      response.writeHead(200, {&apos;Content-Type&apos;: &apos;text/html&apos;});
+
+      // 将HTTP响应的HTML内容写入response:
+      response.end(&apos;&lt;h1&gt;Hello world!&lt;/h1&gt;&apos;);
+});
+
+// 让服务器监听8080端口:
+server.listen(8080,&apos;127.0.0.1&apos;);
+
+//// 终端打印如下信息
+console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);
+</code></pre><h3 id="3-在命令提示符下运行该程序，可以看到以下输出："><a href="#3-在命令提示符下运行该程序，可以看到以下输出：" class="headerlink" title="3. 在命令提示符下运行该程序，可以看到以下输出："></a>3. 在命令提示符下运行该程序，可以看到以下输出：</h3><pre><code>$ node hello.js 
+Server is running at http://127.0.0.1:8080/
+</code></pre><h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：" target="_blank" rel="external">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
+</code></pre><h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
+<li><p>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</p>
+</li>
+<li><p>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -359,13 +355,13 @@ Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></p>
+        <p><span>Title:</span><a href="/2016/10/21/用Node-js实现HTTP服务器程序/">用Node.js实现HTTP服务器程序</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-09-16, 22:07:04</p>
-        <p><span>Updated:</span>2016-09-16, 22:11:52</p>
+        <p><span>Created:</span>2016-10-21, 20:57:26</p>
+        <p><span>Updated:</span>2016-10-21, 20:58:53</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/09/16/JavaScript中的Math对象/" title="JavaScript中的Math对象">https://yoursite.com/2016/09/16/JavaScript中的Math对象/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/09/16/JavaScript中的Math对象/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/21/用Node-js实现HTTP服务器程序/" title="用Node.js实现HTTP服务器程序">https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -377,16 +373,10 @@ Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/16/JavaScript中的Array数组/">
-                    JavaScript中的Array数组
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/10/JS中call和apply的区别与应用/">
-                    JS中call和apply的区别与应用
+                <a href="/2016/10/19/React注意点/">
+                    React注意点
                 </a>
             </div>
         
@@ -398,7 +388,7 @@ Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Math的描述"><span class="toc-number">1.</span> <span class="toc-text">Math的描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中的Math函数与属性的使用语法"><span class="toc-number">2.</span> <span class="toc-text">JavaScript中的Math函数与属性的使用语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中的Math函数与属性按功能分类"><span class="toc-number">3.</span> <span class="toc-text">JavaScript中的Math函数与属性按功能分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Math三角函数与属性"><span class="toc-number">3.1.</span> <span class="toc-text">1.Math三角函数与属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Math自然对数相关函数与属性"><span class="toc-number">3.2.</span> <span class="toc-text">2.Math自然对数相关函数与属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Math四舍五入类函数"><span class="toc-number">3.3.</span> <span class="toc-text">3.Math四舍五入类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Math最大最小类函数"><span class="toc-number">3.4.</span> <span class="toc-text">4.Math最大最小类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Math幂指类函数"><span class="toc-number">3.5.</span> <span class="toc-text">5.Math幂指类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Math随机数函数"><span class="toc-number">3.6.</span> <span class="toc-text">6.Math随机数函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Math函数按字母排序"><span class="toc-number">3.7.</span> <span class="toc-text">7.Math函数按字母排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-JavaScript-Math属性按字母排序"><span class="toc-number">3.8.</span> <span class="toc-text">8.JavaScript_Math属性按字母排序</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用Node-js实现一个HTTP服务器程序"><span class="toc-number">1.</span> <span class="toc-text">用Node.js实现一个HTTP服务器程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-让我们先了解下-Node-js-应用是由哪几部分组成的："><span class="toc-number">1.0.1.</span> <span class="toc-text">一.让我们先了解下 Node.js 应用是由哪几部分组成的：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-Node-js实现一个HTTP服务器程序的步骤："><span class="toc-number">1.0.2.</span> <span class="toc-text">二.Node.js实现一个HTTP服务器程序的步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引入requried模块："><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 引入requried模块：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建服务器，接收请求与响应请求："><span class="toc-number">1.0.3.</span> <span class="toc-text">2. 创建服务器，接收请求与响应请求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-在命令提示符下运行该程序，可以看到以下输出："><span class="toc-number">1.0.4.</span> <span class="toc-text">3. 在命令提示符下运行该程序，可以看到以下输出：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><span class="toc-number">1.0.5.</span> <span class="toc-text">4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-分析Node-js-的-HTTP-服务器"><span class="toc-number">1.1.</span> <span class="toc-text">三.分析Node.js 的 HTTP 服务器</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -434,7 +424,7 @@ Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"JavaScript中的Math对象　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"用Node.js实现HTTP服务器程序　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -454,15 +444,13 @@ Math.SQRT2 属性 -- 返回2的平方根，约等于1.414
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/16/JavaScript中的Array数组/" title="Pre: JavaScript中的Array数组">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/10/JS中call和apply的区别与应用/" title="Next: JS中call和apply的区别与应用">
+            <a href="/2016/10/19/React注意点/" title="Next: React注意点">
                 <i class="fa fa-angle-right"></i>
             </a>
         
