@@ -241,6 +241,382 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Node-js中的GET-POST请求" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/24/Node-js中的GET-POST请求/" class="article-date">
+      <time datetime="2016-10-24T10:56:47.000Z" itemprop="datePublished">2016-10-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/24/Node-js中的GET-POST请求/">Node.js中的GET/POST请求</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>在很多场景中，我们的服务器都需要跟用户的浏览器打交道，如表单提交。<br>表单提交到服务器一般都使用GET/POST请求。</p>
+</blockquote>
+<h3 id="一-获取GET请求内容"><a href="#一-获取GET请求内容" class="headerlink" title="一.获取GET请求内容"></a>一.获取GET请求内容</h3><p>由于GET请求直接被嵌入在路径中，URL是完整的请求路径，包括了?后面的部分，因此你可以手动解析后面的内容作为GET请求的参数。<br>node.js中url模块中的parse函数提供了这个功能。</p>
+<pre><code>var http = require(&apos;http&apos;);
+var url = require(&apos;url&apos;);
+var util = require(&apos;util&apos;);
+
+http.createServer(function(req, res){
+    res.writeHead(200, {&apos;Content-Type&apos;: &apos;text/plain&apos;});
+    res.end(util.inspect(url.parse(req.url, true)));
+}).listen(3000);
+</code></pre><p>在浏览器中访问<br><a href="http://localhost:3000/user?name=w3c&amp;email=w3c@w3cschool.cc" target="_blank" rel="external">http://localhost:3000/user?name=w3c&amp;email=w3c@w3cschool.cc</a> 然后查看返回结果为:</p>
+<pre><code>Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: &apos;?name=w3c&amp;email=w3c@w3cschool.cc&apos;,
+  query: { name: &apos;w3c&apos;, email: &apos;w3c@w3cschool.cc&apos; },
+  pathname: &apos;/user&apos;,
+  path: &apos;/user?name=w3c&amp;email=w3c@w3cschool.cc&apos;,
+  href: &apos;/user?name=w3c&amp;email=w3c@w3cschool.cc&apos; }
+</code></pre><h3 id="二-获取POST请求内容"><a href="#二-获取POST请求内容" class="headerlink" title="二.获取POST请求内容"></a>二.获取POST请求内容</h3><p>POST请求的内容全部的都在请求体中，http.ServerRequest并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。比如上传文件，而很多时候我们可能并不需要理会请求体的内容，恶意的POST请求会大大消耗服务器的资源，所有node.js默认是不会解析请求体的，当你需要的时候，需要手动来做。</p>
+<pre><code>var http = require(&apos;http&apos;);
+var querystring = require(&apos;querystring&apos;);
+var util = require(&apos;util&apos;);
+
+http.createServer(function(req, res){
+    var post = &apos;&apos;;     //定义了一个post变量，用于暂存请求体的信息
+
+    req.on(&apos;data&apos;, function(chunk){  
+
+    //通过req的data事件监听函数，每当接受到请求体的数据，就累加到post变量中
+    post += chunk;
+    });
+
+    req.on(&apos;end&apos;, function(){    
+    //在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
+    post = querystring.parse(post);
+    res.end(util.inspect(post));
+    });
+}).listen(3000);
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node-js中的RESTful" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/24/Node-js中的RESTful/" class="article-date">
+      <time datetime="2016-10-24T10:54:13.000Z" itemprop="datePublished">2016-10-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/24/Node-js中的RESTful/">Node.js中的RESTful</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="一-什么是-REST？"><a href="#一-什么是-REST？" class="headerlink" title="一.什么是 REST？"></a>一.什么是 REST？</h3><p>REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。</p>
+<p>表述性状态转移是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是RESTful。需要注意的是，REST是设计风格而不是标准。REST通常基于使用HTTP，URI，和XML（标准通用标记语言下的一个子集）以及HTML（标准通用标记语言下的一个应用）这些现有的广泛流行的协议和标准。REST 通常使用 JSON 数据格式。</p>
+<h3 id="二-HTTP-方法"><a href="#二-HTTP-方法" class="headerlink" title="二.HTTP 方法"></a>二.HTTP 方法</h3><p>以下为 REST 基本架构的四个方法：</p>
+<ol>
+<li>GET - 用于获取数据。</li>
+<li>PUT - 用于添加数据。</li>
+<li>DELETE - 用于删除数据。</li>
+<li>POST - 用于更新或添加数据。</li>
+</ol>
+<h3 id="三-RESTful-Web-Services"><a href="#三-RESTful-Web-Services" class="headerlink" title="三.RESTful Web Services"></a>三.RESTful Web Services</h3><p>Web service是一个平台独立的，低耦合的，自包含的、基于可编程的web的应用程序，可使用开放的XML（标准通用标记语言下的一个子集）标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</p>
+<p>基于 REST 架构的 Web Services 即是 RESTful。</p>
+<p>由于轻量级以及通过 HTTP 直接传输数据的特性，Web 服务的 RESTful 方法已经成为最常见的替代方法。可以使用各种语言（比如 Java 程序、Perl、Ruby、Python、PHP 和 Javascript[包括 Ajax]）实现客户端。</p>
+<p>RESTful Web 服务通常可以通过自动客户端或代表用户的应用程序访问。但是，这种服务的简便性让用户能够与之直接交互，使用它们的 Web 浏览器构建一个 GET URL 并读取返回的内容。</p>
+<p>首先，创建一个 json 数据资源文件 users.json，内容如下：</p>
+<pre><code>{
+   &quot;user1&quot; : {
+   &quot;name&quot; : &quot;mahesh&quot;,
+   &quot;password&quot; : &quot;password1&quot;,
+   &quot;profession&quot; : &quot;teacher&quot;,
+   &quot;id&quot;: 1
+},
+&quot;user2&quot; : {
+   &quot;name&quot; : &quot;suresh&quot;,
+   &quot;password&quot; : &quot;password2&quot;,
+   &quot;profession&quot; : &quot;librarian&quot;,
+   &quot;id&quot;: 2
+},
+&quot;user3&quot; : {
+   &quot;name&quot; : &quot;ramesh&quot;,
+   &quot;password&quot; : &quot;password3&quot;,
+   &quot;profession&quot; : &quot;clerk&quot;,
+   &quot;id&quot;: 3
+   }
+}
+</code></pre><p><strong>获取用户列表：</strong></p>
+<p>以下代码，我们创建了 RESTful API listUsers，用于读取用户的信息列表， server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+app.get(&apos;/listUsers&apos;, function (req, res) {
+    fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &apos;utf8&apos;, function (err, data) {
+       console.log( data );
+       res.end( data );
+   });
+})
+
+var server = app.listen(8081, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre><p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre><p>在浏览器中访问 <a href="http://127.0.0.1:8081/listUsers，结果如下所示：" target="_blank" rel="external">http://127.0.0.1:8081/listUsers，结果如下所示：</a></p>
+<pre><code>{
+   &quot;user1&quot; : {
+   &quot;name&quot; : &quot;mahesh&quot;,
+   &quot;password&quot; : &quot;password1&quot;,
+   &quot;profession&quot; : &quot;teacher&quot;,
+   &quot;id&quot;: 1
+},
+&quot;user2&quot; : {
+   &quot;name&quot; : &quot;suresh&quot;,
+   &quot;password&quot; : &quot;password2&quot;,
+   &quot;profession&quot; : &quot;librarian&quot;,
+   &quot;id&quot;: 2
+},
+&quot;user3&quot; : {
+   &quot;name&quot; : &quot;ramesh&quot;,
+   &quot;password&quot; : &quot;password3&quot;,
+   &quot;profession&quot; : &quot;clerk&quot;,
+   &quot;id&quot;: 3
+}
+}
+</code></pre><p><strong>添加用户</strong></p>
+<p>以下代码，我们创建了 RESTful API addUser， 用于添加新的用户数据，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+//添加的新用户数据
+var user = {
+  &quot;user4&quot; : {
+  &quot;name&quot; : &quot;mohit&quot;,
+  &quot;password&quot; : &quot;password4&quot;,
+  &quot;profession&quot; : &quot;teacher&quot;,
+  &quot;id&quot;: 4
+ }
+}
+
+app.get(&apos;/addUser&apos;, function (req, res) {
+// 读取已存在的数据
+fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &apos;utf8&apos;, function (err, data) {
+   data = JSON.parse( data );
+   data[&quot;user4&quot;] = user[&quot;user4&quot;];
+   console.log( data );
+   res.end( JSON.stringify(data));
+});
+})
+
+var server = app.listen(8081, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre><p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+ 应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre><p>在浏览器中访问 <a href="http://127.0.0.1:8081/addUser，结果如下所示：" target="_blank" rel="external">http://127.0.0.1:8081/addUser，结果如下所示：</a></p>
+<pre><code>{ user1:
+   { name: &apos;mahesh&apos;,
+     password: &apos;password1&apos;,
+     profession: &apos;teacher&apos;,
+     id: 1 },
+  user2:
+   { name: &apos;suresh&apos;,
+     password: &apos;password2&apos;,
+     profession: &apos;librarian&apos;,
+     id: 2 },
+  user3:
+   { name: &apos;ramesh&apos;,
+     password: &apos;password3&apos;,
+     profession: &apos;clerk&apos;,
+     id: 3 },
+  user4:
+       { name: &apos;mohit&apos;,
+     password: &apos;password4&apos;,
+     profession: &apos;teacher&apos;,
+     id: 4 } 
+}
+</code></pre><p><strong>显示用户详情</strong></p>
+<p>以下代码，我们创建了 RESTful API :id（用户id）， 用于读取指定用户的详细信息，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+app.get(&apos;/:id&apos;, function (req, res) {
+// 首先我们读取已存在的用户
+fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &apos;utf8&apos;, function (err, data) {
+   data = JSON.parse( data );
+   var user = data[&quot;user&quot; + req.params.id] 
+   console.log( user );
+   res.end( JSON.stringify(user));
+ });
+})
+
+var server = app.listen(8081, function () {
+
+   var host = server.address().address
+   var port = server.address().port
+   console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre><p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre><p>在浏览器中访问 <a href="http://127.0.0.1:8081/2，结果如下所示：" target="_blank" rel="external">http://127.0.0.1:8081/2，结果如下所示：</a></p>
+<pre><code>{
+   &quot;name&quot;:&quot;suresh&quot;,
+   &quot;password&quot;:&quot;password2&quot;,
+   &quot;profession&quot;:&quot;librarian&quot;,
+   &quot;id&quot;:2
+}
+</code></pre><p><strong>删除用户</strong></p>
+<p>以下代码，我们创建了 RESTful API deleteUser， 用于删除指定用户的详细信息，以下实例中，用户 id 为 2，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+var id = 2;
+
+app.get(&apos;/deleteUser&apos;, function (req, res) {
+
+   // First read existing users.
+   fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &apos;utf8&apos;, function (err, data) {
+       data = JSON.parse( data );
+       delete data[&quot;user&quot; + 2];
+
+       console.log( data );
+       res.end( JSON.stringify(data));
+   });
+})
+
+var server = app.listen(8081, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre><p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre><p>在浏览器中访问 <a href="http://127.0.0.1:8081/deleteUser，结果如下所示：" target="_blank" rel="external">http://127.0.0.1:8081/deleteUser，结果如下所示：</a></p>
+<pre><code>{ user1:
+   { name: &apos;mahesh&apos;,
+     password: &apos;password1&apos;,
+     profession: &apos;teacher&apos;,
+     id: 1 },
+  user3:
+   { name: &apos;ramesh&apos;,
+     password: &apos;password3&apos;,
+     profession: &apos;clerk&apos;,
+     id: 3 } 
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Node-js中的events模块" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1456,580 +1832,9 @@ filter: alpha(opacity=50); /* for IE6, 7 */
 
 
   
-    <article id="post-JavaScript中的String对象" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/16/JavaScript中的String对象/" class="article-date">
-      <time datetime="2016-09-16T14:23:56.000Z" itemprop="datePublished">2016-09-16</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/16/JavaScript中的String对象/">JavaScript中的String对象</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="String的描述"><a href="#String的描述" class="headerlink" title="String的描述"></a>String的描述</h2><pre><code>字符串是JavaScript中的一种基本的数据类型。
-String 对象的length属性声明了该字符串中的字符数。
-String 类定义了大量操作字符串的方法，例如从字符串中提取字符或子串，或者检索字符或子串。
-String 对象用于处理文本（字符串）。
-</code></pre><p><strong>创建 String 对象的语法：</strong></p>
-<pre><code>new String(s);
-String(s);
-</code></pre><p><strong>参数</strong></p>
-<pre><code>参数 s 是要存储在 String 对象中或转换成原始字符串的值。
-</code></pre><p><strong>返回值</strong></p>
-<pre><code>当 String() 和运算符 new 一起作为构造函数使用时，它返回一个新创建的 String 对象，存放的是字符串 s 或 s 的字符串表示。
-当不用 new 运算符调用 String() 时，它只把 s 转换成原始的字符串，并返回转换后的值。
-</code></pre><h2 id="JavaScript-中-slice-、substr-和-substring的区别："><a href="#JavaScript-中-slice-、substr-和-substring的区别：" class="headerlink" title="JavaScript 中 slice 、substr 和 substring的区别："></a>JavaScript 中 slice 、substr 和 substring的区别：</h2><ol>
-<li><p>String.slice(start,end): 一个新的字符串。包括字符串 stringObject 从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符.</p>
-</li>
-<li><p>String.substring(start,end) 这个就有点特别了，它是先从start，end里找出一个较小的值. 然后从字符串的开始位置算起，截取较小值位置和较大值位置之间的字符串,截取出来的字符串的长度为较大值与较小值之间的差。<br>一个新的字符串，该字符串值包含 stringObject 的一个子字符串，其内容是从 start 处到 stop-1 处的所有字符，其长度为 stop 减 start。</p>
-</li>
-<li><p>String.substr(start,end) 这个就是我们常用的从指定的位置(start)截取指定长度(end)的字符串。<br>一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 lenght 个字符。如果没有指定 lenght，那么返回的字符串包含从 start<br>到 stringObject 的结尾的字符。<br>String 对象的方法 slice()、substring() 和 substr() (不建议使用)都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
-</li>
-</ol>
-<h2 id="String对象中常用的方法："><a href="#String对象中常用的方法：" class="headerlink" title="String对象中常用的方法："></a>String对象中常用的方法：</h2><h4 id="1-charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。"><a href="#1-charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。" class="headerlink" title="1. charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。"></a>1. charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。</h4><p>用法：</p>
-<pre><code>strObj.charCodeAt(index)
-</code></pre><p>说明：</p>
-<pre><code>index将被处理字符的从零开始计数的编号。有效值为0到字符串长度减1的数字。
-如果指定位置没有字符，将返回NaN。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABC&quot;;
-str.charCodeAt(0);
-结果：65
-</code></pre><h4 id="2-fromCharCode方法从一些Unicode字符串中返回一个字符串。"><a href="#2-fromCharCode方法从一些Unicode字符串中返回一个字符串。" class="headerlink" title="2. fromCharCode方法从一些Unicode字符串中返回一个字符串。"></a>2. fromCharCode方法从一些Unicode字符串中返回一个字符串。</h4><p>用法：</p>
-<pre><code>String.fromCharCode([code1[,code2...]])
-</code></pre><p>说明：</p>
-<pre><code>code1，code2...是要转换为字符串的Unicode字符串序列。如果没有参数，结果为空字符串。
-</code></pre><p>例如：</p>
-<pre><code>String.fromCharCode(65,66,112);
-结果：ABp
-</code></pre><h4 id="3-charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。"><a href="#3-charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。" class="headerlink" title="3. charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。"></a>3. charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。</h4><p>用法：</p>
-<pre><code>strObj.charAt(index)
-</code></pre><p>说明：</p>
-<pre><code>index想得到的字符的基于零的索引。有效值是0与字符串长度减一之间的值。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABC&quot;;
-str.charAt(1);
-结果：B
-</code></pre><h4 id="4-slice方法返回字符串的片段。"><a href="#4-slice方法返回字符串的片段。" class="headerlink" title="4. slice方法返回字符串的片段。"></a>4. slice方法返回字符串的片段。</h4><p>用法：</p>
-<pre><code>strObj.slice(start[,end])
-</code></pre><p>说明：</p>
-<pre><code>start下标从0开始的strObj指定部分其实索引。如果start为负，将它作为length+start处理，此处length为字符串的长度。
-end小标从0开始的strObj指定部分结束索引。如果end为负，将它作为length+end处理，此处length为字符串的长度。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.slice(2,4);
-结果：CD
-</code></pre><h4 id="5-substring方法返回位于String对象中指定位置的子字符串。"><a href="#5-substring方法返回位于String对象中指定位置的子字符串。" class="headerlink" title="5. substring方法返回位于String对象中指定位置的子字符串。"></a>5. substring方法返回位于String对象中指定位置的子字符串。</h4><p>用法：</p>
-<pre><code>strObj.substring(start,end)
-</code></pre><p>说明：</p>
-<pre><code>start指明子字符串的起始位置，该索引从0开始起算。
-end指明子字符串的结束位置，该索引从0开始起算。
-substring方法使用start和end两者中的较小值作为子字符串的起始点。如果start或end为NaN或者为负数，那么将其替换为0。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.substring(2,4); // 或 str.substring(4,2);
-结果：CD
-</code></pre><h4 id="6-substr方法返回一个从指定位置开始的指定长度的子字符串。"><a href="#6-substr方法返回一个从指定位置开始的指定长度的子字符串。" class="headerlink" title="6. substr方法返回一个从指定位置开始的指定长度的子字符串。"></a>6. substr方法返回一个从指定位置开始的指定长度的子字符串。</h4><p>用法：</p>
-<pre><code>strObj.substr(start[,length])
-</code></pre><p>说明：</p>
-<pre><code>start所需的子字符串的起始位置。字符串中的第一个字符的索引为0。
-length在返回的子字符串中应包括的字符个数。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.substr(2,4);
-结果：CDEF
-</code></pre><h4 id="7-indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。"><a href="#7-indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。" class="headerlink" title="7. indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。"></a>7. indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。</h4><p>用法：</p>
-<pre><code>strObj.indexOf(substr[,startIndex])
-</code></pre><p>说明：</p>
-<pre><code>substr要在String对象中查找的子字符串。
-startIndex该整数值指出在String对象内开始查找的索引。如果省略，则从字符串的开始处查找。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.indexOf(&quot;CD&quot;，1); // 由1位置从左向右查找 123...
-结果：2
-</code></pre><h4 id="8-lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。"><a href="#8-lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。" class="headerlink" title="8. lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。"></a>8. lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。</h4><p>用法：</p>
-<pre><code>strObj.lastIndexOf(substr[,startindex])
-</code></pre><p>说明：</p>
-<pre><code>substr要在String对象内查找的子字符串。
-startindex该整数值指出在String对象内进行查找的开始索引位置。如果省略，则查找从字符串的末尾开始。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.lastIndexOf(&quot;CD&quot;,6); // 由6位置从右向左查找 ...456
-结果：5
-</code></pre><h4 id="9-search方法返回与正则表达式查找内容匹配的第一个字符串的位置。"><a href="#9-search方法返回与正则表达式查找内容匹配的第一个字符串的位置。" class="headerlink" title="9. search方法返回与正则表达式查找内容匹配的第一个字符串的位置。"></a>9. search方法返回与正则表达式查找内容匹配的第一个字符串的位置。</h4><p>用法：</p>
-<pre><code>strObj.search(reExp)
-</code></pre><p>说明：</p>
-<pre><code>reExp包含正则表达式模式和可用标志的正则表达式对象。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.search(&quot;CD&quot;); // 或 str.search(/CD/i);
-结果：2
-</code></pre><h4 id="10-concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。"><a href="#10-concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。" class="headerlink" title="10. concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。"></a>10. concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。</h4><p>用法：</p>
-<pre><code>str.concat([string1[,string2...]])
-</code></pre><p>说明：</p>
-<pre><code>string1，string2要和所有其他指定的字符串进行连接的String对象或文字。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.concat(&quot;ABCDEF&quot;,&quot;ABC&quot;);
-结果：ABCDEFABCDEFABC
-</code></pre><h4 id="11-将一个字符串分割为子字符串，然后将结果作为字符串数组返回。"><a href="#11-将一个字符串分割为子字符串，然后将结果作为字符串数组返回。" class="headerlink" title="11. 将一个字符串分割为子字符串，然后将结果作为字符串数组返回。"></a>11. 将一个字符串分割为子字符串，然后将结果作为字符串数组返回。</h4><p>用法：</p>
-<pre><code>strObj.split([separator[,limit]])
-</code></pre><p>说明：</p>
-<pre><code>separator字符串或 正则表达式 对象，它标识了分隔字符串时使用的是一个还是多个字符。如果忽略该选项，返回包含整个字符串的单一元素数组。
-limit该值用来限制返回数组中的元素个数。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;AA BB CC DD EE FF&quot;;
-alert(str.split(&quot; &quot;，3));
-结果：AA,BB,CC
-</code></pre><h4 id="12-toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。"><a href="#12-toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。" class="headerlink" title="12. toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。"></a>12. toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。</h4><p>例如：</p>
-<pre><code>var str = &quot;ABCabc&quot;;
-str.toLowerCase();
-结果：abcabc
-</code></pre><h4 id="13-toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。"><a href="#13-toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。" class="headerlink" title="13. toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。"></a>13. toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。</h4><p>例如：</p>
-<pre><code>var str = &quot;ABCabc&quot;;
-str.toUpperCase();
-结果：ABCABC
-</code></pre><blockquote>
-<p>虽然js String对象已经提供像slice、replace、indexOf和substring等方法,但在实际项目应用中会对其进行扩展，以达到实用、方便目的。注释很详细，废话少说，代码如下：</p>
-</blockquote>
-<h2 id="String对象方法扩展："><a href="#String对象方法扩展：" class="headerlink" title="String对象方法扩展："></a>String对象方法扩展：</h2><blockquote>
-<p>字符串-格式化</p>
-</blockquote>
-<pre><code>String.prototype.format = function(){
-var args = arguments;//获取函数传递参数数组,以便在replace回调函数内使用
-var regex = /\{(\d+)\}/g;//匹配并捕获所有 形如:{数字} 字串
-return this.replace(regex,function(m,i){//参数=匹配子串+第几次匹配+匹配字串位置+源字符串
-return args[i];
-});
-}
-</code></pre><blockquote>
-<p>字符串-去掉前后空白字符</p>
-</blockquote>
-<pre><code>String.prototype.trim = function(){
-return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-去掉前空白字符</p>
-</blockquote>
-<pre><code>String.prototype.ltrim = function(){
-return this.replace(/(^\s*)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-去掉后空白字符</p>
-</blockquote>
-<pre><code>String.prototype.rtrim = function(){
-return this.replace(/(\s*$)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-获取以ASCII编码字节数 英文占1字节 中文占2字节</p>
-</blockquote>
-<pre><code>String.prototype.lenASCII=function(){
-return this.replace(/[^\x00-\xff]/g,&apos;xx&apos;).length;//将所有非\x00-\xff字符换为xx两个字符,再计算字符串
-}
-</code></pre><blockquote>
-<p>字符串-获取以UNICODE编码字节数 一个字符均占2个字节</p>
-</blockquote>
-<pre><code>String.prototype.lenUNICODE=function(){
-return this.length*2;
-}
-ps：若对js提供类型对象或自定义对象进行方法扩展，应利用原型prototype这个对象属性进行扩展，具体方式以下:
-
-String.prototype.trim=function(){
-//...代码略
-};
-String.prototype.ltrim=function(){
-//...代码略
-};
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript中的Array数组" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/16/JavaScript中的Array数组/" class="article-date">
-      <time datetime="2016-09-16T14:14:29.000Z" itemprop="datePublished">2016-09-16</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
-<li><p>介绍：介绍 Array 数组对象的说明、定义方式以及属性。</p>
-</li>
-<li><p>实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。</p>
-</li>
-<li><p>静态方法：介绍 Array 对象的静态方法：Array.isArray()。</p>
-</li>
-<li><p>实际操作：对 Array 进行示例操作：索引、for遍历、浅度复制、深度复制等操作。</p>
-</li>
-</ol>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><h3 id="1-1-说明"><a href="#1-1-说明" class="headerlink" title="1.1 说明"></a>1.1 说明</h3><pre><code>数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 --《JavaScript权威指南(第六版)》
-</code></pre><h3 id="1-2-定义方式"><a href="#1-2-定义方式" class="headerlink" title="1.2 定义方式"></a>1.2 定义方式</h3><p>var names = new Array(“张三”, “李四”, “王五”);<br>//或者<br>var names = [“张三”, “李四”, “王五”];</p>
-<h3 id="1-3-属性"><a href="#1-3-属性" class="headerlink" title="1.3 属性"></a>1.3 属性</h3><p>length：表示数组内的元素长度。</p>
-<h2 id="2-实例方法"><a href="#2-实例方法" class="headerlink" title="2. 实例方法"></a>2. 实例方法</h2><p>常用方法：</p>
-<pre><code>1) unshift() ：在数组头部插入元素
-
-2) shift() ：移除并返回数组的第一个元素
-
-3) push() ：在数组尾部插入元素
-
-4) pop() ：移除并返回数组的最后一个元素
-</code></pre><h3 id="2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组"><a href="#2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组" class="headerlink" title="2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组"></a>2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个新的数组，包含原先的Array和新加入的元素。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-var demoArray2 = demoArray.concat(&apos;e&apos;);
-console.log(demoArray); // =&gt; demoArray:[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]  原数组不发生变更
-console.log(demoArray2); // =&gt; [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;]
-</code></pre><h3 id="2-2-every-：依次遍历元素，判断每个元素是否都为true"><a href="#2-2-every-：依次遍历元素，判断每个元素是否都为true" class="headerlink" title="2.2 every() ：依次遍历元素，判断每个元素是否都为true"></a>2.2 every() ：依次遍历元素，判断每个元素是否都为true</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素都会使用此函数判断是否为true，当判断到一个为false时，立即结束遍历。
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Boolean} ：只有每个元素都为true才返回true；只要一个为false，就返回false。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-var rs = demoArray.every(function (value, index, self) {
-return value &gt; 0;
-});
-console.log(rs); // =&gt; true
-</code></pre><h3 id="2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组"><a href="#2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组" class="headerlink" title="2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组"></a>2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素依次调用此函数，返回包含符合条件元素的新的数组。
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个包含符合条件元素的新的数组
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-var rs = demoArray.filter(function (value, index, self) {
-return value &gt; 0;
-});
-console.log(rs); // =&gt; [1, 2, 3]
-</code></pre><h3 id="2-4-forEach-：依次遍历元素，执行指定的函数；无返回值"><a href="#2-4-forEach-：依次遍历元素，执行指定的函数；无返回值" class="headerlink" title="2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值"></a>2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素依次调用此函数
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：无</p>
-<p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-demoArray.forEach(function (value, index, self) {
-console.log(value); // =&gt; 依次输出：1  2  3
-});
-</code></pre><h3 id="2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
-<pre><code>①value ：要在数组中查找的值。
-
-②start ：开始查找的序号位置，如果省略，则为0.
-</code></pre><p>返回值：</p>
-<pre><code>{Int} ：返回数组中第一个匹配value的序号，若不存在，返回-1
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;); // =&gt;0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;, 1); // =&gt;-1
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;d&apos;); // =&gt;-1
-[1, 2, 3].indexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
-</code></pre><h3 id="2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串"><a href="#2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串" class="headerlink" title="2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串"></a>2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串</h3><p>参数：</p>
-<pre><code>①sparator {String}：各元素之间的分隔符，如果省略，默认以因为英文逗号&apos;,&apos;分隔。
-</code></pre><p>返回值：</p>
-<pre><code>{String} ：各元素以sparator为分隔符，拼接而成的一个字符串。
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(); // =&gt; &apos;a,b,c&apos;
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(&apos;-&apos;); // =&gt; &apos;a-b-c&apos;
-</code></pre><h3 id="2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
-<pre><code>①value ：要在数组中查找的值。
-
-②start ：开始查找的序号位置，如果省略，则从最后一个元素开始查找。
-</code></pre><p>返回值：</p>
-<pre><code>{Int} ：从右到左开始查找数组中第一个匹配value的序号，若不存在，返回-1
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;); // =&gt; 0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;, 1); // =&gt; 0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;d&apos;); // =&gt; -1
-[1, 2, 3].lastIndexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
-</code></pre><h3 id="2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组"><a href="#2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组" class="headerlink" title="2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组"></a>2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组</h3><p>参数：</p>
-<pre><code>①function(value,index,self){} ：每个元素依次调用此函数，返回计算好的元素
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个包含就算好的元素的新的数组
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3].map(function (value, index, self) {
-return value * 2;
-}); // =&gt; [2, 4, 6]
-</code></pre><h3 id="2-9-pop-：移除并返回数组的最后一个元素"><a href="#2-9-pop-：移除并返回数组的最后一个元素" class="headerlink" title="2.9 pop() ：移除并返回数组的最后一个元素"></a>2.9 pop() ：移除并返回数组的最后一个元素</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{Object} 数组的最后一个元素；若数组为空，返回undefined
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.pop(); // =&gt; c
-demoArray.pop(); // =&gt; b
-demoArray.pop(); // =&gt; a
-demoArray.pop(); // =&gt; undefined
-</code></pre><h3 id="2-10-push-：把元素添加到数组尾部"><a href="#2-10-push-：把元素添加到数组尾部" class="headerlink" title="2.10 push() ：把元素添加到数组尾部"></a>2.10 push() ：把元素添加到数组尾部</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值添加到数组尾部
-</code></pre><p>返回值：</p>
-<pre><code>{int} 数组新的长度 
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.push(&apos;d&apos;); // =&gt; 4, demoArray ： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]
-demoArray.push(&apos;e&apos;, &apos;f&apos;); // =&gt; 6, demoArray ：[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
-console.log(demoArray); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
-</code></pre><h3 id="2-11-reverse-：反转数组元素的顺序"><a href="#2-11-reverse-：反转数组元素的顺序" class="headerlink" title="2.11 reverse() ：反转数组元素的顺序"></a>2.11 reverse() ：反转数组元素的顺序</h3><p>参数：无</p>
-<p>返回值：无(在原数组内进行元素顺序反转)。</p>
-<p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-demoArray.reverse();
-console.log(demoArray); // =&gt; [&quot;e&quot;, &quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot;]
-</code></pre><h3 id="2-12-shift-：移除并返回数组的第一个元素"><a href="#2-12-shift-：移除并返回数组的第一个元素" class="headerlink" title="2.12 shift() ：移除并返回数组的第一个元素"></a>2.12 shift() ：移除并返回数组的第一个元素</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{Object} 数组的第一个元素；若数组为空，返回undefined。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.shift(); // =&gt; a
-demoArray.shift(); // =&gt; b
-demoArray.shift(); // =&gt; c
-demoArray.shift(); // =&gt; undefined
-</code></pre><h3 id="2-13-slice-startIndex-endIndex-：返回数组的一部分"><a href="#2-13-slice-startIndex-endIndex-：返回数组的一部分" class="headerlink" title="2.13 slice(startIndex,endIndex) ：返回数组的一部分"></a>2.13 slice(startIndex,endIndex) ：返回数组的一部分</h3><p>参数：</p>
-<pre><code>①startIndex ：开始处的序号；若为负数，表示从尾部开始计算，-1代表最后一个元素，-2倒数第二个，依此类推。
-
-②endIndex ： 结束处的元素后一个序号，没指定就是结尾。截取的元素不包含此处序号的元素，结尾为此处序号的前一个元素。
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个新的数组，包含从startIndex到endIndex前一个元素的所有元素。
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3, 4, 5, 6].slice(); // =&gt; [1, 2, 3, 4, 5, 6]
-[1, 2, 3, 4, 5, 6].slice(1); // =&gt; [2, 3, 4, 5, 6] ：从序号1开始截取
-[1, 2, 3, 4, 5, 6].slice(0, 4); // =&gt; [1, 2, 3, 4] ：截取序号0到序号3(序号4的前一个)的元素
-[1, 2, 3, 4, 5, 6].slice(-2); // =&gt; [5, 6] ：截取后面的2个元素
-</code></pre><h3 id="2-14-sort-opt-orderFunc-：按一定的规则进行排序"><a href="#2-14-sort-opt-orderFunc-：按一定的规则进行排序" class="headerlink" title="2.14 sort(opt_orderFunc) ：按一定的规则进行排序"></a>2.14 sort(opt_orderFunc) ：按一定的规则进行排序</h3><p>参数：</p>
-<pre><code>①opt_orderFunc(v1,v2) {Function}：可选的排序规则函数。若省略，将按照元素的字母进行从小到大排序。
-
-v1 ：遍历时前面的元素。
-
-v2 ：遍历时后面的元素。
-</code></pre><p>排序规则：</p>
-<pre><code>比较v1和v2，返回一个数字来表示v1和v2的排序规则：
-
-小于0 ：v1小于v2，v1排在v2的前面。
-
-等于0 ：v1等于v2，v1排在v2的前面。
-
-大于0 ：v1大于v2，v1排在v2的后面。
-</code></pre><p>返回值：无(在原先数组里进行排序操作)。</p>
-<p>示例：</p>
-<pre><code>[1, 3, 5, 2, 4, 11, 22].sort(); // =&gt; [1, 11, 2, 22, 3, 4, 5] ：这里都元素都被转换为字符，11的字符在2前
-
-[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
-return v1 - v2;
-}); // =&gt; [1, 2, 3, 4, 5, 11, 22] ：从小到大排序
-
-[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
-return -(v1 - v2); //取反，就可以转换为 从大到小
-}); // =&gt; [22, 11, 5, 4, 3, 2, 1]
-</code></pre><h3 id="2-15-splice-：插入、删除数组元素"><a href="#2-15-splice-：插入、删除数组元素" class="headerlink" title="2.15 splice() ：插入、删除数组元素"></a>2.15 splice() ：插入、删除数组元素</h3><p>参数：</p>
-<pre><code>①start {int} ：开始插入、删除或替换的起始序号。
-
-②deleteCount {int} ：要删除元素的个数，从start处开始计算。
-
-③value1,value2 ... valueN {Object} ：可选参数，表示要插入的元素，从start处开始插入。若②参不为0，那么先执行删除操作，再执行插入操作。
-</code></pre><p>返回值：</p>
-<pre><code>{Array}  返回一个包含删除元素的新的数组。若②参为0，表示没元素删除，返回一个空数组。
-</code></pre><p>示例：</p>
-<pre><code>// 1.删除
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArray2 = demoArray.splice(0, 2); // 删除从序号从0开始的2个元素，返回包含删除元素的数组：[&apos;a&apos;, &apos;b&apos;]
-console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;]
-console.log(demoArray); // =&gt; [&apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-
-// 2.插入
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArray2 = demoArray.splice(0, 0, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;); // ②参为0，返回空数组
-console.log(demoArray2); // =&gt; [ ]
-console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-
-// 3.先删除再插入
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-// 当②参不为0，那么先执行删除操作(删除序号从0开始的4个元素，返回包含被删除元素的数组)，再执行插入操作
-var demoArray2 = demoArray.splice(0, 4, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;);
-console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;] 
-console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;e&apos;]
-</code></pre><h3 id="2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串"><a href="#2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串" class="headerlink" title="2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串"></a>2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{String}  数组中所有元素通过一个英文逗号&apos;,&apos;拼接为一个字符串，并返回。与调用无参join()方法一样。
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3, 4, 5].toString(); // =&gt; &apos;1,2,3,4,5&apos;
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;].toString(); // =&gt; &apos;a,b,c,d,e&apos;
-</code></pre><h3 id="2-17-unshift-：在数组头部插入元素"><a href="#2-17-unshift-：在数组头部插入元素" class="headerlink" title="2.17 unshift() ：在数组头部插入元素"></a>2.17 unshift() ：在数组头部插入元素</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值添加到数组头部
-</code></pre><p>返回值：</p>
-<pre><code>{int} 数组新的长度 
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [];
-demoArray.unshift(&apos;a&apos;); // =&gt; demoArray:[&apos;a&apos;]
-demoArray.unshift(&apos;b&apos;); // =&gt; demoArray:[&apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;c&apos;); // =&gt; demoArray:[&apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;d&apos;); // =&gt; demoArray:[&apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;e&apos;); // =&gt; demoArray:[&apos;e&apos;, &apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-</code></pre><h2 id="3-静态方法"><a href="#3-静态方法" class="headerlink" title="3. 静态方法"></a>3. 静态方法</h2><h3 id="3-1-Array-isArray-：判断对象是否为数组"><a href="#3-1-Array-isArray-：判断对象是否为数组" class="headerlink" title="3.1 Array.isArray() ：判断对象是否为数组"></a>3.1 Array.isArray() ：判断对象是否为数组</h3><p>参数：</p>
-<pre><code>①value {Object}：任意对象
-</code></pre><p>返回值：</p>
-<pre><code>{Boolean}  返回判断结果。当为 true时，表示对象为数组；为false时，表示对象不是数组
-</code></pre><p>示例：</p>
-<pre><code>Array.isArray([]); // =&gt; true
-Array.isArray([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]); // =&gt; true
-Array.isArray(&apos;a&apos;); // =&gt; false
-Array.isArray(&apos;[1, 2, 3]&apos;); // =&gt; false
-</code></pre><h2 id="4-实际操作"><a href="#4-实际操作" class="headerlink" title="4. 实际操作"></a>4. 实际操作</h2><h3 id="4-1-索引"><a href="#4-1-索引" class="headerlink" title="4.1 索引"></a>4.1 索引</h3><p>说明：</p>
-<pre><code>每个元素在数组中有一个位置，以数字表示，称为索引。索引是从0开始计，即第一个元素的索引为0，第二个元素的索引为1，依此类推；
-
-    当获取一个数组不存在的索引时，返回 undefined。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-demoArray[0]; // =&gt; 获取第一个元素:&apos;a&apos;
-demoArray[0] = 1;  // 设置第一个元素为 1
-console.log(demoArray); // =&gt; demoArray:[1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-console.log(demoArray[9]); // =&gt; undefined ：当获取的索引不存在时，返回 undefined
-</code></pre><h3 id="4-2-for-语句"><a href="#4-2-for-语句" class="headerlink" title="4.2 for 语句"></a>4.2 for 语句</h3><p>说明：</p>
-<pre><code>可以通过for语句逐个遍历数组
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-for (var i = 0, length = demoArray.length; i &lt; length; i++) {
-console.log(demoArray[i]); // =&gt; 逐个输出数组内的元素
-}
-</code></pre><h3 id="4-3-浅度复制"><a href="#4-3-浅度复制" class="headerlink" title="4.3 浅度复制"></a>4.3 浅度复制</h3><p>说明：</p>
-<pre><code>Array类型是一种引用类型；当数组a复制给数组b时，对数组b进行元素修改，数组a也会发生修改。
-</code></pre><p>示例：</p>
-<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArrayB = demoArrayA; // 把数组A 赋值给数组B
-demoArrayB[0] = 1; // 对数组B 的元素进行修改
-console.log(demoArrayA); // =&gt; [1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素也发生了变更
-</code></pre><h3 id="4-4-深度复制"><a href="#4-4-深度复制" class="headerlink" title="4.4 深度复制"></a>4.4 深度复制</h3><p>说明：</p>
-<pre><code>使用concat()方法，返回新的数组；防止浅度复制的情况发生，对数组b进行元素修改操作，数组a不发生变更。
-</code></pre><p>示例：</p>
-<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArrayB = demoArrayA.concat(); // 使用concat()方法，返回新的数组
-demoArrayB[0] = 1; // 对数组B 的元素进行修改
-console.log(demoArrayA); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素没变更
-console.log(demoArrayB); // =&gt; [  1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组B 的元素发生了变更
-</code></pre><h3 id="4-5-判断2个数组是否相等"><a href="#4-5-判断2个数组是否相等" class="headerlink" title="4.5 判断2个数组是否相等"></a>4.5 判断2个数组是否相等</h3><p>说明：</p>
-<pre><code>Array数组为引用类型，所以哪怕 []===[] 都会返回false，所以可通过数组toString()方法返回的字符串判断是否相等。
-</code></pre><p>示例：</p>
-<pre><code>console.log([]===[]); // =&gt; false
-console.log([&apos;a&apos;, &apos;b&apos;] === [&apos;a&apos;, &apos;b&apos;]); // =&gt; false
-console.log([&apos;a&apos;, &apos;b&apos;].toString() === [&apos;a&apos;, &apos;b&apos;].toString()); // true
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
