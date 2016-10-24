@@ -15,19 +15,40 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="注意：
+
+Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。
+
+Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
+
+
+
+一.EventEmitter类events 模块只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="Node.js中的events模块">
+<meta property="og:url" content="https://yoursite.com/2016/10/23/Node-js中的events模块/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="注意：
+
+Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。
+
+Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
+
+
+
+一.EventEmitter类events 模块只">
+<meta property="og:updated_time" content="2016-10-24T10:45:35.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="Node.js中的events模块">
+<meta name="twitter:description" content="注意：
+
+Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。
+
+Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
+
+
+
+一.EventEmitter类events 模块只">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +80,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
+<title>Node.js中的events模块 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -241,11 +262,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Node-js中的events模块" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
-      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
+      <a href="/2016/10/23/Node-js中的events模块/" class="article-date">
+      <time datetime="2016-10-23T13:16:55.000Z" itemprop="datePublished">2016-10-23</time>
 </a>
 
 
@@ -260,7 +281,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      block，inline和inline-block概念和区别
+      Node.js中的events模块
     </h1>
   
 
@@ -271,7 +292,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,43 +302,85 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
+        <p> <strong>注意：</strong></p>
+<ol>
+<li><p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
+</li>
+<li><p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-EventEmitter类"><a href="#一-EventEmitter类" class="headerlink" title="一.EventEmitter类"></a>一.EventEmitter类</h3><p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。可以通过require(“events”);来访问该模块。</p>
+<pre><code>// 引入 events 模块
+var events = require(&apos;events&apos;);
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+</code></pre><p>EventEmitter 对象如果在实例化时发生错误，会触发 ‘error’ 事件。当添加新的监听器时，’newListener’ 事件会触发，当监听器被移除时，’removeListener’ 事件被触发。</p>
+<h3 id="二-EventEmitter-的用法："><a href="#二-EventEmitter-的用法：" class="headerlink" title="二.EventEmitter 的用法："></a>二.EventEmitter 的用法：</h3><pre><code>//event.js 文件
+var EventEmitter = require(&apos;events&apos;).EventEmitter; 
+var event = new EventEmitter(); 
+event.on(&apos;some_event&apos;, function() { 
+    console.log(&apos;some_event 事件触发&apos;); 
+}); 
+setTimeout(function() { 
+    event.emit(&apos;some_event&apos;); 
+}, 1000); 
+</code></pre><p>执行结果如下：<br>运行这段代码，1 秒后控制台输出了 ‘some_event 事件触发’。其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。</p>
+<pre><code>$ node event.js 
+some_event 事件触发
+</code></pre><p>EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。</p>
+<p>当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。<br>让我们以下面的例子解释这个过程：</p>
+<pre><code>//event.js 文件
+var events = require(&apos;events&apos;); 
+var emitter = new events.EventEmitter(); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener1&apos;, arg1, arg2); 
+}); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener2&apos;, arg1, arg2); 
+}); 
+emitter.emit(&apos;someEvent&apos;, &apos;arg1 参数&apos;, &apos;arg2 参数&apos;); 
+</code></pre><p>执行以上代码，运行的结果如下：</p>
+<pre><code>$ node event.js 
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数
+</code></pre><p>以上例子中，emitter 为事件 someEvent 注册了两个事件监听器，然后触发了 someEvent 事件。<br>运行结果中可以看到两个事件监听器回调函数被先后调用。 这就是EventEmitter最简单的用法。</p>
+<h3 id="三-EventEmitter-的属性"><a href="#三-EventEmitter-的属性" class="headerlink" title="三.EventEmitter 的属性"></a>三.EventEmitter 的属性</h3><p> EventEmitter 提供了多个属性，如 on 和 emit。on 函数用于绑定事件函数，emit 属性用于触发一个事件。接下来我们来具体看下 EventEmitter 的属性介绍。</p>
+<ol>
+<li><p>addListener(event, listener)<br>为指定事件添加一个监听器到监听器数组的尾部。</p>
+</li>
+<li><p>on(event, listener)<br>为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。</p>
+<pre><code>erver.on(&apos;connection&apos;, function (stream) {
+    console.(&apos;someone connected!&apos;);
+});
+</code></pre></li>
+<li><p>once(event, listener)<br>为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。</p>
+<pre><code>server.once(&apos;connection&apos;, function (stream){
+    console.log(&apos;Ah, we have our first user!&apos;);
+});
+</code></pre></li>
+<li><p>removeListener(event, listener)<br>移除指定事件的某个监听器，监听器 必须是该事件已经注册过的监听器。</p>
+<pre><code>var callback = function(stream) {
+       console.log(&apos;someone connected!&apos;);
+};
+server.on(&apos;connection&apos;, callback);
+// ...
+server.removeListener(&apos;connection&apos;, callback);
+</code></pre></li>
+<li><p>removeAllListeners([event])<br>移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。</p>
+</li>
+<li><p>setMaxListeners(n)<br>默认情况下， EventEmitters 如果你添加的监听器超过 10 个就会输出警告信息。 setMaxListeners 函数用于提高监听器的默认限制的数量。</p>
+</li>
+<li><p>listeners(event)<br>返回指定事件的监听器数组。</p>
+</li>
+<li><p>emit(event, [arg1], [arg2], […])<br>按参数的顺序执行每个监听器，如果事件有注册监听返回 true，否则返回 false。</p>
+</li>
+</ol>
+<h3 id="四-继承-EventEmitter"><a href="#四-继承-EventEmitter" class="headerlink" title="四.继承 EventEmitter"></a>四.继承 EventEmitter</h3><ul>
+<li>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</li>
 </ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
 <ul>
-<li><p>display:block</p>
-<ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
-</li>
-</ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
+<li>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</li>
 </ul>
 
       
@@ -327,13 +390,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/23/Node-js中的events模块/">Node.js中的events模块</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
-        <p><span>发布时间:</span>2016-07-27, 23:50:48</p>
-        <p><span>最后更新:</span>2016-09-17, 20:34:05</p>
+        <p><span>发布时间:</span>2016-10-23, 21:16:55</p>
+        <p><span>最后更新:</span>2016-10-24, 18:45:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/23/Node-js中的events模块/" title="Node.js中的events模块">https://yoursite.com/2016/10/23/Node-js中的events模块/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2016/10/23/Node-js中的events模块/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -345,16 +408,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/01/最基本的HTML5网页骨架/">
-                    最基本的HTML5网页骨架
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/26/position定位和z-index的使用/">
-                    position定位和z-index的使用
+                <a href="/2016/10/21/Node-js中的fs模块/">
+                    Node.js中的fs模块
                 </a>
             </div>
         
@@ -366,7 +423,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-EventEmitter类"><span class="toc-number">1.</span> <span class="toc-text">一.EventEmitter类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-EventEmitter-的用法："><span class="toc-number">2.</span> <span class="toc-text">二.EventEmitter 的用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-EventEmitter-的属性"><span class="toc-number">3.</span> <span class="toc-text">三.EventEmitter 的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-继承-EventEmitter"><span class="toc-number">4.</span> <span class="toc-text">四.继承 EventEmitter</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +459,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Node.js中的events模块　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,15 +479,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="上一篇: 最基本的HTML5网页骨架">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/26/position定位和z-index的使用/" title="下一篇: position定位和z-index的使用">
+            <a href="/2016/10/21/Node-js中的fs模块/" title="下一篇: Node.js中的fs模块">
                 <i class="fa fa-angle-right"></i>
             </a>
         
