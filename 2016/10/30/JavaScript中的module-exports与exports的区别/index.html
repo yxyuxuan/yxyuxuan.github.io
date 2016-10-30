@@ -15,19 +15,37 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}
+
+module.exports = {};
+Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句
+//foo.js
+
+     exports.a = function(){
+         console.log(&amp;apos;a&amp;a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="JavaScript中的module.exports与exports的区别">
+<meta property="og:url" content="https://yoursite.com/2016/10/30/JavaScript中的module-exports与exports的区别/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}
+
+module.exports = {};
+Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句
+//foo.js
+
+     exports.a = function(){
+         console.log(&amp;apos;a&amp;a">
+<meta property="og:updated_time" content="2016-10-30T12:36:26.386Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="JavaScript中的module.exports与exports的区别">
+<meta name="twitter:description" content="每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}
+
+module.exports = {};
+Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句
+//foo.js
+
+     exports.a = function(){
+         console.log(&amp;apos;a&amp;a">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +77,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
+<title>JavaScript中的module.exports与exports的区别 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -241,11 +259,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
-      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
+      <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/" class="article-date">
+      <time datetime="2016-10-30T12:33:37.000Z" itemprop="datePublished">2016-10-30</time>
 </a>
 
 
@@ -260,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      block，inline和inline-block概念和区别
+      JavaScript中的module.exports与exports的区别
     </h1>
   
 
@@ -271,7 +289,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,44 +299,97 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
-<ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
-</li>
-</ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
+        <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code>module.exports = {};
+</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function(){
+         console.log(&apos;a&apos;)
+     }
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+     console.log(x.a)
+</code></pre><p>   result:</p>
+<pre><code>1    
+</code></pre><p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function(){
+        console.log(&apos;a&apos;)
+     }
+ module.exports = {a: 2}
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&apos;./foo&apos;);
+ console.log(x.a)
+</code></pre><p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
+   options = options || {};
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
+   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ }
+
+ module.exports = View;
+</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View(){
+
+     }
+
+     View.prototype.test = function(){
+      console.log(&apos;test&apos;)
+     }
+
+     View.test1 = function(){
+          console.log(&apos;test1&apos;)
+     }
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+
+     console.log(x) //{ [Function: View] test1: [Function] }
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code>exports = module.exports = createApplication;
+
+/**
+ * Expose mime.
+ */
+
+exports.mime = connect.mime;
+</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
 
       
     </div>
@@ -327,13 +398,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
+        <p><span>Title:</span><a href="/2016/10/30/JavaScript中的module-exports与exports的区别/">JavaScript中的module.exports与exports的区别</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-07-27, 23:50:48</p>
-        <p><span>Updated:</span>2016-09-17, 20:34:05</p>
+        <p><span>Created:</span>2016-10-30, 20:33:37</p>
+        <p><span>Updated:</span>2016-10-30, 20:36:26</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/30/JavaScript中的module-exports与exports的区别/" title="JavaScript中的module.exports与exports的区别">https://yoursite.com/2016/10/30/JavaScript中的module-exports与exports的区别/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/30/JavaScript中的module-exports与exports的区别/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,15 +417,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/01/最基本的HTML5网页骨架/">
-                    最基本的HTML5网页骨架
+                <a href="/2016/10/30/Vue-js中方法与事件处理器/">
+                    Vue.js中方法与事件处理器
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/26/position定位和z-index的使用/">
-                    position定位和z-index的使用
+                <a href="/2016/10/28/Vue-js中的表单控件绑定/">
+                    Vue.js中的表单控件绑定
                 </a>
             </div>
         
@@ -366,7 +437,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-module-exports-View"><span class="toc-number">1.</span> <span class="toc-text">1. module.exports = View</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-var-app-exports-module-exports"><span class="toc-number">2.</span> <span class="toc-text">2. var app = exports = module.exports = {};</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-exports-init-function"><span class="toc-number">3.</span> <span class="toc-text">3. exports.init= function(){}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-var-mongoose-module-exports-exports-new-Mongoose"><span class="toc-number">4.</span> <span class="toc-text">4.  var mongoose = module.exports = exports = new Mongoose;</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +473,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"JavaScript中的module.exports与exports的区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,7 +493,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="Pre: 最基本的HTML5网页骨架">
+            <a href="/2016/10/30/Vue-js中方法与事件处理器/" title="Pre: Vue.js中方法与事件处理器">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -430,7 +501,7 @@
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/26/position定位和z-index的使用/" title="Next: position定位和z-index的使用">
+            <a href="/2016/10/28/Vue-js中的表单控件绑定/" title="Next: Vue.js中的表单控件绑定">
                 <i class="fa fa-angle-right"></i>
             </a>
         

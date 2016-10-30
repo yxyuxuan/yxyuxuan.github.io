@@ -15,19 +15,34 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="一.方法处理器可以用 v-on 指令监听 DOM 事件：
+//.html
+&amp;lt;div id=&amp;quot;example&amp;quot;&amp;gt;
+  &amp;lt;button v-on:click=&amp;quot;greet&amp;quot;&amp;gt;Greet&amp;lt;/button&amp;gt;
+&amp;lt;/div&amp;gt;
+我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：
+var">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="Vue.js中方法与事件处理器">
+<meta property="og:url" content="https://yoursite.com/2016/10/30/Vue-js中方法与事件处理器/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="一.方法处理器可以用 v-on 指令监听 DOM 事件：
+//.html
+&amp;lt;div id=&amp;quot;example&amp;quot;&amp;gt;
+  &amp;lt;button v-on:click=&amp;quot;greet&amp;quot;&amp;gt;Greet&amp;lt;/button&amp;gt;
+&amp;lt;/div&amp;gt;
+我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：
+var">
+<meta property="og:updated_time" content="2016-10-30T12:38:09.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="Vue.js中方法与事件处理器">
+<meta name="twitter:description" content="一.方法处理器可以用 v-on 指令监听 DOM 事件：
+//.html
+&amp;lt;div id=&amp;quot;example&amp;quot;&amp;gt;
+  &amp;lt;button v-on:click=&amp;quot;greet&amp;quot;&amp;gt;Greet&amp;lt;/button&amp;gt;
+&amp;lt;/div&amp;gt;
+我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：
+var">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +74,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
+<title>Vue.js中方法与事件处理器 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -241,11 +256,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Vue-js中方法与事件处理器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
-      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
+      <a href="/2016/10/30/Vue-js中方法与事件处理器/" class="article-date">
+      <time datetime="2016-10-30T12:37:12.000Z" itemprop="datePublished">2016-10-30</time>
 </a>
 
 
@@ -260,7 +275,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      block，inline和inline-block概念和区别
+      Vue.js中方法与事件处理器
     </h1>
   
 
@@ -271,7 +286,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,44 +296,82 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
+        <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
+<pre><code>//.html
+&lt;div id=&quot;example&quot;&gt;
+  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
+<pre><code>var vm = new Vue({
+  el: &apos;#example&apos;,
+  data: {
+    name: &apos;Vue.js&apos;
+  },
+  //在methods对象中定义方法
+  methods: {
+    greet: function (event) {
+      //方法内this指向vm
+      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
+      //event是原DOM事件
+      alert(event.target.tagName)
+    }
+  }
+})
+
+// 也可以在 JavaScript 代码中调用方法
+vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
+</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<pre><code>//.html
+&lt;div id=&quot;example-2&quot;&gt;
+  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
+  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
+&lt;/div&gt;
+
+
+//.js
+var vm = new Vue({
+  el: &apos;#example-2&apos;,
+  methods: {
+    say: function (msg) {
+      alert(msg)
+    }
+  }
+}) 
+</code></pre><p>result:</p>
+<pre><code>Hi
+
+What
+</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
+<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
+<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
+<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
+<pre><code>&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
 <ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
+<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
 </li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
 </li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
 </li>
 </ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
 
       
     </div>
@@ -327,13 +380,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
+        <p><span>Title:</span><a href="/2016/10/30/Vue-js中方法与事件处理器/">Vue.js中方法与事件处理器</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-07-27, 23:50:48</p>
-        <p><span>Updated:</span>2016-09-17, 20:34:05</p>
+        <p><span>Created:</span>2016-10-30, 20:37:12</p>
+        <p><span>Updated:</span>2016-10-30, 20:38:09</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/30/Vue-js中方法与事件处理器/" title="Vue.js中方法与事件处理器">https://yoursite.com/2016/10/30/Vue-js中方法与事件处理器/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/30/Vue-js中方法与事件处理器/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -345,16 +398,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/01/最基本的HTML5网页骨架/">
-                    最基本的HTML5网页骨架
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/26/position定位和z-index的使用/">
-                    position定位和z-index的使用
+                <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/">
+                    JavaScript中的module.exports与exports的区别
                 </a>
             </div>
         
@@ -366,7 +413,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-方法处理器"><span class="toc-number">1.</span> <span class="toc-text">一.方法处理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-内联语句处理器"><span class="toc-number">2.</span> <span class="toc-text">二.内联语句处理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-事件修饰符"><span class="toc-number">3.</span> <span class="toc-text">三.事件修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-按键修饰符"><span class="toc-number">4.</span> <span class="toc-text">四.按键修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-为什么在-HTML-中监听事件"><span class="toc-number">5.</span> <span class="toc-text">五.为什么在 HTML 中监听事件?</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +449,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Vue.js中方法与事件处理器　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,15 +469,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="Pre: 最基本的HTML5网页骨架">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/26/position定位和z-index的使用/" title="Next: position定位和z-index的使用">
+            <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/" title="Next: JavaScript中的module.exports与exports的区别">
                 <i class="fa fa-angle-right"></i>
             </a>
         

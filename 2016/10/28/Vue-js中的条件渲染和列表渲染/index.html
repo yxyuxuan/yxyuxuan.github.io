@@ -15,19 +15,49 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="一.条件渲染1.v-if例子：
+//.html
+&amp;lt;div id=&amp;quot;vm&amp;quot;&amp;gt;  
+    &amp;lt;h1 v-if=&amp;quot;ok&amp;quot;&amp;gt;ok&amp;lt;/h1&amp;gt;
+    &amp;lt;h1 v-else&amp;gt;no&amp;lt;/h1&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+
+//.js
+window.onload=function(){
+  var vm = ne">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="Vue.js中的条件渲染和列表渲染">
+<meta property="og:url" content="https://yoursite.com/2016/10/28/Vue-js中的条件渲染和列表渲染/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="一.条件渲染1.v-if例子：
+//.html
+&amp;lt;div id=&amp;quot;vm&amp;quot;&amp;gt;  
+    &amp;lt;h1 v-if=&amp;quot;ok&amp;quot;&amp;gt;ok&amp;lt;/h1&amp;gt;
+    &amp;lt;h1 v-else&amp;gt;no&amp;lt;/h1&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+
+//.js
+window.onload=function(){
+  var vm = ne">
+<meta property="og:updated_time" content="2016-10-30T12:26:54.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="Vue.js中的条件渲染和列表渲染">
+<meta name="twitter:description" content="一.条件渲染1.v-if例子：
+//.html
+&amp;lt;div id=&amp;quot;vm&amp;quot;&amp;gt;  
+    &amp;lt;h1 v-if=&amp;quot;ok&amp;quot;&amp;gt;ok&amp;lt;/h1&amp;gt;
+    &amp;lt;h1 v-else&amp;gt;no&amp;lt;/h1&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+
+//.js
+window.onload=function(){
+  var vm = ne">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +89,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
+<title>Vue.js中的条件渲染和列表渲染 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -241,11 +271,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Vue-js中的条件渲染和列表渲染" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
-      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
+      <a href="/2016/10/28/Vue-js中的条件渲染和列表渲染/" class="article-date">
+      <time datetime="2016-10-28T12:25:41.000Z" itemprop="datePublished">2016-10-28</time>
 </a>
 
 
@@ -260,7 +290,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      block，inline和inline-block概念和区别
+      Vue.js中的条件渲染和列表渲染
     </h1>
   
 
@@ -271,7 +301,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,45 +311,116 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
-<ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
-</li>
-</ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
+        <h2 id="一-条件渲染"><a href="#一-条件渲染" class="headerlink" title="一.条件渲染"></a>一.条件渲染</h2><h3 id="1-v-if"><a href="#1-v-if" class="headerlink" title="1.v-if"></a>1.v-if</h3><p>例子：</p>
+<pre><code>//.html
+&lt;div id=&quot;vm&quot;&gt;  
+    &lt;h1 v-if=&quot;ok&quot;&gt;ok&lt;/h1&gt;
+    &lt;h1 v-else&gt;no&lt;/h1&gt;
+&lt;/div&gt;
 
+
+
+//.js
+window.onload=function(){
+  var vm = new Vue({
+    el:&apos;#vm&apos;,
+    data:{
+        ok:true,
+        no:false
+        }
+    });
+}
+</code></pre><p>result:</p>
+<pre><code>ok
+</code></pre><h3 id="2-template-v-if"><a href="#2-template-v-if" class="headerlink" title="2.template v-if"></a>2.template v-if</h3><p>因为 v-if 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。</template></p>
+<p>例子：</p>
+<pre><code>&lt;template v-if=&quot;ok&quot;&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph 1&lt;/p&gt;
+  &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/template&gt;
+</code></pre><h3 id="3-v-show"><a href="#3-v-show" class="headerlink" title="3.v-show"></a>3.v-show</h3><p>v-show指令的用法和v-if用法大体上一样</p>
+<p>例子：</p>
+<pre><code>&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
+</code></pre><p><strong>注意：</strong> 不同的是有 v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display。</p>
+<p>注意 v-show 不支持 <template> 语法。</template></p>
+<h3 id="4-v-else"><a href="#4-v-else" class="headerlink" title="4.v-else"></a>4.v-else</h3><p>可以用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”：</p>
+<pre><code>&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;
+      Sorry
+&lt;/div&gt;
+&lt;div v-else&gt;
+      Not sorry
+&lt;/div&gt;
+</code></pre><p><strong>注意：</strong> v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。</p>
+<h2 id="二-列表渲染"><a href="#二-列表渲染" class="headerlink" title="二.列表渲染"></a>二.列表渲染</h2><h3 id="1-v-for"><a href="#1-v-for" class="headerlink" title="1.v-for"></a>1.v-for</h3><p>a. 可以使用 v-for 指令基于一个数组渲染一个列表。这个指令使用特殊的语法，形式为 item in items，items 是数据数组，item 是当前数组元素的别名：</p>
+<p>例：</p>
+<pre><code>//.html
+&lt;ul id=&quot;example-1&quot;&gt;
+  &lt;li v-for=&quot;item in items&quot;&gt;
+    {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+var example1 = new Vue({
+  el: &apos;#example-1&apos;,
+  data: {
+    items: [
+      { message: &apos;Foo&apos; },
+      { message: &apos;Bar&apos; }
+    ]
+  }
+})
+</code></pre><p>result:</p>
+<ul>
+<li>Foo</li>
+<li>Bar</li>
+</ul>
+<p>b. 也可以使用 v-for 遍历对象。除了 $index 之外，作用域内还可以访问另外一个特殊变量 $key。</p>
+<p>例子：</p>
+<pre><code>//.html
+&lt;ul id=&quot;repeat-object&quot; class=&quot;demo&quot;&gt;
+  &lt;li v-for=&quot;value in object&quot;&gt;
+    {{ $key }} : {{ value }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+new Vue({
+  el: &apos;#repeat-object&apos;,
+  data: {
+    object: {
+      FirstName: &apos;John&apos;,
+      LastName: &apos;Doe&apos;,
+      Age: 30
+    }
+  }    
+})
+</code></pre><p>result:</p>
+<ul>
+<li>FirstName:John</li>
+<li>lastname:Doe</li>
+<li>Age:30</li>
+</ul>
+<p><strong>注意：</strong> 在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
+<p>c. v-for也可以接收一个整数，此时它将重复模板数次。</p>
+<pre><code>&lt;div&gt;
+    &lt;span v-for=&quot;n in 10&quot;&gt;{{n}}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>result:</p>
+<pre><code>0123456789
+</code></pre><h3 id="2-template-v-for"><a href="#2-template-v-for" class="headerlink" title="2.template v-for"></a>2.template v-for</h3><p>类似于 template v-if，也可以将 v-for 用在 <template> 标签上，以渲染一个包含多个元素的块。例如：</template></p>
+<pre><code>&lt;ul&gt;
+  &lt;template v-for=&quot;item in items&quot;&gt;
+    &lt;li&gt;{{ item.msg }}&lt;/li&gt;
+    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+  &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
       
     </div>
     
@@ -327,13 +428,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
+        <p><span>Title:</span><a href="/2016/10/28/Vue-js中的条件渲染和列表渲染/">Vue.js中的条件渲染和列表渲染</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-07-27, 23:50:48</p>
-        <p><span>Updated:</span>2016-09-17, 20:34:05</p>
+        <p><span>Created:</span>2016-10-28, 20:25:41</p>
+        <p><span>Updated:</span>2016-10-30, 20:26:54</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/28/Vue-js中的条件渲染和列表渲染/" title="Vue.js中的条件渲染和列表渲染">https://yoursite.com/2016/10/28/Vue-js中的条件渲染和列表渲染/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/28/Vue-js中的条件渲染和列表渲染/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,15 +447,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/01/最基本的HTML5网页骨架/">
-                    最基本的HTML5网页骨架
+                <a href="/2016/10/28/Vue-js中的表单控件绑定/">
+                    Vue.js中的表单控件绑定
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/26/position定位和z-index的使用/">
-                    position定位和z-index的使用
+                <a href="/2016/10/24/Node-js中的GET-POST请求/">
+                    Node.js中的GET/POST请求
                 </a>
             </div>
         
@@ -366,7 +467,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-条件渲染"><span class="toc-number">1.</span> <span class="toc-text">一.条件渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-v-if"><span class="toc-number">1.1.</span> <span class="toc-text">1.v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-template-v-if"><span class="toc-number">1.2.</span> <span class="toc-text">2.template v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-v-show"><span class="toc-number">1.3.</span> <span class="toc-text">3.v-show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-v-else"><span class="toc-number">1.4.</span> <span class="toc-text">4.v-else</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-列表渲染"><span class="toc-number">2.</span> <span class="toc-text">二.列表渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-v-for"><span class="toc-number">2.1.</span> <span class="toc-text">1.v-for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-template-v-for"><span class="toc-number">2.2.</span> <span class="toc-text">2.template v-for</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -402,7 +503,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Vue.js中的条件渲染和列表渲染　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,7 +523,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="Pre: 最基本的HTML5网页骨架">
+            <a href="/2016/10/28/Vue-js中的表单控件绑定/" title="Pre: Vue.js中的表单控件绑定">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -430,7 +531,7 @@
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/26/position定位和z-index的使用/" title="Next: position定位和z-index的使用">
+            <a href="/2016/10/24/Node-js中的GET-POST请求/" title="Next: Node.js中的GET/POST请求">
                 <i class="fa fa-angle-right"></i>
             </a>
         

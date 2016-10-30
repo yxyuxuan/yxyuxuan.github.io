@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
                     </div>
                 </section>
                 
@@ -237,9 +237,582 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Vue-js中方法与事件处理器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/30/Vue-js中方法与事件处理器/" class="article-date">
+      <time datetime="2016-10-30T12:37:12.000Z" itemprop="datePublished">2016-10-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/30/Vue-js中方法与事件处理器/">Vue.js中方法与事件处理器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
+<pre><code>//.html
+&lt;div id=&quot;example&quot;&gt;
+  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
+<pre><code>var vm = new Vue({
+  el: &apos;#example&apos;,
+  data: {
+    name: &apos;Vue.js&apos;
+  },
+  //在methods对象中定义方法
+  methods: {
+    greet: function (event) {
+      //方法内this指向vm
+      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
+      //event是原DOM事件
+      alert(event.target.tagName)
+    }
+  }
+})
+
+// 也可以在 JavaScript 代码中调用方法
+vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
+</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<pre><code>//.html
+&lt;div id=&quot;example-2&quot;&gt;
+  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
+  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
+&lt;/div&gt;
+
+
+//.js
+var vm = new Vue({
+  el: &apos;#example-2&apos;,
+  methods: {
+    say: function (msg) {
+      alert(msg)
+    }
+  }
+}) 
+</code></pre><p>result:</p>
+<pre><code>Hi
+
+What
+</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
+<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
+<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
+<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
+<pre><code>&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
+<ol>
+<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
+</li>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
+</li>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/" class="article-date">
+      <time datetime="2016-10-30T12:33:37.000Z" itemprop="datePublished">2016-10-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/30/JavaScript中的module-exports与exports的区别/">JavaScript中的module.exports与exports的区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code>module.exports = {};
+</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function(){
+         console.log(&apos;a&apos;)
+     }
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+     console.log(x.a)
+</code></pre><p>   result:</p>
+<pre><code>1    
+</code></pre><p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function(){
+        console.log(&apos;a&apos;)
+     }
+ module.exports = {a: 2}
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&apos;./foo&apos;);
+ console.log(x.a)
+</code></pre><p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
+   options = options || {};
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
+   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ }
+
+ module.exports = View;
+</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View(){
+
+     }
+
+     View.prototype.test = function(){
+      console.log(&apos;test&apos;)
+     }
+
+     View.test1 = function(){
+          console.log(&apos;test1&apos;)
+     }
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+
+     console.log(x) //{ [Function: View] test1: [Function] }
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code>exports = module.exports = createApplication;
+
+/**
+ * Expose mime.
+ */
+
+exports.mime = connect.mime;
+</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Vue-js中的表单控件绑定" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/28/Vue-js中的表单控件绑定/" class="article-date">
+      <time datetime="2016-10-28T12:28:57.000Z" itemprop="datePublished">2016-10-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/28/Vue-js中的表单控件绑定/">Vue.js中的表单控件绑定</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。</p>
+<p>1.text</p>
+<pre><code>&lt;span&gt;Message is: {{ message }}&lt;/span&gt;
+&lt;br&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;
+</code></pre><p><br><br>result:</p>
+<p>Message is:</p>
+ <input type="text" v-model="message" placeholder="edit me">
+
+<p>2.multiline text</p>
+<pre><code>&lt;span&gt;Multiline message is:&lt;/span&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;br&gt;
+&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;
+</code></pre><p>result:</p>
+<p>Message is:</p>
+ <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+<p>3.Checkbox</p>
+<p>单个勾选框，逻辑值：</p>
+<pre><code>&lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; v-model=&quot;checked&quot;&gt;
+&lt;label for=&quot;checkbox&quot;&gt;{{ checked }}&lt;/label&gt;
+</code></pre><p> <input type="checkbox" id="checkbox" v-model="checked">false</p>
+<p>4.多个勾选框，绑定到同一个数组：</p>
+<pre><code>//.html
+&lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Checked names: {{ checkedNames | json }}&lt;/span&gt;
+
+
+//.js
+new Vue({
+  el: &apos;...&apos;,
+  data: {
+    checkedNames: []
+  }
+})
+</code></pre><p>5.Radio</p>
+<pre><code>&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;
+&lt;br&gt;
+&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Picked: {{ picked }}&lt;/span&gt;
+</code></pre><p> <input type="radio" id="one" value="One" v-model="picked"><br>    <label for="one">One</label><br>    <br><br>    <input type="radio" id="two" value="Two" v-model="picked"><br>    <label for="two">Two</label><br>    <br><br>    <span>Picked: </span></p>
+<p>6.Select<br>单选：</p>
+<pre><code>&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option selected&gt;A&lt;/option&gt;
+  &lt;option&gt;B&lt;/option&gt;
+  &lt;option&gt;C&lt;/option&gt;
+&lt;/select&gt;
+&lt;span&gt;Selected: {{ selected }}&lt;/span&gt;
+</code></pre><select v-model="selected"><br>  <option selected>A</option><br>  <option>B</option><br>  <option>C</option><br></select><br><br><br><span>Selected:[“A”]</span><br><br>7.绑定 value<br><br>对于单选按钮，勾选框及选择框选项，v-model 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：<br><br>    <!-- 当选中时，`picked` 为字符串 "a" --><br>    <input type="radio" v-model="picked" value="a"><br><br>    <!-- `toggle` 为 true 或 false --><br>    <input type="checkbox" v-model="toggle"><br><br>    <!-- 当选中时，`selected` 为字符串 "abc" --><br>    <select v-model="selected"><br>      <option value="abc">ABC</option><br>    </select>
+
+<p>但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Vue-js中的条件渲染和列表渲染" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/28/Vue-js中的条件渲染和列表渲染/" class="article-date">
+      <time datetime="2016-10-28T12:25:41.000Z" itemprop="datePublished">2016-10-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/28/Vue-js中的条件渲染和列表渲染/">Vue.js中的条件渲染和列表渲染</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-条件渲染"><a href="#一-条件渲染" class="headerlink" title="一.条件渲染"></a>一.条件渲染</h2><h3 id="1-v-if"><a href="#1-v-if" class="headerlink" title="1.v-if"></a>1.v-if</h3><p>例子：</p>
+<pre><code>//.html
+&lt;div id=&quot;vm&quot;&gt;  
+    &lt;h1 v-if=&quot;ok&quot;&gt;ok&lt;/h1&gt;
+    &lt;h1 v-else&gt;no&lt;/h1&gt;
+&lt;/div&gt;
+
+
+
+//.js
+window.onload=function(){
+  var vm = new Vue({
+    el:&apos;#vm&apos;,
+    data:{
+        ok:true,
+        no:false
+        }
+    });
+}
+</code></pre><p>result:</p>
+<pre><code>ok
+</code></pre><h3 id="2-template-v-if"><a href="#2-template-v-if" class="headerlink" title="2.template v-if"></a>2.template v-if</h3><p>因为 v-if 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。</template></p>
+<p>例子：</p>
+<pre><code>&lt;template v-if=&quot;ok&quot;&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph 1&lt;/p&gt;
+  &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/template&gt;
+</code></pre><h3 id="3-v-show"><a href="#3-v-show" class="headerlink" title="3.v-show"></a>3.v-show</h3><p>v-show指令的用法和v-if用法大体上一样</p>
+<p>例子：</p>
+<pre><code>&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
+</code></pre><p><strong>注意：</strong> 不同的是有 v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display。</p>
+<p>注意 v-show 不支持 <template> 语法。</template></p>
+<h3 id="4-v-else"><a href="#4-v-else" class="headerlink" title="4.v-else"></a>4.v-else</h3><p>可以用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”：</p>
+<pre><code>&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;
+      Sorry
+&lt;/div&gt;
+&lt;div v-else&gt;
+      Not sorry
+&lt;/div&gt;
+</code></pre><p><strong>注意：</strong> v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。</p>
+<h2 id="二-列表渲染"><a href="#二-列表渲染" class="headerlink" title="二.列表渲染"></a>二.列表渲染</h2><h3 id="1-v-for"><a href="#1-v-for" class="headerlink" title="1.v-for"></a>1.v-for</h3><p>a. 可以使用 v-for 指令基于一个数组渲染一个列表。这个指令使用特殊的语法，形式为 item in items，items 是数据数组，item 是当前数组元素的别名：</p>
+<p>例：</p>
+<pre><code>//.html
+&lt;ul id=&quot;example-1&quot;&gt;
+  &lt;li v-for=&quot;item in items&quot;&gt;
+    {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+var example1 = new Vue({
+  el: &apos;#example-1&apos;,
+  data: {
+    items: [
+      { message: &apos;Foo&apos; },
+      { message: &apos;Bar&apos; }
+    ]
+  }
+})
+</code></pre><p>result:</p>
+<ul>
+<li>Foo</li>
+<li>Bar</li>
+</ul>
+<p>b. 也可以使用 v-for 遍历对象。除了 $index 之外，作用域内还可以访问另外一个特殊变量 $key。</p>
+<p>例子：</p>
+<pre><code>//.html
+&lt;ul id=&quot;repeat-object&quot; class=&quot;demo&quot;&gt;
+  &lt;li v-for=&quot;value in object&quot;&gt;
+    {{ $key }} : {{ value }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+new Vue({
+  el: &apos;#repeat-object&apos;,
+  data: {
+    object: {
+      FirstName: &apos;John&apos;,
+      LastName: &apos;Doe&apos;,
+      Age: 30
+    }
+  }    
+})
+</code></pre><p>result:</p>
+<ul>
+<li>FirstName:John</li>
+<li>lastname:Doe</li>
+<li>Age:30</li>
+</ul>
+<p><strong>注意：</strong> 在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
+<p>c. v-for也可以接收一个整数，此时它将重复模板数次。</p>
+<pre><code>&lt;div&gt;
+    &lt;span v-for=&quot;n in 10&quot;&gt;{{n}}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>result:</p>
+<pre><code>0123456789
+</code></pre><h3 id="2-template-v-for"><a href="#2-template-v-for" class="headerlink" title="2.template v-for"></a>2.template v-for</h3><p>类似于 template v-if，也可以将 v-for 用在 <template> 标签上，以渲染一个包含多个元素的块。例如：</template></p>
+<pre><code>&lt;ul&gt;
+  &lt;template v-for=&quot;item in items&quot;&gt;
+    &lt;li&gt;{{ item.msg }}&lt;/li&gt;
+    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+  &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Node-js中的GET-POST请求" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1250,588 +1823,6 @@ console.log(&quot;文件解压完成。&quot;);
 
 
   
-    <article id="post-React注意点" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/19/React注意点/" class="article-date">
-      <time datetime="2016-10-19T12:10:40.000Z" itemprop="datePublished">2016-10-19</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/React注意点/">React注意点</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p><strong>学习React时，碰到一些需要注意的地方。现整理如下：</strong></p>
-</blockquote>
-<h3 id="一-关于JSX-语法"><a href="#一-关于JSX-语法" class="headerlink" title="一.关于JSX 语法"></a>一.关于JSX 语法</h3><p>React 不是一定要使用 JSX 语法，可以直接使用原生 JS。JSX语法看上去像是在Javascript代码里直接写起了XML标签，实质上这只是一个语法糖，每一个XML标签都会被JSX转换工具转换成纯Javascript代码，所以建议使用 JSX 是因为它能精确定义和反应组件及属性的树状结构，使得组件的结构和组件之间的关系看上去更加清晰。方便MXML和XAML的开发人员 – 因为他们已经使用过类似的语法。</p>
-<h3 id="二-HTML-标签-和-React-组件"><a href="#二-HTML-标签-和-React-组件" class="headerlink" title="二.HTML 标签 和 React 组件"></a>二.HTML 标签 和 React 组件</h3><p>在JSX语法中，遇到HTML标签（以&lt;开头）就用HTML规则解析，遇到代码块（以{开头）就用JavaScript规则解析。React 可以渲染 HTML 标签 (strings) 或 React 组件 (classes)。</p>
-<p>要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。</p>
-<pre><code>var myDivElement=&lt;div className=&quot;foo&quot;/&gt;;
-
-React.render(myDivElement,document.body);
-</code></pre><p>要渲染 React 模块，只需创建一个大写字母开头的本地变量。</p>
-<pre><code>var MyComponent = React.createClass({/*...*/});
-var myElement = &lt;MyComponent someProperty={true} /&gt;;
-React.render(myElement, document.body);
-React 的 JSX 里约定分别使用首字母大、小写来区分本地模块的类和 HTML 标签。
-</code></pre><h3 id="三-不建议作为-XML-属性名"><a href="#三-不建议作为-XML-属性名" class="headerlink" title="三.不建议作为 XML 属性名"></a>三.不建议作为 XML 属性名</h3><p>由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。</p>
-<h3 id="四-大小写敏感"><a href="#四-大小写敏感" class="headerlink" title="四.大小写敏感"></a>四.大小写敏感</h3><p>上面说了JSX是一个XML语法的预处理器。 XML 语法对大小写敏感，所以习惯了HTML的同学要特别注意这点，否则折腾了半天，都不知道错在哪里。比如：</p>
-<pre><code>var Events = React.createClass({
-    clickHandler: function(){
-        console.log(&apos;You got me!&apos;);
-    },
-    render: function(){
-      return &lt;div onClick={this.clickHandler}&gt;Hello, world!&lt;/div&gt;;
-    }
-});
-
-React.render( &lt;Events /&gt;,document.body);
-</code></pre><p>这里绑定click事件的onClick中C是大写的。</p>
-<h3 id="五-React-注释特点"><a href="#五-React-注释特点" class="headerlink" title="五.React 注释特点"></a>五.React 注释特点</h3><ol>
-<li>jsx 标签内容注释 <p name="123">hello{// 或 /**/}</p></li>
-<li>jsx 标签属性注释 <p name="123" {="" **="" }="">123</p></li>
-<li>其实上面提到的大括号的内容都是js 可以参考求值表达式</li>
-</ol>
-<h3 id="六-React-Css样式与标签嵌套"><a href="#六-React-Css样式与标签嵌套" class="headerlink" title="六.React Css样式与标签嵌套"></a>六.React Css样式与标签嵌套</h3><ol>
-<li><p>定义方式与定义对象一样。 css的写法少有变化，属性值需要加引号，属性与属性之间使用逗号分隔，而不在是分号例如</p>
-<p>  var style={color:”red”, border:”1px #000 solid”}</p>
-</li>
-<li><p>样式的引用，React采用style的方式来引用样式；例如</p>
-  <div style="{style}"><hellomessage></hellomessage></div>
-
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/12/Git常用命令/" class="article-date">
-      <time datetime="2016-10-12T11:52:30.000Z" itemprop="datePublished">2016-10-12</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/12/Git常用命令/">Git常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p><strong>关于Git的常用命令。整理如下</strong>：</p>
-</blockquote>
-<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h3><pre><code>$ mkdir learngit
-$ cd learngit
-$ pwd
-/Users/michael/learngit
-</code></pre><h3 id="2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><a href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：" class="headerlink" title="2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："></a>2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</h3><pre><code>$ git init
-Initialized empty Git repository in /Users/michael/learngit/.git/
-</code></pre><h3 id="3-添加文件到Git仓库，分两步："><a href="#3-添加文件到Git仓库，分两步：" class="headerlink" title="3.添加文件到Git仓库，分两步："></a>3.添加文件到Git仓库，分两步：</h3><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
-<pre><code>$ git add readme.txt
-</code></pre><p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
-<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
-<pre><code>$ git commit -m &quot;wrote a readme file&quot;
-[master (root-commit) cb926e7] wrote a readme file
- 1 file changed, 2 insertions(+)
- create mode 100644 readme.txt
-</code></pre><h3 id="4-要随时掌握工作区的状态，使用git-status命令。"><a href="#4-要随时掌握工作区的状态，使用git-status命令。" class="headerlink" title="4.要随时掌握工作区的状态，使用git status命令。"></a>4.要随时掌握工作区的状态，使用git status命令。</h3><pre><code>git diff readme.txt
-</code></pre><p>如果git status告诉你有文件被修改过，可以用git diff readme.txt查看修改内容。</p>
-<h3 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5.版本回退"></a>5.版本回退</h3><pre><code>git log  //显示从最近到最远的提交日志，以便确定要回退到哪个版本，每次提交都有一个唯一的id。
-
-git reflog  //用来记录你的每一次命令，以便确定要回到未来的哪个版本。
-
-把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
-$ git reset --hard HEAD^
-HEAD is now at ea34578 add distributed
-</code></pre><p>返回某个指定id号的那个版本的提交：</p>
-<pre><code>$ git reset --hard 3628164
-</code></pre><p>查看readme.txt的内容是不是版本add distributed：</p>
-<pre><code>$ cat readme.txt
-Git is a distributed version control system.
-Git is free software.
-</code></pre><p>git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。</p>
-<p>例子：将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。</p>
-<pre><code>$ git checkout 09bd8cc1 hello.txt
-</code></pre><h3 id="6-撤销修改"><a href="#6-撤销修改" class="headerlink" title="6.撤销修改"></a>6.撤销修改</h3><pre><code>git checkout -- file  //丢弃工作区的修改：
-
-$ git checkout -- readme.txt
-命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
-一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
-一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-总之，就是让这个文件回到最近一次git commit或git add时的状态。
-
-git add到暂存区了，git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区，
-git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
-</code></pre><h3 id="7-删除文件"><a href="#7-删除文件" class="headerlink" title="7.删除文件"></a>7.删除文件</h3><p>一种是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<pre><code>$ git rm test.txt
-rm &apos;test.txt&apos;
-
-$ git commit -m &quot;remove test.txt&quot;
-[master d17efd8] remove test.txt
-1 file changed, 1 deletion(-)
-
-$ delete mode 100644 test.txt
-现在，文件就从版本库中被删除了。
-</code></pre><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
-<pre><code>$ git checkout -- test.txt
-
-git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
-</code></pre><h3 id="8-远程仓库"><a href="#8-远程仓库" class="headerlink" title="8.远程仓库"></a>8.远程仓库</h3><h4 id="第一种：添加远程库："><a href="#第一种：添加远程库：" class="headerlink" title="第一种：添加远程库："></a>第一种：添加远程库：</h4><pre><code>1.mkdir learngit
-
-2.cd learngit
-
-3.git init
-
-4.添加文件
-
-5.git add .
-
-6.git commit -m &quot;test&quot;
-
-7.在github上创建仓库，复制地址
-
-8. git remote add origin git@github.com:michaelliao/learngit.git
-
-9.git push -u origin master
-</code></pre><p><strong>注意：</strong></p>
-<p>  若出错：fatal: refusing to merge unrelated histories</p>
-<p>  解决：git pull origin master –allow-unrelated-histories</p>
-<p>  //github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。</p>
-<p>  最后依次用命令：</p>
-<pre><code>git add .              
-git commit -m &quot;commit2&quot;                    
-git push origin master:master
-</code></pre><h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
-
-2.克隆：git clone  git@github.com:michaelliao/learngit.git
-
-3.添加文件
-
-4.git add .
-
-5.git commit -m &quot;test&quot;
-
-6.git push -u origin master
-</code></pre><h3 id="9-分支管理"><a href="#9-分支管理" class="headerlink" title="9.分支管理"></a>9.分支管理</h3><h4 id="a-创建与合并分支："><a href="#a-创建与合并分支：" class="headerlink" title="a.创建与合并分支："></a>a.创建与合并分支：</h4><pre><code>1.创建分支：git branch dev
-
-2.切换到分支：git checkout dev
-
-创建+切换分支：git checkout -b dev
-
-3.查看当前分支：gir branch 
-
-4.将指定分支合并到当前分支,假如当前分支为:master：git merge dev
-
-5.删除dev分支：git branch -d dev
-
-强行删除，需要使用命令:git branch -D dev。
-</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ol>
-<li><p>用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit<br>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
-</li>
-<li><p>把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
-</li>
-<li><p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
-</li>
-</ol>
-<h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>1.查看远程库的详细信息：git remote -v
-
-2.推送分支：git push origin master
-
-3.抓取分支：
-</code></pre><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
-<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
-<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
-<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
-<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-<h3 id="10-标签管理："><a href="#10-标签管理：" class="headerlink" title="10.标签管理："></a>10.标签管理：</h3><h4 id="a-创建标签："><a href="#a-创建标签：" class="headerlink" title="a.创建标签："></a>a.创建标签：</h4><p>  首先，切换到需要打标签的分支上：git checkout branch-name然后打标签：git tag tag-name。git tag查看所有标签。</p>
-<p>  如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
-<p>  方法是找到历史提交的commit id，然后打上就可以了： </p>
-<pre><code>$git log --pretty=oneline --abbrev-commit
-
-6a5819e merged bug fix 101
-cc17032 fix bug 1017825a50 merge with no-ff
-6224937 add merge
-59bc1cb conflict fixed
-400b400 &amp; simple
-75a857c AND simple
-fec145a branch test
-d17efd8 remove test.txt
-...
-</code></pre><p>比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：</p>
-<pre><code>$ git tag v0.9 6224937
-
-再用命令git tag查看标签.
-git show &lt;tagname&gt;查看标签信息
-
-创建带有说明的标签，用-a指定标签名，-m指定说明文字：
-$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164
-
-通过-s用私钥签名一个标签：
-$ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
-</code></pre><h3 id="11-操作标签："><a href="#11-操作标签：" class="headerlink" title="11.操作标签："></a>11.操作标签：</h3><pre><code>命令git push origin &lt;tagname&gt;可以推送一个本地标签；
-
-命令git push origin --tags可以推送全部未推送过的本地标签；
-
-命令git tag -d &lt;tagname&gt;可以删除一个本地标签；
-
-命令git push origin :refs/tags/&lt;tagname&gt;可以删除一个远程标签。
-</code></pre><h3 id="12-配置别名："><a href="#12-配置别名：" class="headerlink" title="12.配置别名："></a>12.配置别名：</h3><pre><code>$ git config --global alias.st status  //用st表示status
-
-然后用git st就可以查看状态。 
-</code></pre><h3 id="13-忽略文件："><a href="#13-忽略文件：" class="headerlink" title="13.忽略文件："></a>13.忽略文件：</h3><p>大部分项目中，有些文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：</p>
-<p>在项目根目录创建.gitignore文件，在文件中列出不需要提交的文件名，文件夹名，每个一行，.gitignore文件需要提交，就像普通文件一样。</p>
-<p>通常会被ignore的文件有：</p>
-<ol>
-<li>log文件</li>
-<li>task runner builds</li>
-<li>node_modules等文件夹</li>
-<li>IDEs生成的文件</li>
-<li>个人笔记</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-CSS3中box-sizing属性" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/18/CSS3中box-sizing属性/" class="article-date">
-      <time datetime="2016-09-18T12:36:11.000Z" itemprop="datePublished">2016-09-18</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/18/CSS3中box-sizing属性/">CSS3中box-sizing属性</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>简介：</strong></p>
-<p>box-sizing 属性允许您以特定的方式定义匹配某个区域的特定元素。</p>
-<p><strong>语法：</strong></p>
-<p>box-sizing：content-box | border-box 默认值：content-box</p>
-<p><strong>取值：</strong></p>
-<ol>
-<li><p>content-box，padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和，即 ( Element width = width + border + padding )。此属性表现为标准模式下的盒模型。</p>
-</li>
-<li><p>border-box，padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度，即 ( Element width = width )。此属性表现为怪异模式下的盒模型。</p>
-</li>
-</ol>
-<p><strong>示例：</strong></p>
-<ol>
-<li><p>content-box:</p>
-<p> .test1{ box-sizing:content-box; width:200px; padding:10px; border:15px solid #eee; }</p>
-</li>
-</ol>
-<blockquote>
-<p>实际宽度为：200+（10+10）+（15+15）， 内容宽度为：200 </p>
-</blockquote>
-<ol>
-<li><p>border-box:</p>
-<p> .test2{ box-sizing:border-box; width:200px; padding:10px; border:15px solid #eee; }</p>
-</li>
-</ol>
-<blockquote>
-<p>实际宽度为：200， 内容宽度为：200-（10+10）-（15+15）</p>
-</blockquote>
-<p><strong>内核类型写法：</strong></p>
-<pre><code>Webkit(Chrome/Safari)-webkit-box-sizing
-
-Gecko(Firefox)-moz-box-sizing
-
-Presto(Opera)-o-box-sizing
-
-Trident(IE)IE8:-ms-box-sizing/IE9:box-sizing
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-CSS3新增的属性" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/17/CSS3新增的属性/" class="article-date">
-      <time datetime="2016-09-17T11:57:02.000Z" itemprop="datePublished">2016-09-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/17/CSS3新增的属性/">CSS3新增的属性</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>注意：</strong></p>
-<blockquote>
-<p>由于CSS5标准还未完全订下来，所以各种内核的浏览器都有自己的标准，为了不使属性混淆，所以各家在各自标准前加了一个前缀，</p>
-<p>如：</p>
-<p> -moz-  主要是firefox火狐</p>
-<p> -webikt-  主要是chrome谷歌</p>
-<p> -o-  主要是用于苹果机上的浏览器</p>
-</blockquote>
-<h2 id="一-box-shadow-阴影效果"><a href="#一-box-shadow-阴影效果" class="headerlink" title="一. box-shadow(阴影效果)"></a>一. box-shadow(阴影效果)</h2><p><strong>使用:</strong></p>
-<pre><code>box-shadow: 20px 10px 0 #000;
--moz-box-shadow: 20px 10px 0 #000;
--webkit-box-shadow: 20px 10px 0 #000;
-</code></pre><p><strong>支持:</strong></p>
-<blockquote>
-<p>FF3.5, Safari 4, Chrome 3</p>
-</blockquote>
-<h2 id="二-border-colors-为边框设置多种颜色"><a href="#二-border-colors-为边框设置多种颜色" class="headerlink" title="二. border-colors(为边框设置多种颜色)"></a>二. border-colors(为边框设置多种颜色)</h2><p><strong>使用:</strong></p>
-<pre><code>border: 10px solid #000;
--moz-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
--moz-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
--moz-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
--moz-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
-</code></pre><p><strong>说明:</strong></p>
-<blockquote>
-<p>颜色值数量不固定, 且FF的私有写法不支持缩写: -moz-border-colors: #333 #444 #555;</p>
-</blockquote>
-<p><strong>支持:</strong></p>
-<blockquote>
-<p>FF3+</p>
-</blockquote>
-<h2 id="三-boder-image-图片边框"><a href="#三-boder-image-图片边框" class="headerlink" title="三. boder-image(图片边框)"></a>三. boder-image(图片边框)</h2><p><strong>使用:</strong></p>
-<pre><code>-moz-border-image: url(exam.png) 20 20 20 20 repeat;
--webkit-border-image: url(exam.png) 20 20 20 20 repeat;
-</code></pre><p><strong>说明:</strong></p>
-<blockquote>
-<p>(1). 20 20 20 20 —边框的宽度, 分别对应top, right, bottom, left边框, 改变宽度可以实现不同的效果;<br>(2). 边框图片效果(目前仅实现了两种):<br>   repeat — 边框图片会平铺, 类似于背景重复;<br>   stretch — 边框图片会以拉伸的方式来铺满整个边框;<br>(3). 必须将元素的边框厚度设置为非0非auto值.</p>
-</blockquote>
-<p><strong>支持:</strong></p>
-<blockquote>
-<p>FF 3.5, Safari 4, Chrome 3</p>
-</blockquote>
-<h2 id="四-text-shadow-文本阴影"><a href="#四-text-shadow-文本阴影" class="headerlink" title="四. text-shadow(文本阴影)"></a>四. text-shadow(文本阴影)</h2><p><strong>使用:</strong></p>
-<pre><code>text-shadow: [&lt;颜色&gt;&lt;水平偏移&gt;&lt;纵向偏移&gt;&lt;模糊半径&gt;] || [&lt;水平偏移&gt;&lt;纵向偏移&gt;&lt;模糊半径&gt;&lt;颜色&gt;];
-</code></pre><p><strong>说明:</strong></p>
-<blockquote>
-<p>(1) &lt;颜色&gt;和&lt;模糊半径&gt;是可选的, 当&lt;颜色&gt;未指定时, 将使用文本颜色; 当&lt;模糊半径&gt;未指定时, 半径值为0;<br>(2) shadow可以是逗号分隔的列表, 如:<br>   text-shadow: 2px 2px 2px #ccc, 3px 3px 3px #ddd;<br>(3) 阴影效果会按照shadow list中指定的顺序应用到元素上;<br>(4) 这些阴影效果有可能相互重叠, 但不会叠加文本本身;<br>(5) 阴影可能会跑到容器的边界之外, 但不会影响容器的大小.</p>
-</blockquote>
-<p><strong>支持:</strong></p>
-<blockquote>
-<p>FF 3.5, Opera 10, Safari 4, Chrome 3</p>
-</blockquote>
-<h2 id="五-text-overflow-文本截断"><a href="#五-text-overflow-文本截断" class="headerlink" title="五. text-overflow(文本截断)"></a>五. text-overflow(文本截断)</h2><p><strong>使用:</strong></p>
-<pre><code>text-overflow: inherit | ellipsis | clip ;
--o-text-overflow: inherit | ellipsis | clip;
-</code></pre><p><strong>说明:</strong></p>
-<blockquote>
-<p>(1) 还有一个属性ellipsis-word, 但各浏览器均不支持.</p>
-</blockquote>
-<p><strong>支持:</strong> </p>
-<blockquote>
-<p> IE6+, Safari4, Chrome3, Opera10</p>
-</blockquote>
-<h2 id="六-word-wrap-自动换行"><a href="#六-word-wrap-自动换行" class="headerlink" title="六. word-wrap(自动换行)"></a>六. word-wrap(自动换行)</h2><p><strong>使用:</strong></p>
-<pre><code>word-wrap: normal | break-word;
-</code></pre><p><strong>支持:</strong>    </p>
-<blockquote>
-<p>IE6+, FF 3.5, Safari 4, Chrome 3</p>
-<h2 id="七-border-radius-圆角边框"><a href="#七-border-radius-圆角边框" class="headerlink" title="七. border-radius(圆角边框)"></a>七. border-radius(圆角边框)</h2><p><strong>使用:</strong></p>
-</blockquote>
-<pre><code>-moz-border-radius: 5px;
--webkit-border-radius: 5px;
-</code></pre><p><strong>支持:</strong></p>
-<blockquote>
-<p>FF 3+, Safari 4, Chrome 3</p>
-</blockquote>
-<h2 id="八-opacity-不透明度"><a href="#八-opacity-不透明度" class="headerlink" title="八.  opacity(不透明度)"></a>八.  opacity(不透明度)</h2><p><strong>使用:</strong></p>
-<pre><code>opacity: 0.5;
-filter: alpha(opacity=50); /* for IE6, 7 */
--ms-filter(opacity=50); /* for IE8 */
-</code></pre><p><strong>支持:</strong></p>
-<blockquote>
-<p>all</p>
-</blockquote>
-<h2 id="九-box-sizing-控制盒模型的组成模式"><a href="#九-box-sizing-控制盒模型的组成模式" class="headerlink" title="九. box-sizing(控制盒模型的组成模式)"></a>九. box-sizing(控制盒模型的组成模式)</h2><p><strong>使用:</strong></p>
-<pre><code>box-sizing: content-box | border-box; // for opera
--moz-box-sizing: content-box | border-box;
--webkit-box-sizing: content-box | border-box;
-</code></pre><p><strong>说明:</strong></p>
-<blockquote>
-<ol>
-<li>content-box:<br>使用此值时, 盒模型的组成模式是, 元素宽度 = content + padding + border;</li>
-<li>border-box:<br>使用此值时, 盒模型的组成模式是, 元素宽度 = content(即使设置了padding和border, 元素的宽度<br>也不会变)。</li>
-</ol>
-</blockquote>
-<p><strong>支持:</strong></p>
-<blockquote>
-<p>FF3+, Opera 10, Safari 4, Chrome 3</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1846,14 +1837,14 @@ filter: alpha(opacity=50); /* for IE6, 7 */
                 2016 yuxuan
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1862,7 +1853,7 @@ filter: alpha(opacity=50); /* for IE6, 7 */
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1895,9 +1886,9 @@ filter: alpha(opacity=50); /* for IE6, 7 */
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window

@@ -15,19 +15,28 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="基础用法可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
+1.text
+&amp;lt;span&amp;gt;Message is: {{ message }}&amp;lt;/span&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;input type=&amp;quot;text&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="Vue.js中的表单控件绑定">
+<meta property="og:url" content="https://yoursite.com/2016/10/28/Vue-js中的表单控件绑定/index.html">
 <meta property="og:site_name" content="萱儿的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="基础用法可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
+1.text
+&amp;lt;span&amp;gt;Message is: {{ message }}&amp;lt;/span&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;input type=&amp;quot;text&amp;">
+<meta property="og:updated_time" content="2016-10-30T12:30:14.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="Vue.js中的表单控件绑定">
+<meta name="twitter:description" content="基础用法可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
+1.text
+&amp;lt;span&amp;gt;Message is: {{ message }}&amp;lt;/span&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;input type=&amp;quot;text&amp;">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +68,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>block，inline和inline-block概念和区别 | 萱儿的博客</title>
+<title>Vue.js中的表单控件绑定 | 萱儿的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -241,11 +250,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-block，inline和inline-block概念和区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Vue-js中的表单控件绑定" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/27/block，inline和inline-block概念和区别/" class="article-date">
-      <time datetime="2016-07-27T15:50:48.000Z" itemprop="datePublished">2016-07-27</time>
+      <a href="/2016/10/28/Vue-js中的表单控件绑定/" class="article-date">
+      <time datetime="2016-10-28T12:28:57.000Z" itemprop="datePublished">2016-10-28</time>
 </a>
 
 
@@ -260,7 +269,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      block，inline和inline-block概念和区别
+      Vue.js中的表单控件绑定
     </h1>
   
 
@@ -271,7 +280,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,44 +290,67 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
-<ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
-</li>
-</ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
+        <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。</p>
+<p>1.text</p>
+<pre><code>&lt;span&gt;Message is: {{ message }}&lt;/span&gt;
+&lt;br&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;
+</code></pre><p><br><br>result:</p>
+<p>Message is:</p>
+ <input type="text" v-model="message" placeholder="edit me">
+
+<p>2.multiline text</p>
+<pre><code>&lt;span&gt;Multiline message is:&lt;/span&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;br&gt;
+&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;
+</code></pre><p>result:</p>
+<p>Message is:</p>
+ <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+<p>3.Checkbox</p>
+<p>单个勾选框，逻辑值：</p>
+<pre><code>&lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; v-model=&quot;checked&quot;&gt;
+&lt;label for=&quot;checkbox&quot;&gt;{{ checked }}&lt;/label&gt;
+</code></pre><p> <input type="checkbox" id="checkbox" v-model="checked">false</p>
+<p>4.多个勾选框，绑定到同一个数组：</p>
+<pre><code>//.html
+&lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Checked names: {{ checkedNames | json }}&lt;/span&gt;
+
+
+//.js
+new Vue({
+  el: &apos;...&apos;,
+  data: {
+    checkedNames: []
+  }
+})
+</code></pre><p>5.Radio</p>
+<pre><code>&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;
+&lt;br&gt;
+&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Picked: {{ picked }}&lt;/span&gt;
+</code></pre><p> <input type="radio" id="one" value="One" v-model="picked"><br>    <label for="one">One</label><br>    <br><br>    <input type="radio" id="two" value="Two" v-model="picked"><br>    <label for="two">Two</label><br>    <br><br>    <span>Picked: </span></p>
+<p>6.Select<br>单选：</p>
+<pre><code>&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option selected&gt;A&lt;/option&gt;
+  &lt;option&gt;B&lt;/option&gt;
+  &lt;option&gt;C&lt;/option&gt;
+&lt;/select&gt;
+&lt;span&gt;Selected: {{ selected }}&lt;/span&gt;
+</code></pre><select v-model="selected"><br>  <option selected>A</option><br>  <option>B</option><br>  <option>C</option><br></select><br><br><br><span>Selected:[“A”]</span><br><br>7.绑定 value<br><br>对于单选按钮，勾选框及选择框选项，v-model 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：<br><br>    <!-- 当选中时，`picked` 为字符串 "a" --><br>    <input type="radio" v-model="picked" value="a"><br><br>    <!-- `toggle` 为 true 或 false --><br>    <input type="checkbox" v-model="toggle"><br><br>    <!-- 当选中时，`selected` 为字符串 "abc" --><br>    <select v-model="selected"><br>      <option value="abc">ABC</option><br>    </select>
+
+<p>但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。</p>
 
       
     </div>
@@ -327,13 +359,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></p>
+        <p><span>Title:</span><a href="/2016/10/28/Vue-js中的表单控件绑定/">Vue.js中的表单控件绑定</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">yuxuan</a></p>
-        <p><span>Created:</span>2016-07-27, 23:50:48</p>
-        <p><span>Updated:</span>2016-09-17, 20:34:05</p>
+        <p><span>Created:</span>2016-10-28, 20:28:57</p>
+        <p><span>Updated:</span>2016-10-30, 20:30:14</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/07/27/block，inline和inline-block概念和区别/" title="block，inline和inline-block概念和区别">https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/</a>
-            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/10/28/Vue-js中的表单控件绑定/" title="Vue.js中的表单控件绑定">https://yoursite.com/2016/10/28/Vue-js中的表单控件绑定/</a>
+            <span class="copy-path" data-clipboard-text="From https://yoursite.com/2016/10/28/Vue-js中的表单控件绑定/　　By yuxuan" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,15 +378,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/01/最基本的HTML5网页骨架/">
-                    最基本的HTML5网页骨架
+                <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/">
+                    JavaScript中的module.exports与exports的区别
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/26/position定位和z-index的使用/">
-                    position定位和z-index的使用
+                <a href="/2016/10/28/Vue-js中的条件渲染和列表渲染/">
+                    Vue.js中的条件渲染和列表渲染
                 </a>
             </div>
         
@@ -366,7 +398,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体概念"><span class="toc-number">1.</span> <span class="toc-text">总体概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充说明"><span class="toc-number">2.</span> <span class="toc-text">补充说明</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础用法"><span class="toc-number">1.</span> <span class="toc-text">基础用法</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +434,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"block，inline和inline-block概念和区别　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Vue.js中的表单控件绑定　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,7 +454,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/01/最基本的HTML5网页骨架/" title="Pre: 最基本的HTML5网页骨架">
+            <a href="/2016/10/30/JavaScript中的module-exports与exports的区别/" title="Pre: JavaScript中的module.exports与exports的区别">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -430,7 +462,7 @@
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/26/position定位和z-index的使用/" title="Next: position定位和z-index的使用">
+            <a href="/2016/10/28/Vue-js中的条件渲染和列表渲染/" title="Next: Vue.js中的条件渲染和列表渲染">
                 <i class="fa fa-angle-right"></i>
             </a>
         
