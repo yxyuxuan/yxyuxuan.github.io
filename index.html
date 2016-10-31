@@ -241,6 +241,156 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Node-js中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/31/Node-js中的module-exports与exports的区别/" class="article-date">
+      <time datetime="2016-10-31T12:34:52.000Z" itemprop="datePublished">2016-10-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/31/Node-js中的module-exports与exports的区别/">Node.js中的module.exports与exports的区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code>module.exports = {};
+</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function(){
+         console.log(&apos;a&apos;)
+     }
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+     console.log(x.a)
+</code></pre><p>   result:</p>
+<pre><code>1    
+</code></pre><p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function(){
+        console.log(&apos;a&apos;)
+     }
+ module.exports = {a: 2}
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&apos;./foo&apos;);
+ console.log(x.a)
+</code></pre><p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
+   options = options || {};
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
+   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ }
+
+ module.exports = View;
+</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View(){
+
+     }
+
+     View.prototype.test = function(){
+      console.log(&apos;test&apos;)
+     }
+
+     View.test1 = function(){
+          console.log(&apos;test1&apos;)
+     }
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+
+     console.log(x) //{ [Function: View] test1: [Function] }
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code>exports = module.exports = createApplication;
+
+/**
+ * Expose mime.
+ */
+
+exports.mime = connect.mime;
+</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Vue-js中方法与事件处理器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -357,156 +507,6 @@ What
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Node.js中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/30/Node.js中的module-exports与exports的区别/" class="article-date">
-      <time datetime="2016-10-30T12:33:37.000Z" itemprop="datePublished">2016-10-30</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/30/Node.js中的module-exports与exports的区别/">Node.js中的module.exports与exports的区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
-</blockquote>
-<pre><code>module.exports = {};
-</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
-<pre><code>//foo.js
-
-     exports.a = function(){
-         console.log(&apos;a&apos;)
-     }
-     exports.a = 1 
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-     console.log(x.a)
-</code></pre><p>   result:</p>
-<pre><code>1    
-</code></pre><p>这里，exports是引用 module.exports的值。</p>
-<blockquote>
-<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
-</blockquote>
-<pre><code>//foo.js
-
-     exports.a = function(){
-        console.log(&apos;a&apos;)
-     }
- module.exports = {a: 2}
- exports.a = 1 
-
-
-//test.js
-
- var x = require(&apos;./foo&apos;);
- console.log(x.a)
-</code></pre><p>result:2</p>
-<p>exports在module.exports 被改变后，失效。</p>
-<blockquote>
-<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
-</blockquote>
-<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
-   options = options || {};
-   this.name = name;
-   this.root = options.root;
-   var engines = options.engines;
-   this.defaultEngine = options.defaultEngine;
-   var ext = this.ext = extname(name);
-   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
-   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
-   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
-   this.path = this.lookup(name);
- }
-
- module.exports = View;
-</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
-<pre><code>//foo.js
-
-     function View(){
-
-     }
-
-     View.prototype.test = function(){
-      console.log(&apos;test&apos;)
-     }
-
-     View.test1 = function(){
-          console.log(&apos;test1&apos;)
-     }
-     module.exports = View
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-
-     console.log(x) //{ [Function: View] test1: [Function] }
-     console.log(x.test) //undefined
-     console.log(x.test1) //[Function]
-     x.test1() //test1
-</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
-<pre><code>exports = module.exports = createApplication;
-
-/**
- * Expose mime.
- */
-
-exports.mime = connect.mime;
-</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
-<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
-<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
     </div>
 
       
