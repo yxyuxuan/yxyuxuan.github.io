@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -237,7 +237,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
   
@@ -1401,89 +1401,88 @@ object.getName(); //&quot;My Object&quot;
 </code></pre><p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p>
 </blockquote>
 <p><strong>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</strong></p>
-<ul>
+<ol>
 <li><p>test</p>
-<p>  主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
+<p> 主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
 <pre><code>示例如下：
 
 var s = &apos;you love me and I love you&apos;;
 var pattern = /you/;
 var ans = pattern.test(s);
 console.log(ans); // true
-</code></pre><p>  如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
+</code></pre><p> 如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
 </li>
 <li><p>exec</p>
-<p>  主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
-<p>  exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
-<p>  示例如下：</p>
+<p> 主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
+<p> exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
+<p> 示例如下：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 var pattern = /you/;
 var ans = pattern.exec(s);
 console.log(ans); // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
 console.log(ans.index); // 0
 console.log(ans.input); // you love me and I love you
-</code></pre><p>  输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
-<p>  啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
+</code></pre><p> 输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
+<p> 啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 var pattern = /y(o?)u/;
 var ans = pattern.exec(s);
 console.log(ans);   // [&quot;you&quot;, &quot;o&quot;, index: 0, input: &quot;you love me and I love you&quot;]
 console.log(ans.length) // 2
-</code></pre><p>  所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
-<p>  除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。</p>
-<p>  如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
-<p>  找到第一个 “you”，并存储其位置<br>  如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置<br>当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
-<pre><code>实例如下：
-
-  var s = &apos;you love me and I love you&apos;;
-  var pattern = /you/g;
-  var ans;
-  do {
-    ans = pattern.exec(s);
-    console.log(ans);
-    console.log(pattern.lastIndex);
-  }
-  while (ans !== null)
-  结果如下：
+</code></pre><p> 所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
+<p> 除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。</p>
+<p> 如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
+<p> 找到第一个 “you”，并存储其位置<br> 如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置<br>当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
+<p>   实例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /you/g;
+var ans;
+do {
+  ans = pattern.exec(s);
+  console.log(ans);
+  console.log(pattern.lastIndex);
+}
+while (ans !== null)
+结果如下：
 </code></pre></li>
-</ul>
+</ol>
 <pre><code>应该还容易理解，当第三次循环时，找不到“you”了，于是返回null，lastIndex值也变成0了。
 
 如果在一个字符串中完成了一次模式匹配之后要开始检索新的字符串（仍然使用旧的pattern），就必须手动地把 lastIndex 属性重置为 0。
-</code></pre><ul>
+</code></pre><ol>
 <li><p>compile</p>
-<p>  主要功能：改变当前匹配模式（pattern）</p>
-<p>  它是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
+<p> 主要功能：改变当前匹配模式（pattern）</p>
+<p> 它是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
 </li>
-</ul>
+</ol>
 <h2 id="二-String-四大护法"><a href="#二-String-四大护法" class="headerlink" title="二.String 四大护法"></a>二.String 四大护法</h2><p>四大护法有些和RegExp三大方法类似，有的更胜一筹。即str.search/match/replace/split形式。</p>
 <p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p>
-<ul>
+<ol>
 <li><p>search</p>
-<p>  主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
-<p>  是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
+<p> 主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
+<p> 是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 var pattern = /you/;
 var ans = s.search(pattern);
 console.log(ans);  // 0
-</code></pre><p>  话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
+</code></pre><p> 话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
 </li>
 <li><p>match</p>
-<p>  主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
-<p>  match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。实例如下：</p>
+<p> 主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
+<p> match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。实例如下：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 console.log(s.match(/you/));    // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
 console.log(s.match(/you/g));   // [&quot;you&quot;, &quot;you&quot;]
 </code></pre></li>
 <li><p>replace</p>
-<p>  主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。实例如下：</p>
+<p> 主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。实例如下：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 console.log(s.replace(&apos;you&apos;, &apos;zichi&apos;)); // zichi love me and I love you
 console.log(s.replace(/you/, &apos;zichi&apos;)); // zichi love me and I love you
 console.log(s.replace(/you/g, &apos;zichi&apos;));    // zichi love me and I love zichi
-</code></pre><p>  如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
+</code></pre><p> 如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
 </li>
-</ul>
+</ol>
 <pre><code>怎么用？看个例子就明白了。
 
     var s = &apos;I love you&apos;;
@@ -1502,15 +1501,15 @@ console.log(s.replace(/you/g, &apos;zichi&apos;));    // zichi love me and I lov
       return a.toUpperCase();
     });
     console.log(ans); // I LOVE you
-</code></pre><ul>
+</code></pre><ol>
 <li><p>split</p>
-<p>  主要功能：分割字符串</p>
-<p>  字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
+<p> 主要功能：分割字符串</p>
+<p> 字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 var pattern = &apos;and&apos;;
 var ans = s.split(pattern);
 console.log(ans);   // [&quot;you love me &quot;, &quot; I love you&quot;]
-</code></pre><p>  如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
+</code></pre><p> 如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
 <pre><code>var s = &apos;you love me and I love you&apos;;
 var pattern = /and/;
 var ans = s.split(pattern, 1);
@@ -1518,7 +1517,7 @@ console.log(ans);   // [&quot;you love me &quot;]
 </code></pre></li>
 <li><p>RegExp 字符</p>
 </li>
-</ul>
+</ol>
 <pre><code>- \s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)       
 - \b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）
 - \w 匹配字母或数字或下划线   [a-z0-9A-Z_]完全等同于\w
@@ -2209,14 +2208,14 @@ What
                 2016-2017 yuxuan
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -2225,7 +2224,7 @@ What
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -2258,9 +2257,9 @@ What
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
