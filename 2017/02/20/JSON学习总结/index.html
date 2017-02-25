@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="yuxuan" />
+
+
+
+<meta name="description" content="一. JSON介绍
+JSON 类似 XML
+
+JSON 是纯文本
+JSON 具有“自我描述性”（人类可读）
+JSON 具有层级结构（值中存在值）
+JSON 可通过 JavaScript 进行解析
+JSON 数据可使用 AJAX 进行传输
+
+
+相比 XML 的不同之处
+
+没有结束标签
+更短
+读写的速度更快
+能够使用内建的 JavaScript eval() 方法进行解析
+使用数组
+不使用保留字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON学习总结">
+<meta property="og:url" content="https://yoursite.com/2017/02/20/JSON学习总结/index.html">
+<meta property="og:site_name" content="萱儿的博客">
+<meta property="og:description" content="一. JSON介绍
+JSON 类似 XML
+
+JSON 是纯文本
+JSON 具有“自我描述性”（人类可读）
+JSON 具有层级结构（值中存在值）
+JSON 可通过 JavaScript 进行解析
+JSON 数据可使用 AJAX 进行传输
+
+
+相比 XML 的不同之处
+
+没有结束标签
+更短
+读写的速度更快
+能够使用内建的 JavaScript eval() 方法进行解析
+使用数组
+不使用保留字">
+<meta property="og:updated_time" content="2017-02-25T07:15:37.818Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSON学习总结">
+<meta name="twitter:description" content="一. JSON介绍
+JSON 类似 XML
+
+JSON 是纯文本
+JSON 具有“自我描述性”（人类可读）
+JSON 具有层级结构（值中存在值）
+JSON 可通过 JavaScript 进行解析
+JSON 数据可使用 AJAX 进行传输
+
+
+相比 XML 的不同之处
+
+没有结束标签
+更短
+读写的速度更快
+能够使用内建的 JavaScript eval() 方法进行解析
+使用数组
+不使用保留字">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="萱儿的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>JSON学习总结 | 萱儿的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/2.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">yuxuan</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜單</li>
+                        <li>標籤</li>
+                        
+                        <li>友情鏈接</li>
+                        
+                        
+                        <li>關於我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS回调函数/">JS回调函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/yxyuxuan/yxyuxuan.github.io">我的GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">yuxuan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/2.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">yuxuan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="https://yxyuxuan.github.io/My-Resume/我的简历/index.html">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
+</nav>
+      <div class="body-wrap"><article id="post-JSON学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/20/JSON学习总结/" class="article-date">
+      <time datetime="2017-02-20T07:13:26.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JSON学习总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ul>
+<li><p>JSON 类似 XML</p>
+<ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输</li>
+</ul>
+</li>
+<li><p>相比 XML 的不同之处</p>
+<ul>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字</li>
+</ul>
+</li>
+<li><p>为什么使用 JSON？<br>  对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：</p>
+<ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+<li>用 eval() 处理 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JSON 实例</p>
+<p>  通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
+
+&lt;p&gt;
+Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var JSONObject= {
+&quot;name&quot;:&quot;Bill Gates&quot;,
+&quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
+&quot;age&quot;:56,
+&quot;phone&quot;:&quot;555 1234567&quot;};
+document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
+document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
+document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
+document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></li>
+</ul>
+<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ul>
+<li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
+<ul>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+</li>
+<li><p>JSON 名称/值对</p>
+<p>  JSON 数据的书写格式是：名称/值对。<br>  名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
+<pre><code>&quot;firstName&quot; : &quot;John&quot;
+</code></pre><p>  这很容易理解，等价于这条 JavaScript 语句：</p>
+<pre><code>firstName = &quot;John&quot;
+</code></pre></li>
+<li><p>JSON 值</p>
+<p>  JSON 值可以是：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+</li>
+<li><p>JSON 对象</p>
+<p> JSON 对象在花括号中书写：<br> 对象可以包含多个名称/值对：</p>
+<pre><code>{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; }
+</code></pre><p>  这一点也容易理解，与这条 JavaScript 语句等价：</p>
+<pre><code>firstName = &quot;John&quot;
+lastName = &quot;Doe&quot;
+</code></pre></li>
+<li><p>JSON 数组</p>
+<p>  JSON 数组在方括号中书写：<br>  数组可包含多个对象：</p>
+<pre><code>{
+&quot;employees&quot;: [
+{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; },
+{ &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; },
+{ &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; }
+]
+}
+</code></pre><p>  在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
+</li>
+<li><p>JSON 使用 JavaScript 语法</p>
+<p>  因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br>  通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
+<pre><code>var employees = [
+{ &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; },
+{ &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; },
+{ &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; }
+];
+</code></pre><p>  可以像这样访问 JavaScript 对象数组中的第一项：</p>
+<pre><code>employees[0].lastName;
+</code></pre><p>  返回的内容是：</p>
+<pre><code>Gates
+</code></pre><p>  可以像这样修改数据：</p>
+<pre><code>employees[0].lastName = &quot;Jobs&quot;;
+</code></pre></li>
+</ul>
+<h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
+<li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
+</li>
+<li><p>由于 JSON 语法是 JavaScript 语法的子集，在旧版浏览器中，使用eval()对JSON数据结构求职存在危险，因为可能会执行一些恶意代码。</p>
+</li>
+<li><p>JSON对象有两个方法：stringify()和parse().在最简单的情况下，这两个方法分别用于把javascript对象序列化为JSON字符串和把JSON字符串解析为原生javascript值。</p>
+<p> <strong>把javascript对象序列化为JSON字符串</strong></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var book = {
+                    title: &quot;Professional JavaScript&quot;,
+                    authors: [
+                        &quot;Nicholas C. Zakas&quot;
+                    ],
+                    edition: 3,
+                    year: 2011
+               };
+
+    var jsonText = JSON.stringify(book, [&quot;title&quot;, &quot;edition&quot;]);
+    alert(jsonText);
+
+&lt;/script&gt;
+</code></pre><p> <strong>把 JSON 字符串转换为 JavaScript 对象</strong></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+var book = {
+               &quot;title&quot;: &quot;Professional JavaScript&quot;,
+                &quot;authors&quot;: [
+                    &quot;Nicholas C. Zakas&quot;
+                ],
+                edition: 3,
+                year: 2011,
+                releaseDate: new Date(2011, 11, 1)
+           };
+
+var jsonText = JSON.stringify(book);
+alert(jsonText);
+
+var bookCopy = JSON.parse(jsonText, function(key, value){
+    if (key == &quot;releaseDate&quot;){
+        return new Date(value);
+    } else {
+        return value;
+    }
+});
+
+alert(bookCopy.releaseDate.toISOString());
+</code></pre><p> </p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文標題:</span><a href="/2017/02/20/JSON学习总结/">JSON学习总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主頁">yuxuan</a></p>
+        <p><span>發布時間:</span>2017-02-20, 15:13:26</p>
+        <p><span>最後更新:</span>2017-02-25, 15:15:37</p>
+        <p>
+            <span>原始鏈接:</span><a class="post-url" href="/2017/02/20/JSON学习总结/" title="JSON学习总结">https://yoursite.com/2017/02/20/JSON学习总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2017/02/20/JSON学习总结/　　作者: yuxuan" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/02/21/Flex布局/">
+                    Flex布局
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/02/10/面向对象的程序设计/">
+                    面向对象的程序设计
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目錄</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-JSON介绍"><span class="toc-number">1.</span> <span class="toc-text">一. JSON介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-JSON语法规则"><span class="toc-number">2.</span> <span class="toc-text">二. JSON语法规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-JSON-解析与序列化"><span class="toc-number">3.</span> <span class="toc-text">二.JSON 解析与序列化</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+    <script>
+        yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JSON学习总结　| 萱儿的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/02/21/Flex布局/" title="上一篇: Flex布局">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/02/10/面向对象的程序设计/" title="下一篇: 面向对象的程序设计">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/25/微信小程序合法域名校验出错解决办法/">微信小程序合法域名校验出错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/21/Flex布局/">Flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/JSON学习总结/">JSON学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/10/面向对象的程序设计/">面向对象的程序设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/25/JS回调函数/">JS回调函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/25/函数表达式/">函数表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/22/正则表达式/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/20/AJAX/">AJAX</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/31/Node-js中的module-exports与exports的区别/">Node.js中的module.exports与exports的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/30/Vue-js中方法与事件处理器/">Vue.js中方法与事件处理器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/28/Vue-js中的表单控件绑定/">Vue.js中的表单控件绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/28/Vue-js中的条件渲染和列表渲染/">Vue.js中的条件渲染和列表渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/Node-js中的GET-POST请求/">Node.js中的GET/POST请求</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/Node-js中的RESTful/">Node.js中的RESTful</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/Node-js中的events模块/">Node.js中的events模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/21/Node-js中的fs模块/">Node.js中的fs模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/21/用Node-js实现HTTP服务器程序/">用Node.js实现HTTP服务器程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/20/Node-js中的Stream模块/">Node.js中的Stream模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/React注意点/">React注意点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/Git常用命令/">Git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/CSS3中box-sizing属性/">CSS3中box-sizing属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/CSS3新增的属性/">CSS3新增的属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的String对象/">JavaScript中的String对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Array数组/">JavaScript中的Array数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/JavaScript中的Math对象/">JavaScript中的Math对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中call和apply的区别与应用/">JS中call和apply的区别与应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/JS中的arguments对象/">JS中的arguments对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/最基本的HTML5网页骨架/">最基本的HTML5网页骨架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/block，inline和inline-block概念和区别/">block，inline和inline-block概念和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/position定位和z-index的使用/">position定位和z-index的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/21/使用选择器在页面中插入内容/">使用选择器在页面中插入内容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/Github-README中展示Demo/">Github-README中展示Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/关于hexo的使用/">关于hexo的使用</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 yuxuan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到訪數"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本頁閱讀量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看評論"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
