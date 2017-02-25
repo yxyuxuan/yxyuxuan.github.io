@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://yoursite.com/2017/02/10/面向对象的程序设计/index.html">
 <meta property="og:site_name" content="萱儿的博客">
 <meta property="og:description" content="面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。">
-<meta property="og:updated_time" content="2017-02-25T07:11:42.996Z">
+<meta property="og:updated_time" content="2017-02-25T07:35:19.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象的程序设计">
 <meta name="twitter:description" content="面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。">
@@ -136,13 +136,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜單</li>
-                        <li>標籤</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>友情鏈接</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>關於我</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -236,7 +236,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap"><article id="post-面向对象的程序设计" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -298,15 +298,15 @@ person.getName = function(){
     return this.name;
     }
 }
-</code></pre><p>   JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
+</code></pre><p>JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
 <pre><code>person.newAtt=’new Attr’;//添加属性
 alert(person.newAtt);//new Attr
 delete person.age;
 alert(person.age);//undefined(删除属性后值为undefined);
 </code></pre></li>
 </ol>
-<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><pre><code>ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性
-</code></pre><ol>
+<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><p>  ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性</p>
+<ol>
 <li><p>数据属性：</p>
 <p> 数据属性指包含一个数据值的位置，可在该位置读取或写入值，该属性有4个供述其行为的特性：</p>
 <ul>
@@ -343,8 +343,10 @@ Object.defineProperty(person, &apos;isAdult&apos;, {
     }
 });
 alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年
-</code></pre><p>   从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
-<p>   此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
+</code></pre></li>
+</ol>
+<p>从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
+<p>此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
 <pre><code>var person = {};
 Object.defineProperties(person,{
     _age:{
@@ -361,14 +363,10 @@ Object.defineProperties(person,{
     }
     });
     alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年
-</code></pre></li>
-</ol>
-<pre><code>上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性
-
-此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：
-
-  var descriptor = Object.getOwnPropertyDescriptor(person,&apos;_age&apos;);
-  alert(descriptor.value);//19
+</code></pre><p>   上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性</p>
+<p>   此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：</p>
+<pre><code>var descriptor = Object.getOwnPropertyDescriptor(person,&apos;_age&apos;);
+alert(descriptor.value);//19
 </code></pre><p>   对于数据属性，可以取得：configurable,enumberable,writable和value；</p>
 <p>   对于访问器属性，可以取得：configurable,enumberable,get和set</p>
 <h2 id="三、创建对象"><a href="#三、创建对象" class="headerlink" title="三、创建对象"></a>三、创建对象</h2><p>   使用Object构造函数或对象字面量都可以创建对象，但缺点是创建多个对象时，会产生大量的重复代码，因此下面介绍可解决这个问题的创建对象的方法</p>
@@ -402,6 +400,7 @@ var person2 = new Person(&apos;Liye&apos;, 23, &apos;Mechanical Engineer&apos;);
 </code></pre></li>
 </ol>
 <pre><code> 使用自定义的构造函数（与普通函数一样，只是用它来创建对象），定义对象类型（如：Person）的属性和方法。它与工厂方法区别在于：
+
 - 没有显式地创建对象
 - 直接将属性和方法赋值给this对象；
 - 没有return语句；
@@ -412,103 +411,87 @@ var person2 = new Person(&apos;Liye&apos;, 23, &apos;Mechanical Engineer&apos;);
 <li>执行构造函数的代码</li>
 <li><p>返回该对象</p>
 <p>上述由Person构造函数生成的两个对象person1与person2都是Person的实例，因此可以使用instanceof判断，并且因为所有对象都继承Object，因此person1 instanceof Object也返回真：</p>
-<pre><code>alert(person1 instanceof Person);//true;
-alert(person2 instanceof Person);//true;
-alert(person1 instanceof Object);//true;
-alert(person1.constructor === person2.constructor);//ture;
-</code></pre><p>虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
-<pre><code>function Person(name,age,job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.getName = new Function () {//改写后效果与原代码相同，不过是为了方便理解
-        return this.name;
-    }
-}
-</code></pre><p>  上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
-<pre><code>function Person(name,age,job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.getName = getName;
-}
-function getName() {//到处是代码，看着乱！！
-    return this.name;
-}
-</code></pre><ol>
-<li>原型模式</li>
-</ol>
-<p>JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
-<p>   function Person(){<br>   }<br>   Person.prototype.name = ‘Jack’;//使用原型来添加属性<br>   Person.prototype.age = 29;<br>   Person.prototype.getName = function(){</p>
+<p>alert(person1 instanceof Person);//true;<br>alert(person2 instanceof Person);//true;<br>alert(person1 instanceof Object);//true;<br>alert(person1.constructor === person2.constructor);//ture;       </p>
+<p>虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
+<p>function Person(name,age,job){<br>  this.name = name;<br>  this.age = age;<br>  this.job = job;<br>  this.getName = new Function () {//改写后效果与原代码相同，不过是为了方便理解</p>
 <pre><code>return this.name;
-</code></pre><p>   }<br>   var person1 = new Person();<br>   alert(person1.getName());//Jack<br>   var person2 = new Person();<br>   alert(person1.getName === person2.getName);//true;共享一个原型对象的方法</p>
-<p> 原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
+</code></pre><p>  }<br>}<br>上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
+<p>function Person(name,age,job){<br>   this.name = name;<br>   this.age = age;<br>   this.job = job;<br>   this.getName = getName;<br>}<br>function getName() {//到处是代码，看着乱！！<br>   return this.name;<br>}        </p>
+</li>
+</ul>
+<p>3.原型模式</p>
+<p>   JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
+<pre><code>function Person(){
+}
+Person.prototype.name = &apos;Jack&apos;;//使用原型来添加属性
+Person.prototype.age = 29;
+Person.prototype.getName = function(){
+   return this.name;
+}
+var person1 = new Person();
+alert(person1.getName());//Jack
+var person2 = new Person();
+alert(person1.getName === person2.getName);//true;共享一个原型对象的方法   
+</code></pre><p>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
 <p>  实例属性或方法的访问过程是一次搜索过程：</p>
 <ul>
 <li>首先从对象实例本身开始，如果找到属性就直接返回该属性值；</li>
 <li>如果实例本身不存在要查找属性，就继续搜索指针指向的原型对象，在其中查找给定名字的属性，如果有就返回；</li>
 <li>基于以上分析，原型模式创建的对象实例，其属性是共享原型对象的；</li>
-<li>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；</li>
-</ul>
+<li><p>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；</p>
 <p><strong>原型与in操作符</strong></p>
 <p>一句话：无论原型中属性，还是对象实例的属性，都可以使用in操作符访问到；要想判断是否是实例本身的属性可以使用object.hasOwnProperty(‘attr’)来判断；</p>
 <p><strong>原生对象中原型</strong></p>
 <p>原生对象中原型与普通对象的原型一样，可以添加/修改属性或方法，如以下代码为所有字符串对象添加去左右空白原型方法：</p>
-<p>   String.prototype.trim = function(){<br>   return this.replace(/^\s+/,’’).replace(/\s+$/,’’);<br>   }<br>   var str = ‘   word space   ‘;<br>   alert(‘!’+str.trim()+’!’);//!word space!</p>
+<p>String.prototype.trim = function(){<br>   return this.replace(/^\s+/,’’).replace(/\s+$/,’’);<br>}<br>var str = ‘   word space   ‘;<br>alert(‘!’+str.trim()+’!’);//!word space!   </p>
 <p>原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：</p>
-<p>   function Person() {<br>   }<br>   Person.prototype.name = ‘Jack’;<br>   Person.prototype.lessons = [‘Math’,’Physics’];<br>   var person1 = new Person();<br>   person1.lessons.push(‘Biology’);<br>   var person2 = new Person();<br>   alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2</p>
+<p>function Person() {<br>}<br>Person.prototype.name = ‘Jack’;<br>Person.prototype.lessons = [‘Math’,’Physics’];<br>var person1 = new Person();<br>person1.lessons.push(‘Biology’);<br>var person2 = new Person();<br>alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2   </p>
 </li>
 </ul>
-<ol>
-<li><p>组合构造函数及原型模式</p>
+<p>4.组合构造函数及原型模式</p>
 <p>   目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长。</p>
 <pre><code>function Person(name, age, job) {
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
-}
-Person.prototype = {
-    constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
-    getName: function () {
-        return this.name;
-    }
-}
-var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
-person1.lessons.push(&apos;Biology&apos;);
-var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
-alert(person1.lessons);//Math,Physics,Biology
-alert(person2.lessons);//Math,Physics
-alert(person1.getName === person2.getName);//true,//共享原型中定义方法
-</code></pre></li>
-</ol>
-<p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
-<ol>
-<li><p>动态原型模式</p>
-<p>  组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
-<pre><code>    function Person(name, age, job) {
         this.name = name;
         this.age = age;
         this.job = job;
         this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
     }
-    if (typeof this.getName != &apos;function&apos;) {//通过判断实例封装
     Person.prototype = {
         constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
         getName: function () {
             return this.name;
         }
-        }
     }
-var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
-person1.lessons.push(&apos;Biology&apos;);
-var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
-alert(person1.lessons);//Math,Physics,Biology
-alert(person2.lessons);//Math,Physics
-alert(person1.getName === person2.getName);//true,//共享原型中定义方法
-</code></pre></li>
-</ol>
-
+    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
+    person1.lessons.push(&apos;Biology&apos;);
+    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法    
+</code></pre><p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
+<p>5.动态原型模式</p>
+<p>   组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
+<pre><code>function Person(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
+        }
+        if (typeof this.getName != &apos;function&apos;) {//通过判断实例封装
+        Person.prototype = {
+            constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+            getName: function () {
+                return this.name;
+            }
+            }
+        }
+    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
+    person1.lessons.push(&apos;Biology&apos;);
+    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法           
+</code></pre>
       
     </div>
     
@@ -516,17 +499,17 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
   
     
     <div class="copyright">
-        <p><span>本文標題:</span><a href="/2017/02/10/面向对象的程序设计/">面向对象的程序设计</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主頁">yuxuan</a></p>
-        <p><span>發布時間:</span>2017-02-10, 15:09:27</p>
-        <p><span>最後更新:</span>2017-02-25, 15:11:42</p>
+        <p><span>本文标题:</span><a href="/2017/02/10/面向对象的程序设计/">面向对象的程序设计</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">yuxuan</a></p>
+        <p><span>发布时间:</span>2017-02-10, 15:09:27</p>
+        <p><span>最后更新:</span>2017-02-25, 15:35:19</p>
         <p>
-            <span>原始鏈接:</span><a class="post-url" href="/2017/02/10/面向对象的程序设计/" title="面向对象的程序设计">https://yoursite.com/2017/02/10/面向对象的程序设计/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2017/02/10/面向对象的程序设计/　　作者: yuxuan" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/02/10/面向对象的程序设计/" title="面向对象的程序设计">https://yoursite.com/2017/02/10/面向对象的程序设计/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yoursite.com/2017/02/10/面向对象的程序设计/　　作者: yuxuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -553,7 +536,7 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目錄</strong>
+        <strong class="toc-title">文章目录</strong>
         
             <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、理解对象"><span class="toc-number">1.</span> <span class="toc-text">一、理解对象:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、对象属性类型"><span class="toc-number">2.</span> <span class="toc-text">二、对象属性类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、创建对象"><span class="toc-number">3.</span> <span class="toc-text">三、创建对象</span></a></li></ol>
         
@@ -569,10 +552,10 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
         }
     </style>
 
-    <input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
     <script>
-        yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
     </script>
 
 
@@ -642,14 +625,14 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
                 2016-2017 yuxuan
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到訪數"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -658,7 +641,7 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本頁閱讀量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -691,9 +674,9 @@ alert(person1.getName === person2.getName);//true,//共享原型中定义方法
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看評論"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
