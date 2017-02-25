@@ -510,7 +510,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ul>
+        <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ol>
 <li><p>JSON 类似 XML</p>
 <ul>
 <li>JSON 是纯文本</li>
@@ -530,8 +530,7 @@
 <li>不使用保留字</li>
 </ul>
 </li>
-<li><p>为什么使用 JSON？</p>
-<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
+<li>为什么使用 JSON？<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
 </code></pre><ul>
 <li>使用 XML<ul>
 <li>读取 XML 文档</li>
@@ -547,35 +546,36 @@
 </ul>
 </li>
 <li><p>JSON 实例</p>
-<p>  通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：</p>
-<pre><code>&lt;html&gt;
-&lt;body&gt;
-&lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
+<pre><code>通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：
 
-&lt;p&gt;
-Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
-Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
-Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
-Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
-&lt;/p&gt;
+ &lt;html&gt;
+ &lt;body&gt;
+ &lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
 
-&lt;script type=&quot;text/javascript&quot;&gt;
-var JSONObject= {
-&quot;name&quot;:&quot;Bill Gates&quot;,
-&quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
-&quot;age&quot;:56,
-&quot;phone&quot;:&quot;555 1234567&quot;};
-document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
-document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
-document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
-document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
-&lt;/script&gt;
+ &lt;p&gt;
+ Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ &lt;/p&gt;
 
-&lt;/body&gt;
-&lt;/html&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+ var JSONObject= {
+ &quot;name&quot;:&quot;Bill Gates&quot;,
+ &quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
+ &quot;age&quot;:56,
+ &quot;phone&quot;:&quot;555 1234567&quot;};
+ document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
+ document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
+ document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
+ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
+ &lt;/script&gt;
+
+ &lt;/body&gt;
+ &lt;/html&gt;
 </code></pre></li>
-</ul>
-<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ul>
+</ol>
+<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ol>
 <li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
 <ul>
 <li>数据在名称/值对中</li>
@@ -585,13 +585,13 @@ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
 </ul>
 </li>
 <li><p>JSON 名称/值对</p>
-<p>  JSON 数据的书写格式是：名称/值对。<br>  名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
+<p> JSON 数据的书写格式是：名称/值对。<br> 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
 <pre><code>&quot;firstName&quot; : &quot;John&quot;
-</code></pre><p>  这很容易理解，等价于这条 JavaScript 语句：</p>
+</code></pre><p> 这很容易理解，等价于这条 JavaScript 语句：</p>
 <pre><code>firstName = &quot;John&quot;
 </code></pre></li>
 <li><p>JSON 值</p>
-<p>  JSON 值可以是：</p>
+<p> JSON 值可以是：</p>
 <ul>
 <li>数字（整数或浮点数）</li>
 <li>字符串（在双引号中）</li>
@@ -601,15 +601,14 @@ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
 <li>null</li>
 </ul>
 </li>
-<li><p>JSON 对象</p>
-<p> JSON 对象在花括号中书写：<br> 对象可以包含多个名称/值对：</p>
+<li><p>JSON 对像</p>
 <pre><code>{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; }
-</code></pre><p>  这一点也容易理解，与这条 JavaScript 语句等价：</p>
+</code></pre><p> JSON 对象在花括号中书写，对象可以包含多个名称/值对，与这条 JavaScript 语句等价：</p>
 <pre><code>firstName = &quot;John&quot;
 lastName = &quot;Doe&quot;
 </code></pre></li>
 <li><p>JSON 数组</p>
-<p>  JSON 数组在方括号中书写：<br>  数组可包含多个对象：</p>
+<p> JSON 数组在方括号中书写：<br> 数组可包含多个对象：</p>
 <pre><code>{
 &quot;employees&quot;: [
 { &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; },
@@ -617,23 +616,23 @@ lastName = &quot;Doe&quot;
 { &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; }
 ]
 }
-</code></pre><p>  在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
+</code></pre><p> 在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
 </li>
 <li><p>JSON 使用 JavaScript 语法</p>
-<p>  因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br>  通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
+<p> 因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br> 通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
 <pre><code>var employees = [
 { &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; },
 { &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; },
 { &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; }
 ];
-</code></pre><p>  可以像这样访问 JavaScript 对象数组中的第一项：</p>
+</code></pre><p> 可以像这样访问 JavaScript 对象数组中的第一项：</p>
 <pre><code>employees[0].lastName;
-</code></pre><p>  返回的内容是：</p>
+</code></pre><p> 返回的内容是：</p>
 <pre><code>Gates
-</code></pre><p>  可以像这样修改数据：</p>
+</code></pre><p> 可以像这样修改数据：</p>
 <pre><code>employees[0].lastName = &quot;Jobs&quot;;
 </code></pre></li>
-</ul>
+</ol>
 <h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
 <li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
 </li>
