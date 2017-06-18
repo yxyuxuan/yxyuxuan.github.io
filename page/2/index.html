@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS回调函数/">JS回调函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS回调函数/">JS回调函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack，vue-js/">webpack，vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,832 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/22/正则表达式/" class="article-date">
+      <time datetime="2017-01-22T07:01:35.000Z" itemprop="datePublished">2017-01-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/22/正则表达式/">正则表达式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-三大方法"><a href="#一-三大方法" class="headerlink" title="一. 三大方法"></a>一. 三大方法</h2><blockquote>
+<p>RegExp采用直接量语法表示：/pattern/attributes</p>
+<p>attributes有三个选择，i、m和g，m（多行匹配）不常用直接省略，所以一个pattern（匹配模式）可以表示如下：</p>
+<pre><code>var pattern = /hello/ig;
+</code></pre><p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p>
+</blockquote>
+<p><strong>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</strong></p>
+<ol>
+<li><p>test</p>
+<p> 主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
+<pre><code>示例如下：
+
+var s = &apos;you love me and I love you&apos;;
+var pattern = /you/;
+var ans = pattern.test(s);
+console.log(ans); // true
+</code></pre><p> 如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
+</li>
+<li><p>exec</p>
+<p> 主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
+<p> exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
+<p> 示例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /you/;
+var ans = pattern.exec(s);
+console.log(ans); // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+console.log(ans.index); // 0
+console.log(ans.input); // you love me and I love you
+</code></pre><p> 输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
+<p> 啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /y(o?)u/;
+var ans = pattern.exec(s);
+console.log(ans);   // [&quot;you&quot;, &quot;o&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+console.log(ans.length) // 2
+</code></pre><p> 所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
+<p> 除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。</p>
+<p> 如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
+<p> 找到第一个 “you”，并存储其位置<br> 如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置</p>
+<p> 当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
+<p>   实例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /you/g;
+var ans;
+do {
+  ans = pattern.exec(s);
+  console.log(ans);
+  console.log(pattern.lastIndex);
+}
+while (ans !== null)  
+</code></pre></li>
+</ol>
+<ol>
+<li><p>compile</p>
+<p> 主要功能：改变当前匹配模式（pattern）</p>
+<p> 它是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
+</li>
+</ol>
+<h2 id="二-String-四大护法"><a href="#二-String-四大护法" class="headerlink" title="二.String 四大护法"></a>二.String 四大护法</h2><p>四大护法有些和RegExp三大方法类似，有的更胜一筹。即str.search/match/replace/split形式。</p>
+<p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p>
+<ol>
+<li><p>search</p>
+<p> 主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
+<p> 是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /you/;
+var ans = s.search(pattern);
+console.log(ans);  // 0
+</code></pre><p> 话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
+</li>
+<li><p>match</p>
+<p> 主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
+<p> match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。实例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+console.log(s.match(/you/));    // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+console.log(s.match(/you/g));   // [&quot;you&quot;, &quot;you&quot;]
+</code></pre></li>
+<li><p>replace</p>
+<p> 主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。实例如下：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+console.log(s.replace(&apos;you&apos;, &apos;zichi&apos;)); // zichi love me and I love you
+console.log(s.replace(/you/, &apos;zichi&apos;)); // zichi love me and I love you
+console.log(s.replace(/you/g, &apos;zichi&apos;));    // zichi love me and I love zichi
+</code></pre><p> 如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
+</li>
+</ol>
+<pre><code>怎么用？看个例子就明白了。
+
+    var s = &apos;I love you&apos;;
+    var pattern = /love/;
+    var ans = s.replace(pattern, &apos;$`&apos; + &apos;$&amp;&apos; + &quot;$&apos;&quot;);
+    console.log(ans); // I I love you you
+没错，’$`’ + ‘$&amp;’ + “$’”其实就相当于原串了！
+
+**replace的第二个参数还能是函数**，看具体例子前先看一段介绍：
+
+注意：第一个参数是匹配到的子串，接下去是子表达式匹配的值，如果要用子表达式参数，则必须要有第一个参数（表示匹配到的串），也就是说，如果要用第n个参数代表的值，则左边参数都必须写出来。最后两个参数跟exec后返回的数组的两个属性差不多。
+
+    var s = &apos;I love you&apos;;
+    var pattern = /love/;
+    var ans = s.replace(pattern, function(a) {　　// 只有一个参数，默认为匹配到的串（如还有参数，则按序表示子表达式和其他两个参数）
+      return a.toUpperCase();
+    });
+    console.log(ans); // I LOVE you
+</code></pre><ol>
+<li><p>split</p>
+<p> 主要功能：分割字符串</p>
+<p> 字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = &apos;and&apos;;
+var ans = s.split(pattern);
+console.log(ans);   // [&quot;you love me &quot;, &quot; I love you&quot;]
+</code></pre><p> 如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
+<pre><code>var s = &apos;you love me and I love you&apos;;
+var pattern = /and/;
+var ans = s.split(pattern, 1);
+console.log(ans);   // [&quot;you love me &quot;]
+</code></pre></li>
+<li><p>RegExp 字符</p>
+</li>
+</ol>
+<pre><code>- \s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)       
+- \b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）
+- \w 匹配字母或数字或下划线   [a-z0-9A-Z_]完全等同于\w
+</code></pre><h2 id="三-贪婪匹配和懒惰匹配"><a href="#三-贪婪匹配和懒惰匹配" class="headerlink" title="三. 贪婪匹配和懒惰匹配"></a>三. 贪婪匹配和懒惰匹配</h2><ol>
+<li><p>什么是贪婪匹配？贪婪匹配就是在正则表达式的匹配过程中，默认会使得匹配长度越大越好。</p>
+<pre><code>var s = &apos;hello world welcome to my world&apos;;
+var pattern = /hello.*world/;
+var ans = pattern.exec(s);
+console.log(ans)  // [&quot;hello world welcome to my world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
+</code></pre><p> 以上例子不会匹配最前面的Hello World，而是一直贪心的往后匹配。</p>
+<p> 那么我需要最短的匹配怎么办？很简单，加个‘？’即可，这就是传说中的懒惰匹配，即匹配到了，就不往后找了。</p>
+<pre><code>var s = &apos;hello world welcome to my world&apos;;
+var pattern = /hello.*?world/;
+var ans = pattern.exec(s);
+console.log(ans)  // [&quot;hello world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
+</code></pre><p> 懒惰限定符（？）添加的场景如下：</p>
+<p> 子表达式</p>
+<p> 表示方式<br> 用一个小括号指定：</p>
+<pre><code>var s = &apos;hello world&apos;;
+var pattern = /(hello)/;
+var ans = pattern.exec(s);
+console.log(ans);
+</code></pre><p> 子表达式出现场景<br> 在exec中数组输出子表达式所匹配的值：</p>
+<pre><code>var s = &apos;hello world&apos;;
+var pattern = /(h(e)llo)/;
+var ans = pattern.exec(s);
+console.log(ans); // [&quot;hello&quot;, &quot;hello&quot;, &quot;e&quot;, index: 0, input: &quot;hello world&quot;]
+</code></pre><p> 在replace中作为替换值引用：</p>
+<pre><code>var s = &apos;hello world&apos;;
+var pattern = /(h\w*o)\s*(w\w*d)/;
+var ans = s.replace(pattern, &apos;$2 $1&apos;)
+console.log(ans); // world hello
+</code></pre><h2 id="四-后向引用-amp-零宽断言"><a href="#四-后向引用-amp-零宽断言" class="headerlink" title="四.后向引用 &amp; 零宽断言"></a>四.后向引用 &amp; 零宽断言</h2></li>
+<li><p>子表达式的序号问题</p>
+<p> 简单地说：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。</p>
+<p> 复杂地说：分组0对应整个正则表达式实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权．</p>
+</li>
+<li><p>后向引用</p>
+<p> 如果我们要找连续两个一样的字符，比如要找两个连续的c，可以这样/c{2}/，如果要找两个连续的单词hello，可以这样/(hello){2}/，但是要在一个字符串中找连续两个相同的任意单词呢，比如一个字符串hellohellochinaworldworld，我要找的是hello和world，怎么找？</p>
+<p> 这时候就要用后向引用。看具体例子：</p>
+<pre><code>var s = &apos;hellohellochinaworldworld&apos;;
+var pattern = /(\w+)\1/g;
+var a = s.match(pattern);
+console.log(a); // [&quot;hellohello&quot;, &quot;worldworld&quot;]
+</code></pre><p> 这里的\1就表示和匹配模式中的第一个子表达式（分组）一样的内容，\2表示和第二个子表达式（如果有的话）一样的内容，\3 \4 以此类推。（也可以自己命名，详见参考文献）</p>
+<p> 或许你觉得数组里两个hello两个world太多了，我只要一个就够了，就又要用到子表达式了。因为match方法里是不能引用子表达式的值的，我们回顾下哪些方法是可以的？没错，exec和replace是可以的！</p>
+<p>exec方式：</p>
+<p> var s = ‘hellohellochinaworldworld’;<br> var pattern = /(\w+)\1/g;<br> var ans;<br>  do {</p>
+<pre><code>ans = pattern.exec(s);
+console.log(ans);
+</code></pre><p>  } while(ans !== null);</p>
+<p>  // result<br>  // [“hellohello”, “hello”, index: 0, input: “hellohellochinaworldworld”] index.html:69<br>  // [“worldworld”, “world”, index: 15, input: “hellohellochinaworldworld”] index.html:69<br>  // null<br>如果输出只要hello和world，console.log(ans[1])即可。</p>
+<p>replace方式：</p>
+<pre><code>var s = &apos;hellohellochinaworldworld&apos;;
+var pattern = /(\w+)\1/g;
+var ans = [];
+s.replace(pattern, function(a, b) {
+　ans.push(b);
+});
+console.log(ans);   // [&quot;hello&quot;, &quot;world&quot;]
+</code></pre><p>如果要找连续n个相同的串，比如说要找出一个字符串中出现最多的字符：</p>
+<pre><code>String.prototype.getMost = function() {
+  var a = this.split(&apos;&apos;);
+  a.sort();
+  var s = a.join(&apos;&apos;);
+  var pattern = /(\w)\1*/g;
+  var a = s.match(pattern);
+  a.sort(function(a, b) {
+    return a.length &lt; b.length;
+  });
+  var letter = a[0][0];
+  var num = a[0].length;
+  return letter + &apos;: &apos; + num;
+}
+
+var s = &apos;aaabbbcccaaabbbcccccc&apos;;
+console.log(s.getMost()); // c: 9
+</code></pre><p>如果需要引用某个子表达式（分组），请认准后向引用！</p>
+</li>
+<li><p>零宽断言</p>
+<p> 它们用于查找在某些内容(但并不包括这些内容)之后的东西，也就是说它们像\b,^,$那样用于指定一个位置，这个位置应该满足一定的条件(即断言)</p>
+<p> (?=exp)<br> 零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p>
+<pre><code>// 获取字符串中以ing结尾的单词的前半部分
+var s = &apos;I love dancing but he likes singing&apos;;
+var pattern = /\b\w+(?=ing\b)/g;
+var ans = s.match(pattern);
+console.log(ans); // [&quot;danc&quot;, &quot;sing&quot;]
+(?!exp)
+</code></pre><p> 零宽度负预测先行断言，断言此位置的后面不能匹配表达式exp</p>
+<pre><code>// 获取第五位不是i的单词的前四位
+var s = &apos;I love dancing but he likes singing&apos;;
+var pattern = /\b\w{4}(?!i)/g;
+var ans = s.match(pattern);
+console.log(ans); // [&quot;love&quot;, &quot;like&quot;]
+javascript正则只支持前瞻，不支持后瞻（(?&lt;=exp)和(?&lt;!exp)）。
+</code></pre><p> 关于零宽断言的具体应用可以参考综合应用一节给字符串加千分符。</p>
+</li>
+</ol>
+<h2 id="五-字符转义"><a href="#五-字符转义" class="headerlink" title="五.字符转义"></a>五.字符转义</h2><ol>
+<li><p>因为某些字符已经被正则表达式用掉了，比如. * ( ) / \  []，所以需要使用它们（作为字符）时，需要用\转义</p>
+<pre><code>var s = &apos;http://www.cnblogs.com/zichi/&apos;;
+var pattern = /http:\/\/www\.cnblogs\.com\/zichi\//;
+var ans = pattern.exec(s);
+console.log(ans); // [&quot;http://www.cnblogs.com/zichi/&quot;, index: 0, input: &quot;http://www.cnblogs.com/zichi/&quot;]
+</code></pre></li>
+<li><p><strong>分支条件</strong></p>
+<p> 如果需要匹配abc里的任意字母，可以用[abc]，但是如果不是单个字母那么简单，就要用到分支条件。</p>
+<p> 分支条件很简单，就是用|表示符合其中任意一种规则。</p>
+<pre><code>var s = &quot;I don&apos;t like you but I love you&quot;;
+var pattern = /I.*(like|love).*you/g;
+var ans = s.match(pattern);
+console.log(ans); // [&quot;I don&apos;t like you but I love you&quot;]
+</code></pre><p> 答案执行了贪婪匹配，如果需要懒惰匹配，则：</p>
+<pre><code>var s = &quot;I don&apos;t like you but I love you&quot;;
+var pattern = /I.*?(like|love).*?you/g;
+var ans = s.match(pattern);
+console.log(ans); // [&quot;I don&apos;t like you&quot;, &quot;I love you&quot;]
+</code></pre></li>
+<li><p><strong>综合应用</strong></p>
+<p>  去除字符串首尾空格（replace）</p>
+<pre><code>String.prototype.trim = function() {
+  return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
+};
+var s = &apos;    hello  world     &apos;;
+var ans = s.trim();
+console.log(ans.length);    // 12
+</code></pre><p> 给字符串加千分符（零宽断言）</p>
+<pre><code>String.prototype.getAns = function() {
+  var pattern = /(?=((?!\b)\d{3})+$)/g;
+  return this.replace(pattern, &apos;,&apos;);
+}
+
+var s = &apos;123456789&apos;;
+console.log(s.getAns());  // 123,456,789
+</code></pre><p> 找出字符串中出现最多的字符（后向引用）</p>
+<pre><code>String.prototype.getMost = function() {
+  var a = this.split(&apos;&apos;);
+  a.sort();
+  var s = a.join(&apos;&apos;);
+  var pattern = /(\w)\1*/g;
+  var a = s.match(pattern);
+  a.sort(function(a, b) {
+    return a.length &lt; b.length;
+  });
+  var letter = a[0][0];
+  var num = a[0].length;
+  return letter + &apos;: &apos; + num;
+}
+
+var s = &apos;aaabbbcccaaabbbcccccc&apos;;
+console.log(s.getMost()); // c: 9
+</code></pre><p> 常用匹配模式（持续更新）<br> 只能输入汉字：</p>
+</li>
+</ol>
+<pre><code>/^[\u4e00-\u9fa5]{0,}$/
+</code></pre><h2 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h2><ol>
+<li><p><strong>test：</strong>检查指定字符串中有没有某子串（或某匹配模式），返回true或者false；如有必要可以进行全局模式搜索。</p>
+</li>
+<li><p><strong>exec：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回数组（数组信息丰富，可参考上文介绍），如没有返回null；如有必要可以进行全局搜索找出所有子串（或者匹配模式）的信息，信息中含有匹配模式中子表达式所对应的字符串。</p>
+</li>
+<li><p><strong>compile：</strong>修改正则表达式中的pattern</p>
+</li>
+<li><p><strong>search：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回子串（或者匹配模式）在原串中的开始位置，如没有返回-1。不能进行全局搜索。</p>
+</li>
+<li><p><strong>match：</strong>检查指定字符串中有没有某子串（或者匹配模式），非全局模式下返回信息和exec一致；如进行全局搜索，直接返回字符串数组。（如不需要关于每个匹配的更多信息，推荐用match而不是exec）</p>
+</li>
+<li><p><strong>replace：</strong>检查指定字符串中有没有某子串（或者匹配模式），并用另一个子串代替（该子串可以跟原字符串或者搜索到的子串有关）；如启动g，则全局替换，否则只替换第一个。replace方法可以引用子表达式所对应的值。</p>
+</li>
+<li><p><strong>split</strong>：用特定模式分割字符串，返回一个字符串数组；与Array的join方法正好相反。</p>
+</li>
+<li><p><strong>子表达式：</strong>用括号括起来的正则匹配表达式，用后向引用可以对其进行引用；也可以和exec或者replace搭配获取其真实匹配值。</p>
+</li>
+<li><p><strong>后向引用 ：</strong>对子表达式所在分组进行引用。</p>
+</li>
+<li><p><strong>零宽断言：</strong>和\b ^ 以及$类似的某个位置概念。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-AJAX" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/20/AJAX/" class="article-date">
+      <time datetime="2017-01-20T06:00:29.000Z" itemprop="datePublished">2017-01-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/20/AJAX/">AJAX</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-AJAX简介"><a href="#一-AJAX简介" class="headerlink" title="一. AJAX简介"></a>一. AJAX简介</h2><ol>
+<li>AJAX = 异步 JavaScript 和 XML。</li>
+<li>AJAX 是一种用于创建快速动态网页的技术。</li>
+<li>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。</li>
+<li>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</li>
+</ol>
+<h2 id="二-创建-XMLHttpRequest-对象"><a href="#二-创建-XMLHttpRequest-对象" class="headerlink" title="二. 创建 XMLHttpRequest 对象"></a>二. 创建 XMLHttpRequest 对象</h2><ol>
+<li>XMLHttpRequest 是 AJAX 的基础。</li>
+<li>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。</li>
+<li>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。</li>
+</ol>
+<ol>
+<li><p>创建 XMLHttpRequest 对象的语法：</p>
+<pre><code>variable=new XMLHttpRequest();
+</code></pre><p> 老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+<pre><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre></li>
+<li><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：</p>
+<pre><code>var xmlhttp;
+if (window.XMLHttpRequest)
+{
+    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    xmlhttp=new XMLHttpRequest();
+}
+else
+{
+    // IE6, IE5 浏览器执行代码
+    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+}
+</code></pre></li>
+</ol>
+<h2 id="三-请求"><a href="#三-请求" class="headerlink" title="三.请求"></a>三.请求</h2><ol>
+<li><p>向服务器发送请求请求:</p>
+<ul>
+<li>XMLHttpRequest 对象用于和服务器交换数据。</li>
+<li><p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+<p>  xmlhttp.open(“GET”,”ajax_info.txt”,true);<br>  xmlhttp.send();</p>
+</li>
+</ul>
+</li>
+<li><p>open(method,url,async):规定请求的类型、URL 以及是否异步处理请求。</p>
+<ul>
+<li>method：请求的类型；GET 或 POST</li>
+<li>url：文件在服务器上的位置</li>
+<li>async：true（异步）或 false（同步）</li>
+</ul>
+</li>
+<li><p>send(string):将请求发送到服务器。</p>
+<ul>
+<li>string：仅用于 POST 请求</li>
+</ul>
+</li>
+<li><p>GET 请求</p>
+<p> 一个简单的 GET 请求：</p>
+<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php&quot;,true);
+xmlhttp.send();
+</code></pre></li>
+<li><p>POST 请求</p>
+<p> 一个简单 POST 请求：</p>
+<pre><code>xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post.php&quot;,true);
+xmlhttp.send();
+</code></pre></li>
+</ol>
+<ol>
+<li>GET 还是 POST？<br> 与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br> 然而，在以下情况中，请使用 POST 请求： <ul>
+<li>无法使用缓存文件（更新服务器上的文件或数据库）  </li>
+<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+</ul>
+</li>
+</ol>
+<h2 id="四-响应"><a href="#四-响应" class="headerlink" title="四.响应"></a>四.响应</h2><ol>
+<li><p>服务器响应</p>
+<p> 如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的responseText 或 responseXML 属性。</p>
+<ul>
+<li>responseText：获得字符串形式的响应数据。</li>
+<li>responseXML：获得 XML 形式的响应数据。</li>
+</ul>
+</li>
+<li><p>responseText 属性</p>
+<p> 如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
+<ul>
+<li><p>responseText 属性返回字符串形式的响应，因此您可以这样使用：</p>
+<pre><code>document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+</code></pre></li>
+</ul>
+</li>
+<li><p>responseXML 属性</p>
+<p> 如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
+<pre><code>请求 cd_catalog.xml 文件，并解析响应：
+xmlDoc=xmlhttp.responseXML;
+txt=&quot;&quot;;
+x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);
+for (i=0;i&lt;x.length;i++)
+{
+    txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;myDiv&quot;).innerHTML=txt;
+</code></pre></li>
+</ol>
+<h2 id="五-onreadystatechange-事件"><a href="#五-onreadystatechange-事件" class="headerlink" title="五.onreadystatechange 事件"></a>五.onreadystatechange 事件</h2><ol>
+<li>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</li>
+<li>每当 readyState 改变时，就会触发 onreadystatechange 事件。</li>
+<li>readyState 属性存有 XMLHttpRequest 的状态信息。</li>
+<li><p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+<ul>
+<li>onreadystatechange: 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</li>
+<li>readyState:存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪.    </li>
+<li><p>status:  200: “OK” 404: 未找到页面</p>
+<p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。</p>
+<p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：</p>
+<p>   xmlhttp.onreadystatechange=function()</p>
+<pre><code>{
+if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+  {
+  document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+  }
+}
+</code></pre><p>注意： onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AJAX/">AJAX</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node-js中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/31/Node-js中的module-exports与exports的区别/" class="article-date">
+      <time datetime="2016-10-31T12:34:52.000Z" itemprop="datePublished">2016-10-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/31/Node-js中的module-exports与exports的区别/">Node.js中的module.exports与exports的区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code>module.exports = {};
+</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function(){
+         console.log(&apos;a&apos;)
+     }
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+     console.log(x.a)
+</code></pre><p>   result:</p>
+<pre><code>1    
+</code></pre><p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function(){
+        console.log(&apos;a&apos;)
+     }
+ module.exports = {a: 2}
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&apos;./foo&apos;);
+ console.log(x.a)
+</code></pre><p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
+   options = options || {};
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
+   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ }
+
+ module.exports = View;
+</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View(){
+
+     }
+
+     View.prototype.test = function(){
+      console.log(&apos;test&apos;)
+     }
+
+     View.test1 = function(){
+          console.log(&apos;test1&apos;)
+     }
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+
+     console.log(x) //{ [Function: View] test1: [Function] }
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code>exports = module.exports = createApplication;
+
+/**
+ * Expose mime.
+ */
+
+exports.mime = connect.mime;
+</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Vue-js中方法与事件处理器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/30/Vue-js中方法与事件处理器/" class="article-date">
+      <time datetime="2016-10-30T12:37:12.000Z" itemprop="datePublished">2016-10-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/30/Vue-js中方法与事件处理器/">Vue.js中方法与事件处理器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
+<pre><code>//.html
+&lt;div id=&quot;example&quot;&gt;
+  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
+<pre><code>var vm = new Vue({
+  el: &apos;#example&apos;,
+  data: {
+    name: &apos;Vue.js&apos;
+  },
+  //在methods对象中定义方法
+  methods: {
+    greet: function (event) {
+      //方法内this指向vm
+      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
+      //event是原DOM事件
+      alert(event.target.tagName)
+    }
+  }
+})
+
+// 也可以在 JavaScript 代码中调用方法
+vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
+</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<pre><code>//.html
+&lt;div id=&quot;example-2&quot;&gt;
+  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
+  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
+&lt;/div&gt;
+
+
+//.js
+var vm = new Vue({
+  el: &apos;#example-2&apos;,
+  methods: {
+    say: function (msg) {
+      alert(msg)
+    }
+  }
+}) 
+</code></pre><p>result:</p>
+<pre><code>Hi
+
+What
+</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
+<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
+<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
+<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
+<pre><code>&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
+<ol>
+<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
+</li>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
+</li>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Vue-js中的表单控件绑定" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1187,668 +2013,6 @@ modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-用Node-js实现HTTP服务器程序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/21/用Node-js实现HTTP服务器程序/" class="article-date">
-      <time datetime="2016-10-21T12:57:26.000Z" itemprop="datePublished">2016-10-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/21/用Node-js实现HTTP服务器程序/">用Node.js实现HTTP服务器程序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p>最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序</p>
-</blockquote>
-<p><strong>注意：</strong></p>
-<ol>
-<li><p>要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。</p>
-</li>
-<li><p>request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；</p>
-</li>
-<li><p>response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。</p>
-</li>
-</ol>
-<hr>
-<h3 id="一-让我们先了解下-Node-js-应用是由哪几部分组成的："><a href="#一-让我们先了解下-Node-js-应用是由哪几部分组成的：" class="headerlink" title="一.让我们先了解下 Node.js 应用是由哪几部分组成的："></a>一.让我们先了解下 Node.js 应用是由哪几部分组成的：</h3><ol>
-<li><p><strong>引入 required 模块：</strong>我们可以使用 require 指令来载入 Node.js 模块。</p>
-</li>
-<li><p><strong>创建服务器</strong>：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
-</li>
-<li><p><strong>接收请求与响应请求:</strong>服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
-</li>
-</ol>
-<h3 id="二-Node-js实现一个HTTP服务器程序的步骤："><a href="#二-Node-js实现一个HTTP服务器程序的步骤：" class="headerlink" title="二.Node.js实现一个HTTP服务器程序的步骤："></a>二.Node.js实现一个HTTP服务器程序的步骤：</h3><h4 id="1-引入requried模块："><a href="#1-引入requried模块：" class="headerlink" title="1. 引入requried模块："></a>1. 引入requried模块：</h4><p>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，实例如下:</p>
-<pre><code>var http = require(&quot;http&quot;);
-</code></pre><h3 id="2-创建服务器，接收请求与响应请求："><a href="#2-创建服务器，接收请求与响应请求：" class="headerlink" title="2. 创建服务器，接收请求与响应请求："></a>2. 创建服务器，接收请求与响应请求：</h3><p>接下来我们使用 http.createServer() 方法创建服务器，并使用 listen 方法绑定 8080 端口。 函数通过 request, response 参数来接收和响应数据。实例如下：</p>
-<pre><code>// 创建http server，并传入回调函数:
-var server = http.createServer(function (request, response) {
-
-      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
-      response.writeHead(200, {&apos;Content-Type&apos;: &apos;text/html&apos;});
-
-      // 将HTTP响应的HTML内容写入response:
-      response.end(&apos;&lt;h1&gt;Hello world!&lt;/h1&gt;&apos;);
-});
-
-// 让服务器监听8080端口:
-server.listen(8080,&apos;127.0.0.1&apos;);
-
-//// 终端打印如下信息
-console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);
-</code></pre><h3 id="3-在命令提示符下运行该程序，可以看到以下输出："><a href="#3-在命令提示符下运行该程序，可以看到以下输出：" class="headerlink" title="3. 在命令提示符下运行该程序，可以看到以下输出："></a>3. 在命令提示符下运行该程序，可以看到以下输出：</h3><pre><code>$ node hello.js 
-Server is running at http://127.0.0.1:8080/
-</code></pre><h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：" target="_blank" rel="external">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
-</code></pre><h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
-<li>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</li>
-</ul>
-<ul>
-<li>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Node-js中的Stream模块" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/20/Node-js中的Stream模块/" class="article-date">
-      <time datetime="2016-10-20T13:12:32.000Z" itemprop="datePublished">2016-10-20</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/20/Node-js中的Stream模块/">Node.js中的Stream模块</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>注意：</strong></p>
-<ol>
-<li><p>stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。</p>
-</li>
-<li><p>什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输入流（stdin）。</p>
-</li>
-<li><p>Node.js，Stream 有四种流类型：</p>
-<ul>
-<li>Readable - 可读操作。</li>
-<li>Writable - 可写操作。</li>
-<li>Duplex - 可读可写操作.</li>
-<li>Transform - 操作被写入数据，然后读出结果。</li>
-</ul>
-</li>
-<li><p>所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：</p>
-<ul>
-<li>data - 当有数据可读时触发。</li>
-<li>end - 没有更多的数据可读时触发。</li>
-<li>error - 在接收和写入过程中发生错误时触发。</li>
-<li>finish - 所有数据已被写入到底层系统时触发。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="一-从流中读取数据"><a href="#一-从流中读取数据" class="headerlink" title="一.从流中读取数据"></a>一.从流中读取数据</h3><ol>
-<li><p>创建 input.txt 文件，内容如下：</p>
-<pre><code>hello world !
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var data = &apos;&apos;;
-
-// 创建可读流
-var readerStream = fs.createReadStream(&apos;input.txt&apos;);
-
-// 设置编码为 utf8。
-readerStream.setEncoding(&apos;UTF8&apos;);
-
-// 处理流事件 --&gt; data, end, and error
-readerStream.on(&apos;data&apos;, function(chunk) {
-       data += chunk;
-   });
-
-readerStream.on(&apos;end&apos;,function(){
-       console.log(data);
-});
-
-readerStream.on(&apos;error&apos;, function(err){
-       console.log(err.stack);
-});
-
-    console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-</ol>
-<ol>
-<li><p>以上代码执行结果如下：</p>
-<pre><code>程序执行完毕
-hello world !
-</code></pre></li>
-</ol>
-<h3 id="二-写入流"><a href="#二-写入流" class="headerlink" title="二.写入流"></a>二.写入流</h3><ol>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var data = &apos;hello world !&apos;;
-
-// 创建一个可以写入的流，写入到文件 output.txt 中
-var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
-
-// 使用 utf8 编码写入数据
-writerStream.write(data,&apos;UTF8&apos;);
-
-// 标记文件末尾
-writerStream.end();
-
-// 处理流事件 --&gt; data, end, and error
-writerStream.on(&apos;finish&apos;, function() {
-    console.log(&quot;写入完成。&quot;);
-});
-
-writerStream.on(&apos;error&apos;, function(err){
-       console.log(err.stack);
-});
-
-    console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-<li><p>以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：</p>
-<pre><code>   $ node main.js 
-程序执行完毕
-写入完成。
-</code></pre></li>
-<li><p>查看 output.txt 文件的内容：</p>
-<pre><code>$ cat output.txt 
-hello world !
-</code></pre></li>
-</ol>
-<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><p> 管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
-<p> 以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
-<ol>
-<li><p>设置 input.txt 文件内容如下：</p>
-<pre><code>Hello! my name is yuxuan.
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-
-// 创建一个可读流
-var readerStream = fs.createReadStream(&apos;input.txt&apos;);
-
-// 创建一个可写流
-var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
-
-// 管道读写操作
-// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
-readerStream.pipe(writerStream);
-
-console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node main.js 
-程序执行完毕
-</code></pre></li>
-<li><p>查看 output.txt 文件的内容：</p>
-<pre><code>$ cat output.txt 
-Hello! my name is yuxuan.
-</code></pre></li>
-</ol>
-<h3 id="四-链式流"><a href="#四-链式流" class="headerlink" title="四.链式流"></a>四.链式流</h3><ul>
-<li>链式是通过连接输出流到另外一个流并创建多个对个流操作链的机制。链式流一般用于管道操作。<br>接下来我们就是用管道和链式来压缩和解压文件。</li>
-</ul>
-<p><strong>a. 压缩文件</strong></p>
-<ol>
-<li><p>创建 compress.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var zlib = require(&apos;zlib&apos;);
-
-// 压缩 input.txt 文件为 input.txt.gz
-fs.createReadStream(&apos;input.txt&apos;)
-.pipe(zlib.createGzip())
-.pipe(fs.createWriteStream(&apos;input.txt.gz&apos;));
-
-console.log(&quot;文件压缩完成。&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node compress.js 
-文件压缩完成。
-</code></pre></li>
-<li><p>执行完以上操作后，我们可以看到当前目录下生成了 input.txt 的压缩文件 input.txt.gz。</p>
-</li>
-</ol>
-<p><strong>b. 解压该文件</strong></p>
-<ol>
-<li><p>创建 decompress.js 文件，代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var zlib = require(&apos;zlib&apos;);
-
-    // 解压 input.txt.gz 文件为 input.txt
-fs.createReadStream(&apos;input.txt.gz&apos;)
-  .pipe(zlib.createGunzip())
-  .pipe(fs.createWriteStream(&apos;input.txt&apos;));
-
-console.log(&quot;文件解压完成。&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node decompress.js 
- 文件解压完成。
-</code></pre></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-React注意点" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/19/React注意点/" class="article-date">
-      <time datetime="2016-10-19T12:10:40.000Z" itemprop="datePublished">2016-10-19</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/React注意点/">React注意点</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p><strong>学习React时，碰到一些需要注意的地方。现整理如下：</strong></p>
-</blockquote>
-<h3 id="一-关于JSX-语法"><a href="#一-关于JSX-语法" class="headerlink" title="一.关于JSX 语法"></a>一.关于JSX 语法</h3><p>React 不是一定要使用 JSX 语法，可以直接使用原生 JS。JSX语法看上去像是在Javascript代码里直接写起了XML标签，实质上这只是一个语法糖，每一个XML标签都会被JSX转换工具转换成纯Javascript代码，所以建议使用 JSX 是因为它能精确定义和反应组件及属性的树状结构，使得组件的结构和组件之间的关系看上去更加清晰。方便MXML和XAML的开发人员 – 因为他们已经使用过类似的语法。</p>
-<h3 id="二-HTML-标签-和-React-组件"><a href="#二-HTML-标签-和-React-组件" class="headerlink" title="二.HTML 标签 和 React 组件"></a>二.HTML 标签 和 React 组件</h3><p>在JSX语法中，遇到HTML标签（以&lt;开头）就用HTML规则解析，遇到代码块（以{开头）就用JavaScript规则解析。React 可以渲染 HTML 标签 (strings) 或 React 组件 (classes)。</p>
-<p>要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。</p>
-<pre><code>var myDivElement=&lt;div className=&quot;foo&quot;/&gt;;
-
-React.render(myDivElement,document.body);
-</code></pre><p>要渲染 React 模块，只需创建一个大写字母开头的本地变量。</p>
-<pre><code>var MyComponent = React.createClass({/*...*/});
-var myElement = &lt;MyComponent someProperty={true} /&gt;;
-React.render(myElement, document.body);
-React 的 JSX 里约定分别使用首字母大、小写来区分本地模块的类和 HTML 标签。
-</code></pre><h3 id="三-不建议作为-XML-属性名"><a href="#三-不建议作为-XML-属性名" class="headerlink" title="三.不建议作为 XML 属性名"></a>三.不建议作为 XML 属性名</h3><p>由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。</p>
-<h3 id="四-大小写敏感"><a href="#四-大小写敏感" class="headerlink" title="四.大小写敏感"></a>四.大小写敏感</h3><p>上面说了JSX是一个XML语法的预处理器。 XML 语法对大小写敏感，所以习惯了HTML的同学要特别注意这点，否则折腾了半天，都不知道错在哪里。比如：</p>
-<pre><code>var Events = React.createClass({
-    clickHandler: function(){
-        console.log(&apos;You got me!&apos;);
-    },
-    render: function(){
-      return &lt;div onClick={this.clickHandler}&gt;Hello, world!&lt;/div&gt;;
-    }
-});
-
-React.render( &lt;Events /&gt;,document.body);
-</code></pre><p>这里绑定click事件的onClick中C是大写的。</p>
-<h3 id="五-React-注释特点"><a href="#五-React-注释特点" class="headerlink" title="五.React 注释特点"></a>五.React 注释特点</h3><ol>
-<li>jsx 标签内容注释 <p name="123">hello{// 或 /**/}</p></li>
-<li>jsx 标签属性注释 <p name="123" {="" **="" }="">123</p></li>
-<li>其实上面提到的大括号的内容都是js 可以参考求值表达式</li>
-</ol>
-<h3 id="六-React-Css样式与标签嵌套"><a href="#六-React-Css样式与标签嵌套" class="headerlink" title="六.React Css样式与标签嵌套"></a>六.React Css样式与标签嵌套</h3><ol>
-<li><p>定义方式与定义对象一样。 css的写法少有变化，属性值需要加引号，属性与属性之间使用逗号分隔，而不在是分号例如</p>
-<p>  var style={color:”red”, border:”1px #000 solid”}</p>
-</li>
-<li><p>样式的引用，React采用style的方式来引用样式；例如</p>
-  <div style="{style}"><hellomessage></hellomessage></div>
-
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/12/Git常用命令/" class="article-date">
-      <time datetime="2016-10-12T11:52:30.000Z" itemprop="datePublished">2016-10-12</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/12/Git常用命令/">Git常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p><strong>关于Git的常用命令。整理如下</strong>：</p>
-</blockquote>
-<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h3><pre><code>$ mkdir learngit
-$ cd learngit
-$ pwd
-/Users/michael/learngit
-</code></pre><h3 id="2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><a href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：" class="headerlink" title="2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："></a>2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</h3><pre><code>$ git init
-Initialized empty Git repository in /Users/michael/learngit/.git/
-</code></pre><h3 id="3-添加文件到Git仓库，分两步："><a href="#3-添加文件到Git仓库，分两步：" class="headerlink" title="3.添加文件到Git仓库，分两步："></a>3.添加文件到Git仓库，分两步：</h3><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
-<pre><code>$ git add readme.txt
-</code></pre><p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
-<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
-<pre><code>$ git commit -m &quot;wrote a readme file&quot;
-[master (root-commit) cb926e7] wrote a readme file
- 1 file changed, 2 insertions(+)
- create mode 100644 readme.txt
-</code></pre><h3 id="4-要随时掌握工作区的状态，使用git-status命令。"><a href="#4-要随时掌握工作区的状态，使用git-status命令。" class="headerlink" title="4.要随时掌握工作区的状态，使用git status命令。"></a>4.要随时掌握工作区的状态，使用git status命令。</h3><pre><code>git diff readme.txt
-</code></pre><p>如果git status告诉你有文件被修改过，可以用git diff readme.txt查看修改内容。</p>
-<h3 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5.版本回退"></a>5.版本回退</h3><pre><code>git log  //显示从最近到最远的提交日志，以便确定要回退到哪个版本，每次提交都有一个唯一的id。
-
-git reflog  //用来记录你的每一次命令，以便确定要回到未来的哪个版本。
-
-把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
-$ git reset --hard HEAD^
-HEAD is now at ea34578 add distributed
-</code></pre><p>返回某个指定id号的那个版本的提交：</p>
-<pre><code>$ git reset --hard 3628164
-</code></pre><p>查看readme.txt的内容是不是版本add distributed：</p>
-<pre><code>$ cat readme.txt
-Git is a distributed version control system.
-Git is free software.
-</code></pre><p>git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。</p>
-<p>例子：将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。</p>
-<pre><code>$ git checkout 09bd8cc1 hello.txt
-</code></pre><h3 id="6-撤销修改"><a href="#6-撤销修改" class="headerlink" title="6.撤销修改"></a>6.撤销修改</h3><pre><code>git checkout -- file  //丢弃工作区的修改：
-
-$ git checkout -- readme.txt
-命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
-一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
-一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-总之，就是让这个文件回到最近一次git commit或git add时的状态。
-
-git add到暂存区了，git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区，
-git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
-</code></pre><h3 id="7-删除文件"><a href="#7-删除文件" class="headerlink" title="7.删除文件"></a>7.删除文件</h3><p>一种是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<pre><code>$ git rm test.txt
-rm &apos;test.txt&apos;
-
-$ git commit -m &quot;remove test.txt&quot;
-[master d17efd8] remove test.txt
-1 file changed, 1 deletion(-)
-
-$ delete mode 100644 test.txt
-现在，文件就从版本库中被删除了。
-</code></pre><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
-<pre><code>$ git checkout -- test.txt
-
-git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
-</code></pre><h3 id="8-远程仓库"><a href="#8-远程仓库" class="headerlink" title="8.远程仓库"></a>8.远程仓库</h3><h4 id="第一种：添加远程库："><a href="#第一种：添加远程库：" class="headerlink" title="第一种：添加远程库："></a>第一种：添加远程库：</h4><pre><code>1.mkdir learngit
-
-2.cd learngit
-
-3.git init
-
-4.添加文件
-
-5.git add .
-
-6.git commit -m &quot;test&quot;
-
-7.在github上创建仓库，复制地址
-
-8. git remote add origin git@github.com:michaelliao/learngit.git
-
-9.git push -u origin master
-</code></pre><p><strong>注意：</strong></p>
-<p>  若出错：fatal: refusing to merge unrelated histories</p>
-<p>  解决：git pull origin master –allow-unrelated-histories</p>
-<p>  //github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。</p>
-<p>  最后依次用命令：</p>
-<pre><code>git add .              
-git commit -m &quot;commit2&quot;                    
-git push origin master:master
-</code></pre><h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
-
-2.克隆：git clone  git@github.com:michaelliao/learngit.git
-
-3.添加文件
-
-4.git add .
-
-5.git commit -m &quot;test&quot;
-
-6.git push -u origin master
-</code></pre><h3 id="9-分支管理"><a href="#9-分支管理" class="headerlink" title="9.分支管理"></a>9.分支管理</h3><h4 id="a-创建与合并分支："><a href="#a-创建与合并分支：" class="headerlink" title="a.创建与合并分支："></a>a.创建与合并分支：</h4><pre><code>1.创建分支：git branch dev
-
-2.切换到分支：git checkout dev
-
-创建+切换分支：git checkout -b dev
-
-3.查看当前分支：gir branch 
-
-4.将指定分支合并到当前分支,假如当前分支为:master：git merge dev
-
-5.删除dev分支：git branch -d dev
-
-强行删除，需要使用命令:git branch -D dev。
-</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ol>
-<li><p>用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit<br>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
-</li>
-<li><p>把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
-</li>
-<li><p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
-</li>
-</ol>
-<h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>1.查看远程库的详细信息：git remote -v
-
-2.推送分支：git push origin master
-
-3.抓取分支：
-</code></pre><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
-<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
-<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
-<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
-<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-<h3 id="10-标签管理："><a href="#10-标签管理：" class="headerlink" title="10.标签管理："></a>10.标签管理：</h3><h4 id="a-创建标签："><a href="#a-创建标签：" class="headerlink" title="a.创建标签："></a>a.创建标签：</h4><p>  首先，切换到需要打标签的分支上：git checkout branch-name然后打标签：git tag tag-name。git tag查看所有标签。</p>
-<p>  如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
-<p>  方法是找到历史提交的commit id，然后打上就可以了： </p>
-<pre><code>$git log --pretty=oneline --abbrev-commit
-
-6a5819e merged bug fix 101
-cc17032 fix bug 1017825a50 merge with no-ff
-6224937 add merge
-59bc1cb conflict fixed
-400b400 &amp; simple
-75a857c AND simple
-fec145a branch test
-d17efd8 remove test.txt
-...
-</code></pre><p>比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：</p>
-<pre><code>$ git tag v0.9 6224937
-
-再用命令git tag查看标签.
-git show &lt;tagname&gt;查看标签信息
-
-创建带有说明的标签，用-a指定标签名，-m指定说明文字：
-$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164
-
-通过-s用私钥签名一个标签：
-$ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
-</code></pre><h3 id="11-操作标签："><a href="#11-操作标签：" class="headerlink" title="11.操作标签："></a>11.操作标签：</h3><pre><code>命令git push origin &lt;tagname&gt;可以推送一个本地标签；
-
-命令git push origin --tags可以推送全部未推送过的本地标签；
-
-命令git tag -d &lt;tagname&gt;可以删除一个本地标签；
-
-命令git push origin :refs/tags/&lt;tagname&gt;可以删除一个远程标签。
-</code></pre><h3 id="12-配置别名："><a href="#12-配置别名：" class="headerlink" title="12.配置别名："></a>12.配置别名：</h3><pre><code>$ git config --global alias.st status  //用st表示status
-
-然后用git st就可以查看状态。 
-</code></pre><h3 id="13-忽略文件："><a href="#13-忽略文件：" class="headerlink" title="13.忽略文件："></a>13.忽略文件：</h3><p>大部分项目中，有些文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：</p>
-<p>在项目根目录创建.gitignore文件，在文件中列出不需要提交的文件名，文件夹名，每个一行，.gitignore文件需要提交，就像普通文件一样。</p>
-<p>通常会被ignore的文件有：</p>
-<ol>
-<li>log文件</li>
-<li>task runner builds</li>
-<li>node_modules等文件夹</li>
-<li>IDEs生成的文件</li>
-<li>个人笔记</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
     </div>
 
       

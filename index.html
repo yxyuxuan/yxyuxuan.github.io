@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS回调函数/">JS回调函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS回调函数/">JS回调函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack，vue-js/">webpack，vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,711 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-LESS学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/10/LESS学习笔记/" class="article-date">
+      <time datetime="2017-05-10T02:09:31.000Z" itemprop="datePublished">2017-05-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/10/LESS学习笔记/">LESS学习笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Less 是一门 CSS 预处理语言，它使用类似CSS的语法，为CSS的赋予了动态语言的特性，如变量、继承、运算、函数等，更方便CSS的编写和维护。</p>
+<p>Less 可以在多种语言、环境中使用，包括浏览器端、桌面客户端、服务端。</p>
+</blockquote>
+<h3 id="1-语法特性"><a href="#1-语法特性" class="headerlink" title="1.语法特性"></a>1.语法特性</h3><p><strong>变量:</strong></p>
+<p>变量允许我们单独定义一系列通用的样式，然后在需要的时候去调用。所以在做全局样式调整的时候我们可能只需要修改几行代码就可以了。</p>
+<p>less源码:</p>
+<pre><code>@color:#999;
+
+#header{
+    color:@color;
+}
+h2{
+    color:@color     
+}
+</code></pre><p>编译后的css :</p>
+<pre><code>#header {
+    color: #999;
+}
+h2 {
+    color: #999;
+}
+</code></pre><p><strong>混合（Mixins）</strong></p>
+<p>混合可以将一个定义好的class A轻松的引入到另一个class B中，从而简单实现class B继承class A中的所有属性。我们还可以带参数地调用，就像使用函数一样。</p>
+<p>LESS源码：</p>
+<pre><code>.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+#header {
+    .rounded-corners;
+}
+#footer {
+    .rounded-corners(10px);
+}
+</code></pre><p>编译后的CSS：</p>
+<pre><code>#header {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+#footer {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+</code></pre><p><strong>嵌套</strong></p>
+<p>我们可以在一个选择器中嵌套另一个选择器来实现继承，这样很大程度减少了代码量，并且代码看起来更加的清晰。</p>
+<p>LESS源码：</p>
+<pre><code>#header {
+    h1 {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    p {
+        font-size: 12px;
+        a {
+            text-decoration: none;
+            &amp;:hover {
+                border-width: 1px
+            }
+        }
+    }
+}
+</code></pre><p>编译后的CSS：</p>
+<pre><code>#header h1 {
+    font-size: 26px;
+    font-weight: bold;
+}
+#header p {
+    font-size: 12px;
+}
+#header p a {
+    text-decoration: none;
+}
+#header p a:hover {
+    border-width: 1px;
+}
+</code></pre><p><strong>函数和运算</strong></p>
+<p>运算提供了加，减，乘，除操作；我们可以做属性值和颜色的运算，这样就可以实现属性值之间的复杂关系。LESS中的函数一一映射了JavaScript代码，如果你愿意的话可以操作属性值。</p>
+<p>LESS源码：</p>
+<pre><code>@the-border: 1px;
+@base-color: #111;
+@red: #842210;
+
+#header {
+    color: (@base-color * 3);
+    border-left: @the-border;
+    border-right: (@the-border * 2);
+}
+#footer {
+    color: (@base-color + #003300);
+    border-color: desaturate(@red, 10%);
+}
+</code></pre><p>编译后的CSS：</p>
+<pre><code>#header {
+    color: #333;
+    border-left: 1px;
+    border-right: 2px;
+}
+#footer {
+    color: #114411;
+    border-color: #7d2717;
+}
+</code></pre><h3 id="2-less-的使用"><a href="#2-less-的使用" class="headerlink" title="2.less 的使用"></a>2.less 的使用</h3><p>less的使用是很容易的，首先，使用你最常使用的代码编辑器，按LESSCSS的语法规则写好.less文件，接下来，使用编译工具它编译成.css，最后再引入页面即可。</p>
+<p><strong>GUI编译工具</strong></p>
+<p>为方便起见，建议初学者使用GUI编译工具来编译.less文件，以下是一些可选GUI编译工具：</p>
+<ol>
+<li><p>koala(Win/Mac/Linux)</p>
+<p> 国人开发的LESSCSS/SASS编译工具。下载地址：<a href="http://koala-app.com/index-zh.html" target="_blank" rel="external">http://koala-app.com/index-zh.html</a></p>
+</li>
+<li><p>Codekit(Mac)</p>
+<p> 一款自动编译Less/Sass/Stylus/CoffeeScript/Jade/Haml的工具，含语法检查、图片优化、自动刷新等附加功能。下载地址<a href="http://incident57.com/codekit/" target="_blank" rel="external">http://incident57.com/codekit/</a></p>
+</li>
+<li><p>WinLess(Win)</p>
+<p> 一款LESS编译软件。下载地址<a href="http://winless.org/" target="_blank" rel="external">http://winless.org/</a></p>
+</li>
+<li><p>SimpleLess(Win/Mac/Linux)</p>
+<p> 一款LESS编译软件。下载地址<a href="http://wearekiss.com/simpless" target="_blank" rel="external">http://wearekiss.com/simpless</a></p>
+</li>
+</ol>
+<p><strong>Node.js库</strong></p>
+<p>LESSCSS官方有一款基于Node.js的库，用于编译.less文件。</p>
+<p>使用时，首先全局安装less（部分系统下可能需要在前面加上sudo切换为超级管理员权限）：</p>
+<pre><code>npm install -g less
+</code></pre><p>接下来就可以使用lessc来编译.less文件了：</p>
+<pre><code>lessc example/example.less example/example.css
+</code></pre><p>更多选项可以直接运行lessc查看说明。</p>
+<p><strong>浏览器端使用</strong></p>
+<p>LESSCSS也可以不经编译，直接在浏览器端使用。</p>
+<p>使用方法：</p>
+<ol>
+<li><p>下载LESSCSS的.js文件，例如lesscss-1.4.0.min.js。在页面中引入.less文件</p>
+<pre><code>&lt;link rel=&quot;stylesheet/less&quot; href=&quot;example.less&quot; /&gt;
+</code></pre></li>
+<li><p>需要注意rel属性的值是stylesheet/less，而不stylesheet。</p>
+</li>
+<li><p>引入第1步下载的.js文件</p>
+<pre><code>&lt;script src=&quot;lesscss-1.4.0.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p> 需要特别注意的是，由于浏览器端使用时是使用ajax来拉取.less文件，因此直接在本机文件系统打开（即地址是file://开头）或者是有跨域的情况下会拉取不到.less文件，导致样式无法生效。</p>
+<p> 还有一种情况容易导致样式无法生效，就是部分服务器（以IIS居多）会对未知后缀的文件返回404，导致无法正常读取.less文件。解决方案是在服务器中为.less文件配置MIME值为text/css（具体方法请搜索）。或者还有一种更简单的方法，即是直接将.less文件改名为.css文件即可。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/less/">less</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-SASS学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/28/SASS学习笔记/" class="article-date">
+      <time datetime="2017-04-28T05:06:29.000Z" itemprop="datePublished">2017-04-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/28/SASS学习笔记/">SASS学习笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="一-什么是sass"><a href="#一-什么是sass" class="headerlink" title="一.什么是sass?"></a>一.什么是sass?</h3><ol>
+<li>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。</li>
+<li>SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</li>
+</ol>
+<h3 id="二-sass的使用"><a href="#二-sass的使用" class="headerlink" title="二.sass的使用"></a>二.sass的使用</h3><ol>
+<li><p>建议使用GUI编译工具来编译.scss文件，国人开发的LESSCSS/SASS编译工具。下载地址：<a href="http://koala-app.com/index-zh.html" target="_blank" rel="external">http://koala-app.com/index-zh.html</a></p>
+</li>
+<li><p>先在windows上安装Ruby，然后在WebStorm中配置sass。安装步骤见：<a href="http://www.jianshu.com/p/537cea1dc3f8" target="_blank" rel="external">http://www.jianshu.com/p/537cea1dc3f8</a></p>
+</li>
+</ol>
+<h3 id="三-基本用法"><a href="#三-基本用法" class="headerlink" title="三.基本用法"></a>三.基本用法</h3><p><strong>1.变量</strong></p>
+<p>sass允许使用变量，所有变量以$开头。</p>
+<pre><code>$blue :#1875e7;
+
+div {
+    color:$blue;
+}
+</code></pre><p>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</p>
+<pre><code>$side : left;
+
+.rounded {
+　　border-#{$side}-radius: 5px;
+}
+</code></pre><p><strong>2.计算功能</strong></p>
+<p>sass允许在代码中使用算式:</p>
+<pre><code>body{
+    margin:(14px/2);
+    top:50px+100px;
+    right:$var * 10%;
+}
+</code></pre><p><strong>3.嵌套</strong></p>
+<p>sass允许选择器嵌套。比如，下面的css代码：</p>
+<pre><code>div h1{
+    color:red;
+}
+</code></pre><p>可以写成：</p>
+<pre><code>div{
+    h1{
+      color:red;
+    }
+ }
+</code></pre><p>属性也可以嵌套，比如border-color属性，可以写成：</p>
+<pre><code>p {
+　　border: {
+　　　　color: red;
+　　}
+}
+</code></pre><p>注意，border后面必须加上冒号。</p>
+<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如a:hover伪类，可以写成：<br>　　a {<br>　　　　&amp;:hover { color: #ffb3ff; }<br>　　}</p>
+<p><strong>4.注释</strong></p>
+<p>SASS共有两种注释风格。<br>标准的CSS注释 /<em> comment </em>/ ，会保留到编译后的文件。</p>
+<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
+<p>在/*后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
+<pre><code>/*! 
+　　重要注释！
+*/
+</code></pre><h3 id="四-代码的重用"><a href="#四-代码的重用" class="headerlink" title="四.代码的重用"></a>四.代码的重用</h3><p><strong>1.继承</strong></p>
+<p>sass允许一个选择器，继承另一个选择器。比如，现有class1：</p>
+<pre><code>.class1 {
+　　border: 1px solid #ddd;
+}
+</code></pre><p>class2要继承class1，就要使用@extend命令：</p>
+<pre><code>.class2 {
+    @extend .class1;
+    font-size:120%;
+}
+</code></pre><p><strong>2.Mixin</strong></p>
+<p>Mixin有点像C语言的宏，是可以重用的代码块。</p>
+<p>使用@mixin命令，定义一个代码块。</p>
+<pre><code>@mixin left {
+    float:left;
+    margin-left:10px;
+}
+</code></pre><p>使用@include命令，调用这个mixin。</p>
+<pre><code>div{
+    @include left;
+}
+</code></pre><p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+<pre><code>@mixin left($value: 10px) {
+    float: left;
+    margin-right: $value;
+}
+</code></pre><p>使用的时候，根据需要加入参数：</p>
+<pre><code>div {
+　　@include left(20px);
+}
+</code></pre><p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+<pre><code>@mixin rounded($vert, $horz, $radius: 10px) {
+　　　border-#{$vert}-#{$horz}-radius: $radius;
+　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
+　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
+　　}
+</code></pre><p>使用的时候，可以像下面这样调用：</p>
+<pre><code>#navbar li { @include rounded(top, left); }
+#footer { @include rounded(top, left, 5px); }
+</code></pre><p><strong>3.颜色函数</strong></p>
+<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<pre><code>lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329
+grayscale(#cc3) // #808080
+complement(#cc3) // #33c
+</code></pre><p><strong>4.导入文件</strong></p>
+<p>@import命令，用来插入外部文件。编译时会将@import的.scss文件合并进来只生成一个CSS文件。</p>
+<pre><code>@import &quot;path/filename.scss&quot;;
+</code></pre><p>如果插入的是.css文件，则等同于css的import命令。导入的.css文件不会合并到编译后的文件中。</p>
+<pre><code>@import &quot;foo.css&quot;;
+</code></pre><h3 id="五-高级用法"><a href="#五-高级用法" class="headerlink" title="五.高级用法"></a>五.高级用法</h3><p><strong>1.条件语句</strong></p>
+<p>@if可以用来判断：</p>
+<pre><code>p {
+    @if 1 + 1 == 2 { border: 1px solid; }
+    @if 5 &lt; 3 { border: 2px dotted; }
+}
+</code></pre><p>配套的还有@else命令：</p>
+<pre><code>@if lightness($color) &gt; 30% {
+　　background-color: #000;
+} @else {
+　　background-color: #fff;
+}
+</code></pre><p><strong>2.循环语句</strong></p>
+<p>sass支持for循环：</p>
+<pre><code>@for $i from 1 to 10 {
+　　.border-#{$i} {
+　　　　border: #{$i}px solid blue;
+　　　}
+}
+</code></pre><p>也支持while循环：</p>
+<pre><code>$i: 6;
+@while $i &gt; 0 {
+　　.item-#{$i} { width: 2em * $i; }
+　　$i: $i - 2;
+}
+</code></pre><p>each命令，作用与for类似：  </p>
+<pre><code>@each $member in a, b, c, d {
+    　.#{$member} {
+    　　　background-image:url(&quot;/image/#{$member}.jpg&quot;);
+    　}
+ }
+</code></pre><p><strong>3.自定义函数</strong></p>
+<p>sass允许用户编写自己的函数。</p>
+<pre><code>@function double($n) {
+    @return $n * 2;
+}
+#sidebar {
+    width: double(5px);
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SASS/">SASS</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-用webpack2-6-1构建vue2-3-4单文件组件实例" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/30/用webpack2-6-1构建vue2-3-4单文件组件实例/" class="article-date">
+      <time datetime="2017-03-30T11:11:27.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/30/用webpack2-6-1构建vue2-3-4单文件组件实例/">用webpack2.6.1构建vue2.3.4单文件组件实例</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>1.初始化项目</strong></p>
+<p>首先新建一个vue-webpack文件夹，在该文件夹路径下进行初始化项目。初始化项目后将自动生成package.json文件（这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。）命令如下：</p>
+<pre><code>npm init -y 
+</code></pre><p><strong>2.安装各种依赖项</strong></p>
+<p>a: 安装vue2.3.4</p>
+<pre><code>npm install --save vue
+</code></pre><p>b: 安装最新版本的webpack以及webpack测试服务器</p>
+<pre><code>npm install --save-dev webpack webpack-dev-server
+</code></pre><p>c: 安装babel，一般的浏览器是不认识es6语法的，babel的作用是将es6的语法编译成浏览器认识的语法</p>
+<pre><code>npm install --save-dev babel-core babel-loader babel-preset-es2015
+</code></pre><p>d: 安装vue-loader用来解析vue的组件，.vue后缀的文件。</p>
+<pre><code>npm install --save-dev vue-loader vue-template-compiler
+</code></pre><p>e: 安装css-loader file-loader解析CSS.</p>
+<pre><code>npm install --save-dev css-loader file-loader 
+</code></pre><p><strong>3. 编写页面</strong></p>
+<p>在vue-webpack文件夹新建目录src，src目录下新建App.vue文件，代码如下：</p>
+<pre><code>&lt;template&gt;
+    &lt;div id=&quot;example&quot;&gt;
+        &lt;h1&gt;{{ message }}&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    export default {
+        data () {
+            return {
+                message: &apos;Hello World !&apos;
+            }
+        }
+    }
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+    #example {
+        background:#000000;
+    　　color:#fff;
+        height: 100vh;
+    }
+&lt;/style&gt;
+</code></pre><p>在src文件夹里新建main.js文件夹，代码如下：</p>
+<pre><code>/* 引入vue和主页 */
+import Vue from &apos;vue&apos;
+import App from &apos;./App.vue&apos;
+
+/* 实例化一个vue */
+new Vue({
+  el: &apos;#app&apos;,
+  render: h =&gt; h(App)
+})
+</code></pre><p><strong>配置webpack</strong></p>
+<p>在vue-webpack文件夹下新建webpack.config.js文件，代码如下：</p>
+<pre><code>/* 引入操作路径模块和webpack */
+var path = require(&apos;path&apos;);
+var webpack = require(&apos;webpack&apos;);
+
+module.exports = {
+    /* 输入文件 */
+    entry: &apos;./src/main.js&apos;,
+    output: {
+        /* 输出目录，没有则新建 */
+        path: path.resolve(__dirname, &apos;./dist&apos;),
+        /* 静态目录，可以直接从这里取文件 */
+        publicPath: &apos;/dist/&apos;,
+        /* 文件名 */
+        filename: &apos;build.js&apos;
+    },
+    module: {
+        rules: [
+            /* 用来解析vue后缀的文件 */
+            {
+                test: /\.vue$/,
+                loader: &apos;vue-loader&apos;
+            },
+            /* 用babel来解析js文件并把es6的语法转换成浏览器认识的语法 */
+            {
+                test: /\.js$/,
+                loader: &apos;babel-loader&apos;,
+                /* 排除模块安装目录的文件 */
+                exclude: /node_modules/
+            }
+        ]
+    }
+}
+</code></pre><p><strong>打包项目</strong></p>
+<p>全局安装webpack</p>
+<pre><code>npm install -g webpack
+</code></pre><p>用webpack命令进行打包项目</p>
+<pre><code>webpack
+</code></pre><p>打包后在vue-webpack文件夹下会多出一个dist文件夹，查看里面会有build.js文件，里面的es6语法已经被转化了。</p>
+<p>在根目录下新建index.html，引入build.js</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;vue-webpack&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;section id=&quot;app&quot;&gt;&lt;/section&gt;
+    &lt;script src=&quot;./dist/build.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>项目目录结构</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack1.png" alt=""></p>
+<p><strong>热重载</strong></p>
+<p>由于每修改一次都要重新打包，于是需要线上的热重载，全局安装webpack-dev-server：</p>
+<pre><code>npm install -g webpack-dev-server 
+</code></pre><p>使用webpack-dev-server命令运行：</p>
+<pre><code>webpack-dev-server 
+</code></pre><p>等待程序运行完毕，在浏览器输入<a href="http://localhost:8080/查看页面如下：" target="_blank" rel="external">http://localhost:8080/查看页面如下：</a></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack.png" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack，vue-js/">webpack，vue.js</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-webpack入门" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/18/webpack入门/" class="article-date">
+      <time datetime="2017-03-18T02:10:44.000Z" itemprop="datePublished">2017-03-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/webpack入门/">webpack入门</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="1-介绍webpack"><a href="#1-介绍webpack" class="headerlink" title="1.介绍webpack"></a>1.介绍webpack</h3><p>webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候在异步加载。通过loader的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
+<p>WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其打包为合适的格式以供浏览器使用。</p>
+<h3 id="2-安装webpack"><a href="#2-安装webpack" class="headerlink" title="2.安装webpack"></a>2.安装webpack</h3><p>安装之前需要安装node.js，因为node.js自带了npm(软件包管理器)，使用npm安装webpack。</p>
+<pre><code>npm install webpack -g
+</code></pre><h3 id="3-创建项目"><a href="#3-创建项目" class="headerlink" title="3.创建项目"></a>3.创建项目</h3><p>a:新建一个demo文件夹</p>
+<p>例如：demo文件夹的路径为 D:\Webpack Project\demo</p>
+<p>b:在路径为D:\Webpack Project\demo下，使用 <strong>npm init</strong> 来创建一个package.json文件。这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。</p>
+<p>c:把webpack安装到当前的项目依赖中，在路径为D:\Webpack Project\demo下，使用 <strong>npm install webpack –save-dev</strong> 安装webpack</p>
+<p>d:在demo文件夹下新建index.html</p>
+<pre><code>&lt;html&gt;  
+    &lt;head&gt;  
+        &lt;meta charset=&quot;UTF-8&quot;&gt;  
+        &lt;title&gt;Document&lt;/title&gt;  
+    &lt;/head&gt;  
+    &lt;body&gt;  
+        &lt;script type=&quot;text/javascript&quot; src=&quot;bundle.js&quot;&gt;&lt;/script&gt;  
+    &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre><p>e:在demo文件夹下新建一个main.js文件</p>
+<pre><code>document.write(&apos;&lt;h1&gt;Hello World !&lt;/h1&gt;&apos;);
+</code></pre><p>f:在demo文件夹下新建一个webpack.config.js文件</p>
+<pre><code>module.exports = {  
+  entry: &apos;./main.js&apos;,         //唯一入口文件 
+  output: {  
+    filename: &apos;bundle.js&apos;     //打包后输出文件的文件名 
+  }  
+}; 
+</code></pre><p>把main.js文件打包为bundle.js文件。其中bundle.js文件是Webpack生成出来的。</p>
+<p>g:打包，使用命令 <strong>webpack</strong> 来打包，然后使用浏览器打开index.html文件就能看到运行的结果了。</p>
+<p><strong>创建第二个 JS 文件</strong></p>
+<p>新建一个main2.js文件，代码如下所示：</p>
+<pre><code>document.write(&apos;&lt;h1&gt;Hello World&lt;/h1&gt;&apos;);
+</code></pre><p>然后修改mian.js文件，代码如下所示：</p>
+<pre><code>document.write(require(&quot;./main1.js&quot;));
+</code></pre><p>使用命令 webpack 来重新打包看到的结果是一样的。</p>
+<p><strong>loader</strong></p>
+<p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。所以如果我们需要在应用中添加 css 文件，就需要使用到 css-loader 和 style-loader，他们做两件不同的事情，css-loader 会遍历 CSS 文件，然后找到 url() 表达式然后处理他们，style-loader 会把原来的 CSS 代码插入页面中的一个 style 标签中。</p>
+<p>使用命令安装css-loader和style-loader</p>
+<pre><code>cnpm install css-loader style-loader
+</code></pre><p>执行以上命令后，会再当前目录生成 node_modules 目录，它就是 css-loader 和 style-loader 的安装目录。</p>
+<p>接下来创建一个style.css文件，代码如下：<br>body {<br>    background: lightblue;<br>}</p>
+<p>修改main.js文件</p>
+<pre><code>require(&quot;!style/!css!./style.css&quot;);
+document.write(require(&quot;./main1.js&quot;));
+</code></pre><p>修改webpack.config.js文件</p>
+<pre><code>module.exports = {  
+  entry: &apos;./main.js&apos;,   
+  output: {  
+    filename: &apos;bundle.js&apos;  
+  }，
+  module:{
+    rules:[
+    {test:/\.css$/,loader:&apos;style-loader!css-loader&apos;}
+    ]
+  }  
+}; 
+</code></pre><p>重新使用 <strong>webpack</strong> 命令打包，结果和上面一样。</p>
+<p><strong>热重载</strong></p>
+<p>因为每次修改都需要重新打包浪费时间，所以需要线上的热重载。使用如下命令全局安装webpack-dev-server。</p>
+<pre><code>npm install -g webpack-dev-server
+</code></pre><p>安装完成后使用如下命令运行：</p>
+<pre><code>webpack-dev-server
+</code></pre><p>运行完毕，在浏览器中输入<strong><a href="http://localhost:8080/webpack-dev-server/" target="_blank" rel="external">http://localhost:8080/webpack-dev-server/</a></strong>查看页面。<br>如果这时修改页面的的代码，不需要刷新浏览器就能自动更改。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-微信小程序合法域名校验出错解决办法" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1376,832 +2081,6 @@ object.getName(); //&quot;My Object&quot;
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/22/正则表达式/" class="article-date">
-      <time datetime="2017-01-22T07:01:35.000Z" itemprop="datePublished">2017-01-22</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/22/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="一-三大方法"><a href="#一-三大方法" class="headerlink" title="一. 三大方法"></a>一. 三大方法</h2><blockquote>
-<p>RegExp采用直接量语法表示：/pattern/attributes</p>
-<p>attributes有三个选择，i、m和g，m（多行匹配）不常用直接省略，所以一个pattern（匹配模式）可以表示如下：</p>
-<pre><code>var pattern = /hello/ig;
-</code></pre><p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p>
-</blockquote>
-<p><strong>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</strong></p>
-<ol>
-<li><p>test</p>
-<p> 主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
-<pre><code>示例如下：
-
-var s = &apos;you love me and I love you&apos;;
-var pattern = /you/;
-var ans = pattern.test(s);
-console.log(ans); // true
-</code></pre><p> 如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
-</li>
-<li><p>exec</p>
-<p> 主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
-<p> exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
-<p> 示例如下：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = /you/;
-var ans = pattern.exec(s);
-console.log(ans); // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
-console.log(ans.index); // 0
-console.log(ans.input); // you love me and I love you
-</code></pre><p> 输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
-<p> 啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = /y(o?)u/;
-var ans = pattern.exec(s);
-console.log(ans);   // [&quot;you&quot;, &quot;o&quot;, index: 0, input: &quot;you love me and I love you&quot;]
-console.log(ans.length) // 2
-</code></pre><p> 所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
-<p> 除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。</p>
-<p> 如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
-<p> 找到第一个 “you”，并存储其位置<br> 如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置</p>
-<p> 当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
-<p>   实例如下：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = /you/g;
-var ans;
-do {
-  ans = pattern.exec(s);
-  console.log(ans);
-  console.log(pattern.lastIndex);
-}
-while (ans !== null)  
-</code></pre></li>
-</ol>
-<ol>
-<li><p>compile</p>
-<p> 主要功能：改变当前匹配模式（pattern）</p>
-<p> 它是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
-</li>
-</ol>
-<h2 id="二-String-四大护法"><a href="#二-String-四大护法" class="headerlink" title="二.String 四大护法"></a>二.String 四大护法</h2><p>四大护法有些和RegExp三大方法类似，有的更胜一筹。即str.search/match/replace/split形式。</p>
-<p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p>
-<ol>
-<li><p>search</p>
-<p> 主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
-<p> 是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = /you/;
-var ans = s.search(pattern);
-console.log(ans);  // 0
-</code></pre><p> 话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
-</li>
-<li><p>match</p>
-<p> 主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
-<p> match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。实例如下：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-console.log(s.match(/you/));    // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
-console.log(s.match(/you/g));   // [&quot;you&quot;, &quot;you&quot;]
-</code></pre></li>
-<li><p>replace</p>
-<p> 主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。实例如下：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-console.log(s.replace(&apos;you&apos;, &apos;zichi&apos;)); // zichi love me and I love you
-console.log(s.replace(/you/, &apos;zichi&apos;)); // zichi love me and I love you
-console.log(s.replace(/you/g, &apos;zichi&apos;));    // zichi love me and I love zichi
-</code></pre><p> 如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
-</li>
-</ol>
-<pre><code>怎么用？看个例子就明白了。
-
-    var s = &apos;I love you&apos;;
-    var pattern = /love/;
-    var ans = s.replace(pattern, &apos;$`&apos; + &apos;$&amp;&apos; + &quot;$&apos;&quot;);
-    console.log(ans); // I I love you you
-没错，’$`’ + ‘$&amp;’ + “$’”其实就相当于原串了！
-
-**replace的第二个参数还能是函数**，看具体例子前先看一段介绍：
-
-注意：第一个参数是匹配到的子串，接下去是子表达式匹配的值，如果要用子表达式参数，则必须要有第一个参数（表示匹配到的串），也就是说，如果要用第n个参数代表的值，则左边参数都必须写出来。最后两个参数跟exec后返回的数组的两个属性差不多。
-
-    var s = &apos;I love you&apos;;
-    var pattern = /love/;
-    var ans = s.replace(pattern, function(a) {　　// 只有一个参数，默认为匹配到的串（如还有参数，则按序表示子表达式和其他两个参数）
-      return a.toUpperCase();
-    });
-    console.log(ans); // I LOVE you
-</code></pre><ol>
-<li><p>split</p>
-<p> 主要功能：分割字符串</p>
-<p> 字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = &apos;and&apos;;
-var ans = s.split(pattern);
-console.log(ans);   // [&quot;you love me &quot;, &quot; I love you&quot;]
-</code></pre><p> 如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
-<pre><code>var s = &apos;you love me and I love you&apos;;
-var pattern = /and/;
-var ans = s.split(pattern, 1);
-console.log(ans);   // [&quot;you love me &quot;]
-</code></pre></li>
-<li><p>RegExp 字符</p>
-</li>
-</ol>
-<pre><code>- \s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)       
-- \b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）
-- \w 匹配字母或数字或下划线   [a-z0-9A-Z_]完全等同于\w
-</code></pre><h2 id="三-贪婪匹配和懒惰匹配"><a href="#三-贪婪匹配和懒惰匹配" class="headerlink" title="三. 贪婪匹配和懒惰匹配"></a>三. 贪婪匹配和懒惰匹配</h2><ol>
-<li><p>什么是贪婪匹配？贪婪匹配就是在正则表达式的匹配过程中，默认会使得匹配长度越大越好。</p>
-<pre><code>var s = &apos;hello world welcome to my world&apos;;
-var pattern = /hello.*world/;
-var ans = pattern.exec(s);
-console.log(ans)  // [&quot;hello world welcome to my world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
-</code></pre><p> 以上例子不会匹配最前面的Hello World，而是一直贪心的往后匹配。</p>
-<p> 那么我需要最短的匹配怎么办？很简单，加个‘？’即可，这就是传说中的懒惰匹配，即匹配到了，就不往后找了。</p>
-<pre><code>var s = &apos;hello world welcome to my world&apos;;
-var pattern = /hello.*?world/;
-var ans = pattern.exec(s);
-console.log(ans)  // [&quot;hello world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
-</code></pre><p> 懒惰限定符（？）添加的场景如下：</p>
-<p> 子表达式</p>
-<p> 表示方式<br> 用一个小括号指定：</p>
-<pre><code>var s = &apos;hello world&apos;;
-var pattern = /(hello)/;
-var ans = pattern.exec(s);
-console.log(ans);
-</code></pre><p> 子表达式出现场景<br> 在exec中数组输出子表达式所匹配的值：</p>
-<pre><code>var s = &apos;hello world&apos;;
-var pattern = /(h(e)llo)/;
-var ans = pattern.exec(s);
-console.log(ans); // [&quot;hello&quot;, &quot;hello&quot;, &quot;e&quot;, index: 0, input: &quot;hello world&quot;]
-</code></pre><p> 在replace中作为替换值引用：</p>
-<pre><code>var s = &apos;hello world&apos;;
-var pattern = /(h\w*o)\s*(w\w*d)/;
-var ans = s.replace(pattern, &apos;$2 $1&apos;)
-console.log(ans); // world hello
-</code></pre><h2 id="四-后向引用-amp-零宽断言"><a href="#四-后向引用-amp-零宽断言" class="headerlink" title="四.后向引用 &amp; 零宽断言"></a>四.后向引用 &amp; 零宽断言</h2></li>
-<li><p>子表达式的序号问题</p>
-<p> 简单地说：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。</p>
-<p> 复杂地说：分组0对应整个正则表达式实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权．</p>
-</li>
-<li><p>后向引用</p>
-<p> 如果我们要找连续两个一样的字符，比如要找两个连续的c，可以这样/c{2}/，如果要找两个连续的单词hello，可以这样/(hello){2}/，但是要在一个字符串中找连续两个相同的任意单词呢，比如一个字符串hellohellochinaworldworld，我要找的是hello和world，怎么找？</p>
-<p> 这时候就要用后向引用。看具体例子：</p>
-<pre><code>var s = &apos;hellohellochinaworldworld&apos;;
-var pattern = /(\w+)\1/g;
-var a = s.match(pattern);
-console.log(a); // [&quot;hellohello&quot;, &quot;worldworld&quot;]
-</code></pre><p> 这里的\1就表示和匹配模式中的第一个子表达式（分组）一样的内容，\2表示和第二个子表达式（如果有的话）一样的内容，\3 \4 以此类推。（也可以自己命名，详见参考文献）</p>
-<p> 或许你觉得数组里两个hello两个world太多了，我只要一个就够了，就又要用到子表达式了。因为match方法里是不能引用子表达式的值的，我们回顾下哪些方法是可以的？没错，exec和replace是可以的！</p>
-<p>exec方式：</p>
-<p> var s = ‘hellohellochinaworldworld’;<br> var pattern = /(\w+)\1/g;<br> var ans;<br>  do {</p>
-<pre><code>ans = pattern.exec(s);
-console.log(ans);
-</code></pre><p>  } while(ans !== null);</p>
-<p>  // result<br>  // [“hellohello”, “hello”, index: 0, input: “hellohellochinaworldworld”] index.html:69<br>  // [“worldworld”, “world”, index: 15, input: “hellohellochinaworldworld”] index.html:69<br>  // null<br>如果输出只要hello和world，console.log(ans[1])即可。</p>
-<p>replace方式：</p>
-<pre><code>var s = &apos;hellohellochinaworldworld&apos;;
-var pattern = /(\w+)\1/g;
-var ans = [];
-s.replace(pattern, function(a, b) {
-　ans.push(b);
-});
-console.log(ans);   // [&quot;hello&quot;, &quot;world&quot;]
-</code></pre><p>如果要找连续n个相同的串，比如说要找出一个字符串中出现最多的字符：</p>
-<pre><code>String.prototype.getMost = function() {
-  var a = this.split(&apos;&apos;);
-  a.sort();
-  var s = a.join(&apos;&apos;);
-  var pattern = /(\w)\1*/g;
-  var a = s.match(pattern);
-  a.sort(function(a, b) {
-    return a.length &lt; b.length;
-  });
-  var letter = a[0][0];
-  var num = a[0].length;
-  return letter + &apos;: &apos; + num;
-}
-
-var s = &apos;aaabbbcccaaabbbcccccc&apos;;
-console.log(s.getMost()); // c: 9
-</code></pre><p>如果需要引用某个子表达式（分组），请认准后向引用！</p>
-</li>
-<li><p>零宽断言</p>
-<p> 它们用于查找在某些内容(但并不包括这些内容)之后的东西，也就是说它们像\b,^,$那样用于指定一个位置，这个位置应该满足一定的条件(即断言)</p>
-<p> (?=exp)<br> 零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p>
-<pre><code>// 获取字符串中以ing结尾的单词的前半部分
-var s = &apos;I love dancing but he likes singing&apos;;
-var pattern = /\b\w+(?=ing\b)/g;
-var ans = s.match(pattern);
-console.log(ans); // [&quot;danc&quot;, &quot;sing&quot;]
-(?!exp)
-</code></pre><p> 零宽度负预测先行断言，断言此位置的后面不能匹配表达式exp</p>
-<pre><code>// 获取第五位不是i的单词的前四位
-var s = &apos;I love dancing but he likes singing&apos;;
-var pattern = /\b\w{4}(?!i)/g;
-var ans = s.match(pattern);
-console.log(ans); // [&quot;love&quot;, &quot;like&quot;]
-javascript正则只支持前瞻，不支持后瞻（(?&lt;=exp)和(?&lt;!exp)）。
-</code></pre><p> 关于零宽断言的具体应用可以参考综合应用一节给字符串加千分符。</p>
-</li>
-</ol>
-<h2 id="五-字符转义"><a href="#五-字符转义" class="headerlink" title="五.字符转义"></a>五.字符转义</h2><ol>
-<li><p>因为某些字符已经被正则表达式用掉了，比如. * ( ) / \  []，所以需要使用它们（作为字符）时，需要用\转义</p>
-<pre><code>var s = &apos;http://www.cnblogs.com/zichi/&apos;;
-var pattern = /http:\/\/www\.cnblogs\.com\/zichi\//;
-var ans = pattern.exec(s);
-console.log(ans); // [&quot;http://www.cnblogs.com/zichi/&quot;, index: 0, input: &quot;http://www.cnblogs.com/zichi/&quot;]
-</code></pre></li>
-<li><p><strong>分支条件</strong></p>
-<p> 如果需要匹配abc里的任意字母，可以用[abc]，但是如果不是单个字母那么简单，就要用到分支条件。</p>
-<p> 分支条件很简单，就是用|表示符合其中任意一种规则。</p>
-<pre><code>var s = &quot;I don&apos;t like you but I love you&quot;;
-var pattern = /I.*(like|love).*you/g;
-var ans = s.match(pattern);
-console.log(ans); // [&quot;I don&apos;t like you but I love you&quot;]
-</code></pre><p> 答案执行了贪婪匹配，如果需要懒惰匹配，则：</p>
-<pre><code>var s = &quot;I don&apos;t like you but I love you&quot;;
-var pattern = /I.*?(like|love).*?you/g;
-var ans = s.match(pattern);
-console.log(ans); // [&quot;I don&apos;t like you&quot;, &quot;I love you&quot;]
-</code></pre></li>
-<li><p><strong>综合应用</strong></p>
-<p>  去除字符串首尾空格（replace）</p>
-<pre><code>String.prototype.trim = function() {
-  return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
-};
-var s = &apos;    hello  world     &apos;;
-var ans = s.trim();
-console.log(ans.length);    // 12
-</code></pre><p> 给字符串加千分符（零宽断言）</p>
-<pre><code>String.prototype.getAns = function() {
-  var pattern = /(?=((?!\b)\d{3})+$)/g;
-  return this.replace(pattern, &apos;,&apos;);
-}
-
-var s = &apos;123456789&apos;;
-console.log(s.getAns());  // 123,456,789
-</code></pre><p> 找出字符串中出现最多的字符（后向引用）</p>
-<pre><code>String.prototype.getMost = function() {
-  var a = this.split(&apos;&apos;);
-  a.sort();
-  var s = a.join(&apos;&apos;);
-  var pattern = /(\w)\1*/g;
-  var a = s.match(pattern);
-  a.sort(function(a, b) {
-    return a.length &lt; b.length;
-  });
-  var letter = a[0][0];
-  var num = a[0].length;
-  return letter + &apos;: &apos; + num;
-}
-
-var s = &apos;aaabbbcccaaabbbcccccc&apos;;
-console.log(s.getMost()); // c: 9
-</code></pre><p> 常用匹配模式（持续更新）<br> 只能输入汉字：</p>
-</li>
-</ol>
-<pre><code>/^[\u4e00-\u9fa5]{0,}$/
-</code></pre><h2 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h2><ol>
-<li><p><strong>test：</strong>检查指定字符串中有没有某子串（或某匹配模式），返回true或者false；如有必要可以进行全局模式搜索。</p>
-</li>
-<li><p><strong>exec：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回数组（数组信息丰富，可参考上文介绍），如没有返回null；如有必要可以进行全局搜索找出所有子串（或者匹配模式）的信息，信息中含有匹配模式中子表达式所对应的字符串。</p>
-</li>
-<li><p><strong>compile：</strong>修改正则表达式中的pattern</p>
-</li>
-<li><p><strong>search：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回子串（或者匹配模式）在原串中的开始位置，如没有返回-1。不能进行全局搜索。</p>
-</li>
-<li><p><strong>match：</strong>检查指定字符串中有没有某子串（或者匹配模式），非全局模式下返回信息和exec一致；如进行全局搜索，直接返回字符串数组。（如不需要关于每个匹配的更多信息，推荐用match而不是exec）</p>
-</li>
-<li><p><strong>replace：</strong>检查指定字符串中有没有某子串（或者匹配模式），并用另一个子串代替（该子串可以跟原字符串或者搜索到的子串有关）；如启动g，则全局替换，否则只替换第一个。replace方法可以引用子表达式所对应的值。</p>
-</li>
-<li><p><strong>split</strong>：用特定模式分割字符串，返回一个字符串数组；与Array的join方法正好相反。</p>
-</li>
-<li><p><strong>子表达式：</strong>用括号括起来的正则匹配表达式，用后向引用可以对其进行引用；也可以和exec或者replace搭配获取其真实匹配值。</p>
-</li>
-<li><p><strong>后向引用 ：</strong>对子表达式所在分组进行引用。</p>
-</li>
-<li><p><strong>零宽断言：</strong>和\b ^ 以及$类似的某个位置概念。</p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-AJAX" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/20/AJAX/" class="article-date">
-      <time datetime="2017-01-20T06:00:29.000Z" itemprop="datePublished">2017-01-20</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/20/AJAX/">AJAX</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="一-AJAX简介"><a href="#一-AJAX简介" class="headerlink" title="一. AJAX简介"></a>一. AJAX简介</h2><ol>
-<li>AJAX = 异步 JavaScript 和 XML。</li>
-<li>AJAX 是一种用于创建快速动态网页的技术。</li>
-<li>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
-<li>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。</li>
-<li>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</li>
-</ol>
-<h2 id="二-创建-XMLHttpRequest-对象"><a href="#二-创建-XMLHttpRequest-对象" class="headerlink" title="二. 创建 XMLHttpRequest 对象"></a>二. 创建 XMLHttpRequest 对象</h2><ol>
-<li>XMLHttpRequest 是 AJAX 的基础。</li>
-<li>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。</li>
-<li>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
-<li>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。</li>
-</ol>
-<ol>
-<li><p>创建 XMLHttpRequest 对象的语法：</p>
-<pre><code>variable=new XMLHttpRequest();
-</code></pre><p> 老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
-<pre><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-</code></pre></li>
-<li><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：</p>
-<pre><code>var xmlhttp;
-if (window.XMLHttpRequest)
-{
-    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-    xmlhttp=new XMLHttpRequest();
-}
-else
-{
-    // IE6, IE5 浏览器执行代码
-    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-}
-</code></pre></li>
-</ol>
-<h2 id="三-请求"><a href="#三-请求" class="headerlink" title="三.请求"></a>三.请求</h2><ol>
-<li><p>向服务器发送请求请求:</p>
-<ul>
-<li>XMLHttpRequest 对象用于和服务器交换数据。</li>
-<li><p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
-<p>  xmlhttp.open(“GET”,”ajax_info.txt”,true);<br>  xmlhttp.send();</p>
-</li>
-</ul>
-</li>
-<li><p>open(method,url,async):规定请求的类型、URL 以及是否异步处理请求。</p>
-<ul>
-<li>method：请求的类型；GET 或 POST</li>
-<li>url：文件在服务器上的位置</li>
-<li>async：true（异步）或 false（同步）</li>
-</ul>
-</li>
-<li><p>send(string):将请求发送到服务器。</p>
-<ul>
-<li>string：仅用于 POST 请求</li>
-</ul>
-</li>
-<li><p>GET 请求</p>
-<p> 一个简单的 GET 请求：</p>
-<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php&quot;,true);
-xmlhttp.send();
-</code></pre></li>
-<li><p>POST 请求</p>
-<p> 一个简单 POST 请求：</p>
-<pre><code>xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post.php&quot;,true);
-xmlhttp.send();
-</code></pre></li>
-</ol>
-<ol>
-<li>GET 还是 POST？<br> 与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br> 然而，在以下情况中，请使用 POST 请求： <ul>
-<li>无法使用缓存文件（更新服务器上的文件或数据库）  </li>
-<li>向服务器发送大量数据（POST 没有数据量限制）</li>
-<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
-</ul>
-</li>
-</ol>
-<h2 id="四-响应"><a href="#四-响应" class="headerlink" title="四.响应"></a>四.响应</h2><ol>
-<li><p>服务器响应</p>
-<p> 如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的responseText 或 responseXML 属性。</p>
-<ul>
-<li>responseText：获得字符串形式的响应数据。</li>
-<li>responseXML：获得 XML 形式的响应数据。</li>
-</ul>
-</li>
-<li><p>responseText 属性</p>
-<p> 如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
-<ul>
-<li><p>responseText 属性返回字符串形式的响应，因此您可以这样使用：</p>
-<pre><code>document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
-</code></pre></li>
-</ul>
-</li>
-<li><p>responseXML 属性</p>
-<p> 如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
-<pre><code>请求 cd_catalog.xml 文件，并解析响应：
-xmlDoc=xmlhttp.responseXML;
-txt=&quot;&quot;;
-x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);
-for (i=0;i&lt;x.length;i++)
-{
-    txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;
-}
-document.getElementById(&quot;myDiv&quot;).innerHTML=txt;
-</code></pre></li>
-</ol>
-<h2 id="五-onreadystatechange-事件"><a href="#五-onreadystatechange-事件" class="headerlink" title="五.onreadystatechange 事件"></a>五.onreadystatechange 事件</h2><ol>
-<li>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</li>
-<li>每当 readyState 改变时，就会触发 onreadystatechange 事件。</li>
-<li>readyState 属性存有 XMLHttpRequest 的状态信息。</li>
-<li><p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
-<ul>
-<li>onreadystatechange: 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</li>
-<li>readyState:存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪.    </li>
-<li><p>status:  200: “OK” 404: 未找到页面</p>
-<p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。</p>
-<p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：</p>
-<p>   xmlhttp.onreadystatechange=function()</p>
-<pre><code>{
-if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
-  {
-  document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
-  }
-}
-</code></pre><p>注意： onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化。</p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AJAX/">AJAX</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Node-js中的module-exports与exports的区别" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/31/Node-js中的module-exports与exports的区别/" class="article-date">
-      <time datetime="2016-10-31T12:34:52.000Z" itemprop="datePublished">2016-10-31</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/31/Node-js中的module-exports与exports的区别/">Node.js中的module.exports与exports的区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
-</blockquote>
-<pre><code>module.exports = {};
-</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
-<pre><code>//foo.js
-
-     exports.a = function(){
-         console.log(&apos;a&apos;)
-     }
-     exports.a = 1 
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-     console.log(x.a)
-</code></pre><p>   result:</p>
-<pre><code>1    
-</code></pre><p>这里，exports是引用 module.exports的值。</p>
-<blockquote>
-<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
-</blockquote>
-<pre><code>//foo.js
-
-     exports.a = function(){
-        console.log(&apos;a&apos;)
-     }
- module.exports = {a: 2}
- exports.a = 1 
-
-
-//test.js
-
- var x = require(&apos;./foo&apos;);
- console.log(x.a)
-</code></pre><p>result:2</p>
-<p>exports在module.exports 被改变后，失效。</p>
-<blockquote>
-<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
-</blockquote>
-<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
-   options = options || {};
-   this.name = name;
-   this.root = options.root;
-   var engines = options.engines;
-   this.defaultEngine = options.defaultEngine;
-   var ext = this.ext = extname(name);
-   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
-   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
-   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
-   this.path = this.lookup(name);
- }
-
- module.exports = View;
-</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
-<pre><code>//foo.js
-
-     function View(){
-
-     }
-
-     View.prototype.test = function(){
-      console.log(&apos;test&apos;)
-     }
-
-     View.test1 = function(){
-          console.log(&apos;test1&apos;)
-     }
-     module.exports = View
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-
-     console.log(x) //{ [Function: View] test1: [Function] }
-     console.log(x.test) //undefined
-     console.log(x.test1) //[Function]
-     x.test1() //test1
-</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
-<pre><code>exports = module.exports = createApplication;
-
-/**
- * Expose mime.
- */
-
-exports.mime = connect.mime;
-</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
-<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
-<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Vue-js中方法与事件处理器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/30/Vue-js中方法与事件处理器/" class="article-date">
-      <time datetime="2016-10-30T12:37:12.000Z" itemprop="datePublished">2016-10-30</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/30/Vue-js中方法与事件处理器/">Vue.js中方法与事件处理器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
-<pre><code>//.html
-&lt;div id=&quot;example&quot;&gt;
-  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
-&lt;/div&gt;
-</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
-<pre><code>var vm = new Vue({
-  el: &apos;#example&apos;,
-  data: {
-    name: &apos;Vue.js&apos;
-  },
-  //在methods对象中定义方法
-  methods: {
-    greet: function (event) {
-      //方法内this指向vm
-      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
-      //event是原DOM事件
-      alert(event.target.tagName)
-    }
-  }
-})
-
-// 也可以在 JavaScript 代码中调用方法
-vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
-</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
-<pre><code>//.html
-&lt;div id=&quot;example-2&quot;&gt;
-  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
-  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
-&lt;/div&gt;
-
-
-//.js
-var vm = new Vue({
-  el: &apos;#example-2&apos;,
-  methods: {
-    say: function (msg) {
-      alert(msg)
-    }
-  }
-}) 
-</code></pre><p>result:</p>
-<pre><code>Hi
-
-What
-</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
-<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
-<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
-&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
-
-&lt;!-- 提交事件不再重载页面 --&gt;
-&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
-
-&lt;!-- 修饰符可以串联 --&gt;
-&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
-
-&lt;!-- 只有修饰符 --&gt;
-&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
-</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
-<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
-&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
-</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
-<pre><code>&lt;!-- 同上 --&gt;
-&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
-
-&lt;!-- 缩写语法 --&gt;
-&lt;input @keyup.enter=&quot;submit&quot;&gt;
-</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
-<ol>
-<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
-</li>
-<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
-</li>
-<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
     </div>
 
       
