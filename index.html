@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-hk">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -150,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
 
   
   
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            首頁
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            歸檔
           </a>
         </li>
       
@@ -220,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            標籤
           </a>
         </li>
       
@@ -243,6 +243,298 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/08/03/CSS3中transform属性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/CSS3中transform属性/" itemprop="url">CSS3中transform属性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-03T14:25:55+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-Transform描述："><a href="#一-Transform描述：" class="headerlink" title="一.Transform描述："></a>一.Transform描述：</h3><p>ransform是变形,改变的意思。在CSS3中transform主要包括以下几种：旋转rotate，扭曲skew,缩放scale和移动translate以及矩阵变形matrix。transform的作用也是改变，让元素倾斜，旋转，缩放，位移。</p>
+<h3 id="二-Transform语法："><a href="#二-Transform语法：" class="headerlink" title="二.Transform语法："></a>二.Transform语法：</h3><p>transform: rotate | scale | skew | translate |matrix;</p>
+<h3 id="三-Transform子属性详解："><a href="#三-Transform子属性详解：" class="headerlink" title="三.Transform子属性详解："></a>三.Transform子属性详解：</h3><h4 id="1-transform-rotate-元素旋转"><a href="#1-transform-rotate-元素旋转" class="headerlink" title="1.transform:rotate(); 元素旋转"></a>1.transform:rotate(); 元素旋转</h4><p>value(值)为旋转度数（deg），默认顺时针旋转。value若为负值则逆时针旋转。</p>
+<p>使用如下：</p>
+<pre><code>.box{
+    width:100px;height:100px;margin:20px auto;background-color:#75C934;
+    text-align:center;line-height:100px;font-size:18px;
+    /*过渡效果*/
+    -webkit-transition: transform 0.8s; 
+}
+.box:hover{
+    /*旋转80°*/
+    transform:rotate(80deg);
+}
+</code></pre><h4 id="2-transform-skew-元素倾斜"><a href="#2-transform-skew-元素倾斜" class="headerlink" title="2.transform:skew();元素倾斜"></a>2.transform:skew();元素倾斜</h4><p>value(值)为倾斜度数，value只有一个值，横向默认向左倾斜；有两个值，第二个值纵向默认向上倾斜。value若为负值则反方向倾斜。</p>
+<p>使用如下：</p>
+<pre><code>.box{
+    width:100px;height:100px;margin:20px auto;background-color:#75C934;
+    text-align:center;line-height:100px;font-size:18px;
+    -webkit-transition: transform 0.8s,border-radius 0.8s; 
+    border-radius:30px;
+}
+.box:hover{
+    transform:skew(20deg,20deg);
+    border-radius:0px;
+   }
+</code></pre><h3 id="3-transform-scale-元素缩放"><a href="#3-transform-scale-元素缩放" class="headerlink" title="3.transform:scale();元素缩放"></a>3.transform:scale();元素缩放</h3><p>value(值)为缩放倍数。value只有一个值，默认整体缩放；有两个值，第一个值横向缩放，第二个值纵向缩放。value值大于1放大，小于1大于0缩小，负值则反向缩放(元素呈镜像)</p>
+<p>使用如下：</p>
+<pre><code>.box{
+    -webkit-transition: transform 0.8s,border-radius 0.8s;  
+}
+.box:hover{
+    transform:scale(2,0.8);
+    border-radius:40px;
+}
+</code></pre><h4 id="4-transform-translate-元素位移"><a href="#4-transform-translate-元素位移" class="headerlink" title="4.transform:translate();元素位移"></a>4.transform:translate();元素位移</h4><p>value(值)为位移像素，value只有一个值，横向默认向右移动；有两个值，第二个值纵向默认向下移动。value若为负值则反方向移动。</p>
+<p>使用如下：</p>
+<pre><code>   .box{
+    -webkit-transition: transform 0.3s,box-shadow 0.3s;
+ }
+.box:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:3px 3px 5px 0px #000;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/08/02/CSS3中transition属性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/02/CSS3中transition属性/" itemprop="url">CSS3中transition属性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-02T10:28:00+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-transition描述："><a href="#一-transition描述：" class="headerlink" title="一.transition描述："></a>一.transition描述：</h3><p>W3C标准中对css3的transition这是样描述的：“css的transition允许css的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值。”</p>
+<h3 id="二-transition语法："><a href="#二-transition语法：" class="headerlink" title="二.transition语法："></a>二.transition语法：</h3><pre><code>transition：[ transition-property ] || [ transition-duration ] || [ transition-timing-function ] || [ transition-delay ]
+</code></pre><h3 id="三-子属性简介："><a href="#三-子属性简介：" class="headerlink" title="三.子属性简介："></a>三.子属性简介：</h3><h4 id="1-transition-property"><a href="#1-transition-property" class="headerlink" title="1.transition-property:"></a>1.transition-property:</h4><p>transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：none(没有属性改变)；all（所有属性改变）这个也是其默认值；indent（元素属性名）。当其值为none时，transition马上停止执行，当指定为all时，则元素产生任何属性值变化时都将执行transition效果，ident是可以指定元素的某一个属性值。其对应的类型如下:</p>
+<p>1、color: 通过红、绿、蓝和透明度组件变换（每个数值处理）如：background-color,border-color,color,outline-color等css属性；</p>
+<p>2、length: 真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,min-width,min-height,max-width,max-height,line-height,height,border-width,border-spacing,background-position等属性；</p>
+<p>3、percentage:真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,min-width,min-height,max-width,max-height,line-height,height,background-position等属性；</p>
+<p>4、integer离散步骤（整个数字），在真实的数字空间，以及使用floor()转换为整数时发生 如：outline-offset,z-index等属性；</p>
+<p>5、number真实的（浮点型）数值，如：zoom,opacity,font-weight,等属性；</p>
+<p>6、transform list:详情请参阅：《CSS3 Transform》</p>
+<p>7、rectangle:通过x, y, width 和 height（转为数值）变换，如：crop</p>
+<p>8、visibility: 离散步骤，在0到1数字范围之内，0表示“隐藏”，1表示完全“显示”,如：visibility</p>
+<p>9、shadow: 作用于color, x, y 和 blur（模糊）属性,如：text-shadow</p>
+<p>10、gradient: 通过每次停止时的位置和颜色进行变化。它们必须有相同的类型（放射状的或是线性的）和相同的停止数值以便执行动画,如：background-image</p>
+<p>11、paint server (SVG): 只支持下面的情况：从gradient到gradient以及color到color，然后工作与上面类似</p>
+<p>12、space-separated list of above:如果列表有相同的项目数值，则列表每一项按照上面的规则进行变化，否则无变化</p>
+<p>13、a shorthand property: 如果缩写的所有部分都可以实现动画，则会像所有单个属性变化一样变化</p>
+<h4 id="2-transition-duration"><a href="#2-transition-duration" class="headerlink" title="2.transition-duration:"></a>2.transition-duration:</h4><p>transition-duration是用来指定元素 转换过程的持续时间，取值：<time>为数值，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。</time></p>
+<h4 id="3-transition-timing-function"><a href="#3-transition-timing-function" class="headerlink" title="3.transition-timing-function:"></a>3.transition-timing-function:</h4><p>transition-timing-function的值允许你根据时间的推进去改变属性值的变换速率，transition-timing-function有6个可能值：</p>
+<p>1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0).</p>
+<p>2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0).</p>
+<p>3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0).</p>
+<p>4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0).</p>
+<p>5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)</p>
+<p>6、cubic-bezier：（该值允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。所有值需在[0, 1]区域内，否则无效。</p>
+<h4 id="4-transition-delay"><a href="#4-transition-delay" class="headerlink" title="4.transition-delay"></a>4.transition-delay</h4><p>transition-delay延迟开始过渡的时间，默认值是0，表示不延迟，立即开始过渡动作。单位是s秒或ms毫秒。</p>
+<h3 id="四-触发过渡的方式"><a href="#四-触发过渡的方式" class="headerlink" title="四.触发过渡的方式"></a>四.触发过渡的方式</h3><p>常见的就是伪类触发:hover，:focus，:active，:checked等。还有例如@media媒体查询，根据设备大小，横屏竖屏切换时触发。还有如click，keydown等JS事件触发。页面加载也能触发就不一一列举了。总之过渡的本质是在时间段内平滑过渡属性值，与怎么触发没有关系。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -282,9 +574,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T10:09:31+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-05-10T10:09:31+08:00">
                 2017-05-10
               </time>
             
@@ -544,9 +836,9 @@ h2 {
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T13:06:29+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-04-28T13:06:29+08:00">
                 2017-04-28
               </time>
             
@@ -800,9 +1092,9 @@ complement(#cc3) // #33c
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T19:11:27+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-03-30T19:11:27+08:00">
                 2017-03-30
               </time>
             
@@ -1021,9 +1313,9 @@ module.exports = {
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T10:10:44+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-03-18T10:10:44+08:00">
                 2017-03-18
               </time>
             
@@ -1195,9 +1487,9 @@ document.write(require(&quot;./main1.js&quot;));
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T20:17:55+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-02-25T20:17:55+08:00">
                 2017-02-25
               </time>
             
@@ -1313,9 +1605,9 @@ document.write(require(&quot;./main1.js&quot;));
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T15:14:40+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-02-21T15:14:40+08:00">
                 2017-02-21
               </time>
             
@@ -1500,643 +1792,6 @@ document.write(require(&quot;./main1.js&quot;));
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/20/JSON学习总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/20/JSON学习总结/" itemprop="url">JSON学习总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-20T15:13:26+08:00">
-                2017-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ol>
-<li><p>JSON 类似 XML</p>
-<ul>
-<li>JSON 是纯文本</li>
-<li>JSON 具有“自我描述性”（人类可读）</li>
-<li>JSON 具有层级结构（值中存在值）</li>
-<li>JSON 可通过 JavaScript 进行解析</li>
-<li>JSON 数据可使用 AJAX 进行传输</li>
-</ul>
-</li>
-<li><p>相比 XML 的不同之处</p>
-<ul>
-<li>没有结束标签</li>
-<li>更短</li>
-<li>读写的速度更快</li>
-<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
-<li>使用数组</li>
-<li>不使用保留字</li>
-</ul>
-</li>
-<li>为什么使用 JSON？<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
-</code></pre><ul>
-<li>使用 XML<ul>
-<li>读取 XML 文档</li>
-<li>使用 XML DOM 来循环遍历文档</li>
-<li>读取值并存储在变量中</li>
-</ul>
-</li>
-<li>使用 JSON<ul>
-<li>读取 JSON 字符串</li>
-<li>用 eval() 处理 JSON 字符串</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>JSON 实例</p>
-<pre><code>通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：
-
- &lt;html&gt;
- &lt;body&gt;
- &lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
-
- &lt;p&gt;
- Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
- Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
- Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
- Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
- &lt;/p&gt;
-
- &lt;script type=&quot;text/javascript&quot;&gt;
- var JSONObject= {
- &quot;name&quot;:&quot;Bill Gates&quot;,
- &quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
- &quot;age&quot;:56,
- &quot;phone&quot;:&quot;555 1234567&quot;};
- document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
- document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
- document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
- document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
- &lt;/script&gt;
-
- &lt;/body&gt;
- &lt;/html&gt;
-</code></pre></li>
-</ol>
-<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ol>
-<li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
-<ul>
-<li>数据在名称/值对中</li>
-<li>数据由逗号分隔</li>
-<li>花括号保存对象</li>
-<li>方括号保存数组</li>
-</ul>
-</li>
-<li><p>JSON 名称/值对</p>
-<p> JSON 数据的书写格式是：名称/值对。<br> 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
-<pre><code>&quot;firstName&quot; : &quot;John&quot;
-</code></pre><p> 这很容易理解，等价于这条 JavaScript 语句：</p>
-<pre><code>firstName = &quot;John&quot;
-</code></pre></li>
-<li><p>JSON 值</p>
-<p> JSON 值可以是：</p>
-<ul>
-<li>数字（整数或浮点数）</li>
-<li>字符串（在双引号中）</li>
-<li>逻辑值（true 或 false）</li>
-<li>数组（在方括号中）</li>
-<li>对象（在花括号中）</li>
-<li>null</li>
-</ul>
-</li>
-<li><p>JSON 对像</p>
-<pre><code>{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; }
-</code></pre><p> JSON 对象在花括号中书写，对象可以包含多个名称/值对，与这条 JavaScript 语句等价：</p>
-<pre><code>firstName = &quot;John&quot;
-lastName = &quot;Doe&quot;
-</code></pre></li>
-<li><p>JSON 数组</p>
-<p> JSON 数组在方括号中书写：<br> 数组可包含多个对象：</p>
-<pre><code>{
-&quot;employees&quot;: [
-{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; },
-{ &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; },
-{ &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; }
-]
-}
-</code></pre><p> 在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
-</li>
-<li><p>JSON 使用 JavaScript 语法</p>
-<p> 因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br> 通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
-<pre><code>var employees = [
-{ &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; },
-{ &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; },
-{ &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; }
-];
-</code></pre><p> 可以像这样访问 JavaScript 对象数组中的第一项：</p>
-<pre><code>employees[0].lastName;
-</code></pre><p> 返回的内容是：</p>
-<pre><code>Gates
-</code></pre><p> 可以像这样修改数据：</p>
-<pre><code>employees[0].lastName = &quot;Jobs&quot;;
-</code></pre></li>
-</ol>
-<h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
-<li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
-</li>
-<li><p>由于 JSON 语法是 JavaScript 语法的子集，在旧版浏览器中，使用eval()对JSON数据结构求职存在危险，因为可能会执行一些恶意代码。</p>
-</li>
-<li><p>JSON对象有两个方法：stringify()和parse().在最简单的情况下，这两个方法分别用于把javascript对象序列化为JSON字符串和把JSON字符串解析为原生javascript值。</p>
-<p> <strong>把javascript对象序列化为JSON字符串</strong></p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    var book = {
-                    title: &quot;Professional JavaScript&quot;,
-                    authors: [
-                        &quot;Nicholas C. Zakas&quot;
-                    ],
-                    edition: 3,
-                    year: 2011
-               };
-
-    var jsonText = JSON.stringify(book, [&quot;title&quot;, &quot;edition&quot;]);
-    alert(jsonText);
-
-&lt;/script&gt;
-</code></pre><p> <strong>把 JSON 字符串转换为 JavaScript 对象</strong></p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-var book = {
-               &quot;title&quot;: &quot;Professional JavaScript&quot;,
-                &quot;authors&quot;: [
-                    &quot;Nicholas C. Zakas&quot;
-                ],
-                edition: 3,
-                year: 2011,
-                releaseDate: new Date(2011, 11, 1)
-           };
-
-var jsonText = JSON.stringify(book);
-alert(jsonText);
-
-var bookCopy = JSON.parse(jsonText, function(key, value){
-    if (key == &quot;releaseDate&quot;){
-        return new Date(value);
-    } else {
-        return value;
-    }
-});
-
-alert(bookCopy.releaseDate.toISOString());
-</code></pre><p> </p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/10/面向对象的程序设计/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/10/面向对象的程序设计/" itemprop="url">面向对象的程序设计</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-10T15:09:27+08:00">
-                2017-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。</p>
-</blockquote>
-<h2 id="一、理解对象"><a href="#一、理解对象" class="headerlink" title="一、理解对象:"></a>一、理解对象:</h2><ol>
-<li><p>第一种：基于Object对象</p>
-<pre><code>var person = new Object();
-person.name = &apos;My Name&apos;;
-person.age = 18;
-person.getName = function(){
-    return this.name;
-}
-</code></pre></li>
-<li><p>第二种：对象字面量方式（比较清楚的查找对象包含的属性及方法）</p>
-<pre><code>var person = {
-    name : &apos;My name&apos;,
-    age : 18,
-    getName : function(){
-    return this.name;
-    }
-}
-</code></pre><p>JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
-<pre><code>person.newAtt=’new Attr’;//添加属性
-alert(person.newAtt);//new Attr
-delete person.age;
-alert(person.age);//undefined(删除属性后值为undefined);
-</code></pre></li>
-</ol>
-<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><p>  ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性</p>
-<p>1.数据属性：</p>
-<p>数据属性指包含一个数据值的位置，可在该位置读取或写入值，该属性有4个供述其行为的特性：  </p>
-<ul>
-<li>[[configurable]]:表示能否使用delete操作符删除从而重新定义，或能否修改为访问器属性。默认为true;</li>
-<li>[[Enumberable]]:表示是否可通过for-in循环返回属性。默认true;</li>
-<li>[[Writable]]:表示是否可修改属性的值。默认true;  </li>
-<li>[[Value]]:包含该属性的数据值。读取/写入都是该值。默认为undefined;如上面实例对象person中定义了name属性，其值为’My name’,对该值的修改都反正在这个位置。  </li>
-</ul>
-<p> 要修改对象属性的默认特征（默认都为true)，可调用Object.defineProperty()方法，它接收三个参数：属性所在对象，属性名和一个描述符对象（必须是：configurable、enumberable、writable和value，可设置一个或多个值）。</p>
-<p> 如下：（浏览器支持：IE9+、Firefox 4+、Chrome、Safari5+）</p>
-<pre><code>var person = {};
-Object.defineProperty(person, &apos;name&apos;, {
-configurable: false,
-writable: false,
-value: &apos;Jack&apos;
-});
-alert(person.name);//Jack
-delete person.name;
-person.name = &apos;lily&apos;;
-alert(person.name);//Jack
-</code></pre><p>可以看出，delete及重置person.name的值都没有生效，这就是因为调用defineProperty函数修改了对象属性的特征；值得注意的是一旦将configurable设置为false，则无法再使用defineProperty将其修改为true（执行会报错：can’t redefine non-configurable property）;</p>
-<p>2.访问器属性：</p>
-<p>它主要包括一对getter和setter函数，在读取访问器属性时，会调用getter返回有效值；写入访问器属性时，调用setter，写入新值；该属性有以下4个特征：  </p>
-<ul>
-<li>[[Configurable]]:是否可通过delete操作符删除重新定义属性；</li>
-<li>[[Numberable]]:是否可通过for-in循环查找该属性；</li>
-<li>[[Get]]:读取属性时调用，默认：undefined;</li>
-<li>[[Set]]:写入属性时调用，默认：undefined;</li>
-</ul>
-<p>访问器属性不能直接定义，必须使用defineProperty()来定义，如下：</p>
-<pre><code>var person = {
-      _age: 18
-};
-Object.defineProperty(person, &apos;isAdult&apos;, {
-    get: function () {
-            if (this._age &gt;= 18) {
-                return true;
-            } else {
-                return false;
-            }
-    }
-});
-alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年      
-</code></pre><p>从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
-<p>此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
-<pre><code>var person = {};
-Object.defineProperties(person,{
-    _age:{
-    value:19
-   },
-    isAdult:{
-        get: function () {
-            if (this._age &gt;= 18) {
-                return true;
-            } else {
-            return false;
-            }
-        }
-    }
-    });
-    alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年
-</code></pre><p>上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性</p>
-<p>此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：</p>
-<pre><code>var descriptor = Object.getOwnPropertyDescriptor(person,&apos;_age&apos;);
-alert(descriptor.value);//19
-</code></pre><p>对于数据属性，可以取得：configurable,enumberable,writable和value；</p>
-<p>对于访问器属性，可以取得：configurable,enumberable,get和set</p>
-<h2 id="三、创建对象"><a href="#三、创建对象" class="headerlink" title="三、创建对象"></a>三、创建对象</h2><p>   使用Object构造函数或对象字面量都可以创建对象，但缺点是创建多个对象时，会产生大量的重复代码，因此下面介绍可解决这个问题的创建对象的方法</p>
-<ol>
-<li><p>工厂模式</p>
-<pre><code>function createPerson(name, age, job) {
-var o = new Object();
-o.name = name;
-o.age = age;
-o.job = job;
-o.getName = function () {
-    return this.name;
-}
-return o;//使用return返回生成的对象实例
-}
-var person = createPerson(&apos;Jack&apos;, 19, &apos;SoftWare Engineer&apos;);
-</code></pre><p>  创建对象交给一个工厂方法来实现，可以传递参数，但主要缺点是无法识别对象类型，因为创建对象都是使用Object的原生构造函数来完成的。</p>
-</li>
-<li><p>构造函数模式</p>
-<pre><code>function Person(name,age,job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.getName = function () {
-        return this.name;
-    }
-}
-var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engineer&apos;);
-
-var person2 = new Person(&apos;Liye&apos;, 23, &apos;Mechanical Engineer&apos;);
-</code></pre></li>
-</ol>
-<p>  使用自定义的构造函数（与普通函数一样，只是用它来创建对象），定义对象类型（如：Person）的属性和方法。它与工厂方法区别在于：</p>
-<ul>
-<li>没有显式地创建对象</li>
-<li>直接将属性和方法赋值给this对象；</li>
-<li>没有return语句；  </li>
-</ul>
-<p>   此外，要创建Person的实例，必须使用new关键字，以Person函数为构造函数，传递参数完成对象创建；实际创建经过以下4个过程：  </p>
-<ul>
-<li>创建一个对象  </li>
-<li>将函数的作用域赋给新对象（因此this指向这个新对象，如：person1）</li>
-<li>执行构造函数的代码</li>
-<li>返回该对象  </li>
-</ul>
-<p>   上述由Person构造函数生成的两个对象person1与person2都是Person的实例，因此可以使用instanceof判断，并且因为所有对象都继承Object，因此person1 instanceof Object也返回真：</p>
-<pre><code>alert(person1 instanceof Person);//true;
-alert(person2 instanceof Person);//true;
-alert(person1 instanceof Object);//true;
-alert(person1.constructor === person2.constructor);//ture;       
-</code></pre><p>  虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
-<pre><code>function Person(name,age,job){
-   this.name = name;
-   this.age = age;
-   this.job = job;
-   this.getName = new Function () {//改写后效果与原代码相同，不过是为了方便理解
-           return this.name;
-   }
- }        
-</code></pre><p>   上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
-<pre><code>function Person(name,age,job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.getName = getName;
- }
- function getName() {//到处是代码，看着乱！！
-    return this.name;
- }        
-</code></pre><p>3.原型模式</p>
-<p>   JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
-<pre><code>function Person(){
-}
-Person.prototype.name = &apos;Jack&apos;;//使用原型来添加属性
-Person.prototype.age = 29;
-Person.prototype.getName = function(){
-   return this.name;
-}
-var person1 = new Person();
-alert(person1.getName());//Jack
-var person2 = new Person();
-alert(person1.getName === person2.getName);//true;共享一个原型对象的方法   
-</code></pre><p>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
-<p>  实例属性或方法的访问过程是一次搜索过程：</p>
-<ul>
-<li>首先从对象实例本身开始，如果找到属性就直接返回该属性值；</li>
-<li>如果实例本身不存在要查找属性，就继续搜索指针指向的原型对象，在其中查找给定名字的属性，如果有就返回；</li>
-<li>基于以上分析，原型模式创建的对象实例，其属性是共享原型对象的；  </li>
-<li>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；  </li>
-</ul>
-<p>  <strong>原型与in操作符</strong></p>
-<p>   一句话：无论原型中属性，还是对象实例的属性，都可以使用in操作符访问到；要想判断是否是实例本身的属性可以使用object.hasOwnProperty(‘attr’)来判断；</p>
-<p>   <strong>原生对象中原型</strong></p>
-<p>   原生对象中原型与普通对象的原型一样，可以添加/修改属性或方法，如以下代码为所有字符串对象添加去左右空白原型方法：</p>
-<pre><code>String.prototype.trim = function(){
-   return this.replace(/^\s+/,&apos;&apos;).replace(/\s+$/,&apos;&apos;);
-}
-var str = &apos;   word space   &apos;;
-alert(&apos;!&apos;+str.trim()+&apos;!&apos;);//!word space!   
-</code></pre><p>   原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：</p>
-<pre><code>function Person() {
-}
-Person.prototype.name = &apos;Jack&apos;;
-Person.prototype.lessons = [&apos;Math&apos;,&apos;Physics&apos;];
-var person1 = new Person();
-person1.lessons.push(&apos;Biology&apos;);
-var person2 = new Person();
-alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2   
-</code></pre><p>4.组合构造函数及原型模式</p>
-<p>   目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长。</p>
-<pre><code>function Person(name, age, job) {
-        this.name = name;
-        this.age = age;
-        this.job = job;
-        this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
-    }
-    Person.prototype = {
-        constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
-        getName: function () {
-            return this.name;
-        }
-    }
-    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
-    person1.lessons.push(&apos;Biology&apos;);
-    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
-    alert(person1.lessons);//Math,Physics,Biology
-    alert(person2.lessons);//Math,Physics
-    alert(person1.getName === person2.getName);//true,//共享原型中定义方法    
-</code></pre><p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
-<p>5.动态原型模式</p>
-<p>   组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
-<pre><code>function Person(name, age, job) {
-            this.name = name;
-            this.age = age;
-            this.job = job;
-            this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
-        }
-        if (typeof this.getName != &apos;function&apos;) {//通过判断实例封装
-        Person.prototype = {
-            constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
-            getName: function () {
-                return this.name;
-            }
-            }
-        }
-    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
-    person1.lessons.push(&apos;Biology&apos;);
-    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
-    alert(person1.lessons);//Math,Physics,Biology
-    alert(person2.lessons);//Math,Physics
-    alert(person1.getName === person2.getName);//true,//共享原型中定义方法           
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2186,8 +1841,8 @@ alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
               </a>
             </div>
           
@@ -2200,7 +1855,7 @@ alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-name">標籤</span>
               </a>
             </div>
           
@@ -2250,11 +1905,11 @@ alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
 </div>
 
 <div class="theme-info">
-  主题 -
+  主題 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

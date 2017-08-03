@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-hk">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -150,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
 
   
   
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            首頁
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            歸檔
           </a>
         </li>
       
@@ -220,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            標籤
           </a>
         </li>
       
@@ -243,6 +243,643 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/20/JSON学习总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/20/JSON学习总结/" itemprop="url">JSON学习总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-02-20T15:13:26+08:00">
+                2017-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ol>
+<li><p>JSON 类似 XML</p>
+<ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输</li>
+</ul>
+</li>
+<li><p>相比 XML 的不同之处</p>
+<ul>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字</li>
+</ul>
+</li>
+<li>为什么使用 JSON？<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
+</code></pre><ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+<li>用 eval() 处理 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JSON 实例</p>
+<pre><code>通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：
+
+ &lt;html&gt;
+ &lt;body&gt;
+ &lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
+
+ &lt;p&gt;
+ Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ &lt;/p&gt;
+
+ &lt;script type=&quot;text/javascript&quot;&gt;
+ var JSONObject= {
+ &quot;name&quot;:&quot;Bill Gates&quot;,
+ &quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
+ &quot;age&quot;:56,
+ &quot;phone&quot;:&quot;555 1234567&quot;};
+ document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
+ document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
+ document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
+ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
+ &lt;/script&gt;
+
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre></li>
+</ol>
+<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ol>
+<li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
+<ul>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+</li>
+<li><p>JSON 名称/值对</p>
+<p> JSON 数据的书写格式是：名称/值对。<br> 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
+<pre><code>&quot;firstName&quot; : &quot;John&quot;
+</code></pre><p> 这很容易理解，等价于这条 JavaScript 语句：</p>
+<pre><code>firstName = &quot;John&quot;
+</code></pre></li>
+<li><p>JSON 值</p>
+<p> JSON 值可以是：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+</li>
+<li><p>JSON 对像</p>
+<pre><code>{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; }
+</code></pre><p> JSON 对象在花括号中书写，对象可以包含多个名称/值对，与这条 JavaScript 语句等价：</p>
+<pre><code>firstName = &quot;John&quot;
+lastName = &quot;Doe&quot;
+</code></pre></li>
+<li><p>JSON 数组</p>
+<p> JSON 数组在方括号中书写：<br> 数组可包含多个对象：</p>
+<pre><code>{
+&quot;employees&quot;: [
+{ &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; },
+{ &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; },
+{ &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; }
+]
+}
+</code></pre><p> 在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
+</li>
+<li><p>JSON 使用 JavaScript 语法</p>
+<p> 因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br> 通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
+<pre><code>var employees = [
+{ &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; },
+{ &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; },
+{ &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; }
+];
+</code></pre><p> 可以像这样访问 JavaScript 对象数组中的第一项：</p>
+<pre><code>employees[0].lastName;
+</code></pre><p> 返回的内容是：</p>
+<pre><code>Gates
+</code></pre><p> 可以像这样修改数据：</p>
+<pre><code>employees[0].lastName = &quot;Jobs&quot;;
+</code></pre></li>
+</ol>
+<h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
+<li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
+</li>
+<li><p>由于 JSON 语法是 JavaScript 语法的子集，在旧版浏览器中，使用eval()对JSON数据结构求职存在危险，因为可能会执行一些恶意代码。</p>
+</li>
+<li><p>JSON对象有两个方法：stringify()和parse().在最简单的情况下，这两个方法分别用于把javascript对象序列化为JSON字符串和把JSON字符串解析为原生javascript值。</p>
+<p> <strong>把javascript对象序列化为JSON字符串</strong></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var book = {
+                    title: &quot;Professional JavaScript&quot;,
+                    authors: [
+                        &quot;Nicholas C. Zakas&quot;
+                    ],
+                    edition: 3,
+                    year: 2011
+               };
+
+    var jsonText = JSON.stringify(book, [&quot;title&quot;, &quot;edition&quot;]);
+    alert(jsonText);
+
+&lt;/script&gt;
+</code></pre><p> <strong>把 JSON 字符串转换为 JavaScript 对象</strong></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+var book = {
+               &quot;title&quot;: &quot;Professional JavaScript&quot;,
+                &quot;authors&quot;: [
+                    &quot;Nicholas C. Zakas&quot;
+                ],
+                edition: 3,
+                year: 2011,
+                releaseDate: new Date(2011, 11, 1)
+           };
+
+var jsonText = JSON.stringify(book);
+alert(jsonText);
+
+var bookCopy = JSON.parse(jsonText, function(key, value){
+    if (key == &quot;releaseDate&quot;){
+        return new Date(value);
+    } else {
+        return value;
+    }
+});
+
+alert(bookCopy.releaseDate.toISOString());
+</code></pre><p> </p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/10/面向对象的程序设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/10/面向对象的程序设计/" itemprop="url">面向对象的程序设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-02-10T15:09:27+08:00">
+                2017-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。</p>
+</blockquote>
+<h2 id="一、理解对象"><a href="#一、理解对象" class="headerlink" title="一、理解对象:"></a>一、理解对象:</h2><ol>
+<li><p>第一种：基于Object对象</p>
+<pre><code>var person = new Object();
+person.name = &apos;My Name&apos;;
+person.age = 18;
+person.getName = function(){
+    return this.name;
+}
+</code></pre></li>
+<li><p>第二种：对象字面量方式（比较清楚的查找对象包含的属性及方法）</p>
+<pre><code>var person = {
+    name : &apos;My name&apos;,
+    age : 18,
+    getName : function(){
+    return this.name;
+    }
+}
+</code></pre><p>JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
+<pre><code>person.newAtt=’new Attr’;//添加属性
+alert(person.newAtt);//new Attr
+delete person.age;
+alert(person.age);//undefined(删除属性后值为undefined);
+</code></pre></li>
+</ol>
+<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><p>  ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性</p>
+<p>1.数据属性：</p>
+<p>数据属性指包含一个数据值的位置，可在该位置读取或写入值，该属性有4个供述其行为的特性：  </p>
+<ul>
+<li>[[configurable]]:表示能否使用delete操作符删除从而重新定义，或能否修改为访问器属性。默认为true;</li>
+<li>[[Enumberable]]:表示是否可通过for-in循环返回属性。默认true;</li>
+<li>[[Writable]]:表示是否可修改属性的值。默认true;  </li>
+<li>[[Value]]:包含该属性的数据值。读取/写入都是该值。默认为undefined;如上面实例对象person中定义了name属性，其值为’My name’,对该值的修改都反正在这个位置。  </li>
+</ul>
+<p> 要修改对象属性的默认特征（默认都为true)，可调用Object.defineProperty()方法，它接收三个参数：属性所在对象，属性名和一个描述符对象（必须是：configurable、enumberable、writable和value，可设置一个或多个值）。</p>
+<p> 如下：（浏览器支持：IE9+、Firefox 4+、Chrome、Safari5+）</p>
+<pre><code>var person = {};
+Object.defineProperty(person, &apos;name&apos;, {
+configurable: false,
+writable: false,
+value: &apos;Jack&apos;
+});
+alert(person.name);//Jack
+delete person.name;
+person.name = &apos;lily&apos;;
+alert(person.name);//Jack
+</code></pre><p>可以看出，delete及重置person.name的值都没有生效，这就是因为调用defineProperty函数修改了对象属性的特征；值得注意的是一旦将configurable设置为false，则无法再使用defineProperty将其修改为true（执行会报错：can’t redefine non-configurable property）;</p>
+<p>2.访问器属性：</p>
+<p>它主要包括一对getter和setter函数，在读取访问器属性时，会调用getter返回有效值；写入访问器属性时，调用setter，写入新值；该属性有以下4个特征：  </p>
+<ul>
+<li>[[Configurable]]:是否可通过delete操作符删除重新定义属性；</li>
+<li>[[Numberable]]:是否可通过for-in循环查找该属性；</li>
+<li>[[Get]]:读取属性时调用，默认：undefined;</li>
+<li>[[Set]]:写入属性时调用，默认：undefined;</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用defineProperty()来定义，如下：</p>
+<pre><code>var person = {
+      _age: 18
+};
+Object.defineProperty(person, &apos;isAdult&apos;, {
+    get: function () {
+            if (this._age &gt;= 18) {
+                return true;
+            } else {
+                return false;
+            }
+    }
+});
+alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年      
+</code></pre><p>从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
+<p>此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
+<pre><code>var person = {};
+Object.defineProperties(person,{
+    _age:{
+    value:19
+   },
+    isAdult:{
+        get: function () {
+            if (this._age &gt;= 18) {
+                return true;
+            } else {
+            return false;
+            }
+        }
+    }
+    });
+    alert(person.isAdult?&apos;成年&apos;:&apos;未成年&apos;);//成年
+</code></pre><p>上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性</p>
+<p>此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：</p>
+<pre><code>var descriptor = Object.getOwnPropertyDescriptor(person,&apos;_age&apos;);
+alert(descriptor.value);//19
+</code></pre><p>对于数据属性，可以取得：configurable,enumberable,writable和value；</p>
+<p>对于访问器属性，可以取得：configurable,enumberable,get和set</p>
+<h2 id="三、创建对象"><a href="#三、创建对象" class="headerlink" title="三、创建对象"></a>三、创建对象</h2><p>   使用Object构造函数或对象字面量都可以创建对象，但缺点是创建多个对象时，会产生大量的重复代码，因此下面介绍可解决这个问题的创建对象的方法</p>
+<ol>
+<li><p>工厂模式</p>
+<pre><code>function createPerson(name, age, job) {
+var o = new Object();
+o.name = name;
+o.age = age;
+o.job = job;
+o.getName = function () {
+    return this.name;
+}
+return o;//使用return返回生成的对象实例
+}
+var person = createPerson(&apos;Jack&apos;, 19, &apos;SoftWare Engineer&apos;);
+</code></pre><p>  创建对象交给一个工厂方法来实现，可以传递参数，但主要缺点是无法识别对象类型，因为创建对象都是使用Object的原生构造函数来完成的。</p>
+</li>
+<li><p>构造函数模式</p>
+<pre><code>function Person(name,age,job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.getName = function () {
+        return this.name;
+    }
+}
+var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engineer&apos;);
+
+var person2 = new Person(&apos;Liye&apos;, 23, &apos;Mechanical Engineer&apos;);
+</code></pre></li>
+</ol>
+<p>  使用自定义的构造函数（与普通函数一样，只是用它来创建对象），定义对象类型（如：Person）的属性和方法。它与工厂方法区别在于：</p>
+<ul>
+<li>没有显式地创建对象</li>
+<li>直接将属性和方法赋值给this对象；</li>
+<li>没有return语句；  </li>
+</ul>
+<p>   此外，要创建Person的实例，必须使用new关键字，以Person函数为构造函数，传递参数完成对象创建；实际创建经过以下4个过程：  </p>
+<ul>
+<li>创建一个对象  </li>
+<li>将函数的作用域赋给新对象（因此this指向这个新对象，如：person1）</li>
+<li>执行构造函数的代码</li>
+<li>返回该对象  </li>
+</ul>
+<p>   上述由Person构造函数生成的两个对象person1与person2都是Person的实例，因此可以使用instanceof判断，并且因为所有对象都继承Object，因此person1 instanceof Object也返回真：</p>
+<pre><code>alert(person1 instanceof Person);//true;
+alert(person2 instanceof Person);//true;
+alert(person1 instanceof Object);//true;
+alert(person1.constructor === person2.constructor);//ture;       
+</code></pre><p>  虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
+<pre><code>function Person(name,age,job){
+   this.name = name;
+   this.age = age;
+   this.job = job;
+   this.getName = new Function () {//改写后效果与原代码相同，不过是为了方便理解
+           return this.name;
+   }
+ }        
+</code></pre><p>   上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
+<pre><code>function Person(name,age,job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.getName = getName;
+ }
+ function getName() {//到处是代码，看着乱！！
+    return this.name;
+ }        
+</code></pre><p>3.原型模式</p>
+<p>   JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
+<pre><code>function Person(){
+}
+Person.prototype.name = &apos;Jack&apos;;//使用原型来添加属性
+Person.prototype.age = 29;
+Person.prototype.getName = function(){
+   return this.name;
+}
+var person1 = new Person();
+alert(person1.getName());//Jack
+var person2 = new Person();
+alert(person1.getName === person2.getName);//true;共享一个原型对象的方法   
+</code></pre><p>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
+<p>  实例属性或方法的访问过程是一次搜索过程：</p>
+<ul>
+<li>首先从对象实例本身开始，如果找到属性就直接返回该属性值；</li>
+<li>如果实例本身不存在要查找属性，就继续搜索指针指向的原型对象，在其中查找给定名字的属性，如果有就返回；</li>
+<li>基于以上分析，原型模式创建的对象实例，其属性是共享原型对象的；  </li>
+<li>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；  </li>
+</ul>
+<p>  <strong>原型与in操作符</strong></p>
+<p>   一句话：无论原型中属性，还是对象实例的属性，都可以使用in操作符访问到；要想判断是否是实例本身的属性可以使用object.hasOwnProperty(‘attr’)来判断；</p>
+<p>   <strong>原生对象中原型</strong></p>
+<p>   原生对象中原型与普通对象的原型一样，可以添加/修改属性或方法，如以下代码为所有字符串对象添加去左右空白原型方法：</p>
+<pre><code>String.prototype.trim = function(){
+   return this.replace(/^\s+/,&apos;&apos;).replace(/\s+$/,&apos;&apos;);
+}
+var str = &apos;   word space   &apos;;
+alert(&apos;!&apos;+str.trim()+&apos;!&apos;);//!word space!   
+</code></pre><p>   原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：</p>
+<pre><code>function Person() {
+}
+Person.prototype.name = &apos;Jack&apos;;
+Person.prototype.lessons = [&apos;Math&apos;,&apos;Physics&apos;];
+var person1 = new Person();
+person1.lessons.push(&apos;Biology&apos;);
+var person2 = new Person();
+alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2   
+</code></pre><p>4.组合构造函数及原型模式</p>
+<p>   目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长。</p>
+<pre><code>function Person(name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
+    }
+    Person.prototype = {
+        constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+        getName: function () {
+            return this.name;
+        }
+    }
+    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
+    person1.lessons.push(&apos;Biology&apos;);
+    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法    
+</code></pre><p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
+<p>5.动态原型模式</p>
+<p>   组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
+<pre><code>function Person(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.lessons = [&apos;Math&apos;, &apos;Physics&apos;];
+        }
+        if (typeof this.getName != &apos;function&apos;) {//通过判断实例封装
+        Person.prototype = {
+            constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+            getName: function () {
+                return this.name;
+            }
+            }
+        }
+    var person1 = new Person(&apos;Jack&apos;, 19, &apos;SoftWare Engneer&apos;);
+    person1.lessons.push(&apos;Biology&apos;);
+    var person2 = new Person(&apos;Lily&apos;, 39, &apos;Mechanical Engneer&apos;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法           
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -282,9 +919,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T19:04:55+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-01-25T19:04:55+08:00">
                 2017-01-25
               </time>
             
@@ -434,9 +1071,9 @@ function add(a,b,double){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T17:07:12+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-01-25T17:07:12+08:00">
                 2017-01-25
               </time>
             
@@ -768,9 +1405,9 @@ object.getName(); //&quot;My Object&quot;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-22T15:01:35+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-01-22T15:01:35+08:00">
                 2017-01-22
               </time>
             
@@ -1177,9 +1814,9 @@ console.log(s.getMost()); // c: 9
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-20T14:00:29+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-01-20T14:00:29+08:00">
                 2017-01-20
               </time>
             
@@ -1413,9 +2050,9 @@ if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T20:34:52+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-10-31T20:34:52+08:00">
                 2016-10-31
               </time>
             
@@ -1615,9 +2252,9 @@ exports.mime = connect.mime;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">發表於</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T20:37:12+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-10-30T20:37:12+08:00">
                 2016-10-30
               </time>
             
@@ -1764,398 +2401,6 @@ What
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/28/Vue-js中的表单控件绑定/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/28/Vue-js中的表单控件绑定/" itemprop="url">Vue.js中的表单控件绑定</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-28T20:28:57+08:00">
-                2016-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。</p>
-<p>1.text</p>
-<pre><code>&lt;span&gt;Message is: {{ message }}&lt;/span&gt;
-&lt;br&gt;
-&lt;input type=&quot;text&quot; v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;
-</code></pre><p><br><br>result:</p>
-<p>Message is:</p>
- <input type="text" v-model="message" placeholder="edit me">
-
-<p>2.multiline text</p>
-<pre><code>&lt;span&gt;Multiline message is:&lt;/span&gt;
-&lt;p&gt;{{ message }}&lt;/p&gt;
-&lt;br&gt;
-&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;
-</code></pre><p>result:</p>
-<p>Message is:</p>
- <textarea v-model="message" placeholder="add multiple lines"></textarea>
-
-<p>3.Checkbox</p>
-<p>单个勾选框，逻辑值：</p>
-<pre><code>&lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; v-model=&quot;checked&quot;&gt;
-&lt;label for=&quot;checkbox&quot;&gt;{{ checked }}&lt;/label&gt;
-</code></pre><p> <input type="checkbox" id="checkbox" v-model="checked">false</p>
-<p>4.多个勾选框，绑定到同一个数组：</p>
-<pre><code>//.html
-&lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;
-&lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;
-&lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;
-&lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;
-&lt;br&gt;
-&lt;span&gt;Checked names: {{ checkedNames | json }}&lt;/span&gt;
-
-
-//.js
-new Vue({
-  el: &apos;...&apos;,
-  data: {
-    checkedNames: []
-  }
-})
-</code></pre><p>5.Radio</p>
-<pre><code>&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;
-&lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;
-&lt;br&gt;
-&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;
-&lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;
-&lt;br&gt;
-&lt;span&gt;Picked: {{ picked }}&lt;/span&gt;
-</code></pre><p> <input type="radio" id="one" value="One" v-model="picked"><br>    <label for="one">One</label><br>    <br><br>    <input type="radio" id="two" value="Two" v-model="picked"><br>    <label for="two">Two</label><br>    <br><br>    <span>Picked: </span></p>
-<p>6.Select<br>单选：</p>
-<pre><code>&lt;select v-model=&quot;selected&quot;&gt;
-  &lt;option selected&gt;A&lt;/option&gt;
-  &lt;option&gt;B&lt;/option&gt;
-  &lt;option&gt;C&lt;/option&gt;
-&lt;/select&gt;
-&lt;span&gt;Selected: {{ selected }}&lt;/span&gt;
-</code></pre><select v-model="selected"><br>  <option selected>A</option><br>  <option>B</option><br>  <option>C</option><br></select><br><br><br><span>Selected:[“A”]</span><br><br>7.绑定 value<br><br>对于单选按钮，勾选框及选择框选项，v-model 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：<br><br>    <!-- 当选中时，`picked` 为字符串 "a" --><br>    <input type="radio" v-model="picked" value="a"><br><br>    <!-- `toggle` 为 true 或 false --><br>    <input type="checkbox" v-model="toggle"><br><br>    <!-- 当选中时，`selected` 为字符串 "abc" --><br>    <select v-model="selected"><br>      <option value="abc">ABC</option><br>    </select>
-
-<p>但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/28/Vue-js中的条件渲染和列表渲染/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/28/Vue-js中的条件渲染和列表渲染/" itemprop="url">Vue.js中的条件渲染和列表渲染</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-28T20:25:41+08:00">
-                2016-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一-条件渲染"><a href="#一-条件渲染" class="headerlink" title="一.条件渲染"></a>一.条件渲染</h2><h3 id="1-v-if"><a href="#1-v-if" class="headerlink" title="1.v-if"></a>1.v-if</h3><p>例子：</p>
-<pre><code>//.html
-&lt;div id=&quot;vm&quot;&gt;  
-    &lt;h1 v-if=&quot;ok&quot;&gt;ok&lt;/h1&gt;
-    &lt;h1 v-else&gt;no&lt;/h1&gt;
-&lt;/div&gt;
-
-
-
-//.js
-window.onload=function(){
-  var vm = new Vue({
-    el:&apos;#vm&apos;,
-    data:{
-        ok:true,
-        no:false
-        }
-    });
-}
-</code></pre><p>result:</p>
-<pre><code>ok
-</code></pre><h3 id="2-template-v-if"><a href="#2-template-v-if" class="headerlink" title="2.template v-if"></a>2.template v-if</h3><p>因为 v-if 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。</template></p>
-<p>例子：</p>
-<pre><code>&lt;template v-if=&quot;ok&quot;&gt;
-  &lt;h1&gt;Title&lt;/h1&gt;
-  &lt;p&gt;Paragraph 1&lt;/p&gt;
-  &lt;p&gt;Paragraph 2&lt;/p&gt;
-&lt;/template&gt;
-</code></pre><h3 id="3-v-show"><a href="#3-v-show" class="headerlink" title="3.v-show"></a>3.v-show</h3><p>v-show指令的用法和v-if用法大体上一样</p>
-<p>例子：</p>
-<pre><code>&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
-</code></pre><p><strong>注意：</strong> 不同的是有 v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display。</p>
-<p>注意 v-show 不支持 <template> 语法。</template></p>
-<h3 id="4-v-else"><a href="#4-v-else" class="headerlink" title="4.v-else"></a>4.v-else</h3><p>可以用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”：</p>
-<pre><code>&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;
-      Sorry
-&lt;/div&gt;
-&lt;div v-else&gt;
-      Not sorry
-&lt;/div&gt;
-</code></pre><p><strong>注意：</strong> v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。</p>
-<h2 id="二-列表渲染"><a href="#二-列表渲染" class="headerlink" title="二.列表渲染"></a>二.列表渲染</h2><h3 id="1-v-for"><a href="#1-v-for" class="headerlink" title="1.v-for"></a>1.v-for</h3><p>a. 可以使用 v-for 指令基于一个数组渲染一个列表。这个指令使用特殊的语法，形式为 item in items，items 是数据数组，item 是当前数组元素的别名：</p>
-<p>例：</p>
-<pre><code>//.html
-&lt;ul id=&quot;example-1&quot;&gt;
-  &lt;li v-for=&quot;item in items&quot;&gt;
-    {{ item.message }}
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-//.js
-var example1 = new Vue({
-  el: &apos;#example-1&apos;,
-  data: {
-    items: [
-      { message: &apos;Foo&apos; },
-      { message: &apos;Bar&apos; }
-    ]
-  }
-})
-</code></pre><p>result:</p>
-<ul>
-<li>Foo</li>
-<li>Bar</li>
-</ul>
-<p>b. 也可以使用 v-for 遍历对象。除了 $index 之外，作用域内还可以访问另外一个特殊变量 $key。</p>
-<p>例子：</p>
-<pre><code>//.html
-&lt;ul id=&quot;repeat-object&quot; class=&quot;demo&quot;&gt;
-  &lt;li v-for=&quot;value in object&quot;&gt;
-    {{ $key }} : {{ value }}
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-//.js
-new Vue({
-  el: &apos;#repeat-object&apos;,
-  data: {
-    object: {
-      FirstName: &apos;John&apos;,
-      LastName: &apos;Doe&apos;,
-      Age: 30
-    }
-  }    
-})
-</code></pre><p>result:</p>
-<ul>
-<li>FirstName:John</li>
-<li>lastname:Doe</li>
-<li>Age:30</li>
-</ul>
-<p><strong>注意：</strong> 在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
-<p>c. v-for也可以接收一个整数，此时它将重复模板数次。</p>
-<pre><code>&lt;div&gt;
-    &lt;span v-for=&quot;n in 10&quot;&gt;{{n}}&lt;/span&gt;
-&lt;/div&gt;
-</code></pre><p>result:</p>
-<pre><code>0123456789
-</code></pre><h3 id="2-template-v-for"><a href="#2-template-v-for" class="headerlink" title="2.template v-for"></a>2.template v-for</h3><p>类似于 template v-if，也可以将 v-for 用在 <template> 标签上，以渲染一个包含多个元素的块。例如：</template></p>
-<pre><code>&lt;ul&gt;
-  &lt;template v-for=&quot;item in items&quot;&gt;
-    &lt;li&gt;{{ item.msg }}&lt;/li&gt;
-    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
-  &lt;/template&gt;
-&lt;/ul&gt;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2205,8 +2450,8 @@ new Vue({
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
               </a>
             </div>
           
@@ -2219,7 +2464,7 @@ new Vue({
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-name">標籤</span>
               </a>
             </div>
           
@@ -2269,11 +2514,11 @@ new Vue({
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
 </div>
 
 <div class="theme-info">
-  主题 -
+  主題 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
