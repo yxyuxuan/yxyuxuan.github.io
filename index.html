@@ -263,6 +263,259 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/11/19/JavaScript-Array-find/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/19/JavaScript-Array-find/" itemprop="url">JavaScript 中Array数组的find()方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T19:20:47+08:00">
+                2017-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Array-prototype-find"><a href="#1-Array-prototype-find" class="headerlink" title="1. Array.prototype.find()"></a>1. Array.prototype.find()</h3><p><code>find()</code>是用于查找数组中值的方法，该方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 <code>undefined</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> findElement =  [<span class="number">12</span>, <span class="number">5</span>, <span class="number">22</span>, <span class="number">13</span>, <span class="number">52</span>].find(element =&gt; element &gt; <span class="number">12</span>); </div><div class="line"><span class="comment">//findElement: 22</span></div></pre></td></tr></table></figure>
+<p>其中<code>findIndex()</code> 方法，它返回数组中找到的元素的索引，而不是其值。如果需要找到一个元素的位置或者一个元素是否存在于数组中，使用<code>Array.prototype.indexOf()</code> 或 <code>Array.prototype.includes()</code>。</p>
+<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr.find(callback[, thisArg])</div></pre></td></tr></table></figure>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><h5 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h5><p>在数组每一项上执行的函数，接收 3 个参数：</p>
+<h5 id="element"><a href="#element" class="headerlink" title="element"></a>element</h5><p>当前遍历到的元素。</p>
+<h5 id="index"><a href="#index" class="headerlink" title="index"></a>index</h5><p>当前遍历到的索引。</p>
+<h5 id="array"><a href="#array" class="headerlink" title="array"></a>array</h5><p>数组本身。</p>
+<h5 id="thisArg-可选"><a href="#thisArg-可选" class="headerlink" title="thisArg 可选"></a>thisArg 可选</h5><p>可选，指定 <code>callback</code> 的 <code>this</code> 参数。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>当某个元素通过 <code>callback</code> 的测试时，返回数组中的一个值，否则返回 <code>undefined</code>。</p>
+<h3 id="3-描述"><a href="#3-描述" class="headerlink" title="3. 描述"></a>3. 描述</h3><p><code>find</code> 方法对数组中的每一项元素执行一次 <code>callback</code> 函数，直至有一个 <code>callback</code> 返回 <code>true</code>。当找到了这样一个元素后，该方法会立即返回这个元素的值，否则返回 <code>undefined</code>。注意 <code>callback</code> 函数会为数组中的每个索引调用即从 0 到 lengh - 1，而不仅仅是那些被赋值的索引，这意味着对于稀疏数组来说，该方法的效率要低于那些只遍历有值的索引的方法。</p>
+<p><code>callback</code> 函数带有3个参数：当前元素的值、当前元素的索引，以及数组本身。</p>
+<p>如果提供了 <code>thisArg</code> 参数，那么它将作为每次 <code>callback</code> 函数执行时的上下文对象，否则上下文对象为 <code>undefined</code>。</p>
+<p><code>find</code> 方法不会改变数组。</p>
+<p>在第一次调用 <code>callback</code> 函数时会确定元素的索引范围，因此在 <code>find</code> 方法开始执行之后添加到数组的新元素将不会被<code>callback</code> 函数访问到。如果数组中一个尚未被<code>callback</code>函数访问到的元素的值被<code>callback</code>函数所改变，那么当<code>callback</code>函数访问到它时，它的值是将是根据它在数组中的索引所访问到的当前值。被删除的元素仍旧会被访问到。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/11/12/JavaScript-Array-filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/12/JavaScript-Array-filter/" itemprop="url">JavaScript 中Array数组的filter()方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-12T20:13:50+08:00">
+                2017-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Array-prototype-filter"><a href="#1-Array-prototype-filter" class="headerlink" title="1. Array.prototype.filter()"></a>1. Array.prototype.filter()</h3><p><code>filter()</code> 是用于筛选的方法，该方法用于创建一个符合条件的新数组，新数组中包含通过函数测试的所有元素。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var filteredArr = [1, 22, 6, 11, 34, 2, 9].filter(' =&gt; element &gt; 9);</div><div class="line">//filteredArr: [22, 11, 34]</div></pre></td></tr></table></figure>
+<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> new_array = arr.filter(callback[, thisArg]);</div></pre></td></tr></table></figure>
+<h5 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h5><p>用来测试数组的每个元素的函数。调用时使用参数 (element, index, array)。返回true表示保留该元素（通过测试），false则不保留。</p>
+<h5 id="thisArg"><a href="#thisArg" class="headerlink" title="thisArg"></a>thisArg</h5><p>可选。执行 callback 时的用于 this 的值。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>一个新的通过测试的元素的集合的数组</p>
+<h3 id="3-描述"><a href="#3-描述" class="headerlink" title="3. 描述"></a>3. 描述</h3><p>filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组。callback 只会在已经赋值的索引上被调用，对于那些已经被删除或者从未被赋值的索引不会被调用。那些没有通过 callback 测试的元素会被跳过，不会被包含在新数组中。</p>
+<p>callback 被调用时传入三个参数：</p>
+<ul>
+<li>元素的值</li>
+<li>元素的索引</li>
+<li>被遍历的数组</li>
+</ul>
+<p>如果为<code>filter</code> 提供一个 thisArg 参数，则它会被作为 callback 被调用时的 this 值。否则，callback 的 this 值在非严格模式下将是全局对象，严格模式下为 undefined。<br>The thisvalue ultimately observable by callback is determined according to the usual rules for determining thethis seen by a function.</p>
+<p><code>filter</code> 不会改变原数组。</p>
+<p><code>filter</code> 遍历的元素范围在第一次调用 <code>callback</code> 之前就已经确定了。在调用 <code>filter</code> 之后被添加到数组中的元素不会被 <code>filter</code> 遍历到。如果已经存在的元素被改变了，则他们传入 <code>callback</code> 的值是 <code>filter</code> 遍历到它们那一刻的值。被删除或从来未被赋值的元素不会被遍历到。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/08/03/CSS3中transform属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1459,354 +1712,11 @@ document.write(require(&quot;./main1.js&quot;));
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/25/微信小程序合法域名校验出错解决办法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/25/微信小程序合法域名校验出错解决办法/" itemprop="url">微信小程序合法域名校验出错解决办法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T20:17:55+08:00">
-                2017-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>合法域名校验错误如图：</strong></p>
-<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/1.png" alt=""></p>
-<p>注：合法域名校验错误原因是腾讯限制了请求服务器的地址，如果要使用wx.request(object)，里面的url必须在小程序后台配置。方法如下：</p>
-<p><strong>第一步:登陆小程序后台，点击“设置”，然后点击“开发设置”</strong></p>
-<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/2.png" alt=""></p>
-<p><strong>第二步：填入合法域名，需要备案过。</strong></p>
-<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/3.png" alt=""> </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/21/Flex布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/21/Flex布局/" itemprop="url">Flex布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T15:14:40+08:00">
-                2017-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-flex布局是什么？"><a href="#1-flex布局是什么？" class="headerlink" title="1.flex布局是什么？"></a>1.flex布局是什么？</h3><p>flex是flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活。</p>
-<p>任何一个容器都可以指定为flex布局</p>
-<pre><code>.box1{  
-  display: flex;  
-}  
-.box2{  
-  display: inline-flex; 
-}  
-.box3{  
-    display: -webkit-flex; /* Safari ,Webkit内核的浏览器，必须加上-webkit前缀。*/  
-    display: flex;  
-}  
-</code></pre><p>注意：设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
-<h3 id="2-基本能概念"><a href="#2-基本能概念" class="headerlink" title="2.基本能概念"></a>2.基本能概念</h3><p>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</p>
-<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
-<h3 id="3-容器的属性"><a href="#3-容器的属性" class="headerlink" title="3.容器的属性"></a>3.容器的属性</h3><ul>
-<li>flex-direction</li>
-<li>flex-wrap</li>
-<li>flex-flow</li>
-<li>justify-content</li>
-<li>align-items</li>
-<li>align-content</li>
-</ul>
-<h4 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h4><p>flex-direction属性决定主轴的方向（即项目的排列方向）。</p>
-<pre><code>.box {  
-  flex-direction: row | row-reverse | column | column-reverse;  
-}
-</code></pre><ul>
-<li>row（默认值）：主轴为水平方向，起点在左端。</li>
-<li>row-reverse：主轴为水平方向，起点在右端。</li>
-<li>column：主轴为垂直方向，起点在上沿。</li>
-<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
-</ul>
-<h4 id="3-2flex-wrap属性"><a href="#3-2flex-wrap属性" class="headerlink" title="3.2flex-wrap属性"></a>3.2flex-wrap属性</h4><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
-<pre><code>.box{  
-  flex-wrap: nowrap | wrap | wrap-reverse;  
-} 
-</code></pre><ul>
-<li>nowrap（默认）：不换行。 </li>
-<li>warp:换行，第一行在上方。</li>
-<li>warp-reverse:换行，第一行在下方。</li>
-</ul>
-<h4 id="3-3flex-flow"><a href="#3-3flex-flow" class="headerlink" title="3.3flex-flow"></a>3.3flex-flow</h4><p>flex-flow属性是flex-direction属性和flex-warp属性的简写形式，默认值为row nowarp。</p>
-<pre><code>.box {  
-  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;  
-} 
-</code></pre><h4 id="3-4justify-content属性"><a href="#3-4justify-content属性" class="headerlink" title="3.4justify-content属性"></a>3.4justify-content属性</h4><p>justify-content属性定义了项目在主轴上的对齐方式。</p>
-<pre><code>.box{
-    justify-content:flex-start | flex-end | center | space-between | space-around;
-}
-</code></pre><ul>
-<li>flex-start:（默认值）左对齐</li>
-<li>flex-end：右对齐</li>
-<li>center：居中</li>
-<li>space-between：两端对齐，项目之间的间隔都相等</li>
-<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比边框的间隔大一倍。</li>
-</ul>
-<h4 id="3-5align-items属性"><a href="#3-5align-items属性" class="headerlink" title="3.5align-items属性"></a>3.5align-items属性</h4><p>align-items属性定义项目在交叉轴上如何对齐s<br>    .box {<br>      align-items: flex-start | flex-end | center | baseline | stretch;<br>    }  </p>
-<ul>
-<li>flex-start：交叉轴的起点对齐。</li>
-<li>flex-end：交叉轴的终点对齐。</li>
-<li>center：交叉轴的中点对齐。</li>
-<li>baseline: 项目的第一行文字的基线对齐。</li>
-<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
-</ul>
-<h4 id="3-6align-content属性"><a href="#3-6align-content属性" class="headerlink" title="3.6align-content属性"></a>3.6align-content属性</h4><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
-<pre><code>.box {  
-  align-content: flex-start | flex-end | center | space-between | space-around | stretch;  
-}  
-</code></pre><ul>
-<li>flex-start：与交叉轴的起点对齐。</li>
-<li>flex-end：与交叉轴的终点对齐。</li>
-<li>center：与交叉轴的中点对齐。</li>
-<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
-<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
-<li>stretch（默认值）：轴线占满整个交叉轴。</li>
-</ul>
-<h3 id="4-项目的属性"><a href="#4-项目的属性" class="headerlink" title="4.项目的属性"></a>4.项目的属性</h3><ol>
-<li>order</li>
-<li>flex-grow</li>
-<li>flex-shrink</li>
-<li>flex-basis</li>
-<li>flex</li>
-<li>align-self</li>
-</ol>
-<h4 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h4><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<pre><code>.item {  
-  order: &lt;integer&gt;;  
-}  
-</code></pre><h4 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h4><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
-<pre><code>.item {  
-  flex-grow: &lt;number&gt;; /* default 0 */  
-}  
-</code></pre><p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-<h4 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h4><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
-<pre><code>.item {  
-  flex-shrink: &lt;number&gt;; /* default 1 */  
-}  
-</code></pre><p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。</p>
-<h4 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h4><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
-<pre><code>.item {  
-  flex-basis: &lt;length&gt; | auto; /* default auto */  
-}    
-</code></pre><p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
-<h4 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h4><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
-<pre><code>.item {  
-  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]  
-}  
-</code></pre><p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
-<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h4 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h4><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-<pre><code>.item {  
-  align-self: auto | flex-start | flex-end | center | baseline | stretch;  
-}  
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1851,7 +1761,7 @@ document.write(require(&quot;./main1.js&quot;));
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

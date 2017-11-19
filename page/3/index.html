@@ -263,6 +263,395 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/31/Node-js中的module-exports与exports的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/31/Node-js中的module-exports与exports的区别/" itemprop="url">Node.js中的module.exports与exports的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T20:34:52+08:00">
+                2016-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code>module.exports = {};
+</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function(){
+         console.log(&apos;a&apos;)
+     }
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+     console.log(x.a)
+</code></pre><p>   result:</p>
+<pre><code>1    
+</code></pre><p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function(){
+        console.log(&apos;a&apos;)
+     }
+ module.exports = {a: 2}
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&apos;./foo&apos;);
+ console.log(x.a)
+</code></pre><p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
+   options = options || {};
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
+   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ }
+
+ module.exports = View;
+</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View(){
+
+     }
+
+     View.prototype.test = function(){
+      console.log(&apos;test&apos;)
+     }
+
+     View.test1 = function(){
+          console.log(&apos;test1&apos;)
+     }
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&apos;./foo&apos;);
+
+     console.log(x) //{ [Function: View] test1: [Function] }
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code>exports = module.exports = createApplication;
+
+/**
+ * Expose mime.
+ */
+
+exports.mime = connect.mime;
+</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/30/Vue-js中方法与事件处理器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/30/Vue-js中方法与事件处理器/" itemprop="url">Vue.js中方法与事件处理器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T20:37:12+08:00">
+                2016-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
+<pre><code>//.html
+&lt;div id=&quot;example&quot;&gt;
+  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
+<pre><code>var vm = new Vue({
+  el: &apos;#example&apos;,
+  data: {
+    name: &apos;Vue.js&apos;
+  },
+  //在methods对象中定义方法
+  methods: {
+    greet: function (event) {
+      //方法内this指向vm
+      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
+      //event是原DOM事件
+      alert(event.target.tagName)
+    }
+  }
+})
+
+// 也可以在 JavaScript 代码中调用方法
+vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
+</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<pre><code>//.html
+&lt;div id=&quot;example-2&quot;&gt;
+  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
+  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
+&lt;/div&gt;
+
+
+//.js
+var vm = new Vue({
+  el: &apos;#example-2&apos;,
+  methods: {
+    say: function (msg) {
+      alert(msg)
+    }
+  }
+}) 
+</code></pre><p>result:</p>
+<pre><code>Hi
+
+What
+</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
+<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
+<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
+<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
+<pre><code>&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
+<ol>
+<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
+</li>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
+</li>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/28/Vue-js中的表单控件绑定/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,447 +1920,11 @@ modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/21/用Node-js实现HTTP服务器程序/" itemprop="url">用Node.js实现HTTP服务器程序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T20:57:26+08:00">
-                2016-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序</p>
-</blockquote>
-<p><strong>注意：</strong></p>
-<ol>
-<li><p>要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。</p>
-</li>
-<li><p>request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；</p>
-</li>
-<li><p>response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。</p>
-</li>
-</ol>
-<hr>
-<h3 id="一-让我们先了解下-Node-js-应用是由哪几部分组成的："><a href="#一-让我们先了解下-Node-js-应用是由哪几部分组成的：" class="headerlink" title="一.让我们先了解下 Node.js 应用是由哪几部分组成的："></a>一.让我们先了解下 Node.js 应用是由哪几部分组成的：</h3><ol>
-<li><p><strong>引入 required 模块：</strong>我们可以使用 require 指令来载入 Node.js 模块。</p>
-</li>
-<li><p><strong>创建服务器</strong>：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
-</li>
-<li><p><strong>接收请求与响应请求:</strong>服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
-</li>
-</ol>
-<h3 id="二-Node-js实现一个HTTP服务器程序的步骤："><a href="#二-Node-js实现一个HTTP服务器程序的步骤：" class="headerlink" title="二.Node.js实现一个HTTP服务器程序的步骤："></a>二.Node.js实现一个HTTP服务器程序的步骤：</h3><h4 id="1-引入requried模块："><a href="#1-引入requried模块：" class="headerlink" title="1. 引入requried模块："></a>1. 引入requried模块：</h4><p>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，实例如下:</p>
-<pre><code>var http = require(&quot;http&quot;);
-</code></pre><h3 id="2-创建服务器，接收请求与响应请求："><a href="#2-创建服务器，接收请求与响应请求：" class="headerlink" title="2. 创建服务器，接收请求与响应请求："></a>2. 创建服务器，接收请求与响应请求：</h3><p>接下来我们使用 http.createServer() 方法创建服务器，并使用 listen 方法绑定 8080 端口。 函数通过 request, response 参数来接收和响应数据。实例如下：</p>
-<pre><code>// 创建http server，并传入回调函数:
-var server = http.createServer(function (request, response) {
-
-      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
-      response.writeHead(200, {&apos;Content-Type&apos;: &apos;text/html&apos;});
-
-      // 将HTTP响应的HTML内容写入response:
-      response.end(&apos;&lt;h1&gt;Hello world!&lt;/h1&gt;&apos;);
-});
-
-// 让服务器监听8080端口:
-server.listen(8080,&apos;127.0.0.1&apos;);
-
-//// 终端打印如下信息
-console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);
-</code></pre><h3 id="3-在命令提示符下运行该程序，可以看到以下输出："><a href="#3-在命令提示符下运行该程序，可以看到以下输出：" class="headerlink" title="3. 在命令提示符下运行该程序，可以看到以下输出："></a>3. 在命令提示符下运行该程序，可以看到以下输出：</h3><pre><code>$ node hello.js 
-Server is running at http://127.0.0.1:8080/
-</code></pre><h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：" target="_blank" rel="external">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
-</code></pre><h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
-<li>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</li>
-</ul>
-<ul>
-<li>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/20/Node-js中的Stream模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/20/Node-js中的Stream模块/" itemprop="url">Node.js中的Stream模块</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-20T21:12:32+08:00">
-                2016-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>注意：</strong></p>
-<ol>
-<li><p>stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。</p>
-</li>
-<li><p>什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输入流（stdin）。</p>
-</li>
-<li><p>Node.js，Stream 有四种流类型：</p>
-<ul>
-<li>Readable - 可读操作。</li>
-<li>Writable - 可写操作。</li>
-<li>Duplex - 可读可写操作.</li>
-<li>Transform - 操作被写入数据，然后读出结果。</li>
-</ul>
-</li>
-<li><p>所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：</p>
-<ul>
-<li>data - 当有数据可读时触发。</li>
-<li>end - 没有更多的数据可读时触发。</li>
-<li>error - 在接收和写入过程中发生错误时触发。</li>
-<li>finish - 所有数据已被写入到底层系统时触发。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="一-从流中读取数据"><a href="#一-从流中读取数据" class="headerlink" title="一.从流中读取数据"></a>一.从流中读取数据</h3><ol>
-<li><p>创建 input.txt 文件，内容如下：</p>
-<pre><code>hello world !
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var data = &apos;&apos;;
-
-// 创建可读流
-var readerStream = fs.createReadStream(&apos;input.txt&apos;);
-
-// 设置编码为 utf8。
-readerStream.setEncoding(&apos;UTF8&apos;);
-
-// 处理流事件 --&gt; data, end, and error
-readerStream.on(&apos;data&apos;, function(chunk) {
-       data += chunk;
-   });
-
-readerStream.on(&apos;end&apos;,function(){
-       console.log(data);
-});
-
-readerStream.on(&apos;error&apos;, function(err){
-       console.log(err.stack);
-});
-
-    console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-</ol>
-<ol>
-<li><p>以上代码执行结果如下：</p>
-<pre><code>程序执行完毕
-hello world !
-</code></pre></li>
-</ol>
-<h3 id="二-写入流"><a href="#二-写入流" class="headerlink" title="二.写入流"></a>二.写入流</h3><ol>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var data = &apos;hello world !&apos;;
-
-// 创建一个可以写入的流，写入到文件 output.txt 中
-var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
-
-// 使用 utf8 编码写入数据
-writerStream.write(data,&apos;UTF8&apos;);
-
-// 标记文件末尾
-writerStream.end();
-
-// 处理流事件 --&gt; data, end, and error
-writerStream.on(&apos;finish&apos;, function() {
-    console.log(&quot;写入完成。&quot;);
-});
-
-writerStream.on(&apos;error&apos;, function(err){
-       console.log(err.stack);
-});
-
-    console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-<li><p>以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：</p>
-<pre><code>   $ node main.js 
-程序执行完毕
-写入完成。
-</code></pre></li>
-<li><p>查看 output.txt 文件的内容：</p>
-<pre><code>$ cat output.txt 
-hello world !
-</code></pre></li>
-</ol>
-<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><p> 管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
-<p> 以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
-<ol>
-<li><p>设置 input.txt 文件内容如下：</p>
-<pre><code>Hello! my name is yuxuan.
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-
-// 创建一个可读流
-var readerStream = fs.createReadStream(&apos;input.txt&apos;);
-
-// 创建一个可写流
-var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
-
-// 管道读写操作
-// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
-readerStream.pipe(writerStream);
-
-console.log(&quot;程序执行完毕&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node main.js 
-程序执行完毕
-</code></pre></li>
-<li><p>查看 output.txt 文件的内容：</p>
-<pre><code>$ cat output.txt 
-Hello! my name is yuxuan.
-</code></pre></li>
-</ol>
-<h3 id="四-链式流"><a href="#四-链式流" class="headerlink" title="四.链式流"></a>四.链式流</h3><ul>
-<li>链式是通过连接输出流到另外一个流并创建多个对个流操作链的机制。链式流一般用于管道操作。<br>接下来我们就是用管道和链式来压缩和解压文件。</li>
-</ul>
-<p><strong>a. 压缩文件</strong></p>
-<ol>
-<li><p>创建 compress.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var zlib = require(&apos;zlib&apos;);
-
-// 压缩 input.txt 文件为 input.txt.gz
-fs.createReadStream(&apos;input.txt&apos;)
-.pipe(zlib.createGzip())
-.pipe(fs.createWriteStream(&apos;input.txt.gz&apos;));
-
-console.log(&quot;文件压缩完成。&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node compress.js 
-文件压缩完成。
-</code></pre></li>
-<li><p>执行完以上操作后，我们可以看到当前目录下生成了 input.txt 的压缩文件 input.txt.gz。</p>
-</li>
-</ol>
-<p><strong>b. 解压该文件</strong></p>
-<ol>
-<li><p>创建 decompress.js 文件，代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-var zlib = require(&apos;zlib&apos;);
-
-    // 解压 input.txt.gz 文件为 input.txt
-fs.createReadStream(&apos;input.txt.gz&apos;)
-  .pipe(zlib.createGunzip())
-  .pipe(fs.createWriteStream(&apos;input.txt&apos;));
-
-console.log(&quot;文件解压完成。&quot;);
-</code></pre></li>
-<li><p>代码执行结果如下：</p>
-<pre><code>$ node decompress.js 
- 文件解压完成。
-</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2016,7 +1969,7 @@ console.log(&quot;文件解压完成。&quot;);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

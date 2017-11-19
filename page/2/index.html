@@ -263,6 +263,349 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/25/微信小程序合法域名校验出错解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/25/微信小程序合法域名校验出错解决办法/" itemprop="url">微信小程序合法域名校验出错解决办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T20:17:55+08:00">
+                2017-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>合法域名校验错误如图：</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/1.png" alt=""></p>
+<p>注：合法域名校验错误原因是腾讯限制了请求服务器的地址，如果要使用wx.request(object)，里面的url必须在小程序后台配置。方法如下：</p>
+<p><strong>第一步:登陆小程序后台，点击“设置”，然后点击“开发设置”</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/2.png" alt=""></p>
+<p><strong>第二步：填入合法域名，需要备案过。</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/3.png" alt=""> </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/21/Flex布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/21/Flex布局/" itemprop="url">Flex布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T15:14:40+08:00">
+                2017-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-flex布局是什么？"><a href="#1-flex布局是什么？" class="headerlink" title="1.flex布局是什么？"></a>1.flex布局是什么？</h3><p>flex是flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活。</p>
+<p>任何一个容器都可以指定为flex布局</p>
+<pre><code>.box1{  
+  display: flex;  
+}  
+.box2{  
+  display: inline-flex; 
+}  
+.box3{  
+    display: -webkit-flex; /* Safari ,Webkit内核的浏览器，必须加上-webkit前缀。*/  
+    display: flex;  
+}  
+</code></pre><p>注意：设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
+<h3 id="2-基本能概念"><a href="#2-基本能概念" class="headerlink" title="2.基本能概念"></a>2.基本能概念</h3><p>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
+<h3 id="3-容器的属性"><a href="#3-容器的属性" class="headerlink" title="3.容器的属性"></a>3.容器的属性</h3><ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+<h4 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h4><p>flex-direction属性决定主轴的方向（即项目的排列方向）。</p>
+<pre><code>.box {  
+  flex-direction: row | row-reverse | column | column-reverse;  
+}
+</code></pre><ul>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
+</ul>
+<h4 id="3-2flex-wrap属性"><a href="#3-2flex-wrap属性" class="headerlink" title="3.2flex-wrap属性"></a>3.2flex-wrap属性</h4><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+<pre><code>.box{  
+  flex-wrap: nowrap | wrap | wrap-reverse;  
+} 
+</code></pre><ul>
+<li>nowrap（默认）：不换行。 </li>
+<li>warp:换行，第一行在上方。</li>
+<li>warp-reverse:换行，第一行在下方。</li>
+</ul>
+<h4 id="3-3flex-flow"><a href="#3-3flex-flow" class="headerlink" title="3.3flex-flow"></a>3.3flex-flow</h4><p>flex-flow属性是flex-direction属性和flex-warp属性的简写形式，默认值为row nowarp。</p>
+<pre><code>.box {  
+  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;  
+} 
+</code></pre><h4 id="3-4justify-content属性"><a href="#3-4justify-content属性" class="headerlink" title="3.4justify-content属性"></a>3.4justify-content属性</h4><p>justify-content属性定义了项目在主轴上的对齐方式。</p>
+<pre><code>.box{
+    justify-content:flex-start | flex-end | center | space-between | space-around;
+}
+</code></pre><ul>
+<li>flex-start:（默认值）左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center：居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比边框的间隔大一倍。</li>
+</ul>
+<h4 id="3-5align-items属性"><a href="#3-5align-items属性" class="headerlink" title="3.5align-items属性"></a>3.5align-items属性</h4><p>align-items属性定义项目在交叉轴上如何对齐s<br>    .box {<br>      align-items: flex-start | flex-end | center | baseline | stretch;<br>    }  </p>
+<ul>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+<h4 id="3-6align-content属性"><a href="#3-6align-content属性" class="headerlink" title="3.6align-content属性"></a>3.6align-content属性</h4><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<pre><code>.box {  
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;  
+}  
+</code></pre><ul>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+<h3 id="4-项目的属性"><a href="#4-项目的属性" class="headerlink" title="4.项目的属性"></a>4.项目的属性</h3><ol>
+<li>order</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-basis</li>
+<li>flex</li>
+<li>align-self</li>
+</ol>
+<h4 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h4><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<pre><code>.item {  
+  order: &lt;integer&gt;;  
+}  
+</code></pre><h4 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h4><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+<pre><code>.item {  
+  flex-grow: &lt;number&gt;; /* default 0 */  
+}  
+</code></pre><p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h4 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h4><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<pre><code>.item {  
+  flex-shrink: &lt;number&gt;; /* default 1 */  
+}  
+</code></pre><p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。</p>
+<h4 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h4><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+<pre><code>.item {  
+  flex-basis: &lt;length&gt; | auto; /* default auto */  
+}    
+</code></pre><p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h4 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h4><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
+<pre><code>.item {  
+  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]  
+}  
+</code></pre><p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h4 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h4><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+<pre><code>.item {  
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;  
+}  
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/02/20/JSON学习总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2022,400 +2365,11 @@ if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/31/Node-js中的module-exports与exports的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/31/Node-js中的module-exports与exports的区别/" itemprop="url">Node.js中的module.exports与exports的区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T20:34:52+08:00">
-                2016-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
-</blockquote>
-<pre><code>module.exports = {};
-</code></pre><p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
-<pre><code>//foo.js
-
-     exports.a = function(){
-         console.log(&apos;a&apos;)
-     }
-     exports.a = 1 
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-     console.log(x.a)
-</code></pre><p>   result:</p>
-<pre><code>1    
-</code></pre><p>这里，exports是引用 module.exports的值。</p>
-<blockquote>
-<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
-</blockquote>
-<pre><code>//foo.js
-
-     exports.a = function(){
-        console.log(&apos;a&apos;)
-     }
- module.exports = {a: 2}
- exports.a = 1 
-
-
-//test.js
-
- var x = require(&apos;./foo&apos;);
- console.log(x.a)
-</code></pre><p>result:2</p>
-<p>exports在module.exports 被改变后，失效。</p>
-<blockquote>
-<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
-</blockquote>
-<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) { 
-   options = options || {};
-   this.name = name;
-   this.root = options.root;
-   var engines = options.engines;
-   this.defaultEngine = options.defaultEngine;
-   var ext = this.ext = extname(name);
-   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&apos;No default engine was specified and no         extension was provided.&apos;);
-   if (!ext) name += (ext = this.ext = (&apos;.&apos; != this.defaultEngine[0] ? &apos;.&apos; : &apos;&apos;) +     this.defaultEngine);
-   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
-   this.path = this.lookup(name);
- }
-
- module.exports = View;
-</code></pre><p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
-<pre><code>//foo.js
-
-     function View(){
-
-     }
-
-     View.prototype.test = function(){
-      console.log(&apos;test&apos;)
-     }
-
-     View.test1 = function(){
-          console.log(&apos;test1&apos;)
-     }
-     module.exports = View
-
-
-//test.js
-
-     var x = require(&apos;./foo&apos;);
-
-     console.log(x) //{ [Function: View] test1: [Function] }
-     console.log(x.test) //undefined
-     console.log(x.test1) //[Function]
-     x.test1() //test1
-</code></pre><h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
-<pre><code>exports = module.exports = createApplication;
-
-/**
- * Expose mime.
- */
-
-exports.mime = connect.mime;
-</code></pre><p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
-<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
-<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/30/Vue-js中方法与事件处理器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/30/Vue-js中方法与事件处理器/" itemprop="url">Vue.js中方法与事件处理器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T20:37:12+08:00">
-                2016-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
-<pre><code>//.html
-&lt;div id=&quot;example&quot;&gt;
-  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
-&lt;/div&gt;
-</code></pre><p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
-<pre><code>var vm = new Vue({
-  el: &apos;#example&apos;,
-  data: {
-    name: &apos;Vue.js&apos;
-  },
-  //在methods对象中定义方法
-  methods: {
-    greet: function (event) {
-      //方法内this指向vm
-      alert(&apos;Hello &apos; + this.name + &apos;!&apos;)
-      //event是原DOM事件
-      alert(event.target.tagName)
-    }
-  }
-})
-
-// 也可以在 JavaScript 代码中调用方法
-vm.greet() // -&gt; &apos;Hello Vue.js!&apos;
-</code></pre><h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
-<pre><code>//.html
-&lt;div id=&quot;example-2&quot;&gt;
-  &lt;button v-on:click=&quot;say(&apos;hi&apos;)&quot;&gt;Say Hi&lt;/button&gt;
-  &lt;button v-on:click=&quot;say(&apos;what&apos;)&quot;&gt;Say What&lt;/button&gt;
-&lt;/div&gt;
-
-
-//.js
-var vm = new Vue({
-  el: &apos;#example-2&apos;,
-  methods: {
-    say: function (msg) {
-      alert(msg)
-    }
-  }
-}) 
-</code></pre><p>result:</p>
-<pre><code>Hi
-
-What
-</code></pre><h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
-<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
-<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
-&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
-
-&lt;!-- 提交事件不再重载页面 --&gt;
-&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
-
-&lt;!-- 修饰符可以串联 --&gt;
-&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
-
-&lt;!-- 只有修饰符 --&gt;
-&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
-</code></pre><h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
-<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
-&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
-</code></pre><p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
-<pre><code>&lt;!-- 同上 --&gt;
-&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
-
-&lt;!-- 缩写语法 --&gt;
-&lt;input @keyup.enter=&quot;submit&quot;&gt;
-</code></pre><h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
-<ol>
-<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
-</li>
-<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
-</li>
-<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2460,7 +2414,7 @@ What
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
