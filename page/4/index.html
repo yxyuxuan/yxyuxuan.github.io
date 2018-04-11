@@ -263,6 +263,220 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/21/Node-js中的fs模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/21/Node-js中的fs模块/" itemprop="url">Node.js中的fs模块</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T22:14:51+08:00">
+                2016-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。</p>
+</blockquote>
+<h3 id="一-同步读文件"><a href="#一-同步读文件" class="headerlink" title="一.同步读文件"></a>一.同步读文件</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+var data = fs.readFileSync(&apos;input.txt&apos;);
+
+console.log(data.toString());
+console.log(&quot;程序执行结束!&quot;);
+</code></pre></li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code>$ node main.js
+
+ 你好，我是于禤。
+Hello!my name is yuxuan.
+程序执行结束!
+</code></pre></li>
+</ol>
+<h3 id="二-异步读文件"><a href="#二-异步读文件" class="headerlink" title="二.异步读文件"></a>二.异步读文件</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+    Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+fs.readFile(&apos;input.txt&apos;, function (err, data) {
+    if (err) return console.error(err);
+    console.log(data.toString());
+});
+
+console.log(&quot;程序执行结束!&quot;);
+</code></pre></li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code> 程序执行结束!
+ 你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+</ol>
+<h3 id="三-写文件（fs-writeFile-）"><a href="#三-写文件（fs-writeFile-）" class="headerlink" title="三.写文件（fs.writeFile()）"></a>三.写文件（fs.writeFile()）</h3><ol>
+<li><p>创建一个空文件 output.txt</p>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+
+var data = &apos;Hello, Node.js&apos;;
+fs.writeFile(&apos;output.txt&apos;, data, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(&apos;ok.&apos;);
+    }
+});
+</code></pre></li>
+<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js。<br>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
+</li>
+<li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+var data = &apos;Hello, Node.js&apos;;
+fs.writeFileSync(&apos;output.txt&apos;, data);
+</code></pre></li>
+</ol>
+<h3 id="四-获取文件的详细信息（fs-stat-）"><a href="#四-获取文件的详细信息（fs-stat-）" class="headerlink" title="四.获取文件的详细信息（fs.stat()）"></a>四.获取文件的详细信息（fs.stat()）</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code>你好，我是于禤。
+Hello!my name is yuxuan.
+</code></pre></li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code>var fs = require(&apos;fs&apos;);
+
+fs.stat(&apos;input.txt&apos;, function (err, stat) {
+if (err) {
+    console.log(err);
+} else {
+    // 是否是文件:
+    console.log(&apos;isFile: &apos; + stat.isFile());
+    // 是否是目录:
+    console.log(&apos;isDirectory: &apos; + stat.isDirectory());
+    if (stat.isFile()) {
+        // 文件大小:
+        console.log(&apos;size: &apos; + stat.size);
+        // 创建时间, Date对象:
+        console.log(&apos;birth time: &apos; + stat.birthtime);
+        // 修改时间, Date对象:
+        console.log(&apos;modified time: &apos; + stat.mtime);
+        }
+ }
+});
+</code></pre></li>
+<li><p>运行结果如下：</p>
+<pre><code>isFile: true
+isDirectory: false
+size: 51
+birth time: Thu Oct 20 2016 13:40:21 GMT+0800 (中国标准时间)
+modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
+</code></pre></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/21/用Node-js实现HTTP服务器程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1765,396 +1979,6 @@ String.prototype.ltrim=function(){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/09/16/JavaScript中的Array数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/16/JavaScript中的Array数组/" itemprop="url">JavaScript中的Array数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-16T22:14:29+08:00">
-                2016-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
-<li><p>介绍：介绍 Array 数组对象的说明、定义方式以及属性。</p>
-</li>
-<li><p>实例方法：介绍 Array 对象的实例方法：concat、every、filter、forEach、indexOf、join、lastIndexOf、map、pop、push、reverse、shift、slice、sort、splice、toString、tounshift等。</p>
-</li>
-<li><p>静态方法：介绍 Array 对象的静态方法：Array.isArray()。</p>
-</li>
-<li><p>实际操作：对 Array 进行示例操作：索引、for遍历、浅度复制、深度复制等操作。</p>
-</li>
-</ol>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><h3 id="1-1-说明"><a href="#1-1-说明" class="headerlink" title="1.1 说明"></a>1.1 说明</h3><pre><code>数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 --《JavaScript权威指南(第六版)》
-</code></pre><h3 id="1-2-定义方式"><a href="#1-2-定义方式" class="headerlink" title="1.2 定义方式"></a>1.2 定义方式</h3><p>var names = new Array(“张三”, “李四”, “王五”);<br>//或者<br>var names = [“张三”, “李四”, “王五”];</p>
-<h3 id="1-3-属性"><a href="#1-3-属性" class="headerlink" title="1.3 属性"></a>1.3 属性</h3><p>length：表示数组内的元素长度。</p>
-<h2 id="2-实例方法"><a href="#2-实例方法" class="headerlink" title="2. 实例方法"></a>2. 实例方法</h2><p>常用方法：</p>
-<pre><code>1) unshift() ：在数组头部插入元素
-
-2) shift() ：移除并返回数组的第一个元素
-
-3) push() ：在数组尾部插入元素
-
-4) pop() ：移除并返回数组的最后一个元素
-</code></pre><h3 id="2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组"><a href="#2-1-concat-：把元素衔接到数组中。不会修改原先的array-返回新的数组" class="headerlink" title="2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组"></a>2.1 concat() ：把元素衔接到数组中。不会修改原先的array,返回新的数组</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个新的数组，包含原先的Array和新加入的元素。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-var demoArray2 = demoArray.concat(&apos;e&apos;);
-console.log(demoArray); // =&gt; demoArray:[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]  原数组不发生变更
-console.log(demoArray2); // =&gt; [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;]
-</code></pre><h3 id="2-2-every-：依次遍历元素，判断每个元素是否都为true"><a href="#2-2-every-：依次遍历元素，判断每个元素是否都为true" class="headerlink" title="2.2 every() ：依次遍历元素，判断每个元素是否都为true"></a>2.2 every() ：依次遍历元素，判断每个元素是否都为true</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素都会使用此函数判断是否为true，当判断到一个为false时，立即结束遍历。
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Boolean} ：只有每个元素都为true才返回true；只要一个为false，就返回false。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-var rs = demoArray.every(function (value, index, self) {
-return value &gt; 0;
-});
-console.log(rs); // =&gt; true
-</code></pre><h3 id="2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组"><a href="#2-3-filter-：依次遍历元素，返回包含符合条件元素的新的数组" class="headerlink" title="2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组"></a>2.3 filter() ：依次遍历元素，返回包含符合条件元素的新的数组</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素依次调用此函数，返回包含符合条件元素的新的数组。
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个包含符合条件元素的新的数组
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-var rs = demoArray.filter(function (value, index, self) {
-return value &gt; 0;
-});
-console.log(rs); // =&gt; [1, 2, 3]
-</code></pre><h3 id="2-4-forEach-：依次遍历元素，执行指定的函数；无返回值"><a href="#2-4-forEach-：依次遍历元素，执行指定的函数；无返回值" class="headerlink" title="2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值"></a>2.4 forEach() ：依次遍历元素，执行指定的函数；无返回值</h3><p>参数：</p>
-<pre><code>function(value,index,self){} ：每个元素依次调用此函数
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：无</p>
-<p>示例：</p>
-<pre><code>var demoArray = [1, 2, 3];
-demoArray.forEach(function (value, index, self) {
-console.log(value); // =&gt; 依次输出：1  2  3
-});
-</code></pre><h3 id="2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-5-indexOf-：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.5 indexOf() ：在数组中查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
-<pre><code>①value ：要在数组中查找的值。
-
-②start ：开始查找的序号位置，如果省略，则为0.
-</code></pre><p>返回值：</p>
-<pre><code>{Int} ：返回数组中第一个匹配value的序号，若不存在，返回-1
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;); // =&gt;0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;a&apos;, 1); // =&gt;-1
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].indexOf(&apos;d&apos;); // =&gt;-1
-[1, 2, 3].indexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
-</code></pre><h3 id="2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串"><a href="#2-6-join-：将数组中所有元素通过一个分隔符拼接为一个字符串" class="headerlink" title="2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串"></a>2.6 join() ：将数组中所有元素通过一个分隔符拼接为一个字符串</h3><p>参数：</p>
-<pre><code>①sparator {String}：各元素之间的分隔符，如果省略，默认以因为英文逗号&apos;,&apos;分隔。
-</code></pre><p>返回值：</p>
-<pre><code>{String} ：各元素以sparator为分隔符，拼接而成的一个字符串。
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(); // =&gt; &apos;a,b,c&apos;
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(&apos;-&apos;); // =&gt; &apos;a-b-c&apos;
-</code></pre><h3 id="2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’"><a href="#2-7-lastIndexOf-：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”-”运算符，所以要区分1和’1’" class="headerlink" title="2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’"></a>2.7 lastIndexOf ：在数组中反向查找匹配元素。若不存在匹配的元素时，就返回-1。查找的时候使用”===”运算符，所以要区分1和’1’</h3><p>参数：</p>
-<pre><code>①value ：要在数组中查找的值。
-
-②start ：开始查找的序号位置，如果省略，则从最后一个元素开始查找。
-</code></pre><p>返回值：</p>
-<pre><code>{Int} ：从右到左开始查找数组中第一个匹配value的序号，若不存在，返回-1
-</code></pre><p>示例：</p>
-<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;); // =&gt; 0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;a&apos;, 1); // =&gt; 0
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].lastIndexOf(&apos;d&apos;); // =&gt; -1
-[1, 2, 3].lastIndexOf(&apos;1&apos;); // =&gt; -1 ：采用的&apos;===&apos;匹配方式
-</code></pre><h3 id="2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组"><a href="#2-8-map-：依次遍历并计算每个元素，返回计算好的元素的数组" class="headerlink" title="2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组"></a>2.8 map() ：依次遍历并计算每个元素，返回计算好的元素的数组</h3><p>参数：</p>
-<pre><code>①function(value,index,self){} ：每个元素依次调用此函数，返回计算好的元素
-
-value ：数组遍历的元素
-
-index ：元素序号
-
-self ：Array本身
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个包含就算好的元素的新的数组
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3].map(function (value, index, self) {
-return value * 2;
-}); // =&gt; [2, 4, 6]
-</code></pre><h3 id="2-9-pop-：移除并返回数组的最后一个元素"><a href="#2-9-pop-：移除并返回数组的最后一个元素" class="headerlink" title="2.9 pop() ：移除并返回数组的最后一个元素"></a>2.9 pop() ：移除并返回数组的最后一个元素</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{Object} 数组的最后一个元素；若数组为空，返回undefined
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.pop(); // =&gt; c
-demoArray.pop(); // =&gt; b
-demoArray.pop(); // =&gt; a
-demoArray.pop(); // =&gt; undefined
-</code></pre><h3 id="2-10-push-：把元素添加到数组尾部"><a href="#2-10-push-：把元素添加到数组尾部" class="headerlink" title="2.10 push() ：把元素添加到数组尾部"></a>2.10 push() ：把元素添加到数组尾部</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值添加到数组尾部
-</code></pre><p>返回值：</p>
-<pre><code>{int} 数组新的长度 
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.push(&apos;d&apos;); // =&gt; 4, demoArray ： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]
-demoArray.push(&apos;e&apos;, &apos;f&apos;); // =&gt; 6, demoArray ：[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
-console.log(demoArray); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]
-</code></pre><h3 id="2-11-reverse-：反转数组元素的顺序"><a href="#2-11-reverse-：反转数组元素的顺序" class="headerlink" title="2.11 reverse() ：反转数组元素的顺序"></a>2.11 reverse() ：反转数组元素的顺序</h3><p>参数：无</p>
-<p>返回值：无(在原数组内进行元素顺序反转)。</p>
-<p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-demoArray.reverse();
-console.log(demoArray); // =&gt; [&quot;e&quot;, &quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot;]
-</code></pre><h3 id="2-12-shift-：移除并返回数组的第一个元素"><a href="#2-12-shift-：移除并返回数组的第一个元素" class="headerlink" title="2.12 shift() ：移除并返回数组的第一个元素"></a>2.12 shift() ：移除并返回数组的第一个元素</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{Object} 数组的第一个元素；若数组为空，返回undefined。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
-demoArray.shift(); // =&gt; a
-demoArray.shift(); // =&gt; b
-demoArray.shift(); // =&gt; c
-demoArray.shift(); // =&gt; undefined
-</code></pre><h3 id="2-13-slice-startIndex-endIndex-：返回数组的一部分"><a href="#2-13-slice-startIndex-endIndex-：返回数组的一部分" class="headerlink" title="2.13 slice(startIndex,endIndex) ：返回数组的一部分"></a>2.13 slice(startIndex,endIndex) ：返回数组的一部分</h3><p>参数：</p>
-<pre><code>①startIndex ：开始处的序号；若为负数，表示从尾部开始计算，-1代表最后一个元素，-2倒数第二个，依此类推。
-
-②endIndex ： 结束处的元素后一个序号，没指定就是结尾。截取的元素不包含此处序号的元素，结尾为此处序号的前一个元素。
-</code></pre><p>返回值：</p>
-<pre><code>{Array} 一个新的数组，包含从startIndex到endIndex前一个元素的所有元素。
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3, 4, 5, 6].slice(); // =&gt; [1, 2, 3, 4, 5, 6]
-[1, 2, 3, 4, 5, 6].slice(1); // =&gt; [2, 3, 4, 5, 6] ：从序号1开始截取
-[1, 2, 3, 4, 5, 6].slice(0, 4); // =&gt; [1, 2, 3, 4] ：截取序号0到序号3(序号4的前一个)的元素
-[1, 2, 3, 4, 5, 6].slice(-2); // =&gt; [5, 6] ：截取后面的2个元素
-</code></pre><h3 id="2-14-sort-opt-orderFunc-：按一定的规则进行排序"><a href="#2-14-sort-opt-orderFunc-：按一定的规则进行排序" class="headerlink" title="2.14 sort(opt_orderFunc) ：按一定的规则进行排序"></a>2.14 sort(opt_orderFunc) ：按一定的规则进行排序</h3><p>参数：</p>
-<pre><code>①opt_orderFunc(v1,v2) {Function}：可选的排序规则函数。若省略，将按照元素的字母进行从小到大排序。
-
-v1 ：遍历时前面的元素。
-
-v2 ：遍历时后面的元素。
-</code></pre><p>排序规则：</p>
-<pre><code>比较v1和v2，返回一个数字来表示v1和v2的排序规则：
-
-小于0 ：v1小于v2，v1排在v2的前面。
-
-等于0 ：v1等于v2，v1排在v2的前面。
-
-大于0 ：v1大于v2，v1排在v2的后面。
-</code></pre><p>返回值：无(在原先数组里进行排序操作)。</p>
-<p>示例：</p>
-<pre><code>[1, 3, 5, 2, 4, 11, 22].sort(); // =&gt; [1, 11, 2, 22, 3, 4, 5] ：这里都元素都被转换为字符，11的字符在2前
-
-[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
-return v1 - v2;
-}); // =&gt; [1, 2, 3, 4, 5, 11, 22] ：从小到大排序
-
-[1, 3, 5, 2, 4, 11, 22].sort(function (v1, v2) {
-return -(v1 - v2); //取反，就可以转换为 从大到小
-}); // =&gt; [22, 11, 5, 4, 3, 2, 1]
-</code></pre><h3 id="2-15-splice-：插入、删除数组元素"><a href="#2-15-splice-：插入、删除数组元素" class="headerlink" title="2.15 splice() ：插入、删除数组元素"></a>2.15 splice() ：插入、删除数组元素</h3><p>参数：</p>
-<pre><code>①start {int} ：开始插入、删除或替换的起始序号。
-
-②deleteCount {int} ：要删除元素的个数，从start处开始计算。
-
-③value1,value2 ... valueN {Object} ：可选参数，表示要插入的元素，从start处开始插入。若②参不为0，那么先执行删除操作，再执行插入操作。
-</code></pre><p>返回值：</p>
-<pre><code>{Array}  返回一个包含删除元素的新的数组。若②参为0，表示没元素删除，返回一个空数组。
-</code></pre><p>示例：</p>
-<pre><code>// 1.删除
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArray2 = demoArray.splice(0, 2); // 删除从序号从0开始的2个元素，返回包含删除元素的数组：[&apos;a&apos;, &apos;b&apos;]
-console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;]
-console.log(demoArray); // =&gt; [&apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-
-// 2.插入
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArray2 = demoArray.splice(0, 0, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;); // ②参为0，返回空数组
-console.log(demoArray2); // =&gt; [ ]
-console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-
-// 3.先删除再插入
-var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-// 当②参不为0，那么先执行删除操作(删除序号从0开始的4个元素，返回包含被删除元素的数组)，再执行插入操作
-var demoArray2 = demoArray.splice(0, 4, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;);
-console.log(demoArray2); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;] 
-console.log(demoArray); // =&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;e&apos;]
-</code></pre><h3 id="2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串"><a href="#2-16-toString-：将数组中所有元素通过一个英文逗号’-’拼接为一个字符串" class="headerlink" title="2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串"></a>2.16 toString() ：将数组中所有元素通过一个英文逗号’,’拼接为一个字符串</h3><p>参数：无</p>
-<p>返回值：</p>
-<pre><code>{String}  数组中所有元素通过一个英文逗号&apos;,&apos;拼接为一个字符串，并返回。与调用无参join()方法一样。
-</code></pre><p>示例：</p>
-<pre><code>[1, 2, 3, 4, 5].toString(); // =&gt; &apos;1,2,3,4,5&apos;
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;].toString(); // =&gt; &apos;a,b,c,d,e&apos;
-</code></pre><h3 id="2-17-unshift-：在数组头部插入元素"><a href="#2-17-unshift-：在数组头部插入元素" class="headerlink" title="2.17 unshift() ：在数组头部插入元素"></a>2.17 unshift() ：在数组头部插入元素</h3><p>参数：</p>
-<pre><code>①value1,value2.....valueN ：任意多个值添加到数组头部
-</code></pre><p>返回值：</p>
-<pre><code>{int} 数组新的长度 
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [];
-demoArray.unshift(&apos;a&apos;); // =&gt; demoArray:[&apos;a&apos;]
-demoArray.unshift(&apos;b&apos;); // =&gt; demoArray:[&apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;c&apos;); // =&gt; demoArray:[&apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;d&apos;); // =&gt; demoArray:[&apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-demoArray.unshift(&apos;e&apos;); // =&gt; demoArray:[&apos;e&apos;, &apos;d&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
-</code></pre><h2 id="3-静态方法"><a href="#3-静态方法" class="headerlink" title="3. 静态方法"></a>3. 静态方法</h2><h3 id="3-1-Array-isArray-：判断对象是否为数组"><a href="#3-1-Array-isArray-：判断对象是否为数组" class="headerlink" title="3.1 Array.isArray() ：判断对象是否为数组"></a>3.1 Array.isArray() ：判断对象是否为数组</h3><p>参数：</p>
-<pre><code>①value {Object}：任意对象
-</code></pre><p>返回值：</p>
-<pre><code>{Boolean}  返回判断结果。当为 true时，表示对象为数组；为false时，表示对象不是数组
-</code></pre><p>示例：</p>
-<pre><code>Array.isArray([]); // =&gt; true
-Array.isArray([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]); // =&gt; true
-Array.isArray(&apos;a&apos;); // =&gt; false
-Array.isArray(&apos;[1, 2, 3]&apos;); // =&gt; false
-</code></pre><h2 id="4-实际操作"><a href="#4-实际操作" class="headerlink" title="4. 实际操作"></a>4. 实际操作</h2><h3 id="4-1-索引"><a href="#4-1-索引" class="headerlink" title="4.1 索引"></a>4.1 索引</h3><p>说明：</p>
-<pre><code>每个元素在数组中有一个位置，以数字表示，称为索引。索引是从0开始计，即第一个元素的索引为0，第二个元素的索引为1，依此类推；
-
-    当获取一个数组不存在的索引时，返回 undefined。
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-demoArray[0]; // =&gt; 获取第一个元素:&apos;a&apos;
-demoArray[0] = 1;  // 设置第一个元素为 1
-console.log(demoArray); // =&gt; demoArray:[1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
-console.log(demoArray[9]); // =&gt; undefined ：当获取的索引不存在时，返回 undefined
-</code></pre><h3 id="4-2-for-语句"><a href="#4-2-for-语句" class="headerlink" title="4.2 for 语句"></a>4.2 for 语句</h3><p>说明：</p>
-<pre><code>可以通过for语句逐个遍历数组
-</code></pre><p>示例：</p>
-<pre><code>var demoArray = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-for (var i = 0, length = demoArray.length; i &lt; length; i++) {
-console.log(demoArray[i]); // =&gt; 逐个输出数组内的元素
-}
-</code></pre><h3 id="4-3-浅度复制"><a href="#4-3-浅度复制" class="headerlink" title="4.3 浅度复制"></a>4.3 浅度复制</h3><p>说明：</p>
-<pre><code>Array类型是一种引用类型；当数组a复制给数组b时，对数组b进行元素修改，数组a也会发生修改。
-</code></pre><p>示例：</p>
-<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArrayB = demoArrayA; // 把数组A 赋值给数组B
-demoArrayB[0] = 1; // 对数组B 的元素进行修改
-console.log(demoArrayA); // =&gt; [1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素也发生了变更
-</code></pre><h3 id="4-4-深度复制"><a href="#4-4-深度复制" class="headerlink" title="4.4 深度复制"></a>4.4 深度复制</h3><p>说明：</p>
-<pre><code>使用concat()方法，返回新的数组；防止浅度复制的情况发生，对数组b进行元素修改操作，数组a不发生变更。
-</code></pre><p>示例：</p>
-<pre><code>var demoArrayA = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
-var demoArrayB = demoArrayA.concat(); // 使用concat()方法，返回新的数组
-demoArrayB[0] = 1; // 对数组B 的元素进行修改
-console.log(demoArrayA); // =&gt; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组A 的元素没变更
-console.log(demoArrayB); // =&gt; [  1, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]：数组B 的元素发生了变更
-</code></pre><h3 id="4-5-判断2个数组是否相等"><a href="#4-5-判断2个数组是否相等" class="headerlink" title="4.5 判断2个数组是否相等"></a>4.5 判断2个数组是否相等</h3><p>说明：</p>
-<pre><code>Array数组为引用类型，所以哪怕 []===[] 都会返回false，所以可通过数组toString()方法返回的字符串判断是否相等。
-</code></pre><p>示例：</p>
-<pre><code>console.log([]===[]); // =&gt; false
-console.log([&apos;a&apos;, &apos;b&apos;] === [&apos;a&apos;, &apos;b&apos;]); // =&gt; false
-console.log([&apos;a&apos;, &apos;b&apos;].toString() === [&apos;a&apos;, &apos;b&apos;].toString()); // true
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2204,7 +2028,7 @@ console.log([&apos;a&apos;, &apos;b&apos;].toString() === [&apos;a&apos;, &apos;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -263,6 +263,242 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/01/20/AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/20/AJAX/" itemprop="url">AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-20T14:00:29+08:00">
+                2017-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-AJAX简介"><a href="#一-AJAX简介" class="headerlink" title="一. AJAX简介"></a>一. AJAX简介</h2><ol>
+<li>AJAX = 异步 JavaScript 和 XML。</li>
+<li>AJAX 是一种用于创建快速动态网页的技术。</li>
+<li>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。</li>
+<li>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</li>
+</ol>
+<h2 id="二-创建-XMLHttpRequest-对象"><a href="#二-创建-XMLHttpRequest-对象" class="headerlink" title="二. 创建 XMLHttpRequest 对象"></a>二. 创建 XMLHttpRequest 对象</h2><ol>
+<li>XMLHttpRequest 是 AJAX 的基础。</li>
+<li>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。</li>
+<li>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。</li>
+</ol>
+<ol>
+<li><p>创建 XMLHttpRequest 对象的语法：</p>
+<pre><code>variable=new XMLHttpRequest();
+</code></pre><p> 老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+<pre><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre></li>
+<li><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：</p>
+<pre><code>var xmlhttp;
+if (window.XMLHttpRequest)
+{
+    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    xmlhttp=new XMLHttpRequest();
+}
+else
+{
+    // IE6, IE5 浏览器执行代码
+    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+}
+</code></pre></li>
+</ol>
+<h2 id="三-请求"><a href="#三-请求" class="headerlink" title="三.请求"></a>三.请求</h2><ol>
+<li><p>向服务器发送请求请求:</p>
+<ul>
+<li>XMLHttpRequest 对象用于和服务器交换数据。</li>
+<li><p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+<p>  xmlhttp.open(“GET”,”ajax_info.txt”,true);<br>  xmlhttp.send();</p>
+</li>
+</ul>
+</li>
+<li><p>open(method,url,async):规定请求的类型、URL 以及是否异步处理请求。</p>
+<ul>
+<li>method：请求的类型；GET 或 POST</li>
+<li>url：文件在服务器上的位置</li>
+<li>async：true（异步）或 false（同步）</li>
+</ul>
+</li>
+<li><p>send(string):将请求发送到服务器。</p>
+<ul>
+<li>string：仅用于 POST 请求</li>
+</ul>
+</li>
+<li><p>GET 请求</p>
+<p> 一个简单的 GET 请求：</p>
+<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php&quot;,true);
+xmlhttp.send();
+</code></pre></li>
+<li><p>POST 请求</p>
+<p> 一个简单 POST 请求：</p>
+<pre><code>xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post.php&quot;,true);
+xmlhttp.send();
+</code></pre></li>
+</ol>
+<ol>
+<li>GET 还是 POST？<br> 与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br> 然而，在以下情况中，请使用 POST 请求： <ul>
+<li>无法使用缓存文件（更新服务器上的文件或数据库）  </li>
+<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+</ul>
+</li>
+</ol>
+<h2 id="四-响应"><a href="#四-响应" class="headerlink" title="四.响应"></a>四.响应</h2><ol>
+<li><p>服务器响应</p>
+<p> 如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的responseText 或 responseXML 属性。</p>
+<ul>
+<li>responseText：获得字符串形式的响应数据。</li>
+<li>responseXML：获得 XML 形式的响应数据。</li>
+</ul>
+</li>
+<li><p>responseText 属性</p>
+<p> 如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
+<ul>
+<li><p>responseText 属性返回字符串形式的响应，因此您可以这样使用：</p>
+<pre><code>document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+</code></pre></li>
+</ul>
+</li>
+<li><p>responseXML 属性</p>
+<p> 如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
+<pre><code>请求 cd_catalog.xml 文件，并解析响应：
+xmlDoc=xmlhttp.responseXML;
+txt=&quot;&quot;;
+x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);
+for (i=0;i&lt;x.length;i++)
+{
+    txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;myDiv&quot;).innerHTML=txt;
+</code></pre></li>
+</ol>
+<h2 id="五-onreadystatechange-事件"><a href="#五-onreadystatechange-事件" class="headerlink" title="五.onreadystatechange 事件"></a>五.onreadystatechange 事件</h2><ol>
+<li>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</li>
+<li>每当 readyState 改变时，就会触发 onreadystatechange 事件。</li>
+<li>readyState 属性存有 XMLHttpRequest 的状态信息。</li>
+<li><p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+<ul>
+<li>onreadystatechange: 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</li>
+<li>readyState:存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪.    </li>
+<li><p>status:  200: “OK” 404: 未找到页面</p>
+<p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。</p>
+<p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：</p>
+<p>   xmlhttp.onreadystatechange=function()</p>
+<pre><code>{
+if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+  {
+  document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+  }
+}
+</code></pre><p>注意： onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/31/Node-js中的module-exports与exports的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1706,220 +1942,6 @@ server.removeListener(&apos;connection&apos;, callback);
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/21/Node-js中的fs模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/21/Node-js中的fs模块/" itemprop="url">Node.js中的fs模块</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T22:14:51+08:00">
-                2016-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。</p>
-</blockquote>
-<h3 id="一-同步读文件"><a href="#一-同步读文件" class="headerlink" title="一.同步读文件"></a>一.同步读文件</h3><ol>
-<li><p>创建一个文件 input.txt ，内容如下：</p>
-<pre><code>你好，我是于禤。
-Hello!my name is yuxuan.
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-
-var data = fs.readFileSync(&apos;input.txt&apos;);
-
-console.log(data.toString());
-console.log(&quot;程序执行结束!&quot;);
-</code></pre></li>
-<li><p>以上代码执行结果如下：</p>
-<pre><code>$ node main.js
-
- 你好，我是于禤。
-Hello!my name is yuxuan.
-程序执行结束!
-</code></pre></li>
-</ol>
-<h3 id="二-异步读文件"><a href="#二-异步读文件" class="headerlink" title="二.异步读文件"></a>二.异步读文件</h3><ol>
-<li><p>创建一个文件 input.txt ，内容如下：</p>
-<pre><code>你好，我是于禤。
-    Hello!my name is yuxuan.
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&quot;fs&quot;);
-
-fs.readFile(&apos;input.txt&apos;, function (err, data) {
-    if (err) return console.error(err);
-    console.log(data.toString());
-});
-
-console.log(&quot;程序执行结束!&quot;);
-</code></pre></li>
-<li><p>以上代码执行结果如下：</p>
-<pre><code> 程序执行结束!
- 你好，我是于禤。
-Hello!my name is yuxuan.
-</code></pre></li>
-</ol>
-<h3 id="三-写文件（fs-writeFile-）"><a href="#三-写文件（fs-writeFile-）" class="headerlink" title="三.写文件（fs.writeFile()）"></a>三.写文件（fs.writeFile()）</h3><ol>
-<li><p>创建一个空文件 output.txt</p>
-</li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&apos;fs&apos;);
-
-var data = &apos;Hello, Node.js&apos;;
-fs.writeFile(&apos;output.txt&apos;, data, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log(&apos;ok.&apos;);
-    }
-});
-</code></pre></li>
-<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js。<br>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
-</li>
-<li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
-<pre><code>var fs = require(&apos;fs&apos;);
-var data = &apos;Hello, Node.js&apos;;
-fs.writeFileSync(&apos;output.txt&apos;, data);
-</code></pre></li>
-</ol>
-<h3 id="四-获取文件的详细信息（fs-stat-）"><a href="#四-获取文件的详细信息（fs-stat-）" class="headerlink" title="四.获取文件的详细信息（fs.stat()）"></a>四.获取文件的详细信息（fs.stat()）</h3><ol>
-<li><p>创建一个文件 input.txt ，内容如下：</p>
-<pre><code>你好，我是于禤。
-Hello!my name is yuxuan.
-</code></pre></li>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<pre><code>var fs = require(&apos;fs&apos;);
-
-fs.stat(&apos;input.txt&apos;, function (err, stat) {
-if (err) {
-    console.log(err);
-} else {
-    // 是否是文件:
-    console.log(&apos;isFile: &apos; + stat.isFile());
-    // 是否是目录:
-    console.log(&apos;isDirectory: &apos; + stat.isDirectory());
-    if (stat.isFile()) {
-        // 文件大小:
-        console.log(&apos;size: &apos; + stat.size);
-        // 创建时间, Date对象:
-        console.log(&apos;birth time: &apos; + stat.birthtime);
-        // 修改时间, Date对象:
-        console.log(&apos;modified time: &apos; + stat.mtime);
-        }
- }
-});
-</code></pre></li>
-<li><p>运行结果如下：</p>
-<pre><code>isFile: true
-isDirectory: false
-size: 51
-birth time: Thu Oct 20 2016 13:40:21 GMT+0800 (中国标准时间)
-modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
-</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1969,7 +1991,7 @@ modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
