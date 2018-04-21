@@ -263,6 +263,126 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2018/03/17/React中ref的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/17/React中ref的使用/" itemprop="url">React中ref的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T13:21:35+08:00">
+                2018-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>第一次接触ref是看到同事写的代码中用了ref，感觉好神奇，竟然可以获取到input的输入值，后来因为有次需要获取子组件中的数据，找来老大帮忙，他也用了ref,这次是用在组件上。今天整理了一些关于ref的内容，写了这篇博客。</p>
+</blockquote>
+<p>​    在react典型的数据流(自顶向下传递）中<code>props</code>传递是父子组件交互的唯一方式；通过传递一个新的<code>props</code>值来使子组件重新<code>re-render</code>,从而达到父子组件通信。在react典型的数据量之外，某些情况下（和第三方的dom库整合，或者某个dom元素focus等）为了修改子组件我们可能需要另一种方式，这就是<code>ref</code>方式。</p>
+<p>​    在React中，数据是自顶向下流动的（称为单项数据流），从父组件传递到子组件。因此组件是简单且易于把握的，它们只需从父节点获取<strong>props</strong>渲染即可。如果顶层组件的某个<strong>prop</strong>改变了，React会递归向下遍历整个组件树，从新渲染所有使用这个属性的组件。如果想要修改组件内部的状态使用<strong>state</strong> 。</p>
+<h4 id="通过ref可以拿到DOM元素的值，并且能够对DOM元素进行操作"><a href="#通过ref可以拿到DOM元素的值，并且能够对DOM元素进行操作" class="headerlink" title="通过ref可以拿到DOM元素的值，并且能够对DOM元素进行操作"></a><strong>通过ref可以拿到DOM元素的值，并且能够对DOM元素进行操作</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class InputComponent extends React.Component &#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    this.textInput.focus() //加载页面时对input输入框focus</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  getInputValue = () =&gt; &#123;</div><div class="line">    console.log(this.textInput.value) //点击按钮输出input的value值</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;input type=&quot;text&quot; ref=&#123;input =&gt; (this.textInput = input)&#125; /&gt;</div><div class="line">        &lt;button onClick=&#123;this.getInputValue&#125;&gt;Get Input Value&lt;/button&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="父组件通过ref可以拿到子组件的state值"><a href="#父组件通过ref可以拿到子组件的state值" class="headerlink" title="父组件通过ref可以拿到子组件的state值"></a><strong>父组件通过ref可以拿到子组件的state值</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class InputBoxComponent extends React.Component &#123;</div><div class="line">  onClick = () =&gt; &#123;</div><div class="line">    const inputValue = this.textInputBox.state.inputValue</div><div class="line">    console.log(inputValue) //输出iput输入框的值</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;InputComponent ref=&#123;input =&gt; (this.textInputBox = input)&#125; /&gt;</div><div class="line">        &lt;button onClick=&#123;this.onClick&#125;&gt;Get Input Value&lt;/button&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class InputComponent extends React.Component &#123;</div><div class="line">  state = &#123;</div><div class="line">    inputValue: &apos;&apos;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onChangeInputValue = event =&gt; &#123;</div><div class="line">    this.setState(&#123; ...this.state, inputValue: event.target.value &#125;)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return &lt;input type=&quot;text&quot; onChange=&#123;this.onChangeInputValue&#125; /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    <code>ref</code>提供了一种对于react标准的数据流不太适用的情况下组件间交互的方式，例如管理dom元素focus、text selection以及与第三方的dom库整合等等。 但是在大多数情况下应该使用react响应数据流那种方式，不要过度使用ref。</p>
+<p>​    在使用ref时，不用担心会导致内存泄露的问题，react会自动帮你管理好，在组件卸载时ref值也会被销毁。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2018/03/11/React的ClassNames库的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1452,227 +1572,6 @@ complement(#cc3) // #33c
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/03/30/用webpack2-6-1构建vue2-3-4单文件组件实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/30/用webpack2-6-1构建vue2-3-4单文件组件实例/" itemprop="url">用webpack2.6.1构建vue2.3.4单文件组件实例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T19:11:27+08:00">
-                2017-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1.初始化项目</strong></p>
-<p>首先新建一个vue-webpack文件夹，在该文件夹路径下进行初始化项目。初始化项目后将自动生成package.json文件（这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。）命令如下：</p>
-<pre><code>npm init -y 
-</code></pre><p><strong>2.安装各种依赖项</strong></p>
-<p>a: 安装vue2.3.4</p>
-<pre><code>npm install --save vue
-</code></pre><p>b: 安装最新版本的webpack以及webpack测试服务器</p>
-<pre><code>npm install --save-dev webpack webpack-dev-server
-</code></pre><p>c: 安装babel，一般的浏览器是不认识es6语法的，babel的作用是将es6的语法编译成浏览器认识的语法</p>
-<pre><code>npm install --save-dev babel-core babel-loader babel-preset-es2015
-</code></pre><p>d: 安装vue-loader用来解析vue的组件，.vue后缀的文件。</p>
-<pre><code>npm install --save-dev vue-loader vue-template-compiler
-</code></pre><p>e: 安装css-loader file-loader解析CSS.</p>
-<pre><code>npm install --save-dev css-loader file-loader 
-</code></pre><p><strong>3. 编写页面</strong></p>
-<p>在vue-webpack文件夹新建目录src，src目录下新建App.vue文件，代码如下：</p>
-<pre><code>&lt;template&gt;
-    &lt;div id=&quot;example&quot;&gt;
-        &lt;h1&gt;{{ message }}&lt;/h1&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-    export default {
-        data () {
-            return {
-                message: &apos;Hello World !&apos;
-            }
-        }
-    }
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-    #example {
-        background:#000000;
-    　　color:#fff;
-        height: 100vh;
-    }
-&lt;/style&gt;
-</code></pre><p>在src文件夹里新建main.js文件夹，代码如下：</p>
-<pre><code>/* 引入vue和主页 */
-import Vue from &apos;vue&apos;
-import App from &apos;./App.vue&apos;
-
-/* 实例化一个vue */
-new Vue({
-  el: &apos;#app&apos;,
-  render: h =&gt; h(App)
-})
-</code></pre><p><strong>配置webpack</strong></p>
-<p>在vue-webpack文件夹下新建webpack.config.js文件，代码如下：</p>
-<pre><code>/* 引入操作路径模块和webpack */
-var path = require(&apos;path&apos;);
-var webpack = require(&apos;webpack&apos;);
-
-module.exports = {
-    /* 输入文件 */
-    entry: &apos;./src/main.js&apos;,
-    output: {
-        /* 输出目录，没有则新建 */
-        path: path.resolve(__dirname, &apos;./dist&apos;),
-        /* 静态目录，可以直接从这里取文件 */
-        publicPath: &apos;/dist/&apos;,
-        /* 文件名 */
-        filename: &apos;build.js&apos;
-    },
-    module: {
-        rules: [
-            /* 用来解析vue后缀的文件 */
-            {
-                test: /\.vue$/,
-                loader: &apos;vue-loader&apos;
-            },
-            /* 用babel来解析js文件并把es6的语法转换成浏览器认识的语法 */
-            {
-                test: /\.js$/,
-                loader: &apos;babel-loader&apos;,
-                /* 排除模块安装目录的文件 */
-                exclude: /node_modules/
-            }
-        ]
-    }
-}
-</code></pre><p><strong>打包项目</strong></p>
-<p>全局安装webpack</p>
-<pre><code>npm install -g webpack
-</code></pre><p>用webpack命令进行打包项目</p>
-<pre><code>webpack
-</code></pre><p>打包后在vue-webpack文件夹下会多出一个dist文件夹，查看里面会有build.js文件，里面的es6语法已经被转化了。</p>
-<p>在根目录下新建index.html，引入build.js</p>
-<pre><code>&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;title&gt;vue-webpack&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;section id=&quot;app&quot;&gt;&lt;/section&gt;
-    &lt;script src=&quot;./dist/build.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p><strong>项目目录结构</strong></p>
-<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack1.png" alt=""></p>
-<p><strong>热重载</strong></p>
-<p>由于每修改一次都要重新打包，于是需要线上的热重载，全局安装webpack-dev-server：</p>
-<pre><code>npm install -g webpack-dev-server 
-</code></pre><p>使用webpack-dev-server命令运行：</p>
-<pre><code>webpack-dev-server 
-</code></pre><p>等待程序运行完毕，在浏览器输入<a href="http://localhost:8080/查看页面如下：" target="_blank" rel="external">http://localhost:8080/查看页面如下：</a></p>
-<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1722,7 +1621,7 @@ module.exports = {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

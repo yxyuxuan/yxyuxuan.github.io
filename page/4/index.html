@@ -263,6 +263,197 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/23/Node-js中的events模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/23/Node-js中的events模块/" itemprop="url">Node.js中的events模块</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-23T21:16:55+08:00">
+                2016-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> <strong>注意：</strong></p>
+<ol>
+<li><p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
+</li>
+<li><p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-EventEmitter类"><a href="#一-EventEmitter类" class="headerlink" title="一.EventEmitter类"></a>一.EventEmitter类</h3><p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。可以通过require(“events”);来访问该模块。</p>
+<pre><code>// 引入 events 模块
+var events = require(&apos;events&apos;);
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+</code></pre><p>EventEmitter 对象如果在实例化时发生错误，会触发 ‘error’ 事件。当添加新的监听器时，’newListener’ 事件会触发，当监听器被移除时，’removeListener’ 事件被触发。</p>
+<h3 id="二-EventEmitter-的用法："><a href="#二-EventEmitter-的用法：" class="headerlink" title="二.EventEmitter 的用法："></a>二.EventEmitter 的用法：</h3><pre><code>//event.js 文件
+var EventEmitter = require(&apos;events&apos;).EventEmitter; 
+var event = new EventEmitter(); 
+event.on(&apos;some_event&apos;, function() { 
+    console.log(&apos;some_event 事件触发&apos;); 
+}); 
+setTimeout(function() { 
+    event.emit(&apos;some_event&apos;); 
+}, 1000); 
+</code></pre><p>执行结果如下：<br>运行这段代码，1 秒后控制台输出了 ‘some_event 事件触发’。其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。</p>
+<pre><code>$ node event.js 
+some_event 事件触发
+</code></pre><p>EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。</p>
+<p>当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。<br>让我们以下面的例子解释这个过程：</p>
+<pre><code>//event.js 文件
+var events = require(&apos;events&apos;); 
+var emitter = new events.EventEmitter(); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener1&apos;, arg1, arg2); 
+}); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener2&apos;, arg1, arg2); 
+}); 
+emitter.emit(&apos;someEvent&apos;, &apos;arg1 参数&apos;, &apos;arg2 参数&apos;); 
+</code></pre><p>执行以上代码，运行的结果如下：</p>
+<pre><code>$ node event.js 
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数
+</code></pre><p>以上例子中，emitter 为事件 someEvent 注册了两个事件监听器，然后触发了 someEvent 事件。<br>运行结果中可以看到两个事件监听器回调函数被先后调用。 这就是EventEmitter最简单的用法。</p>
+<h3 id="三-EventEmitter-的属性"><a href="#三-EventEmitter-的属性" class="headerlink" title="三.EventEmitter 的属性"></a>三.EventEmitter 的属性</h3><p> EventEmitter 提供了多个属性，如 on 和 emit。on 函数用于绑定事件函数，emit 属性用于触发一个事件。接下来我们来具体看下 EventEmitter 的属性介绍。</p>
+<ol>
+<li><p>addListener(event, listener)<br>为指定事件添加一个监听器到监听器数组的尾部。</p>
+</li>
+<li><p>on(event, listener)<br>为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。</p>
+<pre><code>erver.on(&apos;connection&apos;, function (stream) {
+    console.(&apos;someone connected!&apos;);
+});
+</code></pre></li>
+<li><p>once(event, listener)<br>为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。</p>
+<pre><code>server.once(&apos;connection&apos;, function (stream){
+    console.log(&apos;Ah, we have our first user!&apos;);
+});
+</code></pre></li>
+<li><p>removeListener(event, listener)<br>移除指定事件的某个监听器，监听器 必须是该事件已经注册过的监听器。</p>
+<pre><code>var callback = function(stream) {
+       console.log(&apos;someone connected!&apos;);
+};
+server.on(&apos;connection&apos;, callback);
+// ...
+server.removeListener(&apos;connection&apos;, callback);
+</code></pre></li>
+<li><p>removeAllListeners([event])<br>移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。</p>
+</li>
+<li><p>setMaxListeners(n)<br>默认情况下， EventEmitters 如果你添加的监听器超过 10 个就会输出警告信息。 setMaxListeners 函数用于提高监听器的默认限制的数量。</p>
+</li>
+<li><p>listeners(event)<br>返回指定事件的监听器数组。</p>
+</li>
+<li><p>emit(event, [arg1], [arg2], […])<br>按参数的顺序执行每个监听器，如果事件有注册监听返回 true，否则返回 false。</p>
+</li>
+</ol>
+<h3 id="四-继承-EventEmitter"><a href="#四-继承-EventEmitter" class="headerlink" title="四.继承 EventEmitter"></a>四.继承 EventEmitter</h3><ul>
+<li>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</li>
+</ul>
+<ul>
+<li>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/21/Node-js中的fs模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1694,291 +1885,6 @@ filter: alpha(opacity=50); /* for IE6, 7 */
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/09/16/JavaScript中的String对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/16/JavaScript中的String对象/" itemprop="url">JavaScript中的String对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-16T22:23:56+08:00">
-                2016-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="String的描述"><a href="#String的描述" class="headerlink" title="String的描述"></a>String的描述</h2><pre><code>字符串是JavaScript中的一种基本的数据类型。
-String 对象的length属性声明了该字符串中的字符数。
-String 类定义了大量操作字符串的方法，例如从字符串中提取字符或子串，或者检索字符或子串。
-String 对象用于处理文本（字符串）。
-</code></pre><p><strong>创建 String 对象的语法：</strong></p>
-<pre><code>new String(s);
-String(s);
-</code></pre><p><strong>参数</strong></p>
-<pre><code>参数 s 是要存储在 String 对象中或转换成原始字符串的值。
-</code></pre><p><strong>返回值</strong></p>
-<pre><code>当 String() 和运算符 new 一起作为构造函数使用时，它返回一个新创建的 String 对象，存放的是字符串 s 或 s 的字符串表示。
-当不用 new 运算符调用 String() 时，它只把 s 转换成原始的字符串，并返回转换后的值。
-</code></pre><h2 id="JavaScript-中-slice-、substr-和-substring的区别："><a href="#JavaScript-中-slice-、substr-和-substring的区别：" class="headerlink" title="JavaScript 中 slice 、substr 和 substring的区别："></a>JavaScript 中 slice 、substr 和 substring的区别：</h2><ol>
-<li><p>String.slice(start,end): 一个新的字符串。包括字符串 stringObject 从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符.</p>
-</li>
-<li><p>String.substring(start,end) 这个就有点特别了，它是先从start，end里找出一个较小的值. 然后从字符串的开始位置算起，截取较小值位置和较大值位置之间的字符串,截取出来的字符串的长度为较大值与较小值之间的差。<br>一个新的字符串，该字符串值包含 stringObject 的一个子字符串，其内容是从 start 处到 stop-1 处的所有字符，其长度为 stop 减 start。</p>
-</li>
-<li><p>String.substr(start,end) 这个就是我们常用的从指定的位置(start)截取指定长度(end)的字符串。<br>一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 lenght 个字符。如果没有指定 lenght，那么返回的字符串包含从 start<br>到 stringObject 的结尾的字符。<br>String 对象的方法 slice()、substring() 和 substr() (不建议使用)都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
-</li>
-</ol>
-<h2 id="String对象中常用的方法："><a href="#String对象中常用的方法：" class="headerlink" title="String对象中常用的方法："></a>String对象中常用的方法：</h2><h4 id="1-charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。"><a href="#1-charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。" class="headerlink" title="1. charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。"></a>1. charCodeAt方法返回一个整数，代表指定位置字符的Unicode编码。</h4><p>用法：</p>
-<pre><code>strObj.charCodeAt(index)
-</code></pre><p>说明：</p>
-<pre><code>index将被处理字符的从零开始计数的编号。有效值为0到字符串长度减1的数字。
-如果指定位置没有字符，将返回NaN。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABC&quot;;
-str.charCodeAt(0);
-结果：65
-</code></pre><h4 id="2-fromCharCode方法从一些Unicode字符串中返回一个字符串。"><a href="#2-fromCharCode方法从一些Unicode字符串中返回一个字符串。" class="headerlink" title="2. fromCharCode方法从一些Unicode字符串中返回一个字符串。"></a>2. fromCharCode方法从一些Unicode字符串中返回一个字符串。</h4><p>用法：</p>
-<pre><code>String.fromCharCode([code1[,code2...]])
-</code></pre><p>说明：</p>
-<pre><code>code1，code2...是要转换为字符串的Unicode字符串序列。如果没有参数，结果为空字符串。
-</code></pre><p>例如：</p>
-<pre><code>String.fromCharCode(65,66,112);
-结果：ABp
-</code></pre><h4 id="3-charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。"><a href="#3-charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。" class="headerlink" title="3. charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。"></a>3. charAt方法返回指定索引位置处的字符。如果超出有效范围的索引值返回空字符串。</h4><p>用法：</p>
-<pre><code>strObj.charAt(index)
-</code></pre><p>说明：</p>
-<pre><code>index想得到的字符的基于零的索引。有效值是0与字符串长度减一之间的值。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABC&quot;;
-str.charAt(1);
-结果：B
-</code></pre><h4 id="4-slice方法返回字符串的片段。"><a href="#4-slice方法返回字符串的片段。" class="headerlink" title="4. slice方法返回字符串的片段。"></a>4. slice方法返回字符串的片段。</h4><p>用法：</p>
-<pre><code>strObj.slice(start[,end])
-</code></pre><p>说明：</p>
-<pre><code>start下标从0开始的strObj指定部分其实索引。如果start为负，将它作为length+start处理，此处length为字符串的长度。
-end小标从0开始的strObj指定部分结束索引。如果end为负，将它作为length+end处理，此处length为字符串的长度。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.slice(2,4);
-结果：CD
-</code></pre><h4 id="5-substring方法返回位于String对象中指定位置的子字符串。"><a href="#5-substring方法返回位于String对象中指定位置的子字符串。" class="headerlink" title="5. substring方法返回位于String对象中指定位置的子字符串。"></a>5. substring方法返回位于String对象中指定位置的子字符串。</h4><p>用法：</p>
-<pre><code>strObj.substring(start,end)
-</code></pre><p>说明：</p>
-<pre><code>start指明子字符串的起始位置，该索引从0开始起算。
-end指明子字符串的结束位置，该索引从0开始起算。
-substring方法使用start和end两者中的较小值作为子字符串的起始点。如果start或end为NaN或者为负数，那么将其替换为0。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.substring(2,4); // 或 str.substring(4,2);
-结果：CD
-</code></pre><h4 id="6-substr方法返回一个从指定位置开始的指定长度的子字符串。"><a href="#6-substr方法返回一个从指定位置开始的指定长度的子字符串。" class="headerlink" title="6. substr方法返回一个从指定位置开始的指定长度的子字符串。"></a>6. substr方法返回一个从指定位置开始的指定长度的子字符串。</h4><p>用法：</p>
-<pre><code>strObj.substr(start[,length])
-</code></pre><p>说明：</p>
-<pre><code>start所需的子字符串的起始位置。字符串中的第一个字符的索引为0。
-length在返回的子字符串中应包括的字符个数。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.substr(2,4);
-结果：CDEF
-</code></pre><h4 id="7-indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。"><a href="#7-indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。" class="headerlink" title="7. indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。"></a>7. indexOf方法返回String对象内第一次出现子字符串位置。如果没有找到子字符串，则返回-1。</h4><p>用法：</p>
-<pre><code>strObj.indexOf(substr[,startIndex])
-</code></pre><p>说明：</p>
-<pre><code>substr要在String对象中查找的子字符串。
-startIndex该整数值指出在String对象内开始查找的索引。如果省略，则从字符串的开始处查找。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.indexOf(&quot;CD&quot;，1); // 由1位置从左向右查找 123...
-结果：2
-</code></pre><h4 id="8-lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。"><a href="#8-lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。" class="headerlink" title="8. lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。"></a>8. lastIndexOf方法返回String对象中字符串最后出现的位置。如果没有匹配到子字符串，则返回-1。</h4><p>用法：</p>
-<pre><code>strObj.lastIndexOf(substr[,startindex])
-</code></pre><p>说明：</p>
-<pre><code>substr要在String对象内查找的子字符串。
-startindex该整数值指出在String对象内进行查找的开始索引位置。如果省略，则查找从字符串的末尾开始。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.lastIndexOf(&quot;CD&quot;,6); // 由6位置从右向左查找 ...456
-结果：5
-</code></pre><h4 id="9-search方法返回与正则表达式查找内容匹配的第一个字符串的位置。"><a href="#9-search方法返回与正则表达式查找内容匹配的第一个字符串的位置。" class="headerlink" title="9. search方法返回与正则表达式查找内容匹配的第一个字符串的位置。"></a>9. search方法返回与正则表达式查找内容匹配的第一个字符串的位置。</h4><p>用法：</p>
-<pre><code>strObj.search(reExp)
-</code></pre><p>说明：</p>
-<pre><code>reExp包含正则表达式模式和可用标志的正则表达式对象。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDECDF&quot;;
-str.search(&quot;CD&quot;); // 或 str.search(/CD/i);
-结果：2
-</code></pre><h4 id="10-concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。"><a href="#10-concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。" class="headerlink" title="10. concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。"></a>10. concat方法返回字符串值，该值包含了两个或多个提供的字符串的连接。</h4><p>用法：</p>
-<pre><code>str.concat([string1[,string2...]])
-</code></pre><p>说明：</p>
-<pre><code>string1，string2要和所有其他指定的字符串进行连接的String对象或文字。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;ABCDEF&quot;;
-str.concat(&quot;ABCDEF&quot;,&quot;ABC&quot;);
-结果：ABCDEFABCDEFABC
-</code></pre><h4 id="11-将一个字符串分割为子字符串，然后将结果作为字符串数组返回。"><a href="#11-将一个字符串分割为子字符串，然后将结果作为字符串数组返回。" class="headerlink" title="11. 将一个字符串分割为子字符串，然后将结果作为字符串数组返回。"></a>11. 将一个字符串分割为子字符串，然后将结果作为字符串数组返回。</h4><p>用法：</p>
-<pre><code>strObj.split([separator[,limit]])
-</code></pre><p>说明：</p>
-<pre><code>separator字符串或 正则表达式 对象，它标识了分隔字符串时使用的是一个还是多个字符。如果忽略该选项，返回包含整个字符串的单一元素数组。
-limit该值用来限制返回数组中的元素个数。
-</code></pre><p>例如：</p>
-<pre><code>var str = &quot;AA BB CC DD EE FF&quot;;
-alert(str.split(&quot; &quot;，3));
-结果：AA,BB,CC
-</code></pre><h4 id="12-toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。"><a href="#12-toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。" class="headerlink" title="12. toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。"></a>12. toLowerCase方法返回一个字符串，该字符串中的字母被转换成小写。</h4><p>例如：</p>
-<pre><code>var str = &quot;ABCabc&quot;;
-str.toLowerCase();
-结果：abcabc
-</code></pre><h4 id="13-toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。"><a href="#13-toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。" class="headerlink" title="13. toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。"></a>13. toUpperCase方法返回一个字符串，该字符串中的所有字母都被转换为大写字母。</h4><p>例如：</p>
-<pre><code>var str = &quot;ABCabc&quot;;
-str.toUpperCase();
-结果：ABCABC
-</code></pre><blockquote>
-<p>虽然js String对象已经提供像slice、replace、indexOf和substring等方法,但在实际项目应用中会对其进行扩展，以达到实用、方便目的。注释很详细，废话少说，代码如下：</p>
-</blockquote>
-<h2 id="String对象方法扩展："><a href="#String对象方法扩展：" class="headerlink" title="String对象方法扩展："></a>String对象方法扩展：</h2><blockquote>
-<p>字符串-格式化</p>
-</blockquote>
-<pre><code>String.prototype.format = function(){
-var args = arguments;//获取函数传递参数数组,以便在replace回调函数内使用
-var regex = /\{(\d+)\}/g;//匹配并捕获所有 形如:{数字} 字串
-return this.replace(regex,function(m,i){//参数=匹配子串+第几次匹配+匹配字串位置+源字符串
-return args[i];
-});
-}
-</code></pre><blockquote>
-<p>字符串-去掉前后空白字符</p>
-</blockquote>
-<pre><code>String.prototype.trim = function(){
-return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-去掉前空白字符</p>
-</blockquote>
-<pre><code>String.prototype.ltrim = function(){
-return this.replace(/(^\s*)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-去掉后空白字符</p>
-</blockquote>
-<pre><code>String.prototype.rtrim = function(){
-return this.replace(/(\s*$)/g, &quot;&quot;);
-}
-</code></pre><blockquote>
-<p>字符串-获取以ASCII编码字节数 英文占1字节 中文占2字节</p>
-</blockquote>
-<pre><code>String.prototype.lenASCII=function(){
-return this.replace(/[^\x00-\xff]/g,&apos;xx&apos;).length;//将所有非\x00-\xff字符换为xx两个字符,再计算字符串
-}
-</code></pre><blockquote>
-<p>字符串-获取以UNICODE编码字节数 一个字符均占2个字节</p>
-</blockquote>
-<pre><code>String.prototype.lenUNICODE=function(){
-return this.length*2;
-}
-ps：若对js提供类型对象或自定义对象进行方法扩展，应利用原型prototype这个对象属性进行扩展，具体方式以下:
-
-String.prototype.trim=function(){
-//...代码略
-};
-String.prototype.ltrim=function(){
-//...代码略
-};
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2028,7 +1934,7 @@ String.prototype.ltrim=function(){
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
