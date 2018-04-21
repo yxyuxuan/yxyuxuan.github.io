@@ -263,6 +263,168 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2018/04/21/对JavaScript理解的困惑点整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/21/对JavaScript理解的困惑点整理/" itemprop="url">对JavaScript理解的困惑点整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T13:30:40+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>难得今天上班不忙！！！重新整理了一下我对JS理解的几个困惑点，之前一直处于模糊的状态，似懂非懂！！！</p>
+</blockquote>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(&apos;我要做第一件事情&apos;);</div><div class="line">console.log(&apos;我要做第二件事情&apos;);</div></pre></td></tr></table></figure>
+<p>这段代码的实现就叫做同步,也就是说按照顺序去做,做完第一件事情之后,再去做第二件事情</p>
+<p>异步：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">console.log(&apos;我要做第一件事情&apos;);</div><div class="line">setTimeout(function () &#123;</div><div class="line">  console.log(&apos;我突然有事,晚点再做第二件事情&apos;);</div><div class="line">&#125;,1000)</div><div class="line">console.log(&apos;我要做第三件事情&apos;);</div></pre></td></tr></table></figure>
+<p>这段代码的实现就叫做异步,也就是说不完全按照顺序去做,<br>突发情况,第二件事情不能立刻完成,所以等待一段时间再去完成,<br>优先去做后面的第三件事情,这样就不耽搁时间。</p>
+<p><strong>为什么需要异步呢</strong>?</p>
+<p>JavaScript是单线程的,那么单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。<br>如果排队是因为计算量大，CPU忙不过来，倒也算了，但是很多时候CPU是闲着的，因为IO设备（输入输出设备）很慢（比如Ajax操作从网络读取数据），不得不等着结果出来，再往下执行。<br>JavaScript语言的设计者意识到，这时主线程完全可以不管IO设备，挂起处于等待中的任务，先运行排在后面的任务。等到IO设备返回了结果，再回过头，把挂起的任务继续执行下去。所以这就是异步过程的由来。</p>
+<p><strong>我们经常用到的dom事件也是属于一个异步行为</strong></p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var button = document.getElement(&apos;#btn&apos;);</div><div class="line">button.addEventListener(&apos;click&apos;, function(e) &#123;</div><div class="line">    console.log(&apos;按钮&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>从事件的角度来看，上述代码表示：在按钮上添加了一个鼠标单击事件的事件监听器；当用户点击按钮时，鼠标单击事件触发，事件监听器函数被调用。</p>
+<p>从异步过程的角度看，addEventListener函数就是异步过程的发起函数，事件监听函数就是异步过程的回调函数。事件触发时，表示异步任务完成，会将事件监听器函数封装成一条消息放到消息队列中，等待主线程执行。</p>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a><strong>回调函数</strong></h3><p>回调函数的理解：在JavaScript中function是内置的类对象。它可以存储在变量中，通过参数传递给另一个函数，在函数内部创建，从函数中返回结果值。</p>
+<p>回调函数被认为是一种高级函数，一种被作为参数传递给另一个函数(在这称作”otherFunction”)的高级函数，回调函数会在otherFunction内被调用(或执行)。回调函数的本质是一种模式(一种解决常见问题的模式)，因此回调函数也被称为回调模式。</p>
+<h5 id="回调函数是如何实现的？"><a href="#回调函数是如何实现的？" class="headerlink" title="回调函数是如何实现的？"></a>回调函数是如何实现的？</h5><p>我们可以像使用变量一样使用函数，作为另一个函数的参数，在另一个函数中作为返回结果，在另一个函数中调用它。当我们作为参数传递一个回调函数给另一个函数时，我们只传递了这个函数的定义，并没有在参数中执行它。</p>
+<p>当包含(调用)函数拥有了在参数中定义的回调函数后，它可以在任何时候调用(也就是回调)它。</p>
+<p>这说明回调函数并不是立即执行，而是在包含函数的函数体内指定的位置“回调”它(形如其名)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function f1(callback)&#123;</div><div class="line">　　　　setTimeout(function () &#123;</div><div class="line">　　　　　　// f1的任务代码</div><div class="line">　　　　　　callback();</div><div class="line">　　　　&#125;, 1000);</div><div class="line">　　&#125;</div><div class="line"></div><div class="line">f1(f2);</div></pre></td></tr></table></figure>
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><p>字面上理解promise是“承诺”，就是说A调用B，B返回一个承诺给A，然后A就可以在写计划的时候这么写：当B返回结果给我的时候，A执行方案S1，反之若B没有返回给A想要的结果，那么A执行应急方案S2，这样所有的潜在风险都在A的可控范围之内了。</p>
+<p>Promise是抽象异步处理对象以及对其进行各种操作的组件。</p>
+<p>所谓 Promise，就是一个对象，用来传递异步操作的消息。它代表了某个未来才会知道结果的事件（通常是一个异步操作），并且这个事件提供统一的 API，可供进一步处理。</p>
+<p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
+<p>Promise规范如下：</p>
+<ul>
+<li><p>一个promise可能有三种状态：等待（pending）、已完成（fulfilled）、已拒绝（rejected）</p>
+</li>
+<li><p>一个promise的状态只可能从“等待”转到“完成”态或者“拒绝”态，不能逆向转换，同时“完成”态和“拒绝”态不能相互转换</p>
+</li>
+<li><p>promise必须实现<code>then</code>方法（可以说，then就是promise的核心），而且then必须返回一个promise，同一个promise的then可以调用多次，并且回调的执行顺序跟它们被定义时的顺序一致</p>
+</li>
+<li><p>then方法接受两个参数，第一个参数是成功时的回调，在promise由“等待”态转换到“完成”态时调用，另一个是失败时的回调，在promise由“等待”态转换到“拒绝”态时调用。同时，then可以接受另一个promise传入，也接受一个“类then”的对象或方法，即thenable对象。</p>
+<p>​</p>
+</li>
+</ul>
+<p>promise 的缺点：</p>
+<ul>
+<li>无法取消 Promise，一旦新建它就会立即执行，无法中途取消。</li>
+<li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</li>
+</ul>
+<h5 id="为什么”绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。”？"><a href="#为什么”绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。”？" class="headerlink" title="为什么”绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。”？"></a>为什么”绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。”？</h5><p>如果某函数含有异步过程，那么不要同步调用此异步函数。因为很有可能你调用这个函数的时候，异步过程还没执行。所以一般是在异步的回调中进行之后的过程。</p>
+<h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><p>JavaScript语言的执行环境是“单线程”。</p>
+<p>“进程”， 指在系统中正在运行的一个应用程序。每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内。</p>
+<p>”线程“，1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程）。线程是进程的基本执行单元，一个进程（程序）的所有任务都在线程中执行。</p>
+<p>“单线程”，是一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，在执行后面一个任务。</p>
+<p>“多线程”， 指1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务</p>
+<h3 id="库-（Library）和框架（Framework）的区别"><a href="#库-（Library）和框架（Framework）的区别" class="headerlink" title="库 （Library）和框架（Framework）的区别:"></a><strong>库</strong> （Library）和<strong>框架</strong>（Framework）的区别:</h3><p>库是将代码集合成的一个产品，供程序员调用。面向对象的代码组织形式而成的库也叫类库。面向过程的代码组织形式而成的库也叫函数库。在函数库中的可直接使用的函数叫库函数。开发者在使用库的时候，只需要使用库的一部分类或函数，然后继续实现自己的功能。</p>
+<p>框架则是为解决一类问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。可以说，框架是库的升级版。开发者在使用框架的时候，必须使用这个框架的全部代码。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2018/03/17/React中ref的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1316,262 +1478,6 @@ h2 {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/04/28/SASS学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/28/SASS学习笔记/" itemprop="url">SASS学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T13:06:29+08:00">
-                2017-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一-什么是sass"><a href="#一-什么是sass" class="headerlink" title="一.什么是sass?"></a>一.什么是sass?</h3><ol>
-<li>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。</li>
-<li>SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</li>
-</ol>
-<h3 id="二-sass的使用"><a href="#二-sass的使用" class="headerlink" title="二.sass的使用"></a>二.sass的使用</h3><ol>
-<li><p>建议使用GUI编译工具来编译.scss文件，国人开发的LESSCSS/SASS编译工具。下载地址：<a href="http://koala-app.com/index-zh.html" target="_blank" rel="external">http://koala-app.com/index-zh.html</a></p>
-</li>
-<li><p>先在windows上安装Ruby，然后在WebStorm中配置sass。安装步骤见：<a href="http://www.jianshu.com/p/537cea1dc3f8" target="_blank" rel="external">http://www.jianshu.com/p/537cea1dc3f8</a></p>
-</li>
-</ol>
-<h3 id="三-基本用法"><a href="#三-基本用法" class="headerlink" title="三.基本用法"></a>三.基本用法</h3><p><strong>1.变量</strong></p>
-<p>sass允许使用变量，所有变量以$开头。</p>
-<pre><code>$blue :#1875e7;
-
-div {
-    color:$blue;
-}
-</code></pre><p>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</p>
-<pre><code>$side : left;
-
-.rounded {
-　　border-#{$side}-radius: 5px;
-}
-</code></pre><p><strong>2.计算功能</strong></p>
-<p>sass允许在代码中使用算式:</p>
-<pre><code>body{
-    margin:(14px/2);
-    top:50px+100px;
-    right:$var * 10%;
-}
-</code></pre><p><strong>3.嵌套</strong></p>
-<p>sass允许选择器嵌套。比如，下面的css代码：</p>
-<pre><code>div h1{
-    color:red;
-}
-</code></pre><p>可以写成：</p>
-<pre><code>div{
-    h1{
-      color:red;
-    }
- }
-</code></pre><p>属性也可以嵌套，比如border-color属性，可以写成：</p>
-<pre><code>p {
-　　border: {
-　　　　color: red;
-　　}
-}
-</code></pre><p>注意，border后面必须加上冒号。</p>
-<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如a:hover伪类，可以写成：<br>　　a {<br>　　　　&amp;:hover { color: #ffb3ff; }<br>　　}</p>
-<p><strong>4.注释</strong></p>
-<p>SASS共有两种注释风格。<br>标准的CSS注释 /<em> comment </em>/ ，会保留到编译后的文件。</p>
-<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
-<p>在/*后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
-<pre><code>/*! 
-　　重要注释！
-*/
-</code></pre><h3 id="四-代码的重用"><a href="#四-代码的重用" class="headerlink" title="四.代码的重用"></a>四.代码的重用</h3><p><strong>1.继承</strong></p>
-<p>sass允许一个选择器，继承另一个选择器。比如，现有class1：</p>
-<pre><code>.class1 {
-　　border: 1px solid #ddd;
-}
-</code></pre><p>class2要继承class1，就要使用@extend命令：</p>
-<pre><code>.class2 {
-    @extend .class1;
-    font-size:120%;
-}
-</code></pre><p><strong>2.Mixin</strong></p>
-<p>Mixin有点像C语言的宏，是可以重用的代码块。</p>
-<p>使用@mixin命令，定义一个代码块。</p>
-<pre><code>@mixin left {
-    float:left;
-    margin-left:10px;
-}
-</code></pre><p>使用@include命令，调用这个mixin。</p>
-<pre><code>div{
-    @include left;
-}
-</code></pre><p>mixin的强大之处，在于可以指定参数和缺省值。</p>
-<pre><code>@mixin left($value: 10px) {
-    float: left;
-    margin-right: $value;
-}
-</code></pre><p>使用的时候，根据需要加入参数：</p>
-<pre><code>div {
-　　@include left(20px);
-}
-</code></pre><p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
-<pre><code>@mixin rounded($vert, $horz, $radius: 10px) {
-　　　border-#{$vert}-#{$horz}-radius: $radius;
-　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
-　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
-　　}
-</code></pre><p>使用的时候，可以像下面这样调用：</p>
-<pre><code>#navbar li { @include rounded(top, left); }
-#footer { @include rounded(top, left, 5px); }
-</code></pre><p><strong>3.颜色函数</strong></p>
-<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
-<pre><code>lighten(#cc3, 10%) // #d6d65c
-darken(#cc3, 10%) // #a3a329
-grayscale(#cc3) // #808080
-complement(#cc3) // #33c
-</code></pre><p><strong>4.导入文件</strong></p>
-<p>@import命令，用来插入外部文件。编译时会将@import的.scss文件合并进来只生成一个CSS文件。</p>
-<pre><code>@import &quot;path/filename.scss&quot;;
-</code></pre><p>如果插入的是.css文件，则等同于css的import命令。导入的.css文件不会合并到编译后的文件中。</p>
-<pre><code>@import &quot;foo.css&quot;;
-</code></pre><h3 id="五-高级用法"><a href="#五-高级用法" class="headerlink" title="五.高级用法"></a>五.高级用法</h3><p><strong>1.条件语句</strong></p>
-<p>@if可以用来判断：</p>
-<pre><code>p {
-    @if 1 + 1 == 2 { border: 1px solid; }
-    @if 5 &lt; 3 { border: 2px dotted; }
-}
-</code></pre><p>配套的还有@else命令：</p>
-<pre><code>@if lightness($color) &gt; 30% {
-　　background-color: #000;
-} @else {
-　　background-color: #fff;
-}
-</code></pre><p><strong>2.循环语句</strong></p>
-<p>sass支持for循环：</p>
-<pre><code>@for $i from 1 to 10 {
-　　.border-#{$i} {
-　　　　border: #{$i}px solid blue;
-　　　}
-}
-</code></pre><p>也支持while循环：</p>
-<pre><code>$i: 6;
-@while $i &gt; 0 {
-　　.item-#{$i} { width: 2em * $i; }
-　　$i: $i - 2;
-}
-</code></pre><p>each命令，作用与for类似：  </p>
-<pre><code>@each $member in a, b, c, d {
-    　.#{$member} {
-    　　　background-image:url(&quot;/image/#{$member}.jpg&quot;);
-    　}
- }
-</code></pre><p><strong>3.自定义函数</strong></p>
-<p>sass允许用户编写自己的函数。</p>
-<pre><code>@function double($n) {
-    @return $n * 2;
-}
-#sidebar {
-    width: double(5px);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1621,7 +1527,7 @@ complement(#cc3) // #33c
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

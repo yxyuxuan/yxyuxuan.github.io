@@ -263,6 +263,262 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/04/28/SASS学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/28/SASS学习笔记/" itemprop="url">SASS学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T13:06:29+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-什么是sass"><a href="#一-什么是sass" class="headerlink" title="一.什么是sass?"></a>一.什么是sass?</h3><ol>
+<li>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。</li>
+<li>SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</li>
+</ol>
+<h3 id="二-sass的使用"><a href="#二-sass的使用" class="headerlink" title="二.sass的使用"></a>二.sass的使用</h3><ol>
+<li><p>建议使用GUI编译工具来编译.scss文件，国人开发的LESSCSS/SASS编译工具。下载地址：<a href="http://koala-app.com/index-zh.html" target="_blank" rel="external">http://koala-app.com/index-zh.html</a></p>
+</li>
+<li><p>先在windows上安装Ruby，然后在WebStorm中配置sass。安装步骤见：<a href="http://www.jianshu.com/p/537cea1dc3f8" target="_blank" rel="external">http://www.jianshu.com/p/537cea1dc3f8</a></p>
+</li>
+</ol>
+<h3 id="三-基本用法"><a href="#三-基本用法" class="headerlink" title="三.基本用法"></a>三.基本用法</h3><p><strong>1.变量</strong></p>
+<p>sass允许使用变量，所有变量以$开头。</p>
+<pre><code>$blue :#1875e7;
+
+div {
+    color:$blue;
+}
+</code></pre><p>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</p>
+<pre><code>$side : left;
+
+.rounded {
+　　border-#{$side}-radius: 5px;
+}
+</code></pre><p><strong>2.计算功能</strong></p>
+<p>sass允许在代码中使用算式:</p>
+<pre><code>body{
+    margin:(14px/2);
+    top:50px+100px;
+    right:$var * 10%;
+}
+</code></pre><p><strong>3.嵌套</strong></p>
+<p>sass允许选择器嵌套。比如，下面的css代码：</p>
+<pre><code>div h1{
+    color:red;
+}
+</code></pre><p>可以写成：</p>
+<pre><code>div{
+    h1{
+      color:red;
+    }
+ }
+</code></pre><p>属性也可以嵌套，比如border-color属性，可以写成：</p>
+<pre><code>p {
+　　border: {
+　　　　color: red;
+　　}
+}
+</code></pre><p>注意，border后面必须加上冒号。</p>
+<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如a:hover伪类，可以写成：<br>　　a {<br>　　　　&amp;:hover { color: #ffb3ff; }<br>　　}</p>
+<p><strong>4.注释</strong></p>
+<p>SASS共有两种注释风格。<br>标准的CSS注释 /<em> comment </em>/ ，会保留到编译后的文件。</p>
+<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
+<p>在/*后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
+<pre><code>/*! 
+　　重要注释！
+*/
+</code></pre><h3 id="四-代码的重用"><a href="#四-代码的重用" class="headerlink" title="四.代码的重用"></a>四.代码的重用</h3><p><strong>1.继承</strong></p>
+<p>sass允许一个选择器，继承另一个选择器。比如，现有class1：</p>
+<pre><code>.class1 {
+　　border: 1px solid #ddd;
+}
+</code></pre><p>class2要继承class1，就要使用@extend命令：</p>
+<pre><code>.class2 {
+    @extend .class1;
+    font-size:120%;
+}
+</code></pre><p><strong>2.Mixin</strong></p>
+<p>Mixin有点像C语言的宏，是可以重用的代码块。</p>
+<p>使用@mixin命令，定义一个代码块。</p>
+<pre><code>@mixin left {
+    float:left;
+    margin-left:10px;
+}
+</code></pre><p>使用@include命令，调用这个mixin。</p>
+<pre><code>div{
+    @include left;
+}
+</code></pre><p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+<pre><code>@mixin left($value: 10px) {
+    float: left;
+    margin-right: $value;
+}
+</code></pre><p>使用的时候，根据需要加入参数：</p>
+<pre><code>div {
+　　@include left(20px);
+}
+</code></pre><p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+<pre><code>@mixin rounded($vert, $horz, $radius: 10px) {
+　　　border-#{$vert}-#{$horz}-radius: $radius;
+　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
+　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
+　　}
+</code></pre><p>使用的时候，可以像下面这样调用：</p>
+<pre><code>#navbar li { @include rounded(top, left); }
+#footer { @include rounded(top, left, 5px); }
+</code></pre><p><strong>3.颜色函数</strong></p>
+<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<pre><code>lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329
+grayscale(#cc3) // #808080
+complement(#cc3) // #33c
+</code></pre><p><strong>4.导入文件</strong></p>
+<p>@import命令，用来插入外部文件。编译时会将@import的.scss文件合并进来只生成一个CSS文件。</p>
+<pre><code>@import &quot;path/filename.scss&quot;;
+</code></pre><p>如果插入的是.css文件，则等同于css的import命令。导入的.css文件不会合并到编译后的文件中。</p>
+<pre><code>@import &quot;foo.css&quot;;
+</code></pre><h3 id="五-高级用法"><a href="#五-高级用法" class="headerlink" title="五.高级用法"></a>五.高级用法</h3><p><strong>1.条件语句</strong></p>
+<p>@if可以用来判断：</p>
+<pre><code>p {
+    @if 1 + 1 == 2 { border: 1px solid; }
+    @if 5 &lt; 3 { border: 2px dotted; }
+}
+</code></pre><p>配套的还有@else命令：</p>
+<pre><code>@if lightness($color) &gt; 30% {
+　　background-color: #000;
+} @else {
+　　background-color: #fff;
+}
+</code></pre><p><strong>2.循环语句</strong></p>
+<p>sass支持for循环：</p>
+<pre><code>@for $i from 1 to 10 {
+　　.border-#{$i} {
+　　　　border: #{$i}px solid blue;
+　　　}
+}
+</code></pre><p>也支持while循环：</p>
+<pre><code>$i: 6;
+@while $i &gt; 0 {
+　　.item-#{$i} { width: 2em * $i; }
+　　$i: $i - 2;
+}
+</code></pre><p>each命令，作用与for类似：  </p>
+<pre><code>@each $member in a, b, c, d {
+    　.#{$member} {
+    　　　background-image:url(&quot;/image/#{$member}.jpg&quot;);
+    　}
+ }
+</code></pre><p><strong>3.自定义函数</strong></p>
+<p>sass允许用户编写自己的函数。</p>
+<pre><code>@function double($n) {
+    @return $n * 2;
+}
+#sidebar {
+    width: double(5px);
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/03/30/用webpack2-6-1构建vue2-3-4单文件组件实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1781,340 +2037,6 @@ function add(a,b,double){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2017/01/25/函数表达式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/25/函数表达式/" itemprop="url">函数表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T17:07:12+08:00">
-                2017-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>定义函数有两种方式：函数声明和函数表达式。<br>Firefox、Chrome、Safari、Opera都给函数定义了一个非标准的name属性，通过这个属性可以访问到函数名。</p>
-</blockquote>
-<p>   函数声明最重要的特征就是函数声明提前（function declaration hoisting）。在执行代码之前会先读取函数声明，意味着可以把函数声明放在调用语句的后面。</p>
-<pre><code>var functionName = function (arg0, arg1, arg2){
-    //函数体
-};
-</code></pre><p>创建一个函数并将它赋值给变量functionName。这种情况下创建的函数叫匿名函数（anonymous function）,有时候也叫Lambda函数。匿名函数的name属性是空字符串。</p>
-<p>函数表达式与其他表达式一样，必须先赋值后使用。</p>
-<p><strong>递归</strong></p>
-<pre><code>function factorial(num) {
-    if(num&lt;=){
-        return 1;
-    } else {
-        return num*factorial(num-1);
-    }
-}
-</code></pre><p>下面的代码可能出错：</p>
-<pre><code>var anotherFactorial = factorial;
-factorial = null;
-alert(anotherFactorial(4)); //出错    
-</code></pre><p>可以使用arguments.callee来解决这个问题。arguments.callee是一个指向正在执行的函数的指针。</p>
-<pre><code>function factorial(num) {
-    if(num&lt;=){
-        return 1;
-    } else {
-        return num*arguments.callee(num-1);
-    }
-}
-</code></pre><p>但在严格模式下，不能通过脚本访问arguments.callee，访问这个属性会导致错误。不过可以使用命名函数表达式来达成相同的结果。</p>
-<pre><code>var factorial = (function f (num) {
-    if (num &lt;= 1) {
-        return 1;
-    } else {
-        return num * f(num-1);
-    }
-});
-</code></pre><p><strong>闭包</strong></p>
-<p>匿名函数和闭包经常混淆。闭包是指有权访问另一个函数作用域中的变量的函数。<br>创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
-<pre><code>function createComparisonFunction (propertyName) {
-    return function (object1, object2) {
-        var value1 = object1[propertyName];
-        var value2 = object2[propertyName];
-
-        if (value1 &lt; value2) {
-            return -1;
-        } else if (value1 &gt; value2) {
-            return 1;
-        } else {
-            return 0;
-        }
-    };
-}
-</code></pre><p><strong>闭包与变量</strong></p>
-<p>作用域链的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。别忘了闭包所保存的是整个变量对象，而不是某个特殊的变量。</p>
-<pre><code>function createFunction () {
-    var result = new Array();
-
-    for (var i= 0; i &lt; 10; i++) {
-        result[i] = function () {
-            return i;
-        };
-    }
-
-    return result;
-}
-</code></pre><p>事实上result中的每个函数都返回10。但是，我们可以通过创建另一个匿名函数强制让闭包的行为符合预期。</p>
-<pre><code>function createFunction () {
-    var result = new Array();
-
-    for (var i= 0; i &lt; 10; i++) {
-        result[i] = function (num) {
-            return function() {
-                return num;
-            };
-        }(i);
-    }
-
-    return result;
-}
-</code></pre><p><strong>关于this对象</strong></p>
-<p>在闭包中使用this对象也可能会导致一些问题。我们知道，this对象是在运行时基于函数的执行环境绑定的：在全局函数中，this等于window，而当函数被作为某个对象的方法调用时，this等于那个对象。不过，匿名函数的执行环境具有全局性，因此其this对象通常指向window。但有时候由于编写闭包的方式不同，这一点可能不会那么明显。</p>
-<pre><code>var name = &quot;The Window&quot;;
-
-var object = {
-    name : &quot;My Object&quot;,
-
-    getNameFunc : function () {
-        return function () {
-            return this.name;
-        };
-    }
-};
-
-alert(object.getNameFunc()()); //&quot;The Window&quot; (在非严格模式下)
-</code></pre><p>每个函数在被调用时，其活动对象都会自动取得两个特殊变量：this和arguments。内部函数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变量。不过，把外部作用域中的this对象保存在一个闭包能够访问到的变量里，就可以让闭包访问对象了。</p>
-<pre><code>var name = &quot;The Window&quot;;
-
-var object = {
-    name : &quot;My Object&quot;,
-
-    getNameFunc : function () {
-        var that = this;
-        return function () {
-            return that.name;
-        };
-    }
-};
-
-alert(object.getNameFunc()()); //&quot;My Object&quot;
-</code></pre><p>this和arguments也存在同样的问题。如果想访问作用域中的arguments对象，必须将对象的引用保存到另一个闭包能够访问的变量中。<br>在几种特殊情况下，this的值可能会意外地改变。</p>
-<pre><code>var name = &quot;The Window&quot;;
-
-var object = {
-    name : &quot;My Object&quot;,
-    getName : function () {
-        return this.name;
-    }
-};
-
-object.getName(); //&quot;My Object&quot;
-(object.getName)(); //&quot;My Object&quot;
-(object.getName = object.getName)(); //&quot;The Window&quot;,在非严格模式下
-</code></pre><p><strong>内存泄露</strong></p>
-<p>由于IE9之前的版本对JScript对象和COM对象使用不同的垃圾收集例程，因此闭包在IE的这些版本中会导致一些特殊的问题：如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素将无法被销毁。</p>
-<pre><code>function assignHandler () {
-    var element = document.getElementById(&quot;someElement&quot;);
-    element.onclick = function () {
-        alert(element.id);
-    };
-}
-</code></pre><p>这个问题可以通过修改下代码来解决。</p>
-<pre><code>function assignHandler () {
-    var element = document.getElementById(&quot;someElement&quot;);
-    var id = element.id;    
-    element.onclick = function () {
-        alert(id);
-    };
-    element = null;
-}
-</code></pre><p><strong>模仿块级作用域</strong></p>
-<p><strong>私有变量</strong></p>
-<pre><code>严格来讲，JavaScript中没有私有成员的概念；所有对象属性都是公有的。不过，到是有一个私有变量的概念。任何函数中定义的变量，都可以认为是私有变量。私有变量包括函数的参数、局部变量和在函数内部定义的其他函数。
-
-闭包可以通过自己的作用域链也可以访问局部变量，利用这一点，就可以创建用于访问私有变量的公有方法。
-
-我们把有权访问私有变量和私有函数的公有方法称为特权方法（privileged method）。有两种在对象上创建特权方法的方式：
-</code></pre><p>第一种是在构造函数中定义特权方式。</p>
-<pre><code>    function MyObject () {
-    //私有变量和私有函数
-    var privateVariable = 10;
-
-    function privateFunction () {
-        return false;
-    }
-
-    //特权方法
-    this.publicMethod = function () {
-        privateVariable++;
-        return privateFunction();
-    };
-}
-</code></pre><p>不过，在构造函数中定义特权方法也有一个缺点，那就是你必须使用构造函数模式来达到这个目的。构造函数模式的缺点是针对每个实例都会创建同样一组新方法，而使用静态私有变量来实现特权方法就可以避免这个问题。</p>
-<p><strong>静态私有变量</strong></p>
-<p> 通过在私有作用域中定义私有变量和函数，同样也可以创建特权方法。</p>
-<pre><code>(function () {
-    //私有变量和私有函数
-    var privateVariable = 10;
-    function privateFunction () {
-        return false;
-    }
-
-    //构造函数
-    MyObject = function () {};
-
-    //公有/特权方法
-    MyObject.prototype.publicMethod = function () {
-        privateVariable++;
-        return privateFunction();
-    };
-    })();
-</code></pre><p><strong>模块模式</strong></p>
-<p> 前面的模式是用于自定义类型创建私有变量和特权方法的。而道格拉斯所说的模块模式（module patten）则是为单例创建私有变量和方法。所谓单例（singleton），指的就是一个实例的对象。</p>
-<pre><code>var signleton = function () {
-    //私有变量和私有函数
-    var privateVariable = 10;
-
-    function privateFunction () {
-        return false;
-    }
-
-    //公有/特权方法
-    return {
-        publicProperty : true;
-        publicMethod : function() {
-            privateVariable++;
-            return privateFunction();
-        }
-    };
-}();
-</code></pre><p><strong>增强的模块模式</strong></p>
-<p>  这种增强的模块模式适合那些单例必须是某种类型的实例，同时还必须添加某些属性和（或）方法对其加以增强的情况。</p>
-<pre><code>var singleton = function(){
-   // 私有变量和私有函数
-   var privateVariable = 10;
-
-    function privateFunction () {
-        return false;
-    }
-    //创建对象
-    var object = new CustomType();
-
-    //添加特权/公有属性和方法
-    object.publicProperty =true;
-
-    object.publicMethod=function(){
-        privateVariable++;
-            return privateFunction();
-    };
-
-    //返回这个对象
-    return object;
- }();
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2164,7 +2086,7 @@ object.getName(); //&quot;My Object&quot;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
