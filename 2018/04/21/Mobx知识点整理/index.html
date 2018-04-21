@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CSS," />
+  <meta name="keywords" content="Mobx," />
 
 
 
@@ -93,19 +93,33 @@
 
 
 
-<meta name="description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="description" content="最近老大让我用Mobx编写供应商系统，写着代码看着文档很心累，现在写完了第一版本，mobx也算用的顺手了，今天整理了mobx的一些基础知识点，以供需要时瞄瞄！！！
+
+MobX 是一个库，使得状态管理变得简单和可扩展。
+MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。
+当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。
+一般需要掌握以下四">
 <meta property="og:type" content="article">
-<meta property="og:title" content="block，inline和inline-block概念和区别">
-<meta property="og:url" content="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/index.html">
+<meta property="og:title" content="Mobx知识点整理">
+<meta property="og:url" content="https://yoursite.com/2018/04/21/Mobx知识点整理/index.html">
 <meta property="og:site_name" content="于禤的博客">
-<meta property="og:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
-<meta property="og:updated_time" content="2016-09-17T12:34:05.554Z">
+<meta property="og:description" content="最近老大让我用Mobx编写供应商系统，写着代码看着文档很心累，现在写完了第一版本，mobx也算用的顺手了，今天整理了mobx的一些基础知识点，以供需要时瞄瞄！！！
+
+MobX 是一个库，使得状态管理变得简单和可扩展。
+MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。
+当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。
+一般需要掌握以下四">
+<meta property="og:image" content="http://cn.mobx.js.org/images/action-state-view.png">
+<meta property="og:updated_time" content="2018-04-21T05:42:18.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block，inline和inline-block概念和区别">
-<meta name="twitter:description" content="总体概念1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。
-2.大体来说HTML元素各有其自身的布局级别（block元素还是inl">
+<meta name="twitter:title" content="Mobx知识点整理">
+<meta name="twitter:description" content="最近老大让我用Mobx编写供应商系统，写着代码看着文档很心累，现在写完了第一版本，mobx也算用的顺手了，今天整理了mobx的一些基础知识点，以供需要时瞄瞄！！！
+
+MobX 是一个库，使得状态管理变得简单和可扩展。
+MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。
+当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。
+一般需要掌握以下四">
+<meta name="twitter:image" content="http://cn.mobx.js.org/images/action-state-view.png">
 
 
 
@@ -133,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/"/>
+  <link rel="canonical" href="https://yoursite.com/2018/04/21/Mobx知识点整理/"/>
 
 
 
 
 
-  <title>block，inline和inline-block概念和区别 | 于禤的博客</title>
+  <title>Mobx知识点整理 | 于禤的博客</title>
   
 
 
@@ -268,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2018/04/21/Mobx知识点整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yuxuan">
@@ -285,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">block，inline和inline-block概念和区别</h1>
+          <h1 class="post-title" itemprop="name headline">Mobx知识点整理</h1>
         
 
         <div class="post-meta">
@@ -297,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-27T23:50:48+08:00">
-                2016-07-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T13:37:04+08:00">
+                2018-04-21
               </time>
             
 
@@ -337,44 +351,40 @@
       
 
       
-        <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
+        <blockquote>
+<p>最近老大让我用Mobx编写供应商系统，写着代码看着文档很心累，现在写完了第一版本，mobx也算用的顺手了，今天整理了mobx的一些基础知识点，以供需要时瞄瞄！！！</p>
+</blockquote>
+<p><strong>MobX</strong> 是一个库，使得状态管理变得简单和可扩展。</p>
+<p>MobX 支持单向数据流，也就是<strong>动作</strong>改变<strong>状态</strong>，而状态的改变会更新所有受影响的<strong>视图</strong>。<img src="http://cn.mobx.js.org/images/action-state-view.png" alt="Action, State, View"></p>
+<p>当<strong>状态</strong>改变时，所有<strong>衍生</strong>都会进行<strong>原子级的自动</strong>更新。因此永远不可能观察到中间值。</p>
+<p><u>一般需要掌握以下四点就可以熟练的使用Mobx</u></p>
 <ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
+<li><p>@observable </p>
+<p>装饰器使状态变成可观察的</p>
+<p><code>@observable classProperty = value</code></p>
 </li>
 </ol>
-</li>
-<li><p>display:inline-block</p>
 <ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
+<li><p>@observer：</p>
+<p>函数/装饰器可以用来将 React 组件转变成响应式组件。</p>
+<p>它用 <code>mobx.autorun</code> 包装了组件的 render 函数以确保任何组件渲染中使用的数据变化时都可以强制刷新组件。 <code>observer</code> 是由单独的 <code>mobx-react</code> 包提供的。</p>
+<p>​</p>
 </li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
+<li><p>@computed：</p>
+<p>计算值(computed values)是可以根据现有的状态或其它计算值衍生出的值。</p>
+<p>如果你想响应式的产生一个可以被其它 observer 使用的值，请使用 <code>@computed</code>。</p>
+<p><code>computed</code> 还可以直接当做函数来调用。 在返回的对象上使用 <code>.get()</code> 来获取计算的当前值，或者使用 <code>.observe(callback)</code> 来观察值的改变。 这种形式的 <code>computed</code> 不常使用，但在某些情况下，你需要传递一个“在box中”的计算值时，它可能是有用的。</p>
+<p>​</p>
+</li>
+<li><p>@action： </p>
+<p>动作是用来修改状态的，应该永远只对修改状态的函数使用动作。</p>
+<p>建议对任何修改 observables 或具有副作用的函数使用 <code>@action</code> 。 结合开发者工具的话，动作还能提供非常有用的调试信息。</p>
+<p><code>runInAction</code> 是个简单的工具函数，它接收代码块并在(异步的)动作中执行。这对于即时创建和执行动作非常有用，例如在异步过程中。<code>runInAction(f)</code> 是 <code>action(f)()</code> 的语法糖。</p>
+<p>​</p>
+</li>
+<li><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">import &#123; observable, computed, action &#125; from &quot;mobx&quot;;</div><div class="line">import &#123; observer &#125; from &apos;mobx-react&apos;</div><div class="line"></div><div class="line">@observer</div><div class="line">class testComponent extends React.Component &#123;</div><div class="line">    @observable num1 = 0;</div><div class="line">    @observable num2 = 0;</div><div class="line"></div><div class="line">    @computed get total() &#123;</div><div class="line">        return this.num1 + this.num2;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @action</div><div class="line">    onChangeNum1 = (event) =&gt; &#123;</div><div class="line">		this.num1 = event.target.value</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	@action</div><div class="line">    onChangeNum2 = (event) =&gt; &#123;</div><div class="line">		this.num2 = event.target.value</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">    render() &#123;</div><div class="line">		return(</div><div class="line">			&lt;div&gt;	</div><div class="line">				Num1: &lt;input type=&quot;text&quot; onChange=&#123;this.onChangeNum1&#125;/&gt;</div><div class="line">				NUm2: &lt;input type=&quot;text&quot; onChange=&#123;this.onChangeNum2&#125;/&gt;</div><div class="line">				Show count: &lt;span&gt;&#123;this.total&#125;&lt;span&gt;</div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -404,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CSS/" rel="tag"># CSS</a>
+            <a href="/tags/Mobx/" rel="tag"># Mobx</a>
           
         </div>
       
@@ -417,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/26/position定位和z-index的使用/" rel="next" title="position定位和z-index的使用">
-                <i class="fa fa-chevron-left"></i> position定位和z-index的使用
+              <a href="/2018/03/31/Mobx与Redux的区别/" rel="next" title="Mobx与Redux的区别">
+                <i class="fa fa-chevron-left"></i> Mobx与Redux的区别
               </a>
             
           </div>
@@ -426,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/01/最基本的HTML5网页骨架/" rel="prev" title="最基本的HTML5网页骨架">
-                最基本的HTML5网页骨架 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -476,17 +482,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -539,22 +536,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体概念"><span class="nav-number">1.</span> <span class="nav-text">总体概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充说明"><span class="nav-number">2.</span> <span class="nav-text">补充说明</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

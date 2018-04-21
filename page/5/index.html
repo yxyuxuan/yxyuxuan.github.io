@@ -263,6 +263,435 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/10/12/Git常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/12/Git常用命令/" itemprop="url">Git常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-12T19:52:30+08:00">
+                2016-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>关于Git的常用命令。整理如下</strong>：</p>
+</blockquote>
+<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h3><pre><code>$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+</code></pre><h3 id="2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><a href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：" class="headerlink" title="2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："></a>2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</h3><pre><code>$ git init
+Initialized empty Git repository in /Users/michael/learngit/.git/
+</code></pre><h3 id="3-添加文件到Git仓库，分两步："><a href="#3-添加文件到Git仓库，分两步：" class="headerlink" title="3.添加文件到Git仓库，分两步："></a>3.添加文件到Git仓库，分两步：</h3><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
+<pre><code>$ git add readme.txt
+</code></pre><p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
+<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
+<pre><code>$ git commit -m &quot;wrote a readme file&quot;
+[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+</code></pre><h3 id="4-要随时掌握工作区的状态，使用git-status命令。"><a href="#4-要随时掌握工作区的状态，使用git-status命令。" class="headerlink" title="4.要随时掌握工作区的状态，使用git status命令。"></a>4.要随时掌握工作区的状态，使用git status命令。</h3><pre><code>git diff readme.txt
+</code></pre><p>如果git status告诉你有文件被修改过，可以用git diff readme.txt查看修改内容。</p>
+<h3 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5.版本回退"></a>5.版本回退</h3><pre><code>git log  //显示从最近到最远的提交日志，以便确定要回退到哪个版本，每次提交都有一个唯一的id。
+
+git reflog  //用来记录你的每一次命令，以便确定要回到未来的哪个版本。
+
+把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
+$ git reset --hard HEAD^
+HEAD is now at ea34578 add distributed
+</code></pre><p>返回某个指定id号的那个版本的提交：</p>
+<pre><code>$ git reset --hard 3628164
+</code></pre><p>查看readme.txt的内容是不是版本add distributed：</p>
+<pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software.
+</code></pre><p>git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。</p>
+<p>例子：将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。</p>
+<pre><code>$ git checkout 09bd8cc1 hello.txt
+</code></pre><h3 id="6-撤销修改"><a href="#6-撤销修改" class="headerlink" title="6.撤销修改"></a>6.撤销修改</h3><pre><code>git checkout -- file  //丢弃工作区的修改：
+
+$ git checkout -- readme.txt
+命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+git add到暂存区了，git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区，
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+</code></pre><h3 id="7-删除文件"><a href="#7-删除文件" class="headerlink" title="7.删除文件"></a>7.删除文件</h3><p>一种是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
+<pre><code>$ git rm test.txt
+rm &apos;test.txt&apos;
+
+$ git commit -m &quot;remove test.txt&quot;
+[master d17efd8] remove test.txt
+1 file changed, 1 deletion(-)
+
+$ delete mode 100644 test.txt
+现在，文件就从版本库中被删除了。
+</code></pre><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<pre><code>$ git checkout -- test.txt
+
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+</code></pre><h3 id="8-远程仓库"><a href="#8-远程仓库" class="headerlink" title="8.远程仓库"></a>8.远程仓库</h3><h4 id="第一种：添加远程库："><a href="#第一种：添加远程库：" class="headerlink" title="第一种：添加远程库："></a>第一种：添加远程库：</h4><pre><code>1.mkdir learngit
+
+2.cd learngit
+
+3.git init
+
+4.添加文件
+
+5.git add .
+
+6.git commit -m &quot;test&quot;
+
+7.在github上创建仓库，复制地址
+
+8. git remote add origin git@github.com:michaelliao/learngit.git
+
+9.git push -u origin master
+</code></pre><p><strong>注意：</strong></p>
+<p>  若出错：fatal: refusing to merge unrelated histories</p>
+<p>  解决：git pull origin master –allow-unrelated-histories</p>
+<p>  //github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。</p>
+<p>  最后依次用命令：</p>
+<pre><code>git add .              
+git commit -m &quot;commit2&quot;                    
+git push origin master:master
+</code></pre><h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>1.创建仓库，复制地址
+
+2.克隆：git clone  git@github.com:michaelliao/learngit.git
+
+3.添加文件
+
+4.git add .
+
+5.git commit -m &quot;test&quot;
+
+6.git push -u origin master
+</code></pre><h3 id="9-分支管理"><a href="#9-分支管理" class="headerlink" title="9.分支管理"></a>9.分支管理</h3><h4 id="a-创建与合并分支："><a href="#a-创建与合并分支：" class="headerlink" title="a.创建与合并分支："></a>a.创建与合并分支：</h4><pre><code>1.创建分支：git branch dev
+
+2.切换到分支：git checkout dev
+
+创建+切换分支：git checkout -b dev
+
+3.查看当前分支：gir branch 
+
+4.将指定分支合并到当前分支,假如当前分支为:master：git merge dev
+
+5.删除dev分支：git branch -d dev
+
+强行删除，需要使用命令:git branch -D dev。
+</code></pre><h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ol>
+<li><p>用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit<br>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
+</li>
+<li><p>把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+</li>
+<li><p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
+</li>
+</ol>
+<h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>1.查看远程库的详细信息：git remote -v
+
+2.推送分支：git push origin master
+
+3.抓取分支：
+</code></pre><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<h3 id="10-标签管理："><a href="#10-标签管理：" class="headerlink" title="10.标签管理："></a>10.标签管理：</h3><h4 id="a-创建标签："><a href="#a-创建标签：" class="headerlink" title="a.创建标签："></a>a.创建标签：</h4><p>  首先，切换到需要打标签的分支上：git checkout branch-name然后打标签：git tag tag-name。git tag查看所有标签。</p>
+<p>  如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>  方法是找到历史提交的commit id，然后打上就可以了： </p>
+<pre><code>$git log --pretty=oneline --abbrev-commit
+
+6a5819e merged bug fix 101
+cc17032 fix bug 1017825a50 merge with no-ff
+6224937 add merge
+59bc1cb conflict fixed
+400b400 &amp; simple
+75a857c AND simple
+fec145a branch test
+d17efd8 remove test.txt
+...
+</code></pre><p>比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：</p>
+<pre><code>$ git tag v0.9 6224937
+
+再用命令git tag查看标签.
+git show &lt;tagname&gt;查看标签信息
+
+创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164
+
+通过-s用私钥签名一个标签：
+$ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
+</code></pre><h3 id="11-操作标签："><a href="#11-操作标签：" class="headerlink" title="11.操作标签："></a>11.操作标签：</h3><pre><code>命令git push origin &lt;tagname&gt;可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d &lt;tagname&gt;可以删除一个本地标签；
+
+命令git push origin :refs/tags/&lt;tagname&gt;可以删除一个远程标签。
+</code></pre><h3 id="12-配置别名："><a href="#12-配置别名：" class="headerlink" title="12.配置别名："></a>12.配置别名：</h3><pre><code>$ git config --global alias.st status  //用st表示status
+
+然后用git st就可以查看状态。 
+</code></pre><h3 id="13-忽略文件："><a href="#13-忽略文件：" class="headerlink" title="13.忽略文件："></a>13.忽略文件：</h3><p>大部分项目中，有些文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：</p>
+<p>在项目根目录创建.gitignore文件，在文件中列出不需要提交的文件名，文件夹名，每个一行，.gitignore文件需要提交，就像普通文件一样。</p>
+<p>通常会被ignore的文件有：</p>
+<ol>
+<li>log文件</li>
+<li>task runner builds</li>
+<li>node_modules等文件夹</li>
+<li>IDEs生成的文件</li>
+<li>个人笔记</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/09/18/CSS3中box-sizing属性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于禤的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/18/CSS3中box-sizing属性/" itemprop="url">CSS3中box-sizing属性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-18T20:36:11+08:00">
+                2016-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>简介：</strong></p>
+<p>box-sizing 属性允许您以特定的方式定义匹配某个区域的特定元素。</p>
+<p><strong>语法：</strong></p>
+<p>box-sizing：content-box | border-box 默认值：content-box</p>
+<p><strong>取值：</strong></p>
+<ol>
+<li><p>content-box，padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和，即 ( Element width = width + border + padding )。此属性表现为标准模式下的盒模型。</p>
+</li>
+<li><p>border-box，padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度，即 ( Element width = width )。此属性表现为怪异模式下的盒模型。</p>
+</li>
+</ol>
+<p><strong>示例：</strong></p>
+<ol>
+<li><p>content-box:</p>
+<p> .test1{ box-sizing:content-box; width:200px; padding:10px; border:15px solid #eee; }</p>
+</li>
+</ol>
+<blockquote>
+<p>实际宽度为：200+（10+10）+（15+15）， 内容宽度为：200 </p>
+</blockquote>
+<ol>
+<li><p>border-box:</p>
+<p> .test2{ box-sizing:border-box; width:200px; padding:10px; border:15px solid #eee; }</p>
+</li>
+</ol>
+<blockquote>
+<p>实际宽度为：200， 内容宽度为：200-（10+10）-（15+15）</p>
+</blockquote>
+<p><strong>内核类型写法：</strong></p>
+<pre><code>Webkit(Chrome/Safari)-webkit-box-sizing
+
+Gecko(Firefox)-moz-box-sizing
+
+Presto(Opera)-o-box-sizing
+
+Trident(IE)IE8:-ms-box-sizing/IE9:box-sizing
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/09/17/CSS3新增的属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1627,353 +2056,6 @@ alert(mm);
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/08/01/最基本的HTML5网页骨架/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/01/最基本的HTML5网页骨架/" itemprop="url">最基本的HTML5网页骨架</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-01T23:35:55+08:00">
-                2016-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1、新的网页结构"><a href="#1、新的网页结构" class="headerlink" title="1、新的网页结构"></a>1、新的网页结构</h2><h3 id="1-1-DOCTYPE声明"><a href="#1-1-DOCTYPE声明" class="headerlink" title="1.1 DOCTYPE声明"></a>1.1 DOCTYPE声明</h3><p>HTML4中的DOCTYPE声明格式</p>
-<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
-</code></pre><p>HTML5中的DOCTYPE声明格式</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><h3 id="1-2-网页字符编码"><a href="#1-2-网页字符编码" class="headerlink" title="1.2 网页字符编码"></a>1.2 网页字符编码</h3><p>在HTML4中的格式</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
-</code></pre><p>在HTML5中的格式</p>
-<pre><code>&lt;meta charset=UTF-8&quot; /&gt;
-</code></pre><h3 id="1-3-header元素"><a href="#1-3-header元素" class="headerlink" title="1.3 header元素"></a>1.3 header元素</h3><p>   header元素表示页面中的一个内容区块或者整个页面的标题！</p>
-<p>HTML5中使用方法：</p>
-<pre><code>&lt;header&gt;&lt;/header&gt;
-</code></pre><h3 id="1-4-nav元素"><a href="#1-4-nav元素" class="headerlink" title="1.4 nav元素"></a>1.4 nav元素</h3><p>nav元素表示页面中的导航链接部分。</p>
-<p>HTML5中使用方法：</p>
-<pre><code>&lt;nav&gt;...&lt;/nav&gt;
-</code></pre><h3 id="1-5-article元素"><a href="#1-5-article元素" class="headerlink" title="1.5 article元素"></a>1.5 article元素</h3><p>article元素表示页面中的一块玉上下文不相关的的独立内容，比如一篇文章中的文章。</p>
-<p>HTML5的使用方法：</p>
-<pre><code>&lt;article&gt;&lt;/article&gt;
-</code></pre><h3 id="1-6-section元素"><a href="#1-6-section元素" class="headerlink" title="1.6 section元素"></a>1.6 section元素</h3><p>scection表示页面中的一块内容区块，比如章节的页眉、页脚等等。也可以和Hn（h1、h2..)  等一起  使用，标示出文档的结构！</p>
-<pre><code>&lt;section&gt;&lt;/section&gt;
-</code></pre><h3 id="1-7-aside元素"><a href="#1-7-aside元素" class="headerlink" title="1.7 aside元素"></a>1.7 aside元素</h3><p>aside元素表示article元素的内容之外的，和内容相关的辅助信息！</p>
-<pre><code>&lt;aside&gt;&lt;aside&gt;
-</code></pre><h3 id="1-8-footer元素"><a href="#1-8-footer元素" class="headerlink" title="1.8 footer元素"></a>1.8 footer元素</h3><p>footer表示页面或者是页面中的一块区域的页脚，比如存放文件的创建时间、作者、联系方式  等等。</p>
-<pre><code>&lt;footer&gt;&lt;/footer&gt;
-</code></pre><h2 id="2、新增的主体结构元素"><a href="#2、新增的主体结构元素" class="headerlink" title="2、新增的主体结构元素"></a>2、新增的主体结构元素</h2><h3 id="2-1、article元素"><a href="#2-1、article元素" class="headerlink" title="2.1、article元素"></a>2.1、article元素</h3><h3 id="2-2、section元素"><a href="#2-2、section元素" class="headerlink" title="2.2、section元素"></a>2.2、section元素</h3><p>HTML5轮廓工具<a href="https://gsnedders.html5.org/outliner/" target="_blank" rel="external">https://gsnedders.html5.org/outliner/</a></p>
-<h3 id="3、aside元素"><a href="#3、aside元素" class="headerlink" title="3、aside元素"></a>3、aside元素</h3><h3 id="4、nav元素"><a href="#4、nav元素" class="headerlink" title="4、nav元素"></a>4、nav元素</h3><p>使用场合:</p>
-<pre><code>1、传统的导航栏
-2、侧边栏导航
-3、内页导航
-4、翻页操作
-5、time元素
-</code></pre><p>Time元素代表24小时中的某个时间或者是日期，表示时间时允许带时差。</p>
-<p>它可以定义的格式如下：</p>
-<pre><code>&lt;time datetime=&quot;2014-9-28&quot;&gt;2014年9月28&lt;time&gt;
-&lt;time datetime=&quot;2014-9-28&quot;&gt;9月28&lt;time&gt;
-&lt;time datetime=&quot;2014-9-28&quot;&gt;今天的时间&lt;time&gt;
-&lt;time datetime=&quot;2014-9-28T22:30&quot;&gt;2014年9月28晚上10点&lt;time&gt;
-&lt;time datetime=&quot;2014-9-28T22:30Z&quot;&gt;UTC标准时间2014年9月2晚上10点&lt;time&gt;
-&lt;time datetime=&quot;2014-9-28T22:30+8:00&quot;&gt;中国时间2014年9月28晚上10点&lt;time&gt;
-</code></pre><h3 id="2-6、pubdate属性"><a href="#2-6、pubdate属性" class="headerlink" title="2.6、pubdate属性"></a>2.6、pubdate属性</h3><p>Pubdate表示出版或发表时间。</p>
-<pre><code>&lt;time datetime=&quot;2014-9-28&quot; pubdate=”pubdate”&gt;2014年9月28&lt;time&gt;
-</code></pre><h2 id="3、新增的非主体结构元素"><a href="#3、新增的非主体结构元素" class="headerlink" title="3、新增的非主体结构元素"></a>3、新增的非主体结构元素</h2><h3 id="3-1、header元素"><a href="#3-1、header元素" class="headerlink" title="3.1、header元素"></a>3.1、header元素</h3><pre><code>header元素是一种具有引导和导航作用的结构元素，通常用来放置整个页面或页面内的 一个内      容区块的标题，但也可以包含其他的内容，比如在header里面放置logo图片、搜索表单等等。
-</code></pre><p>  注意：一个页面内并没有限制header的出现次数，也就是说我们可以在同一页面内，不同的内容区块上分别加上一个header元素。</p>
-<p>  在HTML5中，一个header元素至少可以包含一个heading元素（h1-h6），也可以包括我们下节课将要学习的hgroup元素，还可以包括其他的元素，在新的W3C HTML5标准，我们还可以把NAV元素包括进去。</p>
-<h3 id="3-2、hgroup元素"><a href="#3-2、hgroup元素" class="headerlink" title="3.2、hgroup元素"></a>3.2、hgroup元素</h3><pre><code>hgroup元素是将标题和他的子标题进行分组的元素。hgroup元素一般会把h1-h6的元素进行分组， 比如在一个内容区块的标题和他的子标题算是一组。
-通常情况下，文章只有一个主标题时，是不需要hgroup元素的。
-</code></pre><h3 id="3-3、footer元素"><a href="#3-3、footer元素" class="headerlink" title="3.3、footer元素"></a>3.3、footer元素</h3><pre><code>footer元素可以作为他的上层父级内容区块或是一个根区块的注脚。footer元素一般情况下包括与 它相关的区块的注脚信息，比如作者、版权信息等。
-</code></pre><p> 注意：footer元素和我们前面所讲的header元素一样，并没有限制他的个数。并且footer元素可以为article元素或者section元素添加footer元素。</p>
-<h3 id="3-4、address元素"><a href="#3-4、address元素" class="headerlink" title="3.4、address元素"></a>3.4、address元素</h3><pre><code>address元素用来在页面中呈现联系信息，包括文档的作者、邮箱、地址、电话信息等。
-address元素还用来展示和文章中的相关的联系人的所有联系信息
-</code></pre><h2 id="4、其他新增和废除元素的认识"><a href="#4、其他新增和废除元素的认识" class="headerlink" title="4、其他新增和废除元素的认识"></a>4、其他新增和废除元素的认识</h2><h3 id="4-1、新增的figure元素与figcaption元素"><a href="#4-1、新增的figure元素与figcaption元素" class="headerlink" title="4.1、新增的figure元素与figcaption元素"></a>4.1、新增的figure元素与figcaption元素</h3><pre><code> figure元素是一种元素的组合，带有可选标题。figure元素用来表示页面上一块独立的内容，如果将他从网页上删除不给我们的网页造成影响。
-figcaption元素表示figure元素的标题，它属于figure元素，figcaption元素必须书写在figure元素内部，可以写在figure元素内的其他从属元素前面或后面。一个figure元素内最多只允许放置一个figcaption元素。
-</code></pre><h3 id="4-2、新增的details元素与summary元素"><a href="#4-2、新增的details元素与summary元素" class="headerlink" title="4.2、新增的details元素与summary元素"></a>4.2、新增的details元素与summary元素</h3><pre><code> details元素是一种用于标识该元素内部的子元素可以被展开、收缩显示的元素。details元素具有一个布尔类型的open属性，当该值为true时，该元素内部的子元素应该被展开显示，当该属性值为false时，其内部的子元素应该被收缩起来不现实。该属性的默认值为false，当页面打开时其内部的子元素应该处于收缩状态。
-summary元素从属于details元素，用鼠标点击summary元素中的内容文字时，details元素中的其他所有从属元素将会展开或者收缩。如果details元素内没有summary元素，浏览器那你会提供默认的文字以供点击，例如“details”
-&lt;details&gt;
-&lt;summary
-    html教程
-&lt;/summary&gt;
-&lt;p
-    html是有麦子学院提供！www.maiziedu.com
-&lt;/p&gt;
-&lt;/details&gt;
-</code></pre><h3 id="4-3、新增的mark元素"><a href="#4-3、新增的mark元素" class="headerlink" title="4.3、新增的mark元素"></a>4.3、新增的mark元素</h3><pre><code> mark元素表示页面中需要突出显示或高亮显示的，对于当前用户具有参考作用的一段文字。通常在引用原文时使用mark元素，目的是引起读者的注意。mark元素是对原文内容有补充作用的一个元素，他应该用在一段原文作者不认为重要的，但是现在为了与原文作者不相关的其他目的而需要突出显示或者高亮显示的文字上面。
-mark元素最主要的目的就是吸引当前用户的注意。
-mark元素除了高亮显示之外，还有一个作用就是在引用原文时，为了某种特殊的目的而把作者没有表示出来的内容重点表示出来。
-</code></pre><h3 id="4-4、新增的progress元素"><a href="#4-4、新增的progress元素" class="headerlink" title="4.4、新增的progress元素"></a>4.4、新增的progress元素</h3><pre><code>progress元素代表一个任务的完成进度，这个进度可以使不确定的，表示进度z正在进行，但不清楚这个还有多少工作量没有完成，也可以用0到某个最大数字（比如100）之间的s数字来表示准确的进度情况（比如百分比）
-该元素具有两个表示当前任务完成情路昂的属性，value属性表示已经完成了多少工作量，max属性表示总共有多少工作量。工作量的单位是随意的，不指定的。
-在设定属性点时候，value属性和max属性只能指定为有效的浮点数，value属性必须大于0，且小于或等于max的属性，max的属性必须大于0。
-</code></pre><h3 id="4-5、新增的meter元素"><a href="#4-5、新增的meter元素" class="headerlink" title="4.5、新增的meter元素"></a>4.5、新增的meter元素</h3><p>  meter元素表示规定范围内的数量值。</p>
-<p>  meter元素有6个属性！</p>
-<pre><code>value属性：在元素中特地地表示出来的实际值。该属性值默认为0，可以为该属性制定一个浮点小数值。
-min属性：指定规定范围时允许实用的最小值，默认0，在设定该属性时所设定的值不能小于0。
-max属性：指定规定的范围时允许使用的最大值，如果设定时该属性值小于min的值，那么把min属性的值视为最大值。max属性的默认值1。
-low属性：规定范围的下限值，必须小于或者等于high的值。
-high属性：规定范围的上限值。如果该属性值小于low属性的值，那么把low属性的值视为high属性的值，同样如果该属性的值大于max属性的值，那么把max属性的值视为high的值。
-optimum属性：最佳值属性值必须在min属性值与max属性值之间，可以大于high属性值。
-</code></pre><h3 id="4-6、废除元素"><a href="#4-6、废除元素" class="headerlink" title="4.6、废除元素"></a>4.6、废除元素</h3><pre><code> 能使用CSS代替的元素： basefont、big、center、font、s、strike、tt、u
- 不在使用frame框架 。对于frameset元素、frame元素与noframes元素，由于frame框架对页面可用性存在负面影响，在html5里面已经不支持frame框架，只支持iframe框架，同时废除以上这三个元素。
-只有部分浏览器支持的元素。对于applet元素、bgsound、blink、marquee元素，由于只有部分浏览器支持这些元素，特别是bgsound元素以及marquee元素，只被IE浏览器支持，所以在HTML5里面被废除！而applet元素可以由embed元素或者object元素代替，bgsound元素由audio元素代替，marquee可以使用javascript来代替！
-</code></pre><p>  其他被废除的元素</p>
-<pre><code>A、废除rb元素，使用ruby元素代替
-B、废除acronym元素，使用abbr元素代替
-C、废除dir元素，使用ul元素代替
-D、废除inindex元素，使用form元素与input元素相结合的方式代替
-E、废除listing元素，使用pre元素代替  
-F、废除xmp元素，使用code元素代替
-G、废除nextid元素，使用GUIDS代替
-H、废除plaintext元素，使用“text/plian” MIME类型代替
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2016/07/27/block，inline和inline-block概念和区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yuxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于禤的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/27/block，inline和inline-block概念和区别/" itemprop="url">block，inline和inline-block概念和区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-27T23:50:48+08:00">
-                2016-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h2><p>1.block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元 素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</p>
-<p>2.大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</p>
-<ul>
-<li>常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</li>
-<li>常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</li>
-</ul>
-<p>3.block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</p>
-<p>要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如 P 元素，只能包含inline元素，而不能包含block元素。</p>
-<p>4.一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</p>
-<p>##block，inline和inlinke-block细节对比</p>
-<ul>
-<li><p>display:block</p>
-<ol>
-<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
-<li>block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</li>
-<li>block元素可以设置margin和padding属性。</li>
-</ol>
-</li>
-<li><p>display:inline</p>
-<ol>
-<li><p>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</p>
-</li>
-<li><p>inline元素设置width,height属性无效。</p>
-</li>
-<li><p>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
-</li>
-</ol>
-</li>
-<li><p>display:inline-block</p>
-<ol>
-<li>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</li>
-</ol>
-</li>
-</ul>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
-<li>一般我们会用display:block，display:inline或者display:inline-block来调整元素的布局级别，其实display的参数远远不止这三种，仅仅是比较常用而已。</li>
-<li>IE（低版本IE）本来是不支持inline-block的，所以在IE中对内联元素使用display:inline-block，理论上IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表象。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2023,7 +2105,7 @@ H、废除plaintext元素，使用“text/plian” MIME类型代替
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2036,7 +2118,7 @@ H、废除plaintext元素，使用“text/plian” MIME类型代替
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
