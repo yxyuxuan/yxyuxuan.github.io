@@ -76,124 +76,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-GitHub-Hexo-Next搭建博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/07/16/GitHub-Hexo-Next%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2019-07-16T01:55:42.000Z" itemprop="datePublished">2019-07-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/16/GitHub-Hexo-Next%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">GitHub+Hexo+Next搭建博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>最近重新整理和利用最新版本的hexo+next重构了一下我 的博客，下面简单记录了搭建博客的完整过程。</p>
-</blockquote>
-<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><ol>
-<li> Node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en/">点击下载安装</a>，因为Hexo需用通过npm安装，而npm需要node，只要安装node 就会自带npm</li>
-<li> Git, <a target="_blank" rel="noopener" href="https://gitforwindows.org/">点击下载安装</a>，<a href="%5Bhttps://yxyuxuan.github.io/2016/10/12/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%5D(https://yxyuxuan.github.io/2016/10/12/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/)">这篇博客有Git的常用命令解析</a></li>
-<li> Github账号，如果没有账号，<a target="_blank" rel="noopener" href="https://github.com/">点击这里注册</a></li>
-</ol>
-<h2 id="二、在GitHub上创建Github-Pages项目"><a href="#二、在GitHub上创建Github-Pages项目" class="headerlink" title="二、在GitHub上创建Github Pages项目"></a>二、在GitHub上创建Github Pages项目</h2><h4 id="创建新仓库"><a href="#创建新仓库" class="headerlink" title="创建新仓库"></a>创建新仓库</h4><p> <img src="https://yxyuxuan.github.io/Markdown-repository/images/new-reponsitory.png"></p>
-<p>创建一个名称为<code>yourusername.github.io</code>的新仓库即可。这边的<code>yourusername</code>填写自己的用户名。Github会识别并自动将该仓库设为Github Pages。</p>
-<p>然后设置github用户和邮箱：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.name &quot;your email&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="生成SSH密钥"><a href="#生成SSH密钥" class="headerlink" title="生成SSH密钥"></a>生成SSH密钥</h4><p>执行以下命令：</p>
-<p><code>ssh-keygen -t rsa -C &quot;Github的注册邮箱地址&quot;</code></p>
-<p>然后，在<code>C:\Users\ASUS\.ssh</code>目录会有两个文件<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,打开<strong>id_rsa.pub</strong>，复制里面的所有内容到 <a target="_blank" rel="noopener" href="https://github.com/settings/keys">SSH keys这里</a> 的Key，Title随便填，然后<code>Add SSH key</code>就可以了</p>
-<h2 id="三、安装Hexo"><a href="#三、安装Hexo" class="headerlink" title="三、安装Hexo"></a>三、安装Hexo</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<p>首页进入任意磁盘创建文件夹，这里文件夹命名为hexo,在该文件夹下鼠标右键选择Git Bash Here，执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>接着执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>新建完成后，指定文件夹的目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source  </span><br><span class="line">| 	├── _drafts   </span><br><span class="line">|	└── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-
-<p><code>_config.yml</code>文件中填上博客的基本信息，网站的 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">详细配置点击这里查看</a> 。注意，冒号后面都要有一个空格。</p>
-<h2 id="四、部署"><a href="#四、部署" class="headerlink" title="四、部署"></a>四、部署</h2><p>在<code>_config.yml</code>文件，找到<code>deploy</code>，进行以下配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>安装部署工具</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>新建一篇博客文章，在hexo/source/_posts文件夹下新建md文件(不用加.md后缀）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文件名</span><br></pre></td></tr></table></figure>
-
-<p>最后输入以下命令生成网站文件并部署：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g &#x2F;&#x2F;生成网页文件</span><br><span class="line">hexo s &#x2F;&#x2F;localhost:4000本地预览效果</span><br><span class="line">hexo d &#x2F;&#x2F;部署</span><br></pre></td></tr></table></figure>
-
-<p>在浏览器输入<code>https://username.github.io/</code>就能看到博客网站了。</p>
-<h2 id="五、用Next美化博客"><a href="#五、用Next美化博客" class="headerlink" title="五、用Next美化博客"></a>五、用Next美化博客</h2><p>Hexo安装后，默认主题是<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/hexojs/hexo-theme-landscape">landscape</a>，这款主题相信你不会很喜欢，接下来讲解目前很火的一款主题-<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">NexT主题</a>的使用。</p>
-<p>在hexo文件夹下鼠标右键选择Git Bash Here，然后clone next主题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next更</span><br></pre></td></tr></table></figure>
-
-<p>更新主题NexT：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes&#x2F;next</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
-
-<p>切换成NexT主题，在hexo根文件夹下，修改<code>_config.yml</code>文件中的theme：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;切换后，用命令清除下缓存</span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;执行hexo s本地产看NexT主题效果</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p>切换next主题的风格，修改<code>hexo/theme/next/_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
-
-<p>设置Menu</p>
-<p>默认只有首页和归档，如果还要添加，编辑<code>hexo/themes/next/_config.yml</code> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || home  &#x2F;&#x2F;首页</span><br><span class="line">  about: &#x2F;about&#x2F; || user  &#x2F;&#x2F;关于</span><br><span class="line">  tags: &#x2F;tags&#x2F; || tags  &#x2F;&#x2F;标签</span><br><span class="line">  categories: &#x2F;categories&#x2F; || th   &#x2F;&#x2F;分类</span><br><span class="line">  archives: &#x2F;archives&#x2F; || archive &#x2F;&#x2F;归档</span><br><span class="line">  schedule: &#x2F;schedule&#x2F; || calendar   &#x2F;&#x2F;日程表</span><br><span class="line">  sitemap: &#x2F;sitemap.xml || sitemap   &#x2F;&#x2F;站点地图</span><br></pre></td></tr></table></figure>
-
-<h5 id="创建分类文件夹："><a href="#创建分类文件夹：" class="headerlink" title="创建分类文件夹："></a>创建分类文件夹：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">成功后输出：INFO  Created: ~&#x2F;Documents&#x2F;blog&#x2F;source&#x2F;categories&#x2F;index.md</span><br></pre></td></tr></table></figure>
-
-<p>根据上面的路径，找到<code>index.md</code>这个文件，打开后并添加<code>type: &quot;categories&quot;</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2019-07-15 23:30:33</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>然后给文章添加“categories”属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: GitHub+Hexo+Next搭建博客</span><br><span class="line">date: 2019-07-15 23:43:57</span><br><span class="line">categories: hexo</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h5 id="创建标签文件夹"><a href="#创建标签文件夹" class="headerlink" title="创建标签文件夹"></a>创建标签文件夹</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">成功后输出：INFO  Created: ~&#x2F;Documents&#x2F;blog&#x2F;source&#x2F;tags&#x2F;index.md</span><br></pre></td></tr></table></figure>
-
-<p>根据上面的路径，找到<code>index.md</code>这个文件，打开后并添加<code>type: &quot;tags&quot;</code>，保存。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2019-07-15 23:54:22</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>然后给文章添加“tags”属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: GitHub+Hexo+Next搭建博客</span><br><span class="line">date: 2019-07-15 23:43:57</span><br><span class="line">tags: hexo</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>根据以上步骤就可以搭建出一个属于自己的博客网站了，赶紧行动吧！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/16/GitHub-Hexo-Next%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" data-id="cklkumngz000nd0uu2r11c1iv" data-title="GitHub+Hexo+Next搭建博客" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-JS中的作用域和作用域链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2019/05/22/JS%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="article-date">
@@ -868,11 +750,77 @@ classNames(&#123; [`btn-$&#123;buttonType&#125;`]: true &#125;)
 
 
   
+    <article id="post-JavaScript-Array-filter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/12/JavaScript-Array-filter/" class="article-date">
+  <time class="dt-published" datetime="2017-11-12T12:13:50.000Z" itemprop="datePublished">2017-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/11/12/JavaScript-Array-filter/">JavaScript 中Array数组的filter()方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Array-prototype-filter"><a href="#1-Array-prototype-filter" class="headerlink" title="1. Array.prototype.filter()"></a>1. Array.prototype.filter()</h3><p><code>filter()</code> 是用于筛选的方法，该方法用于创建一个符合条件的新数组，新数组中包含通过函数测试的所有元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filteredArr = [<span class="number">1</span>, <span class="number">22</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">34</span>, <span class="number">2</span>, <span class="number">9</span>].filter(<span class="function"><span class="params">element</span> =&gt;</span> element &gt; <span class="number">9</span>);</span><br><span class="line"><span class="comment">//filteredArr: [22, 11, 34]</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new_array = arr.filter(callback[, thisArg]);</span><br></pre></td></tr></table></figure>
+
+<h5 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h5><p>用来测试数组的每个元素的函数。调用时使用参数 (element, index, array)。返回true表示保留该元素（通过测试），false则不保留。</p>
+<h5 id="thisArg"><a href="#thisArg" class="headerlink" title="thisArg"></a>thisArg</h5><p>可选。执行 callback 时的用于 this 的值。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>一个新的通过测试的元素的集合的数组</p>
+<h3 id="3-描述"><a href="#3-描述" class="headerlink" title="3. 描述"></a>3. 描述</h3><p>filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组。callback 只会在已经赋值的索引上被调用，对于那些已经被删除或者从未被赋值的索引不会被调用。那些没有通过 callback 测试的元素会被跳过，不会被包含在新数组中。</p>
+<p>callback 被调用时传入三个参数：</p>
+<ul>
+<li>元素的值</li>
+<li>元素的索引</li>
+<li>被遍历的数组</li>
+</ul>
+<p>如果为<code>filter</code> 提供一个 thisArg 参数，则它会被作为 callback 被调用时的 this 值。否则，callback 的 this 值在非严格模式下将是全局对象，严格模式下为 undefined。<br>The thisvalue ultimately observable by callback is determined according to the usual rules for determining thethis seen by a function.</p>
+<p><code>filter</code> 不会改变原数组。</p>
+<p><code>filter</code> 遍历的元素范围在第一次调用 <code>callback</code> 之前就已经确定了。在调用 <code>filter</code> 之后被添加到数组中的元素不会被 <code>filter</code> 遍历到。如果已经存在的元素被改变了，则他们传入 <code>callback</code> 的值是 <code>filter</code> 遍历到它们那一刻的值。被删除或从来未被赋值的元素不会被遍历到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/12/JavaScript-Array-filter/" data-id="cklkumnhf0025d0uu31432wrm" data-title="JavaScript 中Array数组的filter()方法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/">weiter &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -925,10 +873,6 @@ classNames(&#123; [`btn-$&#123;buttonType&#125;`]: true &#125;)
       <ul>
         
           <li>
-            <a href="/2021/02/25/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
           </li>
         
@@ -942,6 +886,10 @@ classNames(&#123; [`btn-$&#123;buttonType&#125;`]: true &#125;)
         
           <li>
             <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/15/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E5%92%8C%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/">函数节流和函数防抖</a>
           </li>
         
       </ul>

@@ -76,195 +76,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-React和Vue的比较" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/05/08/React%E5%92%8CVue%E7%9A%84%E6%AF%94%E8%BE%83/" class="article-date">
-  <time class="dt-published" datetime="2020-05-08T04:08:49.000Z" itemprop="datePublished">2020-05-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/React/">React</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/08/React%E5%92%8CVue%E7%9A%84%E6%AF%94%E8%BE%83/">React和Vue的比较</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在面对自学前端三大主流框架（React、Vue、Angular）选择时，相信不少人选择了Vue。</p>
-<p>从事前端工作三年有余，大四实习的时候选择了Vue框架，仅仅是因为Vue学习成本较低和入门相对容易些。毕业后进入现在的公司用的是React，就开始了React的学习探索直到现在。</p>
-</blockquote>
-<h4 id="React和Vue的使用比较："><a href="#React和Vue的使用比较：" class="headerlink" title="React和Vue的使用比较："></a>React和Vue的使用比较：</h4><p>​    相比Vue来说，React提供的API的确较少，比如Vue中的v-if，v-for之类的指令在React中需要自行用js实现，这也让React能够更大程度的发挥js的灵活性，能更自由的组合js，可以用js的if实现v-if，js的for实现v-for。React的概念简洁（自由度高），Vue的使用便利（提供现成的范式），React相对Vue规矩的多，这是因为其目标并非写更少的代码，而是追求条理更好理解，这种极高的代码规范在大型项目上是非常可贵的，可以减少不稳定因素的影响，很适合团队开发。</p>
-<p>​    React的一大优势是把用户界面抽象成一个个组件，如按钮组件Button，对话框组件Dialog，日期组件Calendar。开发者通过组合这些组件，最终得到功能丰富、可交互的页面。通过引入JSX语法，使得编写组件简单快速，同时保证组件结构清晰。</p>
-<h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><p>React起源于Facebook的内部项目，用来架设Instagram网站（Instagram在中国大陆简称<strong>ins</strong>，是Facebook公司旗下一款免费提供在线图片及视频分享的社交网站），并于 2013年 5 月开源。</p>
-<p>React是用于构建用户界面的JS框架。因此react只负责解决view层的渲染。</p>
-<p>React拥有较高的性能，代码逻辑简单，越来越多的人开始关注和使用。</p>
-<p>React做了什么？</p>
-<ol>
-<li><p>Virtual Dom模型</p>
-</li>
-<li><p>生命周期管理</p>
-</li>
-<li><p>setState机制</p>
-</li>
-<li><p>diff算法</p>
-</li>
-<li><p>React patch、事件系统</p>
-</li>
-<li><p>React的 Virtual Dom模型（virtual dom 实际上是对实际Dom的一个抽象，是一个js对象。react所有的表层操作实际上是在操作virtual dom。）</p>
-</li>
-<li><p>diff算法用于计算出两个virtual dom的差异，是react中开销最大的地方。</p>
-<p>传统diff算法通过循环递归对比差异，算法复杂度为O(n3)。</p>
-<p>react diff算法制定了三条策略，将算法复杂度从 O(n3)降低到O(n)。</p>
-<p>WebUI中DOM节点跨节点的操作特别少，可以忽略不计。<br>拥有相同类的组件会拥有相似的DOM结构。拥有不同类的组件会生成不同的DOM结构。<br>同一层级的子节点，可以根据唯一的ID来区分。<br>针对这三个策略，react diff实施的具体策略是:</p>
-<p><strong>diff对树进行分层比较，只对比两棵树同级别的节点。</strong>跨层级移动节点，将会导致节点删除，重新插入，无法复用。<br>diff对组件进行类比较，类相同的递归diff子节点，不同的直接销毁重建。diff对同一层级的子节点进行处理时，会根据key进行简要的复用。两棵树中存在相同key的节点时，只会移动节点。<br>另外，在对比同一层级的子节点时:</p>
-<p>diff算法会以新树的第一个子节点作为起点遍历新树，寻找旧树中与之相同的节点。</p>
-<p>如果节点存在，则移动位置。如果不存在，则新建一个节点。</p>
-<p>在这过程中，维护了一个字段lastIndex，这个字段表示已遍历的所有新树子节点在旧树中最大的index。<br>在移动操作时，只有旧index小于lastIndex的才会移动。</p>
-<p>这个顺序优化方案实际上是基于一个假设，大部分的列表操作应该是保证列表基本有序的。<br>可以推倒倒序的情况下，子节点列表diff的算法复杂度为O(n2)</p>
-</li>
-</ol>
-<p>特点：</p>
-<ol>
-<li>声明式设计：React采用声明范式，可以轻松描述应用。</li>
-<li>高效：React通过对DOM的模拟，最大限度的减少与DOM的交互。</li>
-<li>灵活：React可以与已知的库或框架（<strong>个人觉得框架是要求你按照它提供的规则去写代码， 而库是多个工具函数的集合</strong>。）很好的配合。</li>
-</ol>
-<p>优点：</p>
-<ol>
-<li><p>速度快：在UI渲染过程中，React通过在虚拟DOM中的微操作来实现对实际DOM的局部更新。</p>
-</li>
-<li><p>跨浏览器兼容：虚拟DOM帮助我们解决了跨浏览器问题，它为我们提供了标准化的API，甚至在IE8中都是没问题的。</p>
-</li>
-<li><p>模块化：为你程序编写独立的模块化UI组件，这样当某个或某些组件出现问题是，可以方便地进行隔离。</p>
-</li>
-<li><p>单向数据流：Flux是一个用于在JavaScript应用中创建单向数据层的架构，它随着React视图库的开发而被Facebook概念化。</p>
-</li>
-<li><p>同构、纯粹的javascript：因为搜索引擎的爬虫程序依赖的是服务端响应而不是JavaScript的执行，预渲染你的应用有助于搜索引擎优化。</p>
-</li>
-<li><p>兼容性好：比如使用RequireJS来加载和打包，而Browserify和Webpack适用于构建大型应用。它们使得那些艰难的任务不再让人望而生畏。</p>
-</li>
-</ol>
-<p>缺点：</p>
-<p>React本身只是一个V（view）而已，并不是一个完整的框架，所以如果是大型项目想要一套完整的框架的话，基本都需要加上ReactRouter和Flux才能写大型应用。</p>
-<h4 id="React性能优化方案"><a href="#React性能优化方案" class="headerlink" title="React性能优化方案"></a>React性能优化方案</h4><p>由于react中性能主要耗费在于update阶段的diff算法，因此性能优化也主要针对diff算法。</p>
-<ol>
-<li>减少diff算法触发次数<br>减少diff算法触发次数实际上就是减少update流程的次数。<br>正常进入update流程有三种方式：</li>
-<li>setState<br>setState机制在正常运行时，由于批更新策略，已经降低了update过程的触发次数。<br>因此，setState优化主要在于非批更新阶段中(timeout/Promise回调)，减少setState的触发次数。<br>常见的业务场景即处理接口回调时，无论数据处理多么复杂，保证最后只调用一次setState。</li>
-<li>父组件render<br>父组件的render必然会触发子组件进入update阶段（无论props是否更新）。此时最常用的优化方案即为shouldComponentUpdate方法。<br>最常见的方式为进行this.props和this.state的浅比较来判断组件是否需要更新。或者直接使用PureComponent，原理一致。<br>需要注意的是，父组件的render函数如果写的不规范，将会导致上述的策略失效。</li>
-<li>正确使用diff算法<br>不使用跨层级移动节点的操作。<br>对于条件渲染多个节点时，尽量采用隐藏等方式切换节点，而不是替换节点。<br>尽量避免将后面的子节点移动到前面的操作，当节点数量较多时，会产生一定的性能问题。</li>
-</ol>
-<h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><p>Vue是尤雨溪编写的一个构建数据驱动的Web界面的库，准确来说不是一个框架，它聚焦在V（view）视图层。</p>
-<p>基本原理：</p>
-<ol>
-<li>建立虚拟DOM Tree，通过document.createDocumentFragment()，遍历指定根节点内部节点，根据、v-model等规则进行compile；</li>
-<li>通过Object.defineProperty()进行数据变化拦截；</li>
-<li>截取到的数据变化，通过发布者-订阅者模式，触发Watcher，从而改变虚拟DOM中的具体数据；</li>
-<li>通过改变虚拟DOM元素值，从而改变最后渲染dom树的值，完成双向绑定。完成数据的双向绑定在于Object.defineProperty()</li>
-</ol>
-<p>特点：</p>
-<ol>
-<li><p>轻量级的框架</p>
-</li>
-<li><p>双向数据绑定</p>
-</li>
-<li><p>指令</p>
-</li>
-<li><p>插件化</p>
-</li>
-</ol>
-<p>优点：</p>
-<ol>
-<li><p>简单：官方文档很清晰，比Angular简单易学。</p>
-</li>
-<li><p>快速：异步批处理方式更新DOM。</p>
-</li>
-<li><p>组合：用解耦的、可复用的组件组合你的应用程序。</p>
-</li>
-<li><p>紧凑：~18kbmin+gzip，且无依赖。</p>
-</li>
-<li><p>强大：表达式无需声明依赖的可推导属性(computedproperties)。</p>
-</li>
-<li><p>对模块友好：可以通过NPM、Bower或Duo安装，不强迫你所有的代码都遵循Angular的各种规定，使用场景更加灵活。</p>
-</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li><p>新生儿：Vue.js是一个新的项目，没有angular那么成熟。</p>
-</li>
-<li><p>影响度不是很大：google了一下，有关于Vue.js多样性或者说丰富性少于其他一些有名的库</p>
-</li>
-<li><p>不支持IE8。</p>
-</li>
-</ol>
-<h3 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h3><p>Angular是一款优秀的前端JS框架，已经被用于Google的多款产品当中。</p>
-<p>特点：</p>
-<ol>
-<li><p>良好的应用程序结构</p>
-</li>
-<li><p>双向数据绑定</p>
-</li>
-<li><p>指令</p>
-</li>
-<li><p>HTML模板</p>
-</li>
-<li><p>可嵌入、注入和测试</p>
-</li>
-</ol>
-<p>优点：</p>
-<ol>
-<li><p>模板功能强大丰富，自带了极其丰富的angular指令。</p>
-</li>
-<li><p>是一个比较完善的前端框架，包含服务，模板，数据双向绑定，模块化，路由，过滤器，依赖注入等所有功能；3.自定义指令，自定义指令后可以在项目中多次使用。</p>
-</li>
-<li><p>ng模块化比较大胆的引入了Java的一些东西（依赖注入），能够很容易的写出可复用的代码，对于敏捷开发的团队来说非常有帮助。</p>
-</li>
-<li><p>angularjs是互联网巨人谷歌开发，这也意味着他有一个坚实的基础和社区支持。</p>
-</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li><p>angular入门很容易但深入后概念很多,学习中较难理解。</p>
-</li>
-<li><p>文档例子非常少,官方的文档基本只写了api,一个例子都没有,很多时候具体怎么用都是google来的,或直接问misko,angular的作者。</p>
-</li>
-<li><p>对IE6/7兼容不算特别好,就是可以用jQuery自己手写代码解决一些。</p>
-</li>
-<li><p>指令的应用的最佳实践教程少,angular其实很灵活,如果不看一些作者的使用原则,很容易写出四不像的代码,例如js中还是像jQuery的思想有很多dom操作。</p>
-</li>
-<li><p>DI依赖注入如果代码压缩需要显示声明。</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/05/08/React%E5%92%8CVue%E7%9A%84%E6%AF%94%E8%BE%83/" data-id="cklkumnhz004fd0uuf49n8h2o" data-title="React和Vue的比较" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-找出字符串中重复次数最多的字符和次数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/04/15/%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E9%87%8D%E5%A4%8D%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AD%97%E7%AC%A6%E5%92%8C%E6%AC%A1%E6%95%B0/" class="article-date">
@@ -897,11 +708,59 @@
 
 
   
+    <article id="post-为什么Form表单提交不会受到同源策略的影响" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-01-09T12:14:39.000Z" itemprop="datePublished">2020-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/">为什么Form表单提交不会受到同源策略的影响</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="为什么form表单提交没有跨域问题，但ajax提交有跨域问题？"><a href="#为什么form表单提交没有跨域问题，但ajax提交有跨域问题？" class="headerlink" title="为什么form表单提交没有跨域问题，但ajax提交有跨域问题？"></a>为什么form表单提交没有跨域问题，但ajax提交有跨域问题？</h3><p><strong>浏览器的同源策略的本质</strong>：一个域名的 JS ，在未经允许的情况下，不得读取另一个域名的内容。但浏览器并不阻止你向另一个域名发送请求。。</p>
+<p>form 提交(submit函数)之后，是不会有任何数据返回的。没机会读任何东西，所以可以认为是无害的，不在同源策略之内。</p>
+<p>而 AJAX 是可以读取响应内容的，因此浏览器的同源策略不允许这样的行为。</p>
+<p>所以同源策略会限制 Ajax读取响应内容 不会限制 Form发送请求。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/" data-id="cklkumnii006kd0uucw9e1aed" data-title="为什么Form表单提交不会受到同源策略的影响" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -954,10 +813,6 @@
       <ul>
         
           <li>
-            <a href="/2021/02/25/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
           </li>
         
@@ -971,6 +826,10 @@
         
           <li>
             <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/15/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E5%92%8C%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/">函数节流和函数防抖</a>
           </li>
         
       </ul>
