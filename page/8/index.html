@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/8/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-JSON学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2017-02-20T07:13:26.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">JSON学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ol>
+<li><p>JSON 类似 XML</p>
+<ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输</li>
+</ul>
+</li>
+<li><p>相比 XML 的不同之处</p>
+<ul>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字</li>
+</ul>
+</li>
+<li><p>为什么使用 JSON？</p>
+<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
+</code></pre>
+<ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+<li>用 eval() 处理 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JSON 实例</p>
+<pre><code>通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：
+
+ &lt;html&gt;
+ &lt;body&gt;
+ &lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
+ 
+ &lt;p&gt;
+ Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ &lt;/p&gt;
+ 
+ &lt;script type=&quot;text/javascript&quot;&gt;
+ var JSONObject= &#123;
+ &quot;name&quot;:&quot;Bill Gates&quot;,
+ &quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
+ &quot;age&quot;:56,
+ &quot;phone&quot;:&quot;555 1234567&quot;&#125;;
+ document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
+ document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
+ document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
+ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
+ &lt;/script&gt;
+ 
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ol>
+<li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
+<ul>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+</li>
+<li><p>JSON 名称/值对</p>
+<p> JSON 数据的书写格式是：名称/值对。<br> 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
+<pre><code> &quot;firstName&quot; : &quot;John&quot;
+</code></pre>
+<p> 这很容易理解，等价于这条 JavaScript 语句：</p>
+<pre><code> firstName = &quot;John&quot;
+</code></pre>
+</li>
+<li><p>JSON 值</p>
+<p> JSON 值可以是：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+</li>
+<li><p>JSON 对像</p>
+<pre><code>&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;
+</code></pre>
+<p> JSON 对象在花括号中书写，对象可以包含多个名称/值对，与这条 JavaScript 语句等价：</p>
+<pre><code> firstName = &quot;John&quot;
+ lastName = &quot;Doe&quot;
+</code></pre>
+</li>
+<li><p>JSON 数组</p>
+<p> JSON 数组在方括号中书写：<br> 数组可包含多个对象：</p>
+<pre><code> &#123;
+ &quot;employees&quot;: [
+ &#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; &#125;
+ ]
+ &#125;
+</code></pre>
+<p> 在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
+</li>
+<li><p>JSON 使用 JavaScript 语法</p>
+<p> 因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br> 通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
+<pre><code> var employees = [
+ &#123; &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; &#125;
+ ];
+</code></pre>
+<p> 可以像这样访问 JavaScript 对象数组中的第一项：</p>
+<pre><code> employees[0].lastName;
+</code></pre>
+<p> 返回的内容是：</p>
+<pre><code> Gates
+</code></pre>
+<p> 可以像这样修改数据：</p>
+<pre><code> employees[0].lastName = &quot;Jobs&quot;;
+</code></pre>
+</li>
+</ol>
+<h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
+<li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
+</li>
+<li><p>由于 JSON 语法是 JavaScript 语法的子集，在旧版浏览器中，使用eval()对JSON数据结构求职存在危险，因为可能会执行一些恶意代码。</p>
+</li>
+<li><p>JSON对象有两个方法：stringify()和parse().在最简单的情况下，这两个方法分别用于把javascript对象序列化为JSON字符串和把JSON字符串解析为原生javascript值。</p>
+<p> <strong>把javascript对象序列化为JSON字符串</strong></p>
+<pre><code> &lt;script type=&quot;text/javascript&quot;&gt;
+     var book = &#123;
+                     title: &quot;Professional JavaScript&quot;,
+                     authors: [
+                         &quot;Nicholas C. Zakas&quot;
+                     ],
+                     edition: 3,
+                     year: 2011
+                &#125;;
+ 
+     var jsonText = JSON.stringify(book, [&quot;title&quot;, &quot;edition&quot;]);
+     alert(jsonText);
+
+ &lt;/script&gt;
+</code></pre>
+<p> <strong>把 JSON 字符串转换为 JavaScript 对象</strong></p>
+<pre><code> &lt;script type=&quot;text/javascript&quot;&gt;
+ var book = &#123;
+                &quot;title&quot;: &quot;Professional JavaScript&quot;,
+                 &quot;authors&quot;: [
+                     &quot;Nicholas C. Zakas&quot;
+                 ],
+                 edition: 3,
+                 year: 2011,
+                 releaseDate: new Date(2011, 11, 1)
+            &#125;;
+
+ var jsonText = JSON.stringify(book);
+ alert(jsonText);
+ 
+ var bookCopy = JSON.parse(jsonText, function(key, value)&#123;
+     if (key == &quot;releaseDate&quot;)&#123;
+         return new Date(value);
+     &#125; else &#123;
+         return value;
+     &#125;
+ &#125;);
+ 
+ alert(bookCopy.releaseDate.toISOString());
+</code></pre>
+<p> </script></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cklkumnh40015d0uugb03hdeg" data-title="JSON学习总结" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-面向对象的程序设计" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time class="dt-published" datetime="2017-02-10T07:09:27.000Z" itemprop="datePublished">2017-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">面向对象的程序设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。</p>
+</blockquote>
+<h2 id="一、理解对象"><a href="#一、理解对象" class="headerlink" title="一、理解对象:"></a>一、理解对象:</h2><ol>
+<li><p>第一种：基于Object对象</p>
+<pre><code> var person = new Object();
+ person.name = &#39;My Name&#39;;
+ person.age = 18;
+ person.getName = function()&#123;
+     return this.name;
+ &#125;
+</code></pre>
+</li>
+<li><p>第二种：对象字面量方式（比较清楚的查找对象包含的属性及方法）</p>
+<pre><code> var person = &#123;
+     name : &#39;My name&#39;,
+     age : 18,
+     getName : function()&#123;
+     return this.name;
+     &#125;
+ &#125;
+</code></pre>
+<p>JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
+<pre><code> person.newAtt=’new Attr’;//添加属性
+ alert(person.newAtt);//new Attr
+ delete person.age;
+ alert(person.age);//undefined(删除属性后值为undefined);
+</code></pre>
+<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><p>ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性</p>
+</li>
+</ol>
+<p>1.数据属性：</p>
+<p>数据属性指包含一个数据值的位置，可在该位置读取或写入值，该属性有4个供述其行为的特性：  </p>
+<ul>
+<li><p>[[configurable]]:表示能否使用delete操作符删除从而重新定义，或能否修改为访问器属性。默认为true;</p>
+</li>
+<li><p>[[Enumberable]]:表示是否可通过for-in循环返回属性。默认true;</p>
+</li>
+<li><p>[[Writable]]:表示是否可修改属性的值。默认true;  </p>
+</li>
+<li><p>[[Value]]:包含该属性的数据值。读取/写入都是该值。默认为undefined;如上面实例对象person中定义了name属性，其值为’My name’,对该值的修改都反正在这个位置。  </p>
+<p>要修改对象属性的默认特征（默认都为true)，可调用Object.defineProperty()方法，它接收三个参数：属性所在对象，属性名和一个描述符对象（必须是：configurable、enumberable、writable和value，可设置一个或多个值）。</p>
+<p>如下：（浏览器支持：IE9+、Firefox 4+、Chrome、Safari5+）</p>
+<p>   var person = {};<br>   Object.defineProperty(person, ‘name’, {<br>   configurable: false,<br>   writable: false,<br>   value: ‘Jack’<br>   });<br>   alert(person.name);//Jack<br>   delete person.name;<br>   person.name = ‘lily’;<br>   alert(person.name);//Jack</p>
+</li>
+</ul>
+<p>可以看出，delete及重置person.name的值都没有生效，这就是因为调用defineProperty函数修改了对象属性的特征；值得注意的是一旦将configurable设置为false，则无法再使用defineProperty将其修改为true（执行会报错：can’t redefine non-configurable property）;</p>
+<p>2.访问器属性：</p>
+<p>它主要包括一对getter和setter函数，在读取访问器属性时，会调用getter返回有效值；写入访问器属性时，调用setter，写入新值；该属性有以下4个特征：  </p>
+<ul>
+<li>[[Configurable]]:是否可通过delete操作符删除重新定义属性；</li>
+<li>[[Numberable]]:是否可通过for-in循环查找该属性；</li>
+<li>[[Get]]:读取属性时调用，默认：undefined;</li>
+<li>[[Set]]:写入属性时调用，默认：undefined;</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用defineProperty()来定义，如下：</p>
+<pre><code>var person = &#123;
+      _age: 18
+&#125;;
+Object.defineProperty(person, &#39;isAdult&#39;, &#123;
+    get: function () &#123;
+            if (this._age &gt;= 18) &#123;
+                return true;
+            &#125; else &#123;
+                return false;
+            &#125;
+    &#125;
+&#125;);
+alert(person.isAdult?&#39;成年&#39;:&#39;未成年&#39;);//成年      
+</code></pre>
+<p>从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
+<p>此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
+<pre><code>    var person = &#123;&#125;;
+    Object.defineProperties(person,&#123;
+        _age:&#123;
+        value:19
+       &#125;,
+        isAdult:&#123;
+            get: function () &#123;
+                if (this._age &gt;= 18) &#123;
+                    return true;
+                &#125; else &#123;
+                return false;
+                &#125;
+            &#125;
+        &#125;
+        &#125;);
+        alert(person.isAdult?&#39;成年&#39;:&#39;未成年&#39;);//成年
+</code></pre>
+<p>上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性</p>
+<p>此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：</p>
+<pre><code>var descriptor = Object.getOwnPropertyDescriptor(person,&#39;_age&#39;);
+alert(descriptor.value);//19
+</code></pre>
+<p>对于数据属性，可以取得：configurable,enumberable,writable和value；</p>
+<p>对于访问器属性，可以取得：configurable,enumberable,get和set</p>
+<h2 id="三、创建对象"><a href="#三、创建对象" class="headerlink" title="三、创建对象"></a>三、创建对象</h2><p>   使用Object构造函数或对象字面量都可以创建对象，但缺点是创建多个对象时，会产生大量的重复代码，因此下面介绍可解决这个问题的创建对象的方法</p>
+<ol>
+<li><p>工厂模式</p>
+<pre><code> function createPerson(name, age, job) &#123;
+ var o = new Object();
+ o.name = name;
+ o.age = age;
+ o.job = job;
+ o.getName = function () &#123;
+     return this.name;
+ &#125;
+ return o;//使用return返回生成的对象实例
+ &#125;
+ var person = createPerson(&#39;Jack&#39;, 19, &#39;SoftWare Engineer&#39;);
+</code></pre>
+<p>  创建对象交给一个工厂方法来实现，可以传递参数，但主要缺点是无法识别对象类型，因为创建对象都是使用Object的原生构造函数来完成的。</p>
+</li>
+<li><p>构造函数模式</p>
+<pre><code> function Person(name,age,job)&#123;
+     this.name = name;
+     this.age = age;
+     this.job = job;
+     this.getName = function () &#123;
+         return this.name;
+     &#125;
+ &#125;
+ var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engineer&#39;);
+
+ var person2 = new Person(&#39;Liye&#39;, 23, &#39;Mechanical Engineer&#39;);
+</code></pre>
+</li>
+</ol>
+<p>  使用自定义的构造函数（与普通函数一样，只是用它来创建对象），定义对象类型（如：Person）的属性和方法。它与工厂方法区别在于：</p>
+<ul>
+<li>没有显式地创建对象</li>
+<li>直接将属性和方法赋值给this对象；</li>
+<li>没有return语句；  </li>
+</ul>
+<p>   此外，要创建Person的实例，必须使用new关键字，以Person函数为构造函数，传递参数完成对象创建；实际创建经过以下4个过程：  </p>
+<ul>
+<li>创建一个对象  </li>
+<li>将函数的作用域赋给新对象（因此this指向这个新对象，如：person1）</li>
+<li>执行构造函数的代码</li>
+<li>返回该对象  </li>
+</ul>
+<p>   上述由Person构造函数生成的两个对象person1与person2都是Person的实例，因此可以使用instanceof判断，并且因为所有对象都继承Object，因此person1 instanceof Object也返回真：</p>
+<pre><code> alert(person1 instanceof Person);//true;
+ alert(person2 instanceof Person);//true;
+ alert(person1 instanceof Object);//true;
+ alert(person1.constructor === person2.constructor);//ture;       
+</code></pre>
+<p>  虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
+<pre><code>function Person(name,age,job)&#123;
+   this.name = name;
+   this.age = age;
+   this.job = job;
+   this.getName = new Function () &#123;//改写后效果与原代码相同，不过是为了方便理解
+           return this.name;
+   &#125;
+ &#125;        
+</code></pre>
+<p>   上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
+<pre><code>function Person(name,age,job)&#123;
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.getName = getName;
+ &#125;
+ function getName() &#123;//到处是代码，看着乱！！
+    return this.name;
+ &#125;        
+</code></pre>
+<p>3.原型模式</p>
+<p>   JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
+<pre><code>function Person()&#123;
+&#125;
+Person.prototype.name = &#39;Jack&#39;;//使用原型来添加属性
+Person.prototype.age = 29;
+Person.prototype.getName = function()&#123;
+   return this.name;
+&#125;
+var person1 = new Person();
+alert(person1.getName());//Jack
+var person2 = new Person();
+alert(person1.getName === person2.getName);//true;共享一个原型对象的方法   
+</code></pre>
+<p>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
+<p>  实例属性或方法的访问过程是一次搜索过程：</p>
+<ul>
+<li>首先从对象实例本身开始，如果找到属性就直接返回该属性值；</li>
+<li>如果实例本身不存在要查找属性，就继续搜索指针指向的原型对象，在其中查找给定名字的属性，如果有就返回；</li>
+<li>基于以上分析，原型模式创建的对象实例，其属性是共享原型对象的；  </li>
+<li>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；  </li>
+</ul>
+<p>  <strong>原型与in操作符</strong></p>
+<p>   一句话：无论原型中属性，还是对象实例的属性，都可以使用in操作符访问到；要想判断是否是实例本身的属性可以使用object.hasOwnProperty(‘attr’)来判断；</p>
+<p>   <strong>原生对象中原型</strong></p>
+<p>   原生对象中原型与普通对象的原型一样，可以添加/修改属性或方法，如以下代码为所有字符串对象添加去左右空白原型方法：</p>
+<pre><code> String.prototype.trim = function()&#123;
+    return this.replace(/^\s+/,&#39;&#39;).replace(/\s+$/,&#39;&#39;);
+ &#125;
+ var str = &#39;   word space   &#39;;
+ alert(&#39;!&#39;+str.trim()+&#39;!&#39;);//!word space!   
+</code></pre>
+<p>   原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：</p>
+<pre><code>function Person() &#123;
+&#125;
+Person.prototype.name = &#39;Jack&#39;;
+Person.prototype.lessons = [&#39;Math&#39;,&#39;Physics&#39;];
+var person1 = new Person();
+person1.lessons.push(&#39;Biology&#39;);
+var person2 = new Person();
+alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2   
+</code></pre>
+<p>​<br>4.组合构造函数及原型模式</p>
+<p>   目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长。</p>
+<pre><code>function Person(name, age, job) &#123;
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.lessons = [&#39;Math&#39;, &#39;Physics&#39;];
+    &#125;
+    Person.prototype = &#123;
+        constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+        getName: function () &#123;
+            return this.name;
+        &#125;
+    &#125;
+    var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engneer&#39;);
+    person1.lessons.push(&#39;Biology&#39;);
+    var person2 = new Person(&#39;Lily&#39;, 39, &#39;Mechanical Engneer&#39;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法    
+</code></pre>
+<p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
+<p>5.动态原型模式</p>
+<p>   组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
+<pre><code>function Person(name, age, job) &#123;
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.lessons = [&#39;Math&#39;, &#39;Physics&#39;];
+        &#125;
+        if (typeof this.getName != &#39;function&#39;) &#123;//通过判断实例封装
+        Person.prototype = &#123;
+            constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+            getName: function () &#123;
+                return this.name;
+            &#125;
+            &#125;
+        &#125;
+    var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engneer&#39;);
+    person1.lessons.push(&#39;Biology&#39;);
+    var person2 = new Person(&#39;Lily&#39;, 39, &#39;Mechanical Engneer&#39;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法           
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-id="cklkumnj00097d0uu1l0pfmci" data-title="面向对象的程序设计" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JS回调函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/01/25/JS%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2017-01-25T11:04:55.000Z" itemprop="datePublished">2017-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/01/25/JS%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">JS回调函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="js回调函数的理解"><a href="#js回调函数的理解" class="headerlink" title="js回调函数的理解"></a>js回调函数的理解</h1><p><strong>在认识js回调函数之前，首先要了解“函数也是一种数据类型”，它也可以像变量一样使用</strong></p>
+<pre><code>1、var a = function()&#123;console.log(&quot;function a&quot;);&#125;
+
+2、function a()&#123;console.log(&quot;function a&quot;);&#125;
+</code></pre>
+<p>以上两种函数定义方式最终效果是一样的</p>
+<p>举个例子：</p>
+<pre><code>function a()&#123;console.log(&quot;function a&quot;);&#125;
+
+var b = a;//此时将function a赋值给b
+
+b();//执行b函数输出“function a”
+
+delete a;//删除a
+
+a();//undefined
+</code></pre>
+<p><strong>回调函数：</strong>简单通俗点就是当有a和b两个函数，当a作为参数传给b，并在b中执行，这时a就是一个回调(callback)函数,如果a是一个匿名函数，则为匿名回调函数</p>
+<p>在使用jquery时，经常会使用到回调，例如：</p>
+<p><strong>1、绑定事件</strong></p>
+<pre><code>$(&quot;p&quot;).blur( function () &#123; alert(&quot;Hello World!&quot;); &#125; );
+
+$(&quot;p&quot;).click( function () &#123; $(this).hide(); &#125;);
+</code></pre>
+<p><strong>2、效果动作</strong></p>
+<pre><code>$(&quot;p&quot;).show(&quot;fast&quot;,function()&#123;
+$(this).text(&quot;Animation Done!&quot;);
+&#125;);
+</code></pre>
+<p><strong>3、ajax操作</strong></p>
+<pre><code>$(&quot;#feeds&quot;).load(&quot;feeds.php&quot;, &#123;limit: 25&#125;, function()&#123;
+alert(&quot;The last 25 entries in the feed have been loaded&quot;);
+&#125;);
+</code></pre>
+<p><strong>如何自定义一个回调函数呢？</strong></p>
+<p>举个小例子：</p>
+<p>想要执行一个加法运算操作，在加操作执行完毕，我们还想要将这个加的结果作一个2倍操作，并返回最终值</p>
+<pre><code>function double(data)&#123;
+    return data*2;
+&#125;
+
+function add(a,b,double)&#123;
+    var sum = a+b; return double(sum);
+&#125;
+</code></pre>
+<p>从上面代码可知，double函数作为参数传给add函数，add函数中执行完sum=a+b;后执行了double函数，double函数就是回调函数。</p>
+<p>我对回调函数的理解是，回调就是一个函数的调用过程。函数a有一个参数，这个参数是个函数b，当函数a执行完以后执行函数b。函数b就是回调函数。那么这个过程就叫回调。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/01/25/JS%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" data-id="cklkumnhe0022d0uufds29ibu" data-title="JS回调函数" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-函数表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/01/25/%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2017-01-25T09:07:12.000Z" itemprop="datePublished">2017-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/01/25/%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">函数表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>定义函数有两种方式：函数声明和函数表达式。<br>Firefox、Chrome、Safari、Opera都给函数定义了一个非标准的name属性，通过这个属性可以访问到函数名。</p>
+</blockquote>
+<p>   函数声明最重要的特征就是函数声明提前（function declaration hoisting）。在执行代码之前会先读取函数声明，意味着可以把函数声明放在调用语句的后面。</p>
+<pre><code>var functionName = function (arg0, arg1, arg2)&#123;
+    //函数体
+&#125;;
+</code></pre>
+<p>创建一个函数并将它赋值给变量functionName。这种情况下创建的函数叫匿名函数（anonymous function）,有时候也叫Lambda函数。匿名函数的name属性是空字符串。</p>
+<p>函数表达式与其他表达式一样，必须先赋值后使用。</p>
+<p><strong>递归</strong></p>
+<pre><code>function factorial(num) &#123;
+    if(num&lt;=)&#123;
+        return 1;
+    &#125; else &#123;
+        return num*factorial(num-1);
+    &#125;
+&#125;
+</code></pre>
+<p>下面的代码可能出错：</p>
+<pre><code>var anotherFactorial = factorial;
+factorial = null;
+alert(anotherFactorial(4)); //出错    
+</code></pre>
+<p>可以使用arguments.callee来解决这个问题。arguments.callee是一个指向正在执行的函数的指针。</p>
+<pre><code>function factorial(num) &#123;
+    if(num&lt;=)&#123;
+        return 1;
+    &#125; else &#123;
+        return num*arguments.callee(num-1);
+    &#125;
+&#125;
+</code></pre>
+<p>但在严格模式下，不能通过脚本访问arguments.callee，访问这个属性会导致错误。不过可以使用命名函数表达式来达成相同的结果。</p>
+<pre><code>var factorial = (function f (num) &#123;
+    if (num &lt;= 1) &#123;
+        return 1;
+    &#125; else &#123;
+        return num * f(num-1);
+    &#125;
+&#125;);
+</code></pre>
+<p><strong>闭包</strong></p>
+<p>匿名函数和闭包经常混淆。闭包是指有权访问另一个函数作用域中的变量的函数。<br>创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
+<pre><code>function createComparisonFunction (propertyName) &#123;
+    return function (object1, object2) &#123;
+        var value1 = object1[propertyName];
+        var value2 = object2[propertyName];
+
+        if (value1 &lt; value2) &#123;
+            return -1;
+        &#125; else if (value1 &gt; value2) &#123;
+            return 1;
+        &#125; else &#123;
+            return 0;
+        &#125;
+    &#125;;
+&#125;
+</code></pre>
+<p><strong>闭包与变量</strong></p>
+<p>作用域链的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。别忘了闭包所保存的是整个变量对象，而不是某个特殊的变量。</p>
+<pre><code>function createFunction () &#123;
+    var result = new Array();
+
+    for (var i= 0; i &lt; 10; i++) &#123;
+        result[i] = function () &#123;
+            return i;
+        &#125;;
+    &#125;
+
+    return result;
+&#125;
+</code></pre>
+<p>事实上result中的每个函数都返回10。但是，我们可以通过创建另一个匿名函数强制让闭包的行为符合预期。</p>
+<pre><code>function createFunction () &#123;
+    var result = new Array();
+
+    for (var i= 0; i &lt; 10; i++) &#123;
+        result[i] = function (num) &#123;
+            return function() &#123;
+                return num;
+            &#125;;
+        &#125;(i);
+    &#125;
+
+    return result;
+&#125;
+</code></pre>
+<p><strong>关于this对象</strong></p>
+<p>在闭包中使用this对象也可能会导致一些问题。我们知道，this对象是在运行时基于函数的执行环境绑定的：在全局函数中，this等于window，而当函数被作为某个对象的方法调用时，this等于那个对象。不过，匿名函数的执行环境具有全局性，因此其this对象通常指向window。但有时候由于编写闭包的方式不同，这一点可能不会那么明显。</p>
+<pre><code>var name = &quot;The Window&quot;;
+
+var object = &#123;
+    name : &quot;My Object&quot;,
+
+    getNameFunc : function () &#123;
+        return function () &#123;
+            return this.name;
+        &#125;;
+    &#125;
+&#125;;
+
+alert(object.getNameFunc()()); //&quot;The Window&quot; (在非严格模式下)
+</code></pre>
+<p>每个函数在被调用时，其活动对象都会自动取得两个特殊变量：this和arguments。内部函数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变量。不过，把外部作用域中的this对象保存在一个闭包能够访问到的变量里，就可以让闭包访问对象了。</p>
+<pre><code>var name = &quot;The Window&quot;;
+
+var object = &#123;
+    name : &quot;My Object&quot;,
+
+    getNameFunc : function () &#123;
+        var that = this;
+        return function () &#123;
+            return that.name;
+        &#125;;
+    &#125;
+&#125;;
+
+alert(object.getNameFunc()()); //&quot;My Object&quot;
+</code></pre>
+<p>this和arguments也存在同样的问题。如果想访问作用域中的arguments对象，必须将对象的引用保存到另一个闭包能够访问的变量中。<br>在几种特殊情况下，this的值可能会意外地改变。</p>
+<pre><code>var name = &quot;The Window&quot;;
+
+var object = &#123;
+    name : &quot;My Object&quot;,
+    getName : function () &#123;
+        return this.name;
+    &#125;
+&#125;;
+
+object.getName(); //&quot;My Object&quot;
+(object.getName)(); //&quot;My Object&quot;
+(object.getName = object.getName)(); //&quot;The Window&quot;,在非严格模式下
+</code></pre>
+<p><strong>内存泄露</strong></p>
+<p>由于IE9之前的版本对JScript对象和COM对象使用不同的垃圾收集例程，因此闭包在IE的这些版本中会导致一些特殊的问题：如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素将无法被销毁。</p>
+<pre><code>function assignHandler () &#123;
+    var element = document.getElementById(&quot;someElement&quot;);
+    element.onclick = function () &#123;
+        alert(element.id);
+    &#125;;
+&#125;
+</code></pre>
+<p>这个问题可以通过修改下代码来解决。</p>
+<pre><code>function assignHandler () &#123;
+    var element = document.getElementById(&quot;someElement&quot;);
+    var id = element.id;    
+    element.onclick = function () &#123;
+        alert(id);
+    &#125;;
+    element = null;
+&#125;
+</code></pre>
+<p><strong>模仿块级作用域</strong></p>
+<p><strong>私有变量</strong></p>
+<pre><code>严格来讲，JavaScript中没有私有成员的概念；所有对象属性都是公有的。不过，到是有一个私有变量的概念。任何函数中定义的变量，都可以认为是私有变量。私有变量包括函数的参数、局部变量和在函数内部定义的其他函数。
+
+闭包可以通过自己的作用域链也可以访问局部变量，利用这一点，就可以创建用于访问私有变量的公有方法。
+
+我们把有权访问私有变量和私有函数的公有方法称为特权方法（privileged method）。有两种在对象上创建特权方法的方式：
+</code></pre>
+<p>第一种是在构造函数中定义特权方式。</p>
+<pre><code>    function MyObject () &#123;
+    //私有变量和私有函数
+    var privateVariable = 10;
+
+    function privateFunction () &#123;
+        return false;
+    &#125;
+
+    //特权方法
+    this.publicMethod = function () &#123;
+        privateVariable++;
+        return privateFunction();
+    &#125;;
+&#125;
+</code></pre>
+<p>不过，在构造函数中定义特权方法也有一个缺点，那就是你必须使用构造函数模式来达到这个目的。构造函数模式的缺点是针对每个实例都会创建同样一组新方法，而使用静态私有变量来实现特权方法就可以避免这个问题。</p>
+<p><strong>静态私有变量</strong></p>
+<p> 通过在私有作用域中定义私有变量和函数，同样也可以创建特权方法。</p>
+<pre><code>(function () &#123;
+    //私有变量和私有函数
+    var privateVariable = 10;
+    function privateFunction () &#123;
+        return false;
+    &#125;
+
+    //构造函数
+    MyObject = function () &#123;&#125;;
+
+    //公有/特权方法
+    MyObject.prototype.publicMethod = function () &#123;
+        privateVariable++;
+        return privateFunction();
+    &#125;;
+    &#125;)();
+</code></pre>
+<p><strong>模块模式</strong></p>
+<p> 前面的模式是用于自定义类型创建私有变量和特权方法的。而道格拉斯所说的模块模式（module patten）则是为单例创建私有变量和方法。所谓单例（singleton），指的就是一个实例的对象。</p>
+<pre><code>    var signleton = function () &#123;
+        //私有变量和私有函数
+        var privateVariable = 10;
+    
+        function privateFunction () &#123;
+            return false;
+        &#125;
+
+        //公有/特权方法
+        return &#123;
+            publicProperty : true;
+            publicMethod : function() &#123;
+                privateVariable++;
+                return privateFunction();
+            &#125;
+        &#125;;
+    &#125;();
+</code></pre>
+<p><strong>增强的模块模式</strong></p>
+<p>  这种增强的模块模式适合那些单例必须是某种类型的实例，同时还必须添加某些属性和（或）方法对其加以增强的情况。</p>
+<pre><code>    var singleton = function()&#123;
+       // 私有变量和私有函数
+       var privateVariable = 10;
+       
+        function privateFunction () &#123;
+            return false;
+        &#125;
+        //创建对象
+        var object = new CustomType();
+        
+        //添加特权/公有属性和方法
+        object.publicProperty =true;
+        
+        object.publicMethod=function()&#123;
+            privateVariable++;
+                return privateFunction();
+        &#125;;
+        
+        //返回这个对象
+        return object;
+     &#125;();
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/01/25/%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cklkumnio007dd0uueff64848" data-title="函数表达式" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/01/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2017-01-22T07:01:35.000Z" itemprop="datePublished">2017-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/01/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-三大方法"><a href="#一-三大方法" class="headerlink" title="一. 三大方法"></a>一. 三大方法</h2><blockquote>
+<p>RegExp采用直接量语法表示：/pattern/attributes</p>
+<p>attributes有三个选择，i、m和g，m（多行匹配）不常用直接省略，所以一个pattern（匹配模式）可以表示如下：</p>
+<pre><code>var pattern = /hello/ig;
+</code></pre>
+<p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p>
+</blockquote>
+<p><strong>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</strong></p>
+<ol>
+<li><p>test</p>
+<p> 主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
+<pre><code> 示例如下：
+ 
+ var s = &#39;you love me and I love you&#39;;
+ var pattern = /you/;
+ var ans = pattern.test(s);
+ console.log(ans); // true
+</code></pre>
+<p> 如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
+</li>
+<li><p>exec</p>
+<p> 主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
+<p> exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
+<p> 示例如下：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = /you/;
+ var ans = pattern.exec(s);
+ console.log(ans); // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+ console.log(ans.index); // 0
+ console.log(ans.input); // you love me and I love you
+</code></pre>
+<p> 输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
+<p> 啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = /y(o?)u/;
+ var ans = pattern.exec(s);
+ console.log(ans);   // [&quot;you&quot;, &quot;o&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+ console.log(ans.length) // 2
+</code></pre>
+<p> 所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
+<p> 除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。</p>
+<p> 如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
+<p> 找到第一个 “you”，并存储其位置<br> 如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置</p>
+<p> 当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
+<p>   实例如下：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = /you/g;
+ var ans;
+ do &#123;
+   ans = pattern.exec(s);
+   console.log(ans);
+   console.log(pattern.lastIndex);
+ &#125;
+ while (ans !== null)  
+</code></pre>
+</li>
+<li><p>compile</p>
+<p> 主要功能：改变当前匹配模式（pattern）</p>
+<p> 它是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
+</li>
+</ol>
+<h2 id="二-String-四大护法"><a href="#二-String-四大护法" class="headerlink" title="二.String 四大护法"></a>二.String 四大护法</h2><p>四大护法有些和RegExp三大方法类似，有的更胜一筹。即str.search/match/replace/split形式。</p>
+<p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p>
+<ol>
+<li><p>search</p>
+<p> 主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
+<p> 是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = /you/;
+ var ans = s.search(pattern);
+ console.log(ans);  // 0
+</code></pre>
+<p> 话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
+</li>
+<li><p>match</p>
+<p> 主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
+<p> match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。实例如下：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ console.log(s.match(/you/));    // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
+ console.log(s.match(/you/g));   // [&quot;you&quot;, &quot;you&quot;]
+</code></pre>
+</li>
+<li><p>replace</p>
+<p> 主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。实例如下：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ console.log(s.replace(&#39;you&#39;, &#39;zichi&#39;)); // zichi love me and I love you
+ console.log(s.replace(/you/, &#39;zichi&#39;)); // zichi love me and I love you
+ console.log(s.replace(/you/g, &#39;zichi&#39;));    // zichi love me and I love zichi
+</code></pre>
+<p> 如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
+</li>
+</ol>
+<pre><code>怎么用？看个例子就明白了。
+
+    var s = &#39;I love you&#39;;
+    var pattern = /love/;
+    var ans = s.replace(pattern, &#39;$`&#39; + &#39;$&amp;&#39; + &quot;$&#39;&quot;);
+    console.log(ans); // I I love you you
+没错，’$`’ + ‘$&amp;’ + “$’”其实就相当于原串了！
+
+**replace的第二个参数还能是函数**，看具体例子前先看一段介绍：
+
+注意：第一个参数是匹配到的子串，接下去是子表达式匹配的值，如果要用子表达式参数，则必须要有第一个参数（表示匹配到的串），也就是说，如果要用第n个参数代表的值，则左边参数都必须写出来。最后两个参数跟exec后返回的数组的两个属性差不多。
+
+    var s = &#39;I love you&#39;;
+    var pattern = /love/;
+    var ans = s.replace(pattern, function(a) &#123;　　// 只有一个参数，默认为匹配到的串（如还有参数，则按序表示子表达式和其他两个参数）
+      return a.toUpperCase();
+    &#125;);
+    console.log(ans); // I LOVE you
+</code></pre>
+<ol start="4">
+<li><p>split</p>
+<p> 主要功能：分割字符串</p>
+<p> 字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = &#39;and&#39;;
+ var ans = s.split(pattern);
+ console.log(ans);   // [&quot;you love me &quot;, &quot; I love you&quot;]
+</code></pre>
+<p> 如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
+<pre><code> var s = &#39;you love me and I love you&#39;;
+ var pattern = /and/;
+ var ans = s.split(pattern, 1);
+ console.log(ans);   // [&quot;you love me &quot;]
+</code></pre>
+</li>
+<li><p>RegExp 字符</p>
+</li>
+</ol>
+<pre><code>- \s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)       
+- \b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）
+- \w 匹配字母或数字或下划线   [a-z0-9A-Z_]完全等同于\w
+</code></pre>
+<h2 id="三-贪婪匹配和懒惰匹配"><a href="#三-贪婪匹配和懒惰匹配" class="headerlink" title="三. 贪婪匹配和懒惰匹配"></a>三. 贪婪匹配和懒惰匹配</h2><ol>
+<li><p>什么是贪婪匹配？贪婪匹配就是在正则表达式的匹配过程中，默认会使得匹配长度越大越好。</p>
+<pre><code> var s = &#39;hello world welcome to my world&#39;;
+ var pattern = /hello.*world/;
+ var ans = pattern.exec(s);
+ console.log(ans)  // [&quot;hello world welcome to my world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
+</code></pre>
+<p> 以上例子不会匹配最前面的Hello World，而是一直贪心的往后匹配。</p>
+<p> 那么我需要最短的匹配怎么办？很简单，加个‘？’即可，这就是传说中的懒惰匹配，即匹配到了，就不往后找了。</p>
+<pre><code> var s = &#39;hello world welcome to my world&#39;;
+ var pattern = /hello.*?world/;
+ var ans = pattern.exec(s);
+ console.log(ans)  // [&quot;hello world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
+</code></pre>
+<p> 懒惰限定符（？）添加的场景如下：</p>
+<p> 子表达式</p>
+<p> 表示方式<br> 用一个小括号指定：</p>
+<pre><code> var s = &#39;hello world&#39;;
+ var pattern = /(hello)/;
+ var ans = pattern.exec(s);
+ console.log(ans);
+</code></pre>
+<p> 子表达式出现场景<br> 在exec中数组输出子表达式所匹配的值：</p>
+<pre><code>     var s = &#39;hello world&#39;;
+     var pattern = /(h(e)llo)/;
+     var ans = pattern.exec(s);
+     console.log(ans); // [&quot;hello&quot;, &quot;hello&quot;, &quot;e&quot;, index: 0, input: &quot;hello world&quot;]
+</code></pre>
+<p> 在replace中作为替换值引用：</p>
+<pre><code> var s = &#39;hello world&#39;;
+ var pattern = /(h\w*o)\s*(w\w*d)/;
+ var ans = s.replace(pattern, &#39;$2 $1&#39;)
+ console.log(ans); // world hello
+</code></pre>
+<h2 id="四-后向引用-amp-零宽断言"><a href="#四-后向引用-amp-零宽断言" class="headerlink" title="四.后向引用 &amp; 零宽断言"></a>四.后向引用 &amp; 零宽断言</h2></li>
+<li><p>子表达式的序号问题</p>
+<p> 简单地说：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。</p>
+<p> 复杂地说：分组0对应整个正则表达式实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权．</p>
+</li>
+<li><p>后向引用</p>
+<p> 如果我们要找连续两个一样的字符，比如要找两个连续的c，可以这样/c{2}/，如果要找两个连续的单词hello，可以这样/(hello){2}/，但是要在一个字符串中找连续两个相同的任意单词呢，比如一个字符串hellohellochinaworldworld，我要找的是hello和world，怎么找？</p>
+<p> 这时候就要用后向引用。看具体例子：</p>
+<pre><code> var s = &#39;hellohellochinaworldworld&#39;;
+ var pattern = /(\w+)\1/g;
+ var a = s.match(pattern);
+ console.log(a); // [&quot;hellohello&quot;, &quot;worldworld&quot;]
+</code></pre>
+<p> 这里的\1就表示和匹配模式中的第一个子表达式（分组）一样的内容，\2表示和第二个子表达式（如果有的话）一样的内容，\3 \4 以此类推。（也可以自己命名，详见参考文献）</p>
+<p> 或许你觉得数组里两个hello两个world太多了，我只要一个就够了，就又要用到子表达式了。因为match方法里是不能引用子表达式的值的，我们回顾下哪些方法是可以的？没错，exec和replace是可以的！</p>
+<p>exec方式：</p>
+<p> var s = ‘hellohellochinaworldworld’;<br> var pattern = /(\w+)\1/g;<br> var ans;<br>  do {</p>
+<pre><code> ans = pattern.exec(s);
+ console.log(ans);
+</code></pre>
+<p>  } while(ans !== null);</p>
+<p>  // result<br>  // [“hellohello”, “hello”, index: 0, input: “hellohellochinaworldworld”] index.html:69<br>  // [“worldworld”, “world”, index: 15, input: “hellohellochinaworldworld”] index.html:69<br>  // null<br>如果输出只要hello和world，console.log(ans[1])即可。</p>
+<p>replace方式：</p>
+<pre><code>     var s = &#39;hellohellochinaworldworld&#39;;
+     var pattern = /(\w+)\1/g;
+     var ans = [];
+     s.replace(pattern, function(a, b) &#123;
+     　ans.push(b);
+     &#125;);
+     console.log(ans);   // [&quot;hello&quot;, &quot;world&quot;]
+</code></pre>
+<p>如果要找连续n个相同的串，比如说要找出一个字符串中出现最多的字符：</p>
+<pre><code>     String.prototype.getMost = function() &#123;
+       var a = this.split(&#39;&#39;);
+       a.sort();
+       var s = a.join(&#39;&#39;);
+       var pattern = /(\w)\1*/g;
+       var a = s.match(pattern);
+       a.sort(function(a, b) &#123;
+         return a.length &lt; b.length;
+       &#125;);
+       var letter = a[0][0];
+       var num = a[0].length;
+       return letter + &#39;: &#39; + num;
+     &#125;
+     
+     var s = &#39;aaabbbcccaaabbbcccccc&#39;;
+     console.log(s.getMost()); // c: 9
+</code></pre>
+<p>如果需要引用某个子表达式（分组），请认准后向引用！</p>
+</li>
+<li><p>零宽断言</p>
+<p> 它们用于查找在某些内容(但并不包括这些内容)之后的东西，也就是说它们像\b,^,$那样用于指定一个位置，这个位置应该满足一定的条件(即断言)</p>
+<p> (?=exp)<br> 零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p>
+<pre><code> // 获取字符串中以ing结尾的单词的前半部分
+ var s = &#39;I love dancing but he likes singing&#39;;
+ var pattern = /\b\w+(?=ing\b)/g;
+ var ans = s.match(pattern);
+ console.log(ans); // [&quot;danc&quot;, &quot;sing&quot;]
+ (?!exp)
+</code></pre>
+<p> 零宽度负预测先行断言，断言此位置的后面不能匹配表达式exp</p>
+<pre><code> // 获取第五位不是i的单词的前四位
+ var s = &#39;I love dancing but he likes singing&#39;;
+ var pattern = /\b\w&#123;4&#125;(?!i)/g;
+ var ans = s.match(pattern);
+ console.log(ans); // [&quot;love&quot;, &quot;like&quot;]
+ javascript正则只支持前瞻，不支持后瞻（(?&lt;=exp)和(?&lt;!exp)）。
+</code></pre>
+<p> 关于零宽断言的具体应用可以参考综合应用一节给字符串加千分符。</p>
+</li>
+</ol>
+<h2 id="五-字符转义"><a href="#五-字符转义" class="headerlink" title="五.字符转义"></a>五.字符转义</h2><ol>
+<li><p>因为某些字符已经被正则表达式用掉了，比如. * ( ) / \  []，所以需要使用它们（作为字符）时，需要用\转义</p>
+<pre><code> var s = &#39;http://www.cnblogs.com/zichi/&#39;;
+ var pattern = /http:\/\/www\.cnblogs\.com\/zichi\//;
+ var ans = pattern.exec(s);
+ console.log(ans); // [&quot;http://www.cnblogs.com/zichi/&quot;, index: 0, input: &quot;http://www.cnblogs.com/zichi/&quot;]
+</code></pre>
+</li>
+<li><p><strong>分支条件</strong></p>
+<p> 如果需要匹配abc里的任意字母，可以用[abc]，但是如果不是单个字母那么简单，就要用到分支条件。</p>
+<p> 分支条件很简单，就是用|表示符合其中任意一种规则。</p>
+<pre><code> var s = &quot;I don&#39;t like you but I love you&quot;;
+ var pattern = /I.*(like|love).*you/g;
+ var ans = s.match(pattern);
+ console.log(ans); // [&quot;I don&#39;t like you but I love you&quot;]
+</code></pre>
+<p> 答案执行了贪婪匹配，如果需要懒惰匹配，则：</p>
+<pre><code> var s = &quot;I don&#39;t like you but I love you&quot;;
+ var pattern = /I.*?(like|love).*?you/g;
+ var ans = s.match(pattern);
+ console.log(ans); // [&quot;I don&#39;t like you&quot;, &quot;I love you&quot;]
+</code></pre>
+</li>
+<li><p><strong>综合应用</strong></p>
+<p>  去除字符串首尾空格（replace）</p>
+<pre><code> String.prototype.trim = function() &#123;
+   return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
+ &#125;;
+ var s = &#39;    hello  world     &#39;;
+ var ans = s.trim();
+ console.log(ans.length);    // 12
+</code></pre>
+<p> 给字符串加千分符（零宽断言）</p>
+<pre><code> String.prototype.getAns = function() &#123;
+   var pattern = /(?=((?!\b)\d&#123;3&#125;)+$)/g;
+   return this.replace(pattern, &#39;,&#39;);
+ &#125;
+ 
+ var s = &#39;123456789&#39;;
+ console.log(s.getAns());  // 123,456,789
+</code></pre>
+<p> 找出字符串中出现最多的字符（后向引用）</p>
+<pre><code> String.prototype.getMost = function() &#123;
+   var a = this.split(&#39;&#39;);
+   a.sort();
+   var s = a.join(&#39;&#39;);
+   var pattern = /(\w)\1*/g;
+   var a = s.match(pattern);
+   a.sort(function(a, b) &#123;
+     return a.length &lt; b.length;
+   &#125;);
+   var letter = a[0][0];
+   var num = a[0].length;
+   return letter + &#39;: &#39; + num;
+ &#125;
+ 
+ var s = &#39;aaabbbcccaaabbbcccccc&#39;;
+ console.log(s.getMost()); // c: 9
+</code></pre>
+<p> 常用匹配模式（持续更新）<br> 只能输入汉字：</p>
+<pre><code> /^[\u4e00-\u9fa5]&#123;0,&#125;$/
+</code></pre>
+</li>
+</ol>
+<h2 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h2><ol>
+<li><p><strong>test：</strong>检查指定字符串中有没有某子串（或某匹配模式），返回true或者false；如有必要可以进行全局模式搜索。</p>
+</li>
+<li><p><strong>exec：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回数组（数组信息丰富，可参考上文介绍），如没有返回null；如有必要可以进行全局搜索找出所有子串（或者匹配模式）的信息，信息中含有匹配模式中子表达式所对应的字符串。</p>
+</li>
+<li><p><strong>compile：</strong>修改正则表达式中的pattern</p>
+</li>
+<li><p><strong>search：</strong>检查指定字符串中有没有某子串（或者匹配模式），如有返回子串（或者匹配模式）在原串中的开始位置，如没有返回-1。不能进行全局搜索。</p>
+</li>
+<li><p><strong>match：</strong>检查指定字符串中有没有某子串（或者匹配模式），非全局模式下返回信息和exec一致；如进行全局搜索，直接返回字符串数组。（如不需要关于每个匹配的更多信息，推荐用match而不是exec）</p>
+</li>
+<li><p><strong>replace：</strong>检查指定字符串中有没有某子串（或者匹配模式），并用另一个子串代替（该子串可以跟原字符串或者搜索到的子串有关）；如启动g，则全局替换，否则只替换第一个。replace方法可以引用子表达式所对应的值。</p>
+</li>
+<li><p><strong>split</strong>：用特定模式分割字符串，返回一个字符串数组；与Array的join方法正好相反。</p>
+</li>
+<li><p><strong>子表达式：</strong>用括号括起来的正则匹配表达式，用后向引用可以对其进行引用；也可以和exec或者replace搭配获取其真实匹配值。</p>
+</li>
+<li><p><strong>后向引用 ：</strong>对子表达式所在分组进行引用。</p>
+</li>
+<li><p><strong>零宽断言：</strong>和\b ^ 以及$类似的某个位置概念。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/01/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cklkumnj600add0uuettg8i9f" data-title="正则表达式" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-AJAX" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/01/20/AJAX/" class="article-date">
+  <time class="dt-published" datetime="2017-01-20T06:00:29.000Z" itemprop="datePublished">2017-01-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/01/20/AJAX/">AJAX</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-AJAX简介"><a href="#一-AJAX简介" class="headerlink" title="一. AJAX简介"></a>一. AJAX简介</h2><ol>
+<li>AJAX = 异步 JavaScript 和 XML。</li>
+<li>AJAX 是一种用于创建快速动态网页的技术。</li>
+<li>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。</li>
+<li>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</li>
+</ol>
+<h2 id="二-创建-XMLHttpRequest-对象"><a href="#二-创建-XMLHttpRequest-对象" class="headerlink" title="二. 创建 XMLHttpRequest 对象"></a>二. 创建 XMLHttpRequest 对象</h2><ol>
+<li>XMLHttpRequest 是 AJAX 的基础。</li>
+<li>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。</li>
+<li>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。</li>
+</ol>
+<ol start="5">
+<li><p>创建 XMLHttpRequest 对象的语法：</p>
+<pre><code> variable=new XMLHttpRequest();
+</code></pre>
+<p> 老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+<pre><code> variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre>
+</li>
+<li><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：</p>
+<pre><code> var xmlhttp;
+ if (window.XMLHttpRequest)
+ &#123;
+     //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+     xmlhttp=new XMLHttpRequest();
+ &#125;
+ else
+ &#123;
+     // IE6, IE5 浏览器执行代码
+     xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+ &#125;
+</code></pre>
+<h2 id="三-请求"><a href="#三-请求" class="headerlink" title="三.请求"></a>三.请求</h2></li>
+<li><p>向服务器发送请求请求:</p>
+<ul>
+<li><p>XMLHttpRequest 对象用于和服务器交换数据。</p>
+</li>
+<li><p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+<p>  xmlhttp.open(“GET”,”ajax_info.txt”,true);<br>  xmlhttp.send();</p>
+</li>
+</ul>
+</li>
+<li><p>open(method,url,async):规定请求的类型、URL 以及是否异步处理请求。</p>
+<ul>
+<li>method：请求的类型；GET 或 POST</li>
+<li>url：文件在服务器上的位置</li>
+<li>async：true（异步）或 false（同步）</li>
+</ul>
+</li>
+<li><p>send(string):将请求发送到服务器。</p>
+<ul>
+<li>string：仅用于 POST 请求</li>
+</ul>
+</li>
+<li><p>GET 请求</p>
+<p> 一个简单的 GET 请求：</p>
+<pre><code> xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php&quot;,true);
+ xmlhttp.send();
+</code></pre>
+</li>
+<li><p>POST 请求</p>
+<p> 一个简单 POST 请求：</p>
+<pre><code> xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post.php&quot;,true);
+ xmlhttp.send();
+</code></pre>
+</li>
+</ol>
+<ol start="6">
+<li>GET 还是 POST？<br> 与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br> 然而，在以下情况中，请使用 POST 请求： <ul>
+<li>无法使用缓存文件（更新服务器上的文件或数据库）  </li>
+<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+</ul>
+</li>
+</ol>
+<h2 id="四-响应"><a href="#四-响应" class="headerlink" title="四.响应"></a>四.响应</h2><ol>
+<li><p>服务器响应</p>
+<p> 如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的responseText 或 responseXML 属性。</p>
+<ul>
+<li>responseText：获得字符串形式的响应数据。</li>
+<li>responseXML：获得 XML 形式的响应数据。</li>
+</ul>
+</li>
+<li><p>responseText 属性</p>
+<p> 如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
+<ul>
+<li><p>responseText 属性返回字符串形式的响应，因此您可以这样使用：</p>
+<pre><code>   document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>responseXML 属性</p>
+<p> 如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
+<pre><code> 请求 cd_catalog.xml 文件，并解析响应：
+ xmlDoc=xmlhttp.responseXML;
+ txt=&quot;&quot;;
+ x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);
+ for (i=0;i&lt;x.length;i++)
+ &#123;
+     txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;
+ &#125;
+ document.getElementById(&quot;myDiv&quot;).innerHTML=txt;
+</code></pre>
+<h2 id="五-onreadystatechange-事件"><a href="#五-onreadystatechange-事件" class="headerlink" title="五.onreadystatechange 事件"></a>五.onreadystatechange 事件</h2></li>
+<li><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</p>
+</li>
+<li><p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
+</li>
+<li><p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+</li>
+<li><p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+<ul>
+<li><p>onreadystatechange: 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
+</li>
+<li><p>readyState:存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪.    </p>
+</li>
+<li><p>status:  200: “OK” 404: 未找到页面</p>
+<p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。</p>
+<p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：</p>
+<p>   xmlhttp.onreadystatechange=function()</p>
+<pre><code> &#123;
+ if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+   &#123;
+   document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+   &#125;
+ &#125;
+</code></pre>
+<p>注意： onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/01/20/AJAX/" data-id="cklkumngn0001d0uu4u5qbtxv" data-title="AJAX" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Node-js中的module-exports与exports的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/31/Node-js%E4%B8%AD%E7%9A%84module-exports%E4%B8%8Eexports%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2016-10-31T12:34:52.000Z" itemprop="datePublished">2016-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/31/Node-js%E4%B8%AD%E7%9A%84module-exports%E4%B8%8Eexports%E7%9A%84%E5%8C%BA%E5%88%AB/">Node.js中的module.exports与exports的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>每一个node.js执行文件，都自动创建一个module对象，同时，module对象会创建一个叫exports的属性，初始化的值是 {}</p>
+</blockquote>
+<pre><code> module.exports = &#123;&#125;;
+</code></pre>
+<p>Node.js为了方便地导出功能函数，node.js会自动地实现以下这个语句</p>
+<pre><code>//foo.js
+
+     exports.a = function()&#123;
+         console.log(&#39;a&#39;)
+     &#125;
+     exports.a = 1 
+
+
+//test.js
+
+     var x = require(&#39;./foo&#39;);
+     console.log(x.a)
+</code></pre>
+<p>   result:</p>
+<pre><code>1    
+</code></pre>
+<p>这里，exports是引用 module.exports的值。</p>
+<blockquote>
+<p>module.exports 被改变的时候，exports不会被改变，而模块导出的时候，真正导出的执行是module.exports，而不是exports<br>再看看下面例子</p>
+</blockquote>
+<pre><code>//foo.js
+
+     exports.a = function()&#123;
+        console.log(&#39;a&#39;)
+     &#125;
+ module.exports = &#123;a: 2&#125;
+ exports.a = 1 
+
+
+//test.js
+
+ var x = require(&#39;./foo&#39;);
+ console.log(x.a)
+</code></pre>
+<p>result:2</p>
+<p>exports在module.exports 被改变后，失效。</p>
+<blockquote>
+<p>是不是开始有点廓然开朗，下面将会列出开源模块中，经常看到的几个使用方式。</p>
+</blockquote>
+<h3 id="1-module-exports-View"><a href="#1-module-exports-View" class="headerlink" title="1. module.exports = View"></a>1. module.exports = View</h3><pre><code>function View(name, options) &#123; 
+   options = options || &#123;&#125;;
+   this.name = name;
+   this.root = options.root;
+   var engines = options.engines;
+   this.defaultEngine = options.defaultEngine;
+   var ext = this.ext = extname(name);
+   if (!ext &amp;&amp; !this.defaultEngine) throw new Error(&#39;No default engine was specified and no         extension was provided.&#39;);
+   if (!ext) name += (ext = this.ext = (&#39;.&#39; != this.defaultEngine[0] ? &#39;.&#39; : &#39;&#39;) +     this.defaultEngine);
+   this.engine = engines[ext] || (engines[ext] = require(ext.slice(1)).__express);
+   this.path = this.lookup(name);
+ &#125;
+
+ module.exports = View;
+</code></pre>
+<p>javascript里面有一句话，函数即对象，View 是对象，module.export =View, 即相当于导出整个view对象。外面模块调用它的时候，能够调用View的所有方法。不过需要注意，只有是View的静态方法的时候，才能够被调用，prototype创建的方法，则属于View的私有方法。</p>
+<pre><code>//foo.js
+
+     function View()&#123;
+
+     &#125;
+
+     View.prototype.test = function()&#123;
+      console.log(&#39;test&#39;)
+     &#125;
+
+     View.test1 = function()&#123;
+          console.log(&#39;test1&#39;)
+     &#125;
+     module.exports = View
+
+
+//test.js
+
+     var x = require(&#39;./foo&#39;);
+
+     console.log(x) //&#123; [Function: View] test1: [Function] &#125;
+     console.log(x.test) //undefined
+     console.log(x.test1) //[Function]
+     x.test1() //test1
+</code></pre>
+<h3 id="2-var-app-exports-module-exports"><a href="#2-var-app-exports-module-exports" class="headerlink" title="2. var app = exports = module.exports = {};"></a>2. var app = exports = module.exports = {};</h3><p>其实，当我们了解到原理后，不难明白这样的写法有点冗余，其实是为了保证，模块的初始化环境是干净的。同时也方便我们，即使改变了 module.exports 指向的对象后，依然能沿用 exports的特性</p>
+<pre><code> exports = module.exports = createApplication;
+
+ /**
+  * Expose mime.
+  */
+
+ exports.mime = connect.mime;
+</code></pre>
+<p>例子当中module.exports = createApplication改变了module.exports了，让exports失效，通过exports = module.exports的方法，让其恢复原来的特点。</p>
+<h3 id="3-exports-init-function"><a href="#3-exports-init-function" class="headerlink" title="3. exports.init= function(){}"></a>3. exports.init= function(){}</h3><p>这种最简单，直接就是导出模块 init的方法。</p>
+<h3 id="4-var-mongoose-module-exports-exports-new-Mongoose"><a href="#4-var-mongoose-module-exports-exports-new-Mongoose" class="headerlink" title="4.  var mongoose = module.exports = exports = new Mongoose;"></a>4.  var mongoose = module.exports = exports = new Mongoose;</h3><p>集多功能一身。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/31/Node-js%E4%B8%AD%E7%9A%84module-exports%E4%B8%8Eexports%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cklkumnhq003gd0uu11u76dls" data-title="Node.js中的module.exports与exports的区别" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue-js中方法与事件处理器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/30/Vue-js%E4%B8%AD%E6%96%B9%E6%B3%95%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2016-10-30T12:37:12.000Z" itemprop="datePublished">2016-10-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/30/Vue-js%E4%B8%AD%E6%96%B9%E6%B3%95%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/">Vue.js中方法与事件处理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-方法处理器"><a href="#一-方法处理器" class="headerlink" title="一.方法处理器"></a>一.方法处理器</h2><p>可以用 v-on 指令监听 DOM 事件：</p>
+<pre><code>//.html
+&lt;div id=&quot;example&quot;&gt;
+  &lt;button v-on:click=&quot;greet&quot;&gt;Greet&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>我们绑定了一个单击事件处理器到一个方法 greet。下面在 Vue 实例中定义这个方法：</p>
+<pre><code>var vm = new Vue(&#123;
+  el: &#39;#example&#39;,
+  data: &#123;
+    name: &#39;Vue.js&#39;
+  &#125;,
+  //在methods对象中定义方法
+  methods: &#123;
+    greet: function (event) &#123;
+      //方法内this指向vm
+      alert(&#39;Hello &#39; + this.name + &#39;!&#39;)
+      //event是原DOM事件
+      alert(event.target.tagName)
+    &#125;
+  &#125;
+&#125;)
+
+// 也可以在 JavaScript 代码中调用方法
+vm.greet() // -&gt; &#39;Hello Vue.js!&#39;
+</code></pre>
+<h2 id="二-内联语句处理器"><a href="#二-内联语句处理器" class="headerlink" title="二.内联语句处理器"></a>二.内联语句处理器</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<pre><code>//.html
+&lt;div id=&quot;example-2&quot;&gt;
+  &lt;button v-on:click=&quot;say(&#39;hi&#39;)&quot;&gt;Say Hi&lt;/button&gt;
+  &lt;button v-on:click=&quot;say(&#39;what&#39;)&quot;&gt;Say What&lt;/button&gt;
+&lt;/div&gt;
+
+
+//.js
+var vm = new Vue(&#123;
+  el: &#39;#example-2&#39;,
+  methods: &#123;
+    say: function (msg) &#123;
+      alert(msg)
+    &#125;
+  &#125;
+&#125;) 
+</code></pre>
+<p>result:</p>
+<pre><code>Hi
+
+What
+</code></pre>
+<h2 id="三-事件修饰符"><a href="#三-事件修饰符" class="headerlink" title="三.事件修饰符"></a>三.事件修饰符</h2><p>在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。</p>
+<p>为了解决这个问题，Vue.js 为 v-on 提供两个 事件修饰符：.prevent 与 .stop。</p>
+<pre><code>&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+</code></pre>
+<h2 id="四-按键修饰符"><a href="#四-按键修饰符" class="headerlink" title="四.按键修饰符"></a>四.按键修饰符</h2><p>在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 v-on 添加按键修饰符：</p>
+<pre><code>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+</code></pre>
+<p>记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：</p>
+<pre><code>&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre>
+<h2 id="五-为什么在-HTML-中监听事件"><a href="#五-为什么在-HTML-中监听事件" class="headerlink" title="五.为什么在 HTML 中监听事件?"></a>五.为什么在 HTML 中监听事件?</h2><p>你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 v-on 有几个好处：</p>
+<ol>
+<li><p>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</p>
+</li>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</p>
+</li>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/30/Vue-js%E4%B8%AD%E6%96%B9%E6%B3%95%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" data-id="cklkumni50058d0uu21au8d31" data-title="Vue.js中方法与事件处理器" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue-js中的表单控件绑定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time class="dt-published" datetime="2016-10-28T12:28:57.000Z" itemprop="datePublished">2016-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/">Vue.js中的表单控件绑定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>可以用 v-model 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，v-model 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。</p>
+<p>1.text</p>
+<pre><code>&lt;span&gt;Message is: &#123;&#123; message &#125;&#125;&lt;/span&gt;
+&lt;br&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;
+</code></pre>
+<br>  
+result:
+
+<p>Message is:</p>
+ <input type="text" v-model="message" placeholder="edit me">
+
+<p>2.multiline text</p>
+<pre><code>&lt;span&gt;Multiline message is:&lt;/span&gt;
+&lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;
+&lt;br&gt;
+&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<p>result:</p>
+<p>Message is:</p>
+<p> <textarea v-model="message" placeholder="add multiple lines"></textarea></p>
+<p>3.Checkbox</p>
+<p>单个勾选框，逻辑值：</p>
+<pre><code>&lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; v-model=&quot;checked&quot;&gt;
+&lt;label for=&quot;checkbox&quot;&gt;&#123;&#123; checked &#125;&#125;&lt;/label&gt;
+</code></pre>
+<p> <input type="checkbox" id="checkbox" v-model="checked">false</p>
+<p>4.多个勾选框，绑定到同一个数组：</p>
+<pre><code>//.html
+&lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;
+&lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Checked names: &#123;&#123; checkedNames | json &#125;&#125;&lt;/span&gt;
+
+
+//.js
+new Vue(&#123;
+  el: &#39;...&#39;,
+  data: &#123;
+    checkedNames: []
+  &#125;
+&#125;)
+</code></pre>
+<p>5.Radio</p>
+<pre><code>&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;
+&lt;br&gt;
+&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;
+&lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;
+&lt;br&gt;
+&lt;span&gt;Picked: &#123;&#123; picked &#125;&#125;&lt;/span&gt;
+</code></pre>
+ <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: 
+    
+6.Select
+单选：
+
+<pre><code>&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option selected&gt;A&lt;/option&gt;
+  &lt;option&gt;B&lt;/option&gt;
+  &lt;option&gt;C&lt;/option&gt;
+&lt;/select&gt;
+&lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt;
+</code></pre>
+<select v-model="selected">
+  <option selected>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+<br>
+<span>Selected:["A"]</span>
+
+<p>7.绑定 value</p>
+<p>对于单选按钮，勾选框及选择框选项，v-model 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：</p>
+<pre><code>&lt;!-- 当选中时，`picked` 为字符串 &quot;a&quot; --&gt;
+&lt;input type=&quot;radio&quot; v-model=&quot;picked&quot; value=&quot;a&quot;&gt;
+
+&lt;!-- `toggle` 为 true 或 false --&gt;
+&lt;input type=&quot;checkbox&quot; v-model=&quot;toggle&quot;&gt;
+
+&lt;!-- 当选中时，`selected` 为字符串 &quot;abc&quot; --&gt;
+&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option value=&quot;abc&quot;&gt;ABC&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<p>但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。</p>
+<p>​    </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/" data-id="cklkumni8005fd0uu7sz5hc0k" data-title="Vue.js中的表单控件绑定" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue-js中的条件渲染和列表渲染" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%92%8C%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/" class="article-date">
+  <time class="dt-published" datetime="2016-10-28T12:25:41.000Z" itemprop="datePublished">2016-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%92%8C%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">Vue.js中的条件渲染和列表渲染</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-条件渲染"><a href="#一-条件渲染" class="headerlink" title="一.条件渲染"></a>一.条件渲染</h2><h3 id="1-v-if"><a href="#1-v-if" class="headerlink" title="1.v-if"></a>1.v-if</h3><p>例子：</p>
+<pre><code>//.html
+&lt;div id=&quot;vm&quot;&gt;  
+    &lt;h1 v-if=&quot;ok&quot;&gt;ok&lt;/h1&gt;
+    &lt;h1 v-else&gt;no&lt;/h1&gt;
+&lt;/div&gt;
+
+
+
+//.js
+window.onload=function()&#123;
+  var vm = new Vue(&#123;
+    el:&#39;#vm&#39;,
+    data:&#123;
+        ok:true,
+        no:false
+        &#125;
+    &#125;);
+&#125;
+</code></pre>
+<p>result:</p>
+<pre><code>ok
+</code></pre>
+<h3 id="2-template-v-if"><a href="#2-template-v-if" class="headerlink" title="2.template v-if"></a>2.template v-if</h3><p>因为 v-if 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。</p>
+<p>例子：</p>
+<pre><code>&lt;template v-if=&quot;ok&quot;&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph 1&lt;/p&gt;
+  &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="3-v-show"><a href="#3-v-show" class="headerlink" title="3.v-show"></a>3.v-show</h3><p>v-show指令的用法和v-if用法大体上一样</p>
+<p>例子：</p>
+<pre><code>&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
+</code></pre>
+<p><strong>注意：</strong> 不同的是有 v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display。</p>
+<p>注意 v-show 不支持 <template> 语法。</p>
+<h3 id="4-v-else"><a href="#4-v-else" class="headerlink" title="4.v-else"></a>4.v-else</h3><p>可以用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”：</p>
+<pre><code>&lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;
+      Sorry
+&lt;/div&gt;
+&lt;div v-else&gt;
+      Not sorry
+&lt;/div&gt;
+</code></pre>
+<p><strong>注意：</strong> v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。</p>
+<h2 id="二-列表渲染"><a href="#二-列表渲染" class="headerlink" title="二.列表渲染"></a>二.列表渲染</h2><h3 id="1-v-for"><a href="#1-v-for" class="headerlink" title="1.v-for"></a>1.v-for</h3><p>a. 可以使用 v-for 指令基于一个数组渲染一个列表。这个指令使用特殊的语法，形式为 item in items，items 是数据数组，item 是当前数组元素的别名：</p>
+<p>例：</p>
+<pre><code>//.html
+&lt;ul id=&quot;example-1&quot;&gt;
+  &lt;li v-for=&quot;item in items&quot;&gt;
+    &#123;&#123; item.message &#125;&#125;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+var example1 = new Vue(&#123;
+  el: &#39;#example-1&#39;,
+  data: &#123;
+    items: [
+      &#123; message: &#39;Foo&#39; &#125;,
+      &#123; message: &#39;Bar&#39; &#125;
+    ]
+  &#125;
+&#125;)
+</code></pre>
+<p>result:</p>
+<ul>
+<li>Foo</li>
+<li>Bar</li>
+</ul>
+<p>b. 也可以使用 v-for 遍历对象。除了 $index 之外，作用域内还可以访问另外一个特殊变量 $key。</p>
+<p>例子：</p>
+<pre><code>//.html
+&lt;ul id=&quot;repeat-object&quot; class=&quot;demo&quot;&gt;
+  &lt;li v-for=&quot;value in object&quot;&gt;
+    &#123;&#123; $key &#125;&#125; : &#123;&#123; value &#125;&#125;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+//.js
+new Vue(&#123;
+  el: &#39;#repeat-object&#39;,
+  data: &#123;
+    object: &#123;
+      FirstName: &#39;John&#39;,
+      LastName: &#39;Doe&#39;,
+      Age: 30
+    &#125;
+  &#125;    
+&#125;)
+</code></pre>
+<p>result:</p>
+<ul>
+<li>FirstName:John</li>
+<li>lastname:Doe</li>
+<li>Age:30</li>
+</ul>
+<p><strong>注意：</strong> 在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
+<p>c. v-for也可以接收一个整数，此时它将重复模板数次。</p>
+<pre><code>&lt;div&gt;
+    &lt;span v-for=&quot;n in 10&quot;&gt;&#123;&#123;n&#125;&#125;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>result:</p>
+<pre><code>0123456789
+</code></pre>
+<p>​    </p>
+<h3 id="2-template-v-for"><a href="#2-template-v-for" class="headerlink" title="2.template v-for"></a>2.template v-for</h3><p>类似于 template v-if，也可以将 v-for 用在 <template> 标签上，以渲染一个包含多个元素的块。例如：</p>
+<pre><code>&lt;ul&gt;
+  &lt;template v-for=&quot;item in items&quot;&gt;
+    &lt;li&gt;&#123;&#123; item.msg &#125;&#125;&lt;/li&gt;
+    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+  &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>​    </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/28/Vue-js%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%92%8C%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/" data-id="cklkumni7005bd0uudprv36qa" data-title="Vue.js中的条件渲染和列表渲染" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

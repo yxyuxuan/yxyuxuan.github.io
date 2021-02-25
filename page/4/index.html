@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-为什么Form表单提交不会受到同源策略的影响" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-01-09T12:14:39.000Z" itemprop="datePublished">2020-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/">为什么Form表单提交不会受到同源策略的影响</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="为什么form表单提交没有跨域问题，但ajax提交有跨域问题？"><a href="#为什么form表单提交没有跨域问题，但ajax提交有跨域问题？" class="headerlink" title="为什么form表单提交没有跨域问题，但ajax提交有跨域问题？"></a>为什么form表单提交没有跨域问题，但ajax提交有跨域问题？</h3><p><strong>浏览器的同源策略的本质</strong>：一个域名的 JS ，在未经允许的情况下，不得读取另一个域名的内容。但浏览器并不阻止你向另一个域名发送请求。。</p>
+<p>form 提交(submit函数)之后，是不会有任何数据返回的。没机会读任何东西，所以可以认为是无害的，不在同源策略之内。</p>
+<p>而 AJAX 是可以读取响应内容的，因此浏览器的同源策略不允许这样的行为。</p>
+<p>所以同源策略会限制 Ajax读取响应内容 不会限制 Form发送请求。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/09/%E4%B8%BA%E4%BB%80%E4%B9%88Form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B8%8D%E4%BC%9A%E5%8F%97%E5%88%B0%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E7%9A%84%E5%BD%B1%E5%93%8D/" data-id="cklkumnii006kd0uucw9e1aed" data-title="为什么Form表单提交不会受到同源策略的影响" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-浏览器的同源策略及其规避方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E5%8F%8A%E5%85%B6%E8%A7%84%E9%81%BF%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2020-01-08T02:23:12.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E5%8F%8A%E5%85%B6%E8%A7%84%E9%81%BF%E6%96%B9%E6%B3%95/">浏览器的同源策略</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。 </p>
+<p>广义的跨域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.) 资源跳转： A链接、重定向、表单提交</span><br><span class="line">2.) 资源嵌入： &lt;link&gt;、&lt;script&gt;、&lt;img&gt;、&lt;frame&gt;等dom标签，还有样式中background:url()、@font-face()等文件外链</span><br><span class="line">3.) 脚本请求： js发起的ajax请求、dom和js对象的跨域操作等</span><br></pre></td></tr></table></figure>
+
+<h3 id="同源政策"><a href="#同源政策" class="headerlink" title="同源政策"></a>同源政策</h3><p>同源策略/SOP（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<p>同源策略限制以下几种行为：   </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>) Cookie、LocalStorage 和 IndexDB 无法读取</span><br><span class="line"><span class="number">2.</span>) DOM 和 Js对象无法获得</span><br><span class="line"><span class="number">3.</span>) 不能发送网络（http）请求</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见跨域场景"><a href="#常见跨域场景" class="headerlink" title="常见跨域场景"></a>常见跨域场景</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">URL                                      说明                    是否允许通信</span><br><span class="line">http:<span class="comment">//www.domain.com/a.js</span></span><br><span class="line">http:<span class="comment">//www.domain.com/b.js         同一域名，不同文件或路径           允许</span></span><br><span class="line">http:<span class="comment">//www.domain.com/lab/c.js</span></span><br><span class="line"></span><br><span class="line">http:<span class="comment">//www.domain.com:8000/a.js</span></span><br><span class="line">http:<span class="comment">//www.domain.com/b.js         同一域名，不同端口                不允许</span></span><br><span class="line"> </span><br><span class="line">http:<span class="comment">//www.domain.com/a.js</span></span><br><span class="line">https:<span class="comment">//www.domain.com/b.js        同一域名，不同协议                不允许</span></span><br><span class="line"> </span><br><span class="line">http:<span class="comment">//www.domain.com/a.js</span></span><br><span class="line">http:<span class="comment">//192.168.4.12/b.js           域名和域名对应相同ip              不允许</span></span><br><span class="line"> </span><br><span class="line">http:<span class="comment">//www.domain.com/a.js</span></span><br><span class="line">http:<span class="comment">//x.domain.com/b.js           主域相同，子域不同                不允许</span></span><br><span class="line">http:<span class="comment">//domain.com/c.js</span></span><br><span class="line"> </span><br><span class="line">http:<span class="comment">//www.domain1.com/a.js</span></span><br><span class="line">http:<span class="comment">//www.domain2.com/b.js        不同域名                         不允许</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h3><ol>
+<li><p><strong>jsonp</strong></p>
+<p>jsonp的原理就是利用<code>&lt;script&gt;</code>标签没有跨域限制，通过<code>&lt;script&gt;</code>标签src属性，发送带有callback参数的GET请求，服务端将接口返回数据拼凑到callback函数中，返回给浏览器，浏览器解析执行，从而前端拿到callback函数返回的数据。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&#x27;http://www.domain2.com:8080/login?user=admin&amp;callback=handleCallback&#x27;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>jsonp（只支持get请求，支持老的IE浏览器）适合加载不同域名的js、css，img等静态资源；</p>
+</li>
+<li><p>document.domain+iframe适合主域名相同，子域名不同两个页面的跨域请求，可以在两个页面设置document.domain = “主域名” 。</p>
+<p>例如：<a target="_blank" rel="noopener" href="http://a.h5course.com/a.html%E9%A1%B5%E9%9D%A2%E5%92%8Chttp://B.h5course.com/b.html%E9%A1%B5%E9%9D%A2%E8%83%BD%E5%A4%9F%E7%9B%B8%E4%BA%92%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AE%BE%E7%BD%AEdocument.domain">http://A.h5course.com/a.html页面和http://B.h5course.com/b.html页面能够相互访问，可以在两个文件中设置document.domain</a> = “h5course.com”，两个页面文档里通过iframe引入对方的文件。</p>
+<p>iframe元素：iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。</p>
+</li>
+<li><p>react项目在package.json中使用proxy（代理）配置可以解决跨域问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;proxy&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;/api/admin&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;target&quot;</span>: <span class="string">&quot;http://localhost:12610&quot;</span>,</span><br><span class="line">      <span class="string">&quot;pathRewrite&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;^/api/admin&quot;</span>: <span class="string">&quot;/&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;target&quot;</span>: <span class="string">&quot;http://47.74.215.209:9000&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置webpack 的proxy 代理实现跨域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line">  env: <span class="built_in">require</span>(<span class="string">&#x27;./dev.env&#x27;</span>),</span><br><span class="line">  port: <span class="number">8080</span>,</span><br><span class="line">  autoOpenBrowser: <span class="literal">true</span>,</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">  proxyTable: &#123;</span><br><span class="line">    <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">      target: <span class="string">&#x27;http://www.abc.com&#x27;</span>,  <span class="comment">//目标接口域名</span></span><br><span class="line">      changeOrigin: <span class="literal">true</span>,  <span class="comment">//是否跨域</span></span><br><span class="line">      pathRewrite: &#123;</span><br><span class="line">        <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;/api&#x27;</span>   <span class="comment">//重写接口</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  cssSourceMap: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 http-proxy-middleware 代理跨域</p>
+<p>a. 安装<code>http-proxy-middleware</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install http-proxy-middleware --save</span><br><span class="line">$ # or$ yarn add http-proxy-middleware</span><br></pre></td></tr></table></figure>
+
+<p>b. 创建 <code>src/setupProxy.js</code></p>
+<p>c. 第三步 设置代理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setupProxy.js</span></span><br><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">  app.use(</span><br><span class="line">        <span class="string">&#x27;/api&#x27;</span>, <span class="comment">//使用&quot;/api&quot;来代替&quot;http://localhost:3000&quot;</span></span><br><span class="line">        createProxyMiddleware(&#123;  </span><br><span class="line">            target: <span class="string">&#x27;http://localhost:3000&#x27;</span>, <span class="comment">//源地址       </span></span><br><span class="line">            changeOrigin: <span class="literal">true</span>, <span class="comment">//改变源 </span></span><br><span class="line">            pathRewrite: &#123; </span><br><span class="line">             <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;http://localhost:3000&#x27;</span> <span class="comment">//路径重写 </span></span><br><span class="line">            &#125; </span><br><span class="line">    	&#125;)</span><br><span class="line">  );</span><br><span class="line">    app.use(</span><br><span class="line">        <span class="string">&#x27;/apc&#x27;</span>,</span><br><span class="line">        createProxyMiddleware(&#123;  </span><br><span class="line">           	target: <span class="string">&#x27;https://test.tosharing.com&#x27;</span>,       </span><br><span class="line">            changeOrigin: <span class="literal">true</span>,  </span><br><span class="line">            pathRewrite: &#123; </span><br><span class="line">             <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;https://test.tosharing.com&#x27;</span></span><br><span class="line">            &#125; </span><br><span class="line">    	&#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CORS跨域资源共享</p>
+<p>　　<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/04/cors.html">参考阮一峰老师的文章</a> <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/04/cors.html">http://www.ruanyifeng.com/blog/2016/04/cors.html</a> </p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E5%8F%8A%E5%85%B6%E8%A7%84%E9%81%BF%E6%96%B9%E6%B3%95/" data-id="cklkumniw008jd0uu83v5cf4u" data-title="浏览器的同源策略" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-自定义字体的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/16/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-12-16T12:14:04.000Z" itemprop="datePublished">2019-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/16/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8/">自定义字体的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一、使用场景"><a href="#一、使用场景" class="headerlink" title="一、使用场景"></a>一、使用场景</h3><ul>
+<li>宣传/品牌/banner等固定文案</li>
+<li>字体图标中使用</li>
+</ul>
+<h3 id="二、例子"><a href="#二、例子" class="headerlink" title="二、例子"></a>二、例子</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">     <span class="attribute">font-family</span>: <span class="string">&#x27;自定义字体名称&#x27;</span>; </span><br><span class="line">     <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&#x27;../font/字体名称.eot&#x27;</span>);</span><br><span class="line">     <span class="attribute">src</span>:<span class="built_in">url</span>(<span class="string">&#x27;../font/字体名称.woff&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;woff&#x27;</span>),</span><br><span class="line">         <span class="built_in">url</span>(<span class="string">&#x27;../font/字体名称.ttf&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;truetype&#x27;</span>),</span><br><span class="line">         <span class="built_in">url</span>(<span class="string">&#x27;../font/字体名称.svg&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;svg&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 使用方法：html中的代码中加一个h1或者其他的，里面写你自己想要的特殊文字 */</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">36px</span>; </span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;自定义字体名称&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/16/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cklkumniy008xd0uuh2g57qbj" data-title="自定义字体的使用" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JS中的Event-Loop（事件循环）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/11/21/JS%E4%B8%AD%E7%9A%84Event-Loop%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-11-21T06:21:03.000Z" itemprop="datePublished">2019-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/11/21/JS%E4%B8%AD%E7%9A%84Event-Loop%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%89/">JS中的Event-Loop（事件循环）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Javascript是一门单线程的非堵塞的脚本语言，也是用来与浏览器交互的语言。</p>
+<p>单线程是：代码执行的任何时候，都只有一个主线程来处理所有的任务。</p>
+<p>非堵塞：当代码需要进行一项异步任务的时候，主线程会挂起这个异步任务，继续向下执行，然后在异步任务返回结果的时候再根据一定规则去执行相应的回调。 </p>
+</blockquote>
+<h2 id="JS中的堆、栈、队列"><a href="#JS中的堆、栈、队列" class="headerlink" title="JS中的堆、栈、队列"></a>JS中的堆、栈、队列</h2><h4 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a>堆（heap）</h4><p>堆（heap）是指程序运行时申请的动态内存，在JS运行时用来存放对象。</p>
+<h4 id="栈（stack）"><a href="#栈（stack）" class="headerlink" title="栈（stack）"></a>栈（stack）</h4><p>栈（stack）遵循的原则是“先进后出”，Javascript中的基本数据类型与指向对象的地址的指针存放在栈内存中，此外还有一块栈内存用来执行JS主线程–执行栈（execution context stack）。</p>
+<h4 id="队列（queue）"><a href="#队列（queue）" class="headerlink" title="队列（queue）"></a>队列（queue）</h4><p>队列（queue）遵循的原则是“先进先出”，JS中除了主线程之外还存在一个“任务队列”，任务队列又分为微任务和宏任务。</p>
+<h2 id="什么是Event-Loop线程？"><a href="#什么是Event-Loop线程？" class="headerlink" title="什么是Event Loop线程？"></a>什么是Event Loop线程？</h2><p><strong>在程序中设置两个线程：一个负责程序本身的运行，称为”主线程”；另一个负责主线程与其它进程（主要是各种I/O操作）的通信，被称为”Event Loop线程”</strong> </p>
+<p>Event Loop线程处理的任务被分为两类即 微任务（micro task）和宏任务（macro task） ，这两个任务分别维护一个队列，都是采用先进先出的策略进行执行。</p>
+<p>宏任务：setTimeout、setInterval、I/O。</p>
+<p>微任务：Promise.then、 MutationObserver。</p>
+<p>当遇到异步请求的时候，主线程就让Event Loop线程去通知相应的异步请求程序，然后接着往后运行，等到异步程序完成操作，Event Loop线程再把结果返回主线程，主线程就调用事先设定的回调函数，完成整个任务。 </p>
+<p>当前栈执行完后，Event Loop线程首先会执行微任务队列中事件，然后执行宏任务队列的事件，如果这时发现了微任务，则执行微任务，然后执行宏任务，反复循环至所有事件执行完毕。微任务永远在宏任务之前执行。</p>
+<p><strong>Example：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">6</span>);</span><br><span class="line">        resolve(<span class="built_in">Date</span>.now());</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">7</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">10</span>);</span><br><span class="line">	&#125;, <span class="number">0</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">8</span>);</span><br><span class="line">    resolve(<span class="built_in">Date</span>.now());</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">9</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">    resolve(<span class="built_in">Date</span>.now());</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>解析执行步骤：</p>
+<ol>
+<li>主线程先执行log(1)</li>
+<li>log(2)加入宏任务，log(6,7,10)加入宏任务，执行log(8)，把log(9)加入微任务</li>
+<li>执行log(3)，把log(4)加入微任务</li>
+<li>执行log(5)</li>
+<li>发现微任务，开始处理微任务，先进先出的规则，执行log(9)，log(4)，微任务执行完毕。</li>
+<li>接着处理宏任务，发现宏任务，执行log(2)，执行log(6)，把log(7)加入微任务，把log(10)加入宏任务</li>
+<li>发现微任务，执行微任务，执行log(7)，微任务执行完毕。</li>
+<li>接着执行宏任务，执行log(10)，宏任务和微任务均执行完毕。</li>
+</ol>
+<p>执行结果： 1，8，3，5，9，4，2，6，7，10</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/21/JS%E4%B8%AD%E7%9A%84Event-Loop%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%89/" data-id="cklkumnh9001od0uu6trz5ook" data-title="JS中的Event-Loop（事件循环）" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS预处理器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/11/16/CSS%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-11-16T12:13:29.000Z" itemprop="datePublished">2019-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/11/16/CSS%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8/">CSS预处理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、常见的CSS预处理器？"><a href="#一、常见的CSS预处理器？" class="headerlink" title="一、常见的CSS预处理器？"></a>一、常见的CSS预处理器？</h2><p>css预处理器：用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处</p>
+<ul>
+<li>Sass(Scss)：2007,ruby编写，</li>
+<li>SCSS 是 Sass 3 引入新的语法，其语法完全兼容 CSS3，并且继承了 Sass 的强大功能。Sass 和 SCSS 其实是同一种东西，我们平时都称之为 Sass，两者之间不同之处有以下两点：Sass 是以“.sass”后缀为扩展名，而 SCSS 是以“.scss”后缀为扩展名；Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，而 SCSS 的语法书写和我们的 CSS 语法书写方式非常类似。</li>
+<li>Less: 2009，js编译</li>
+</ul>
+<h3 id="使用流程？"><a href="#使用流程？" class="headerlink" title="使用流程？"></a>使用流程？</h3><ol>
+<li>基于CSS的另外一种语言</li>
+<li>通过工具编译成CSS</li>
+<li>添加了很多CSS不具备的特性</li>
+<li>同时CSS文件的组织方式</li>
+</ol>
+<h3 id="预处理器的作用有哪些？"><a href="#预处理器的作用有哪些？" class="headerlink" title="预处理器的作用有哪些？"></a>预处理器的作用有哪些？</h3><ol>
+<li>帮助开发者更好组织CSS代码（变量，mixIn）</li>
+<li>提高代码的复用性</li>
+<li>代码的可维护性增强</li>
+</ol>
+<h2 id="二、Less-Sass预处理器的功能"><a href="#二、Less-Sass预处理器的功能" class="headerlink" title="二、Less/Sass预处理器的功能"></a>二、Less/Sass预处理器的功能</h2><ol>
+<li>嵌套： 反映层级和约束</li>
+<li>变量和计算： 减少重复代码</li>
+<li>Extend和mixIn： 代码片段的抽离</li>
+<li>循环: 适用于复杂有规律的样式</li>
+<li>import：可以实现CSS文件的模块化</li>
+</ol>
+<h2 id="三、CSS预处理器的优缺点？"><a href="#三、CSS预处理器的优缺点？" class="headerlink" title="三、CSS预处理器的优缺点？"></a>三、CSS预处理器的优缺点？</h2><ul>
+<li>优点： 提高代码的复用率和可维护性</li>
+<li>缺点： 引入了编译的过程，有一定的学习成本</li>
+</ul>
+<blockquote>
+<p>前端工程化：预处理不再是唯一的手段了，可以使用工程化构建工具进行处理</p>
+</blockquote>
+<h2 id="四、Sass和less的区别？"><a href="#四、Sass和less的区别？" class="headerlink" title="四、Sass和less的区别？"></a>四、Sass和less的区别？</h2><ol>
+<li>编译环境不一样</li>
+<li>变量符不一样，Less是@，而Sass是$，而且变量的作用域也不一样。</li>
+<li>输出设置，Less没有输出设置，Sass提供4种输出选项：</li>
+<li>Sass支持条件语句，可以使用if{}else{},for{}循环等等。而Less不支持。</li>
+<li>引用外部CSS文件</li>
+<li>工具库不同</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/16/CSS%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8/" data-id="cklkumngx000hd0uuhbm9e5wk" data-title="CSS预处理器" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-冒泡排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-10-31T10:19:30.000Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>数组中有 <code>n</code> 个数，比较每相邻两个数，如果前者大于后者，就把两个数交换位置；这样一来，第一轮就可以选出一个最大的数放在最后面；那么经过 <code>n-1</code>（数组的 length - 1） 轮，就完成了所有数的排序。 </p>
+<p>例子：现有数组arr:[14,3,13,33,61,20,11]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const bubbleSort &#x3D; arr &#x3D;&gt; &#123;</span><br><span class="line">  for (let i &#x3D; 0; i &lt; arr.length - 1; i++) &#123;</span><br><span class="line">    let done &#x3D; true;</span><br><span class="line">    for (let j &#x3D; 0; j &lt; arr.length - i - 1; j++) &#123;</span><br><span class="line">      if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">        const temp &#x3D; arr[j];</span><br><span class="line">        arr[j] &#x3D; arr[j + 1];</span><br><span class="line">        arr[j + 1] &#x3D; temp;</span><br><span class="line">        done &#x3D; false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (done) &#123;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>时间复杂度：</strong> <code>平均时间复杂度O(n*n) 、最好情况O(n)、最差情况O(n*n)</code><br><strong>空间复杂度：</strong> O(1)<br><strong>稳定性：</strong>稳定 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" data-id="cklkumnim0072d0uu0r30gj5l" data-title="冒泡排序" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-快速排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/31/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-10-31T10:19:12.000Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/31/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>快速排序的过程：</p>
+<ol>
+<li>在数据中选择一个元素作为基准（ 一般选择中间的数字或者最左边的数字 ），所有小于基准的元素都移到左边的子集中，所有大于基准的元素都移到右边的子集中</li>
+<li>对基准左右两边的两个子集不断重复第一步，直到所有子集只剩下一个元素为止。</li>
+</ol>
+<p>例子：现有数组arr:[14,3,13,33,61,20,11]</p>
+<ol>
+<li><p>第一次分类选择中间元素的位置Math.floor(arr.length/2) = 3，则中间元素是13，小于13的放左边， 大于13的放右边</p>
+<p>3,11//左边       **13 **      14,33,61,20//右边</p>
+</li>
+<li><p>第二次则分别对左右两边的子集重复第一次排序。</p>
+<p><strong>3</strong>   11   <strong>13</strong>     14 ,20   <strong>33</strong>     61</p>
+</li>
+<li><p>第四次</p>
+<p>3,11,13 ,14,20,33,61</p>
+</li>
+</ol>
+<h6 id="使用JavaScript实现快排算法"><a href="#使用JavaScript实现快排算法" class="headerlink" title="使用JavaScript实现快排算法"></a><strong>使用JavaScript实现快排算法</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const quickSort &#x3D; arr &#x3D;&gt; &#123;</span><br><span class="line">  if (arr.length &lt;&#x3D; 1) &#123;</span><br><span class="line">    return arr;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const pivotIndex &#x3D; Math.floor(arr.length &#x2F; 2) - 1;</span><br><span class="line">  const pivot &#x3D; arr.splice(pivotIndex, 1)[0];</span><br><span class="line">  const leftArr &#x3D; [];</span><br><span class="line">  const rightArr &#x3D; [];</span><br><span class="line"></span><br><span class="line">  for (let i &#x3D; 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (arr[i] &lt; pivot) &#123;</span><br><span class="line">      leftArr.push(arr[i]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      rightArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  return quickSort(leftArr).concat([pivot], quickSort(rightArr));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>时间复杂度：</strong> <code>平均时间复杂度O(nlogn) 、最好情况O(n)、最差情况O(n*n)</code><br><strong>空间复杂度：</strong>  O(logn)<br><strong>稳定性：</strong> 不稳定 </p>
+<p>这里如果是二分查找，则logn的底数是2</p>
+<p><strong>对数函数和指数函数复习：</strong></p>
+<p>如果a(a大于0，且a不等于1)的b的次幂等于N，那么数b叫做以a为底N的对数，记作 logaN = b,读作以a为底N的对数，a叫做对数的底数，N叫做真数。</p>
+<p>一般函数 y = log(a)X   (其中a 是常数，a大于0且不等于1)叫做对数函数，</p>
+<p>对数函数是指数函数的反函数，则指数函数为  x = a^y</p>
+<p>时间复杂度指的是一个算法执行所耗费的时间<br>空间复杂度指运行完一个程序所需内存的大小<br>稳定指，如果a=b,a在b的前面，排序后a仍然在b的前面<br>不稳定指，如果a=b，a在b的前面，排序后可能会交换位置 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/31/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" data-id="cklkumnis0082d0uu702aduk4" data-title="快速排序" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-virtual-DOM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/20/virtual-DOM/" class="article-date">
+  <time class="dt-published" datetime="2019-10-20T07:28:03.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/20/virtual-DOM/">Virtual DOM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>利用虚拟DOM能够提高页面的渲染效率，目前流行的前端框架React和Vue都引用了虚拟DOM。下面整理了一下关于虚拟DOM的相关内容</p>
+</blockquote>
+<h2 id="关于DOM"><a href="#关于DOM" class="headerlink" title="关于DOM"></a>关于DOM</h2><p>DOM（Document Object Modal）文档对象模型就是页面上的元素节点。</p>
+<p>原生JS是命令式的开发，如果需要改变DOM只能一步步的对DOM进行增删改查，可能很多代码都在操作DOM。</p>
+<p>React是声明式开发。它有响应式的设计，定义好数据和模板，React会自动渲染DOM，只需要改变数据它就会帮我们改变DOM。</p>
+<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p><strong>Virtual DOM 本质上是Javascript对象，是对真实DOM的一种描述方式。是JS对象模拟的DOM结构，将DOM变化的对比放在JS层来做。</strong></p>
+<p>React可以自动渲染出DOM结构，但是当数据改变时，React就会重新渲染DOM，JS对DOM的操作很消耗性能的，如果只改了一小部分的数据就要重新渲染整个DOM树，在性能上是极大的浪费。所以React引入了虚拟DOM的概念。</p>
+<p>虚拟DOM是JS中的一个对象，是根据数据和模板生成的对象，包含了整个DOM结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;div&#x27;</span>, &#123;<span class="built_in">id</span>: <span class="string">&quot;id&quot;</span>&#125;, [<span class="string">&#x27;p&#x27;</span>, &#123;<span class="class"><span class="keyword">class</span>:</span> <span class="string">&#x27;description&#x27;</span>, <span class="string">&#x27;hello world&#x27;</span>&#125;]]</span><br></pre></td></tr></table></figure>
+
+<p>上面代码就相当于一个虚拟的DOM，div里面有个p标签，p标签里面写了hello world，当然也包含元素上的各个属性 。</p>
+<p>有了虚拟DOM后，当我们改变数据，React会根据当前的数据和模板生成一个虚拟DOM，然后和上一次生成的虚拟DOM进行比对，找出差异，然后根据差异对DOM进行渲染，当然它不会重新渲染，只会渲染被改变的部分。而虚拟DOM只是JS里面的一个对象，JS对对象的操作是非常快的。所以这种方式极大的提高了性能。 </p>
+<h2 id="虚拟dom中的diff算法"><a href="#虚拟dom中的diff算法" class="headerlink" title="虚拟dom中的diff算法"></a>虚拟dom中的diff算法</h2><p>React中Diff算法运用在比较原始虚拟DOM和新的虚拟DOM的比对中。两个虚拟DOM的对比就叫Difference算法，大大提高了效果。当调用setState()的时候，就会发生虚拟DOM的对比。setState()是异步函数。</p>
+<p><strong>为什么给dom的key值赋值时候，不建议使用index？</strong></p>
+<p>循环遍历DOM的时候要给DOM设置一个key值，就相当于给每个dom起了一个名字。在做虚拟dom对比的时候，我们只需要按名字对比，不需要通过dom内容现找到对应的dom再进行对比，这样就节省了新能。index不具备稳定性，当你删除某一个dom后，可能你整个dom树的key值都会发生变化。使用dom的内容去做key，内容改变时对应的dom就需要重新渲染。</p>
+<h2 id="为什么使用虚拟DOM"><a href="#为什么使用虚拟DOM" class="headerlink" title="为什么使用虚拟DOM"></a>为什么使用虚拟DOM</h2><p> 虚拟DOM最大的特点是将页面的状态抽象为 JS 对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。如 React 就借助 虚拟DOM 实现了服务端渲染、浏览器渲染和移动端渲染等功能。 </p>
+<p>在进行页面更新的时候，借助虚拟DOM，DOM 元素的改变可以在内存中进行比较，再结合框架的事务机制将多次比较的结果合并后一次性更新到页面，从而有效地减少页面渲染的次数，提高渲染效率。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/20/virtual-DOM/" data-id="cklkumnih006dd0uuav1rcuzo" data-title="Virtual DOM" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Promise对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/15/Promise%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time class="dt-published" datetime="2019-10-15T07:43:42.000Z" itemprop="datePublished">2019-10-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/15/Promise%E5%AF%B9%E8%B1%A1/">Promise对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p> Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大 。 Promise出现之前解决异步编程用回调，当出现按顺序请求多个异步代码时就只能用回调嵌套来解决，当请求的异步代码很多时就会出现 ”回调地狱“。Promise的出现使得回调看起来变得可控。使用async，await使得异步代码看起来是在同步运行。</p>
+</blockquote>
+<p>ES6 规定，**<code>Promise</code>对象**是一个构造函数，用来生成<code>Promise</code>实例。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const promise &#x3D; new Promise(function(resolve, reject) &#123;</span><br><span class="line">  &#x2F;&#x2F; ... some code</span><br><span class="line"></span><br><span class="line">  if (&#x2F;* 异步操作成功 *&#x2F;)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p> <code>Promise</code>构造函数接受一个函数作为参数，该函数的两个参数分别是<code>resolve</code>和<code>reject</code>。 它们是两个函数，由 JavaScript 引擎提供，不用自己部署。</p>
+<p><code>resolve</code>函数的作用是，将<code>Promise</code>对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；<code>reject</code>函数的作用是，将<code>Promise</code>对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p><code>Promise</code>实例生成以后，可以用<code>then</code>方法分别指定<code>resolved</code>状态和<code>rejected</code>状态的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>then</code>方法可以接受两个回调函数作为参数。第一个回调函数是<code>Promise</code>对象的状态变为<code>resolved</code>时调用，第二个回调函数是<code>Promise</code>对象的状态变为<code>rejected</code>时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受<code>Promise</code>对象传出的值作为参数。</p>
+<p><strong>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数</strong>。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
+<p><strong>Promise规范如下：</strong></p>
+<ul>
+<li><p>一个promise可能有三种状态：<strong>等待（pending）、已完成（fulfilled）、已拒绝（rejected）</strong></p>
+</li>
+<li><p>一个promise的状态只可能从“等待”转到“完成”态或者“拒绝”态，不能逆向转换，同时“完成”态和“拒绝”态不能相互转换</p>
+</li>
+<li><p>promise必须实现<code>then</code>方法（可以说，then就是promise的核心），而且then必须返回一个promise，同一个promise的then可以调用多次，并且回调的执行顺序跟它们被定义时的顺序一致</p>
+</li>
+<li><p>then方法接受两个参数，第一个参数是成功时的回调，在promise由“等待”态转换到“完成”态时调用，另一个是失败时的回调，在promise由“等待”态转换到“拒绝”态时调用。同时，then可以接受另一个promise传入，也接受一个“类then”的对象或方法，即thenable对象。</p>
+</li>
+</ul>
+<p><strong>promise 的缺点：</strong></p>
+<ul>
+<li>无法取消 Promise，一旦新建它就会立即执行，无法中途取消。</li>
+<li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</li>
+</ul>
+<p><strong>用代码实现Promise：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPromise</span>(<span class="params">constructor</span>)</span>&#123; <span class="keyword">let</span> self=<span class="built_in">this</span>;</span><br><span class="line">  self.status=<span class="string">&quot;pending&quot;</span> <span class="comment">//定义状态改变前的初始状态 </span></span><br><span class="line">  self.value=<span class="literal">undefined</span>;<span class="comment">//定义状态为resolved的时候的状态 </span></span><br><span class="line">  self.reason=<span class="literal">undefined</span>;<span class="comment">//定义状态为rejected的时候的状态 </span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//两个===&quot;pending&quot;，保证了了状态的改变是不不可逆的 </span></span><br><span class="line">    <span class="keyword">if</span>(self.status===<span class="string">&quot;pending&quot;</span>)&#123;</span><br><span class="line">      self.value=value;</span><br><span class="line">      self.status=<span class="string">&quot;resolved&quot;</span>; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">     <span class="comment">//两个===&quot;pending&quot;，保证了了状态的改变是不不可逆的</span></span><br><span class="line">     <span class="keyword">if</span>(self.status===<span class="string">&quot;pending&quot;</span>)&#123;</span><br><span class="line">        self.reason=reason;</span><br><span class="line">        self.status=<span class="string">&quot;rejected&quot;</span>; </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//捕获构造异常 </span></span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">      <span class="title">constructor</span>(<span class="params">resolve,reject</span>);</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    reject(e);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line">myPromise.prototype.then=<span class="function"><span class="keyword">function</span>(<span class="params">onFullfilled,onRejected</span>)</span>&#123; </span><br><span class="line">  <span class="keyword">let</span> self=<span class="built_in">this</span>;</span><br><span class="line">  <span class="keyword">switch</span>(self.status)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;resolved&quot;</span>: onFullfilled(self.value); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;rejected&quot;</span>: onRejected(self.reason); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> myPromise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;resolve(<span class="number">1</span>)&#125;); </span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;<span class="built_in">console</span>.log(x)&#125;)</span><br><span class="line"><span class="comment">//输出1</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/15/Promise%E5%AF%B9%E8%B1%A1/" data-id="cklkumnhs003nd0uub081a7i8" data-title="Promise对象" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CDN加速" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/15/CDN%E5%8A%A0%E9%80%9F/" class="article-date">
+  <time class="dt-published" datetime="2019-10-15T06:31:43.000Z" itemprop="datePublished">2019-10-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/15/CDN%E5%8A%A0%E9%80%9F/">CDN加速</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p> CDN的全称是(Content Delivery Network)，即内容分发网络。其目的是通过在现有的Internet中增加一层新的CACHE(缓存)层，将网站的内容发布到最接近用户的网络”边缘“的节点，使用户可以就近取得所需的内容，提高用户访问网站的响应速度。从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均等原因，提高用户访问网站的响应速度。</p>
+<p> 简单的说，CDN的工作原理就是将您源站的资源缓存到位于全球各地的CDN节点上，用户请求资源时，就近返回节点上缓存的资源，而不需要每个用户的请求都回您的源站获取，避免网络拥塞、缓解源站压力，保证用户访问资源的速度和体验。</p>
+</blockquote>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/show-cdn-img.png"></p>
+<h3 id="传统的网站访问过程"><a href="#传统的网站访问过程" class="headerlink" title="传统的网站访问过程"></a>传统的网站访问过程</h3><ul>
+<li>用户在浏览器中输入要访问的域名;</li>
+<li>浏览器向域名解析服务器发出解析请求，获得此域名对应的IP 地址;</li>
+<li>浏览器利用所得到的IP 地址，向该IP对应的服务器发出访问请求;</li>
+<li>服务器对此响应，将数据回传至用户浏览器端显示出来。</li>
+</ul>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/normal-transform.png"></p>
+<h3 id="使用CDN-缓存后的网站访问过程"><a href="#使用CDN-缓存后的网站访问过程" class="headerlink" title="使用CDN 缓存后的网站访问过程"></a>使用CDN 缓存后的网站访问过程</h3><ol>
+<li><p>用户在浏览器中输入要访问的域名;</p>
+</li>
+<li><p>浏览器向域名解析服务器发出解析请求，由于CDN 对域名解析过程进行了调整，所以用户端一般得到的是该域名对应的 CNAME 记录，此时浏览器需要再次对获得的 CNAME 域名进行解析才能得到缓存服务器实际的IP 地址。 注：在此过程中，全局负载均衡DNS 解析服务器会根据用户端的源IP 地址，如地理位置(北京还是上海)、接入网类型(电信还是网通)将用户的访问请求定位到离用户路由最短、位置最近、负载最轻的Cache 节点(缓存服务器)上，实现就近定位。定位优先原则可按位置、可按路由、也可按负载等。</p>
+</li>
+<li><p>再次解析后浏览器得到该域名CDN 缓存服务器的实际IP 地址，向缓存服务器发出访问请求;</p>
+</li>
+<li><p>缓存服务器根据浏览器提供的域名，通过Cache 内部专用DNS 解析得到此域名源服务器的真实IP 地址，再由缓存服务器向此真实IP 地址提交访问请求;</p>
+</li>
+<li><p>缓存服务器从真实IP 地址得到内容后，一方面在本地进行保存，以备以后使用，同时把得到的数据发送到客户端浏览器，完成访问的响应过程;</p>
+</li>
+<li><p>用户端得到由缓存服务器传回的数据后显示出来，至此完成整个域名访问过程。</p>
+</li>
+</ol>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/cdn-detail.png"></p>
+<h3 id="CNAME记录（CNAME-record）"><a href="#CNAME记录（CNAME-record）" class="headerlink" title="CNAME记录（CNAME record）"></a>CNAME记录（CNAME record）</h3><p>CNAME即别名( Canonical Name )；可以用来把一个域名解析到另一个域名，当 DNS 系统在查询 CNAME 左面的名称的时候，都会转向 CNAME 右面的名称再进行查询，一直追踪到最后的 PTR 或 A 名称，成功查询后才会做出回应，否则失败。<br>例如，你有一台服务器上存放了很多资料，你使用<code>docs.example.com</code>去访问这些资源，但又希望通过<code>documents.example.com</code>也能访问到这些资源，那么你就可以在您的DNS解析服务商添加一条CNAME记录，将<code>documents.example.com</code>指向<code>docs.example.com</code>，添加该条CNAME记录后，所有访问<code>documents.example.com</code>的请求都会被转到<code>docs.example.com</code>，获得相同的内容。</p>
+<h3 id="CNAME域名"><a href="#CNAME域名" class="headerlink" title="CNAME域名"></a>CNAME域名</h3><p>接入CDN时，在CDN提供商控制台添加完加速域名后，您会得到一个CDN给您分配的CNAME域名， 您需要在您的DNS解析服务商添加CNAME记录，将自己的加速域名指向这个CNAME域名，这样该域名所有的请求才会都将转向CDN的节点，达到加速效果。</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>DNS即Domain Name System，是域名解析服务的意思。它在互联网的作用是：把域名转换成为网络可以识别的ip地址。人们习惯记忆域名，但机器间互相只认IP地址，域名与IP地址之间是一一对应的，它们之间的转换工作称为域名解析，域名解析需要由专门的域名解析服务器来完成，整个过程是自动进行的。比如：上网时输入的<code>www.baidu.com</code>会自动转换成为<code>220.181.112.143</code>。<br>常见的DNS解析服务商有：阿里云解析，万网解析，DNSPod，新网解析，Route53（AWS），Dyn，Cloudflare等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/15/CDN%E5%8A%A0%E9%80%9F/" data-id="cklkumngs0006d0uu3zkg9pqc" data-title="CDN加速" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

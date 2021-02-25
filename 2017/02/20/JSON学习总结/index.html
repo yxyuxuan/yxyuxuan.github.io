@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JSON学习总结 | 于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一. JSON介绍 JSON 类似 XML  JSON 是纯文本 JSON 具有“自我描述性”（人类可读） JSON 具有层级结构（值中存在值） JSON 可通过 JavaScript 进行解析 JSON 数据可使用 AJAX 进行传输   相比 XML 的不同之处  没有结束标签 更短 读写的速度更快 能够使用内建的 JavaScript eval() 方法进行解析 使用数组 不使用保留字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON学习总结">
+<meta property="og:url" content="http://example.com/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:description" content="一. JSON介绍 JSON 类似 XML  JSON 是纯文本 JSON 具有“自我描述性”（人类可读） JSON 具有层级结构（值中存在值） JSON 可通过 JavaScript 进行解析 JSON 数据可使用 AJAX 进行传输   相比 XML 的不同之处  没有结束标签 更短 读写的速度更快 能够使用内建的 JavaScript eval() 方法进行解析 使用数组 不使用保留字">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-02-20T07:13:26.000Z">
+<meta property="article:modified_time" content="2020-07-02T06:37:46.329Z">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-JSON学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2017-02-20T07:13:26.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JSON学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一-JSON介绍"><a href="#一-JSON介绍" class="headerlink" title="一. JSON介绍"></a>一. JSON介绍</h2><ol>
+<li><p>JSON 类似 XML</p>
+<ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输</li>
+</ul>
+</li>
+<li><p>相比 XML 的不同之处</p>
+<ul>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字</li>
+</ul>
+</li>
+<li><p>为什么使用 JSON？</p>
+<pre><code>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：
+</code></pre>
+<ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+<li>用 eval() 处理 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JSON 实例</p>
+<pre><code>通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：
+
+ &lt;html&gt;
+ &lt;body&gt;
+ &lt;h2&gt;在 JavaScript 中创建 JSON 对象&lt;/h2&gt;
+ 
+ &lt;p&gt;
+ Name: &lt;span id=&quot;jname&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Age: &lt;span id=&quot;jage&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Address: &lt;span id=&quot;jstreet&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ Phone: &lt;span id=&quot;jphone&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+ &lt;/p&gt;
+ 
+ &lt;script type=&quot;text/javascript&quot;&gt;
+ var JSONObject= &#123;
+ &quot;name&quot;:&quot;Bill Gates&quot;,
+ &quot;street&quot;:&quot;Fifth Avenue New York 666&quot;,
+ &quot;age&quot;:56,
+ &quot;phone&quot;:&quot;555 1234567&quot;&#125;;
+ document.getElementById(&quot;jname&quot;).innerHTML=JSONObject.name
+ document.getElementById(&quot;jage&quot;).innerHTML=JSONObject.age
+ document.getElementById(&quot;jstreet&quot;).innerHTML=JSONObject.street
+ document.getElementById(&quot;jphone&quot;).innerHTML=JSONObject.phone
+ &lt;/script&gt;
+ 
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="二-JSON语法规则"><a href="#二-JSON语法规则" class="headerlink" title="二. JSON语法规则"></a>二. JSON语法规则</h2><ol>
+<li><p>JSON 语法是 JavaScript 对象表示法语法的子集。</p>
+<ul>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+</li>
+<li><p>JSON 名称/值对</p>
+<p> JSON 数据的书写格式是：名称/值对。<br> 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</p>
+<pre><code> &quot;firstName&quot; : &quot;John&quot;
+</code></pre>
+<p> 这很容易理解，等价于这条 JavaScript 语句：</p>
+<pre><code> firstName = &quot;John&quot;
+</code></pre>
+</li>
+<li><p>JSON 值</p>
+<p> JSON 值可以是：</p>
+<ul>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+</li>
+<li><p>JSON 对像</p>
+<pre><code>&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;
+</code></pre>
+<p> JSON 对象在花括号中书写，对象可以包含多个名称/值对，与这条 JavaScript 语句等价：</p>
+<pre><code> firstName = &quot;John&quot;
+ lastName = &quot;Doe&quot;
+</code></pre>
+</li>
+<li><p>JSON 数组</p>
+<p> JSON 数组在方括号中书写：<br> 数组可包含多个对象：</p>
+<pre><code> &#123;
+ &quot;employees&quot;: [
+ &#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; &#125;
+ ]
+ &#125;
+</code></pre>
+<p> 在上面的例子中，对象 “employees” 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</p>
+</li>
+<li><p>JSON 使用 JavaScript 语法</p>
+<p> 因为 JSON 使用 JavaScript 语法，所以无需额外的软件就能处理 JavaScript 中的 JSON。<br> 通过 JavaScript，您可以创建一个对象数组，并像这样进行赋值：</p>
+<pre><code> var employees = [
+ &#123; &quot;firstName&quot;:&quot;Bill&quot; , &quot;lastName&quot;:&quot;Gates&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;George&quot; , &quot;lastName&quot;:&quot;Bush&quot; &#125;,
+ &#123; &quot;firstName&quot;:&quot;Thomas&quot; , &quot;lastName&quot;: &quot;Carter&quot; &#125;
+ ];
+</code></pre>
+<p> 可以像这样访问 JavaScript 对象数组中的第一项：</p>
+<pre><code> employees[0].lastName;
+</code></pre>
+<p> 返回的内容是：</p>
+<pre><code> Gates
+</code></pre>
+<p> 可以像这样修改数据：</p>
+<pre><code> employees[0].lastName = &quot;Jobs&quot;;
+</code></pre>
+</li>
+</ol>
+<h2 id="二-JSON-解析与序列化"><a href="#二-JSON-解析与序列化" class="headerlink" title="二.JSON 解析与序列化"></a>二.JSON 解析与序列化</h2><ol>
+<li><p>JSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。</p>
+</li>
+<li><p>由于 JSON 语法是 JavaScript 语法的子集，在旧版浏览器中，使用eval()对JSON数据结构求职存在危险，因为可能会执行一些恶意代码。</p>
+</li>
+<li><p>JSON对象有两个方法：stringify()和parse().在最简单的情况下，这两个方法分别用于把javascript对象序列化为JSON字符串和把JSON字符串解析为原生javascript值。</p>
+<p> <strong>把javascript对象序列化为JSON字符串</strong></p>
+<pre><code> &lt;script type=&quot;text/javascript&quot;&gt;
+     var book = &#123;
+                     title: &quot;Professional JavaScript&quot;,
+                     authors: [
+                         &quot;Nicholas C. Zakas&quot;
+                     ],
+                     edition: 3,
+                     year: 2011
+                &#125;;
+ 
+     var jsonText = JSON.stringify(book, [&quot;title&quot;, &quot;edition&quot;]);
+     alert(jsonText);
+
+ &lt;/script&gt;
+</code></pre>
+<p> <strong>把 JSON 字符串转换为 JavaScript 对象</strong></p>
+<pre><code> &lt;script type=&quot;text/javascript&quot;&gt;
+ var book = &#123;
+                &quot;title&quot;: &quot;Professional JavaScript&quot;,
+                 &quot;authors&quot;: [
+                     &quot;Nicholas C. Zakas&quot;
+                 ],
+                 edition: 3,
+                 year: 2011,
+                 releaseDate: new Date(2011, 11, 1)
+            &#125;;
+
+ var jsonText = JSON.stringify(book);
+ alert(jsonText);
+ 
+ var bookCopy = JSON.parse(jsonText, function(key, value)&#123;
+     if (key == &quot;releaseDate&quot;)&#123;
+         return new Date(value);
+     &#125; else &#123;
+         return value;
+     &#125;
+ &#125;);
+ 
+ alert(bookCopy.releaseDate.toISOString());
+</code></pre>
+<p> </script></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cklkumnh40015d0uugb03hdeg" data-title="JSON学习总结" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/21/Flex%E5%B8%83%E5%B1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Flex布局
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">面向对象的程序设计</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

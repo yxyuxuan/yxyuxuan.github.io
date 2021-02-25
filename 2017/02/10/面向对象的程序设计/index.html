@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>面向对象的程序设计 | 于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值&#x2F;对象&#x2F;方法）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象的程序设计">
+<meta property="og:url" content="http://example.com/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:description" content="面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值&#x2F;对象&#x2F;方法）。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-02-10T07:09:27.000Z">
+<meta property="article:modified_time" content="2020-07-02T06:37:46.345Z">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-面向对象的程序设计" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time class="dt-published" datetime="2017-02-10T07:09:27.000Z" itemprop="datePublished">2017-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      面向对象的程序设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值/对象/方法）。</p>
+</blockquote>
+<h2 id="一、理解对象"><a href="#一、理解对象" class="headerlink" title="一、理解对象:"></a>一、理解对象:</h2><ol>
+<li><p>第一种：基于Object对象</p>
+<pre><code> var person = new Object();
+ person.name = &#39;My Name&#39;;
+ person.age = 18;
+ person.getName = function()&#123;
+     return this.name;
+ &#125;
+</code></pre>
+</li>
+<li><p>第二种：对象字面量方式（比较清楚的查找对象包含的属性及方法）</p>
+<pre><code> var person = &#123;
+     name : &#39;My name&#39;,
+     age : 18,
+     getName : function()&#123;
+     return this.name;
+     &#125;
+ &#125;
+</code></pre>
+<p>JS的对象可以使用‘.’操作符动态的扩展其属性，可以使用’delete’操作符或将属性值设置为’undefined’来删除属性。如下：</p>
+<pre><code> person.newAtt=’new Attr’;//添加属性
+ alert(person.newAtt);//new Attr
+ delete person.age;
+ alert(person.age);//undefined(删除属性后值为undefined);
+</code></pre>
+<h2 id="二、对象属性类型"><a href="#二、对象属性类型" class="headerlink" title="二、对象属性类型"></a>二、对象属性类型</h2><p>ECMA-262第5版定义了JS对象属性中特征（用于JS引擎，外部无法直接访问）。ECMAScript中有两种属性：数据属性和访问器属性</p>
+</li>
+</ol>
+<p>1.数据属性：</p>
+<p>数据属性指包含一个数据值的位置，可在该位置读取或写入值，该属性有4个供述其行为的特性：  </p>
+<ul>
+<li><p>[[configurable]]:表示能否使用delete操作符删除从而重新定义，或能否修改为访问器属性。默认为true;</p>
+</li>
+<li><p>[[Enumberable]]:表示是否可通过for-in循环返回属性。默认true;</p>
+</li>
+<li><p>[[Writable]]:表示是否可修改属性的值。默认true;  </p>
+</li>
+<li><p>[[Value]]:包含该属性的数据值。读取/写入都是该值。默认为undefined;如上面实例对象person中定义了name属性，其值为’My name’,对该值的修改都反正在这个位置。  </p>
+<p>要修改对象属性的默认特征（默认都为true)，可调用Object.defineProperty()方法，它接收三个参数：属性所在对象，属性名和一个描述符对象（必须是：configurable、enumberable、writable和value，可设置一个或多个值）。</p>
+<p>如下：（浏览器支持：IE9+、Firefox 4+、Chrome、Safari5+）</p>
+<p>   var person = {};<br>   Object.defineProperty(person, ‘name’, {<br>   configurable: false,<br>   writable: false,<br>   value: ‘Jack’<br>   });<br>   alert(person.name);//Jack<br>   delete person.name;<br>   person.name = ‘lily’;<br>   alert(person.name);//Jack</p>
+</li>
+</ul>
+<p>可以看出，delete及重置person.name的值都没有生效，这就是因为调用defineProperty函数修改了对象属性的特征；值得注意的是一旦将configurable设置为false，则无法再使用defineProperty将其修改为true（执行会报错：can’t redefine non-configurable property）;</p>
+<p>2.访问器属性：</p>
+<p>它主要包括一对getter和setter函数，在读取访问器属性时，会调用getter返回有效值；写入访问器属性时，调用setter，写入新值；该属性有以下4个特征：  </p>
+<ul>
+<li>[[Configurable]]:是否可通过delete操作符删除重新定义属性；</li>
+<li>[[Numberable]]:是否可通过for-in循环查找该属性；</li>
+<li>[[Get]]:读取属性时调用，默认：undefined;</li>
+<li>[[Set]]:写入属性时调用，默认：undefined;</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用defineProperty()来定义，如下：</p>
+<pre><code>var person = &#123;
+      _age: 18
+&#125;;
+Object.defineProperty(person, &#39;isAdult&#39;, &#123;
+    get: function () &#123;
+            if (this._age &gt;= 18) &#123;
+                return true;
+            &#125; else &#123;
+                return false;
+            &#125;
+    &#125;
+&#125;);
+alert(person.isAdult?&#39;成年&#39;:&#39;未成年&#39;);//成年      
+</code></pre>
+<p>从上面可知，定义访问器属性时getter与setter函数不是必须的,并且，在定义getter与setter时不能指定属性的configurable及writable特性；</p>
+<p>此外，ECMA-262（5）还提供了一个Object.defineProperties()方法，可以用来一次性定义多个属性的特性：</p>
+<pre><code>    var person = &#123;&#125;;
+    Object.defineProperties(person,&#123;
+        _age:&#123;
+        value:19
+       &#125;,
+        isAdult:&#123;
+            get: function () &#123;
+                if (this._age &gt;= 18) &#123;
+                    return true;
+                &#125; else &#123;
+                return false;
+                &#125;
+            &#125;
+        &#125;
+        &#125;);
+        alert(person.isAdult?&#39;成年&#39;:&#39;未成年&#39;);//成年
+</code></pre>
+<p>上述代码使用Object.defineProperties()方法同时定义了_age及isAudlt两个属性的特性</p>
+<p>此外，使用Object.getOwnPropertyDescriptor()方法可以取得给定属性的特性：</p>
+<pre><code>var descriptor = Object.getOwnPropertyDescriptor(person,&#39;_age&#39;);
+alert(descriptor.value);//19
+</code></pre>
+<p>对于数据属性，可以取得：configurable,enumberable,writable和value；</p>
+<p>对于访问器属性，可以取得：configurable,enumberable,get和set</p>
+<h2 id="三、创建对象"><a href="#三、创建对象" class="headerlink" title="三、创建对象"></a>三、创建对象</h2><p>   使用Object构造函数或对象字面量都可以创建对象，但缺点是创建多个对象时，会产生大量的重复代码，因此下面介绍可解决这个问题的创建对象的方法</p>
+<ol>
+<li><p>工厂模式</p>
+<pre><code> function createPerson(name, age, job) &#123;
+ var o = new Object();
+ o.name = name;
+ o.age = age;
+ o.job = job;
+ o.getName = function () &#123;
+     return this.name;
+ &#125;
+ return o;//使用return返回生成的对象实例
+ &#125;
+ var person = createPerson(&#39;Jack&#39;, 19, &#39;SoftWare Engineer&#39;);
+</code></pre>
+<p>  创建对象交给一个工厂方法来实现，可以传递参数，但主要缺点是无法识别对象类型，因为创建对象都是使用Object的原生构造函数来完成的。</p>
+</li>
+<li><p>构造函数模式</p>
+<pre><code> function Person(name,age,job)&#123;
+     this.name = name;
+     this.age = age;
+     this.job = job;
+     this.getName = function () &#123;
+         return this.name;
+     &#125;
+ &#125;
+ var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engineer&#39;);
+
+ var person2 = new Person(&#39;Liye&#39;, 23, &#39;Mechanical Engineer&#39;);
+</code></pre>
+</li>
+</ol>
+<p>  使用自定义的构造函数（与普通函数一样，只是用它来创建对象），定义对象类型（如：Person）的属性和方法。它与工厂方法区别在于：</p>
+<ul>
+<li>没有显式地创建对象</li>
+<li>直接将属性和方法赋值给this对象；</li>
+<li>没有return语句；  </li>
+</ul>
+<p>   此外，要创建Person的实例，必须使用new关键字，以Person函数为构造函数，传递参数完成对象创建；实际创建经过以下4个过程：  </p>
+<ul>
+<li>创建一个对象  </li>
+<li>将函数的作用域赋给新对象（因此this指向这个新对象，如：person1）</li>
+<li>执行构造函数的代码</li>
+<li>返回该对象  </li>
+</ul>
+<p>   上述由Person构造函数生成的两个对象person1与person2都是Person的实例，因此可以使用instanceof判断，并且因为所有对象都继承Object，因此person1 instanceof Object也返回真：</p>
+<pre><code> alert(person1 instanceof Person);//true;
+ alert(person2 instanceof Person);//true;
+ alert(person1 instanceof Object);//true;
+ alert(person1.constructor === person2.constructor);//ture;       
+</code></pre>
+<p>  虽然构造函数方式比较不错，但也存在缺点，那就是在创建对象时，特别针对对象的属性指向函数时，会重复的创建函数实例，以上述代码为基础，可以改写为：</p>
+<pre><code>function Person(name,age,job)&#123;
+   this.name = name;
+   this.age = age;
+   this.job = job;
+   this.getName = new Function () &#123;//改写后效果与原代码相同，不过是为了方便理解
+           return this.name;
+   &#125;
+ &#125;        
+</code></pre>
+<p>   上述代码，创建多个实例时，会重复调用new Function();创建多个函数实例，这些函数实例还不是一个作用域中，当然这一般不会有错，但这会造成内存浪费。当然，可以在函数中定义一个getName = getName的引用，而getName函数在Person外定义，这样可以解决重复创建函数实例问题，但在效果上并没有起到封装的效果，如下所示：</p>
+<pre><code>function Person(name,age,job)&#123;
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.getName = getName;
+ &#125;
+ function getName() &#123;//到处是代码，看着乱！！
+    return this.name;
+ &#125;        
+</code></pre>
+<p>3.原型模式</p>
+<p>   JS每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</p>
+<pre><code>function Person()&#123;
+&#125;
+Person.prototype.name = &#39;Jack&#39;;//使用原型来添加属性
+Person.prototype.age = 29;
+Person.prototype.getName = function()&#123;
+   return this.name;
+&#125;
+var person1 = new Person();
+alert(person1.getName());//Jack
+var person2 = new Person();
+alert(person1.getName === person2.getName);//true;共享一个原型对象的方法   
+</code></pre>
+<p>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype是指向这个原型对象！而基于构造函数创建的对象实例也包含一个内部指针为：[[prototype]]指向原型对象。</p>
+<p>  实例属性或方法的访问过程是一次搜索过程：</p>
+<ul>
+<li>首先从对象实例本身开始，如果找到属性就直接返回该属性值；</li>
+<li>如果实例本身不存在要查找属性，就继续搜索指针指向的原型对象，在其中查找给定名字的属性，如果有就返回；</li>
+<li>基于以上分析，原型模式创建的对象实例，其属性是共享原型对象的；  </li>
+<li>但也可以自己实例中再进行定义，在查找时，就不从原型对象获取，而是根据搜索原则，得到本实例的返回；简单来说，就是实例中属性会屏蔽原型对象中的属性；  </li>
+</ul>
+<p>  <strong>原型与in操作符</strong></p>
+<p>   一句话：无论原型中属性，还是对象实例的属性，都可以使用in操作符访问到；要想判断是否是实例本身的属性可以使用object.hasOwnProperty(‘attr’)来判断；</p>
+<p>   <strong>原生对象中原型</strong></p>
+<p>   原生对象中原型与普通对象的原型一样，可以添加/修改属性或方法，如以下代码为所有字符串对象添加去左右空白原型方法：</p>
+<pre><code> String.prototype.trim = function()&#123;
+    return this.replace(/^\s+/,&#39;&#39;).replace(/\s+$/,&#39;&#39;);
+ &#125;
+ var str = &#39;   word space   &#39;;
+ alert(&#39;!&#39;+str.trim()+&#39;!&#39;);//!word space!   
+</code></pre>
+<p>   原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会其它实例：</p>
+<pre><code>function Person() &#123;
+&#125;
+Person.prototype.name = &#39;Jack&#39;;
+Person.prototype.lessons = [&#39;Math&#39;,&#39;Physics&#39;];
+var person1 = new Person();
+person1.lessons.push(&#39;Biology&#39;);
+var person2 = new Person();
+alert(person2.lessons);//Math,Physics,Biology，person1修改影响了person2   
+</code></pre>
+<p>​<br>4.组合构造函数及原型模式</p>
+<p>   目前最为常用的定义类型方式，是组合构造函数模式与原型模式。构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。此外，组合模式还支持向构造函数传递参数，可谓是集两家之所长。</p>
+<pre><code>function Person(name, age, job) &#123;
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.lessons = [&#39;Math&#39;, &#39;Physics&#39;];
+    &#125;
+    Person.prototype = &#123;
+        constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+        getName: function () &#123;
+            return this.name;
+        &#125;
+    &#125;
+    var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engneer&#39;);
+    person1.lessons.push(&#39;Biology&#39;);
+    var person2 = new Person(&#39;Lily&#39;, 39, &#39;Mechanical Engneer&#39;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法    
+</code></pre>
+<p>   在所接触的JS库中，jQuery类型的封装就是使用组合模式来实例的！！！</p>
+<p>5.动态原型模式</p>
+<p>   组合模式中实例属性与共享方法（由原型定义）是分离的，这与纯面向对象语言不太一致；动态原型模式将所有构造信息都封装在构造函数中，又保持了组合的优点。其原理就是通过判断构造函数的原型中是否已经定义了共享的方法或属性，如果没有则定义，否则不再执行定义过程。该方式只原型上方法或属性只定义一次，且将所有构造过程都封装在构造函数中，对原型所做的修改能立即体现所有实例中：</p>
+<pre><code>function Person(name, age, job) &#123;
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.lessons = [&#39;Math&#39;, &#39;Physics&#39;];
+        &#125;
+        if (typeof this.getName != &#39;function&#39;) &#123;//通过判断实例封装
+        Person.prototype = &#123;
+            constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+            getName: function () &#123;
+                return this.name;
+            &#125;
+            &#125;
+        &#125;
+    var person1 = new Person(&#39;Jack&#39;, 19, &#39;SoftWare Engneer&#39;);
+    person1.lessons.push(&#39;Biology&#39;);
+    var person2 = new Person(&#39;Lily&#39;, 39, &#39;Mechanical Engneer&#39;);
+    alert(person1.lessons);//Math,Physics,Biology
+    alert(person2.lessons);//Math,Physics
+    alert(person1.getName === person2.getName);//true,//共享原型中定义方法           
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-id="cklkumnj00097d0uu1l0pfmci" data-title="面向对象的程序设计" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/20/JSON%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          JSON学习总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/25/JS%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">JS回调函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

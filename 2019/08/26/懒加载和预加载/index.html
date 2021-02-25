@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>懒加载和预加载 | 于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近老大让我调整一下图片懒加载的视觉效果，作为一个电商平台，懒加载是非常重要的。我们使用的懒加载库react-lazyload，现在的浏览效果是要等到整个图片高度都完全出现在可视区域的时候图片才会加载出来，这样看着让人怀疑到是不是网络不好，用户体验很不好，后来仔细阅读了react-lazyload库，发现使用offset属性可以预加载出图片。例如，如果您想预加载一个组件，使它在viewport下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="懒加载和预加载">
+<meta property="og:url" content="http://example.com/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:description" content="最近老大让我调整一下图片懒加载的视觉效果，作为一个电商平台，懒加载是非常重要的。我们使用的懒加载库react-lazyload，现在的浏览效果是要等到整个图片高度都完全出现在可视区域的时候图片才会加载出来，这样看着让人怀疑到是不是网络不好，用户体验很不好，后来仔细阅读了react-lazyload库，发现使用offset属性可以预加载出图片。例如，如果您想预加载一个组件，使它在viewport下">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-08-26T07:35:13.000Z">
+<meta property="article:modified_time" content="2020-07-02T06:37:46.342Z">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-懒加载和预加载" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/" class="article-date">
+  <time class="dt-published" datetime="2019-08-26T07:35:13.000Z" itemprop="datePublished">2019-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      懒加载和预加载
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近老大让我调整一下图片懒加载的视觉效果，作为一个电商平台，懒加载是非常重要的。我们使用的懒加载库<a target="_blank" rel="noopener" href="https://github.com/twobin/react-lazyload"><strong>react-lazyload</strong></a>，现在的浏览效果是要等到整个图片高度都完全出现在可视区域的时候图片才会加载出来，这样看着让人怀疑到是不是网络不好，用户体验很不好，后来仔细阅读了react-lazyload库，发现使用offset属性可以预加载出图片。例如，如果您想预加载一个组件，使它在viewport下面100px(offset=100)就加载该组件，让用户看不到延迟加载的效果。下面简单整理了一下懒加载和预加载。</p>
+</blockquote>
+<h3 id="一-懒加载"><a href="#一-懒加载" class="headerlink" title="一.懒加载"></a>一.懒加载</h3><h5 id="1-什么是懒加载？"><a href="#1-什么是懒加载？" class="headerlink" title="1. 什么是懒加载？"></a>1. 什么是懒加载？</h5><p>懒加载也称为延迟加载或惰性加载，一般指在长网页中延迟加载图像，是一种优化网页性能的方式。用户滚动到它们之前，可视区域外的图像不会加载。这与图像预加载相反，在长网页上使用延迟加载将使网页加载更快。在某些情况下，它还可以帮助减少服务器负载。常适用图片很多，页面很长的电商网站场景中。</p>
+<h5 id="2-使用懒加载的好处？"><a href="#2-使用懒加载的好处？" class="headerlink" title="2. 使用懒加载的好处？"></a>2. 使用懒加载的好处？</h5><ul>
+<li><strong>能提升用户的体验</strong>，不妨设想下，用户打开像手机淘宝长页面的时候，如果页面上所有的图片都需要加载，由于图片数目较大，等待时间很长，用户难免会心生抱怨，这就严重影响用户体验</li>
+<li><strong>减少无效资源的加载</strong>，这样能明显减少了服务器的压力和流量，也能够减小浏览器的负担。</li>
+<li><strong>防止并发加载的资源过多会阻塞js的加载</strong>，影响网站的正常使用。</li>
+</ul>
+<h5 id="3-懒加载的原理"><a href="#3-懒加载的原理" class="headerlink" title="3.懒加载的原理"></a>3.懒加载的原理</h5><p>首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Lazyload&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      .image-item &#123;</span><br><span class="line">	    display: block;</span><br><span class="line">	    margin-bottom: 50px;</span><br><span class="line">	    height: 200px;&#x2F;&#x2F;一定记得设置图片高度</span><br><span class="line">	&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;1.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;2.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;3.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;4.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;5.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;6.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;7.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;8.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;9.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;10.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;11.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;12.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var viewHeight &#x3D;document.documentElement.clientHeight&#x2F;&#x2F;获取可视区高度</span><br><span class="line">function lazyload()&#123;</span><br><span class="line">var eles&#x3D;document.querySelectorAll（&#39;img[data-original][lazyload]&#39;）</span><br><span class="line">Array.prototype.forEach.call(eles,function(item,index)&#123;</span><br><span class="line">var rect</span><br><span class="line">if(item.dataset.original&#x3D;&#x3D;&#x3D;&quot;&quot;)</span><br><span class="line">   return</span><br><span class="line">rect&#x3D;item.getBoundingClientRect()&#x2F;&#x2F; 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置</span><br><span class="line">if(rect.bottom&gt;&#x3D;0 &amp;&amp; rect.top &lt; viewHeight)&#123;</span><br><span class="line">!function()&#123;</span><br><span class="line">  var img&#x3D;new Image()</span><br><span class="line">  img.src&#x3D;item.dataset.original</span><br><span class="line">  img.onload&#x3D;function()&#123;</span><br><span class="line">    item.src&#x3D;img.src</span><br><span class="line">    &#125;</span><br><span class="line">item.removeAttribute（&quot;data-original&quot;）&#x2F;&#x2F;移除属性，下次不再遍历</span><br><span class="line">item.removeAttribute（&quot;lazyload&quot;）</span><br><span class="line">   &#125;()</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">lazyload()&#x2F;&#x2F;刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片</span><br><span class="line">document.addEventListener（&quot;scroll&quot;，lazyload)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-预加载"><a href="#二-预加载" class="headerlink" title="二. 预加载"></a>二. 预加载</h3><ol>
+<li><h5 id="什么是预加载？"><a href="#什么是预加载？" class="headerlink" title="什么是预加载？"></a>什么是预加载？</h5><p>预加载简单来说就是将所有所需的资源提前请求加载到本地，当用户需要查看时可直接从本地缓存中渲染</p>
+</li>
+<li><h5 id="为什么使用预加载？"><a href="#为什么使用预加载？" class="headerlink" title="为什么使用预加载？"></a>为什么使用预加载？</h5><p>图片预先加载到浏览器中，访问者便可顺利地在你的网站上冲浪，并享受到极快的加载速度。这对图片画廊及图片占据很大比例的网站来说十分有利，它保证了图片快速、无缝地发布，也可帮助用户在浏览你网站内容时获得更好的用户体验。</p>
+</li>
+</ol>
+<h5 id="预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。"><a href="#预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。" class="headerlink" title="预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。"></a>预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/" data-id="cklkumnit0085d0uuhfl58yrv" data-title="懒加载和预加载" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/27/%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80Flex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          弹性布局Flex
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/09/Object-assign-is-not-a-function/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Object.assign is not a function</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

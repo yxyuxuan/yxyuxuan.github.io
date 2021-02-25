@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-JavaScript-Array-filter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/12/JavaScript-Array-filter/" class="article-date">
+  <time class="dt-published" datetime="2017-11-12T12:13:50.000Z" itemprop="datePublished">2017-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/11/12/JavaScript-Array-filter/">JavaScript 中Array数组的filter()方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Array-prototype-filter"><a href="#1-Array-prototype-filter" class="headerlink" title="1. Array.prototype.filter()"></a>1. Array.prototype.filter()</h3><p><code>filter()</code> 是用于筛选的方法，该方法用于创建一个符合条件的新数组，新数组中包含通过函数测试的所有元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filteredArr = [<span class="number">1</span>, <span class="number">22</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">34</span>, <span class="number">2</span>, <span class="number">9</span>].filter(<span class="function"><span class="params">element</span> =&gt;</span> element &gt; <span class="number">9</span>);</span><br><span class="line"><span class="comment">//filteredArr: [22, 11, 34]</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new_array = arr.filter(callback[, thisArg]);</span><br></pre></td></tr></table></figure>
+
+<h5 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h5><p>用来测试数组的每个元素的函数。调用时使用参数 (element, index, array)。返回true表示保留该元素（通过测试），false则不保留。</p>
+<h5 id="thisArg"><a href="#thisArg" class="headerlink" title="thisArg"></a>thisArg</h5><p>可选。执行 callback 时的用于 this 的值。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>一个新的通过测试的元素的集合的数组</p>
+<h3 id="3-描述"><a href="#3-描述" class="headerlink" title="3. 描述"></a>3. 描述</h3><p>filter 为数组中的每个元素调用一次 callback 函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组。callback 只会在已经赋值的索引上被调用，对于那些已经被删除或者从未被赋值的索引不会被调用。那些没有通过 callback 测试的元素会被跳过，不会被包含在新数组中。</p>
+<p>callback 被调用时传入三个参数：</p>
+<ul>
+<li>元素的值</li>
+<li>元素的索引</li>
+<li>被遍历的数组</li>
+</ul>
+<p>如果为<code>filter</code> 提供一个 thisArg 参数，则它会被作为 callback 被调用时的 this 值。否则，callback 的 this 值在非严格模式下将是全局对象，严格模式下为 undefined。<br>The thisvalue ultimately observable by callback is determined according to the usual rules for determining thethis seen by a function.</p>
+<p><code>filter</code> 不会改变原数组。</p>
+<p><code>filter</code> 遍历的元素范围在第一次调用 <code>callback</code> 之前就已经确定了。在调用 <code>filter</code> 之后被添加到数组中的元素不会被 <code>filter</code> 遍历到。如果已经存在的元素被改变了，则他们传入 <code>callback</code> 的值是 <code>filter</code> 遍历到它们那一刻的值。被删除或从来未被赋值的元素不会被遍历到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/12/JavaScript-Array-filter/" data-id="cklkumnhf0025d0uu31432wrm" data-title="JavaScript 中Array数组的filter()方法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JS中的原型和原型链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/10/22/JS%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="article-date">
+  <time class="dt-published" datetime="2017-10-22T07:12:41.000Z" itemprop="datePublished">2017-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/10/22/JS%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">JS中的原型和原型链</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>原型：</strong>Javascript对象都有一个叫做<strong>原型</strong>的公共属性，属性名是<strong>_proto_</strong>。这个<strong>原型</strong>属性是对另一个对象的引用，通过这个<strong>原型</strong>属性我们就可以访问另一个对象所有的属性和方法。</p>
+<p>每个实例对象（ object ）都有一个私有属性（称之为 <strong>proto</strong> ）指向它的构造函数的原型对象（prototype ）。该原型对象也有一个自己的原型对象( <strong>proto</strong> ) ，层层向上直到一个对象的原型对象为 null。根据定义，null 没有原型，并作为这个原型链中的最后一个环节。</p>
+<p><strong>原型链：</strong>JavaScript中的对象都有一个特殊的 prototype 内置属性，其实就是对其他对象的引用。几乎所有的对象在创建时 prototype 属性都会被赋予一个非空的值，我们可以把这个属性当作一个备用的仓库。当试图引用对象的属性时会触发get操作，第一步时检查对象本身是否有这个属性，如果有就使用它，没有就去原型中查找。一层层向上直到Object.prototype顶层，向上查找的过程就是原型链。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/10/22/JS%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" data-id="cklkumnhd001zd0uu455p7zfm" data-title="JS中的原型和原型链" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS3中transform属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/08/03/CSS3%E4%B8%ADtransform%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2017-08-03T06:25:55.000Z" itemprop="datePublished">2017-08-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/08/03/CSS3%E4%B8%ADtransform%E5%B1%9E%E6%80%A7/">CSS3中transform属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一-Transform描述："><a href="#一-Transform描述：" class="headerlink" title="一.Transform描述："></a>一.Transform描述：</h3><p>ransform是变形,改变的意思。在CSS3中transform主要包括以下几种：旋转rotate，扭曲skew,缩放scale和移动translate以及矩阵变形matrix。transform的作用也是改变，让元素倾斜，旋转，缩放，位移。</p>
+<h3 id="二-Transform语法："><a href="#二-Transform语法：" class="headerlink" title="二.Transform语法："></a>二.Transform语法：</h3><p>transform: rotate | scale | skew | translate |matrix;</p>
+<h3 id="三-Transform子属性详解："><a href="#三-Transform子属性详解：" class="headerlink" title="三.Transform子属性详解："></a>三.Transform子属性详解：</h3><h4 id="1-transform-rotate-元素旋转"><a href="#1-transform-rotate-元素旋转" class="headerlink" title="1.transform:rotate(); 元素旋转"></a>1.transform:rotate(); 元素旋转</h4><p>value(值)为旋转度数（deg），默认顺时针旋转。value若为负值则逆时针旋转。</p>
+<p>使用如下：</p>
+<pre><code>.box&#123;
+    width:100px;height:100px;margin:20px auto;background-color:#75C934;
+    text-align:center;line-height:100px;font-size:18px;
+    /*过渡效果*/
+    -webkit-transition: transform 0.8s; 
+&#125;
+.box:hover&#123;
+    /*旋转80°*/
+    transform:rotate(80deg);
+&#125;
+</code></pre>
+<h4 id="2-transform-skew-元素倾斜"><a href="#2-transform-skew-元素倾斜" class="headerlink" title="2.transform:skew();元素倾斜"></a>2.transform:skew();元素倾斜</h4><p>value(值)为倾斜度数，value只有一个值，横向默认向左倾斜；有两个值，第二个值纵向默认向上倾斜。value若为负值则反方向倾斜。</p>
+<p>使用如下：</p>
+<pre><code>.box&#123;
+    width:100px;height:100px;margin:20px auto;background-color:#75C934;
+    text-align:center;line-height:100px;font-size:18px;
+    -webkit-transition: transform 0.8s,border-radius 0.8s; 
+    border-radius:30px;
+&#125;
+.box:hover&#123;
+    transform:skew(20deg,20deg);
+    border-radius:0px;
+   &#125;
+</code></pre>
+<h3 id="3-transform-scale-元素缩放"><a href="#3-transform-scale-元素缩放" class="headerlink" title="3.transform:scale();元素缩放"></a>3.transform:scale();元素缩放</h3><p>value(值)为缩放倍数。value只有一个值，默认整体缩放；有两个值，第一个值横向缩放，第二个值纵向缩放。value值大于1放大，小于1大于0缩小，负值则反向缩放(元素呈镜像)</p>
+<p>使用如下：</p>
+<pre><code>.box&#123;
+    -webkit-transition: transform 0.8s,border-radius 0.8s;  
+&#125;
+.box:hover&#123;
+    transform:scale(2,0.8);
+    border-radius:40px;
+&#125;
+</code></pre>
+<h4 id="4-transform-translate-元素位移"><a href="#4-transform-translate-元素位移" class="headerlink" title="4.transform:translate();元素位移"></a>4.transform:translate();元素位移</h4><p>value(值)为位移像素，value只有一个值，横向默认向右移动；有两个值，第二个值纵向默认向下移动。value若为负值则反方向移动。</p>
+<p>使用如下：</p>
+<pre><code>   .box&#123;
+    -webkit-transition: transform 0.3s,box-shadow 0.3s;
+ &#125;
+.box:hover&#123;
+    transform:translate(-3px,-3px);
+    box-shadow:3px 3px 5px 0px #000;
+&#125;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/03/CSS3%E4%B8%ADtransform%E5%B1%9E%E6%80%A7/" data-id="cklkumngt0008d0uu2yxn9e9f" data-title="CSS3中transform属性" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS3中transition属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/08/02/CSS3%E4%B8%ADtransition%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2017-08-02T02:28:00.000Z" itemprop="datePublished">2017-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/08/02/CSS3%E4%B8%ADtransition%E5%B1%9E%E6%80%A7/">CSS3中transition属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一-transition描述："><a href="#一-transition描述：" class="headerlink" title="一.transition描述："></a>一.transition描述：</h3><p>W3C标准中对css3的transition这是样描述的：“css的transition允许css的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值。”</p>
+<h3 id="二-transition语法："><a href="#二-transition语法：" class="headerlink" title="二.transition语法："></a>二.transition语法：</h3><pre><code>transition：[ transition-property ] || [ transition-duration ] || [ transition-timing-function ] || [ transition-delay ]
+</code></pre>
+<h3 id="三-子属性简介："><a href="#三-子属性简介：" class="headerlink" title="三.子属性简介："></a>三.子属性简介：</h3><h4 id="1-transition-property"><a href="#1-transition-property" class="headerlink" title="1.transition-property:"></a>1.transition-property:</h4><p>transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：none(没有属性改变)；all（所有属性改变）这个也是其默认值；indent（元素属性名）。当其值为none时，transition马上停止执行，当指定为all时，则元素产生任何属性值变化时都将执行transition效果，ident是可以指定元素的某一个属性值。其对应的类型如下:</p>
+<p>1、color: 通过红、绿、蓝和透明度组件变换（每个数值处理）如：background-color,border-color,color,outline-color等css属性；</p>
+<p>2、length: 真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,min-width,min-height,max-width,max-height,line-height,height,border-width,border-spacing,background-position等属性；</p>
+<p>3、percentage:真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,min-width,min-height,max-width,max-height,line-height,height,background-position等属性；</p>
+<p>4、integer离散步骤（整个数字），在真实的数字空间，以及使用floor()转换为整数时发生 如：outline-offset,z-index等属性；</p>
+<p>5、number真实的（浮点型）数值，如：zoom,opacity,font-weight,等属性；</p>
+<p>6、transform list:详情请参阅：《CSS3 Transform》</p>
+<p>7、rectangle:通过x, y, width 和 height（转为数值）变换，如：crop</p>
+<p>8、visibility: 离散步骤，在0到1数字范围之内，0表示“隐藏”，1表示完全“显示”,如：visibility</p>
+<p>9、shadow: 作用于color, x, y 和 blur（模糊）属性,如：text-shadow</p>
+<p>10、gradient: 通过每次停止时的位置和颜色进行变化。它们必须有相同的类型（放射状的或是线性的）和相同的停止数值以便执行动画,如：background-image</p>
+<p>11、paint server (SVG): 只支持下面的情况：从gradient到gradient以及color到color，然后工作与上面类似</p>
+<p>12、space-separated list of above:如果列表有相同的项目数值，则列表每一项按照上面的规则进行变化，否则无变化</p>
+<p>13、a shorthand property: 如果缩写的所有部分都可以实现动画，则会像所有单个属性变化一样变化</p>
+<h4 id="2-transition-duration"><a href="#2-transition-duration" class="headerlink" title="2.transition-duration:"></a>2.transition-duration:</h4><p>transition-duration是用来指定元素 转换过程的持续时间，取值：<time>为数值，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。</p>
+<h4 id="3-transition-timing-function"><a href="#3-transition-timing-function" class="headerlink" title="3.transition-timing-function:"></a>3.transition-timing-function:</h4><p>transition-timing-function的值允许你根据时间的推进去改变属性值的变换速率，transition-timing-function有6个可能值：</p>
+<p>1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0).</p>
+<p>2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0).</p>
+<p>3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0).</p>
+<p>4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0).</p>
+<p>5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)</p>
+<p>6、cubic-bezier：（该值允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。所有值需在[0, 1]区域内，否则无效。</p>
+<h4 id="4-transition-delay"><a href="#4-transition-delay" class="headerlink" title="4.transition-delay"></a>4.transition-delay</h4><p>transition-delay延迟开始过渡的时间，默认值是0，表示不延迟，立即开始过渡动作。单位是s秒或ms毫秒。</p>
+<h3 id="四-触发过渡的方式"><a href="#四-触发过渡的方式" class="headerlink" title="四.触发过渡的方式"></a>四.触发过渡的方式</h3><p>常见的就是伪类触发:hover，:focus，:active，:checked等。还有例如@media媒体查询，根据设备大小，横屏竖屏切换时触发。还有如click，keydown等JS事件触发。页面加载也能触发就不一一列举了。总之过渡的本质是在时间段内平滑过渡属性值，与怎么触发没有关系。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/02/CSS3%E4%B8%ADtransition%E5%B1%9E%E6%80%A7/" data-id="cklkumngv000cd0uu70vqegff" data-title="CSS3中transition属性" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LESS学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/05/10/LESS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2017-05-10T02:09:31.000Z" itemprop="datePublished">2017-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/05/10/LESS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">LESS学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Less 是一门 CSS 预处理语言，它使用类似CSS的语法，为CSS的赋予了动态语言的特性，如变量、继承、运算、函数等，更方便CSS的编写和维护。</p>
+</blockquote>
+<blockquote>
+<p>Less 可以在多种语言、环境中使用，包括浏览器端、桌面客户端、服务端。</p>
+</blockquote>
+<h3 id="1-语法特性"><a href="#1-语法特性" class="headerlink" title="1.语法特性"></a>1.语法特性</h3><p><strong>变量:</strong></p>
+<p>变量允许我们单独定义一系列通用的样式，然后在需要的时候去调用。所以在做全局样式调整的时候我们可能只需要修改几行代码就可以了。</p>
+<p>less源码:</p>
+<pre><code>@color:#999;
+
+#header&#123;
+    color:@color;
+&#125;
+h2&#123;
+    color:@color     
+&#125;
+</code></pre>
+<p>编译后的css :</p>
+<pre><code>#header &#123;
+    color: #999;
+&#125;
+h2 &#123;
+    color: #999;
+&#125;
+</code></pre>
+<p><strong>混合（Mixins）</strong></p>
+<p>混合可以将一个定义好的class A轻松的引入到另一个class B中，从而简单实现class B继承class A中的所有属性。我们还可以带参数地调用，就像使用函数一样。</p>
+<p>LESS源码：</p>
+<pre><code>.rounded-corners (@radius: 5px) &#123;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+&#125;
+
+#header &#123;
+    .rounded-corners;
+&#125;
+#footer &#123;
+    .rounded-corners(10px);
+&#125;
+</code></pre>
+<p>编译后的CSS：</p>
+<pre><code>#header &#123;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+&#125;
+#footer &#123;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+&#125;
+</code></pre>
+<p><strong>嵌套</strong></p>
+<p>我们可以在一个选择器中嵌套另一个选择器来实现继承，这样很大程度减少了代码量，并且代码看起来更加的清晰。</p>
+<p>LESS源码：</p>
+<pre><code>#header &#123;
+    h1 &#123;
+        font-size: 26px;
+        font-weight: bold;
+    &#125;
+    p &#123;
+        font-size: 12px;
+        a &#123;
+            text-decoration: none;
+            &amp;:hover &#123;
+                border-width: 1px
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>编译后的CSS：</p>
+<pre><code>#header h1 &#123;
+    font-size: 26px;
+    font-weight: bold;
+&#125;
+#header p &#123;
+    font-size: 12px;
+&#125;
+#header p a &#123;
+    text-decoration: none;
+&#125;
+#header p a:hover &#123;
+    border-width: 1px;
+&#125;
+</code></pre>
+<p><strong>函数和运算</strong></p>
+<p>运算提供了加，减，乘，除操作；我们可以做属性值和颜色的运算，这样就可以实现属性值之间的复杂关系。LESS中的函数一一映射了JavaScript代码，如果你愿意的话可以操作属性值。</p>
+<p>LESS源码：</p>
+<pre><code>@the-border: 1px;
+@base-color: #111;
+@red: #842210;
+
+#header &#123;
+    color: (@base-color * 3);
+    border-left: @the-border;
+    border-right: (@the-border * 2);
+&#125;
+#footer &#123;
+    color: (@base-color + #003300);
+    border-color: desaturate(@red, 10%);
+&#125;
+</code></pre>
+<p>编译后的CSS：</p>
+<pre><code>#header &#123;
+    color: #333;
+    border-left: 1px;
+    border-right: 2px;
+&#125;
+#footer &#123;
+    color: #114411;
+    border-color: #7d2717;
+&#125;
+</code></pre>
+<h3 id="2-less-的使用"><a href="#2-less-的使用" class="headerlink" title="2.less 的使用"></a>2.less 的使用</h3><p>less的使用是很容易的，首先，使用你最常使用的代码编辑器，按LESSCSS的语法规则写好.less文件，接下来，使用编译工具它编译成.css，最后再引入页面即可。</p>
+<p><strong>GUI编译工具</strong></p>
+<p>为方便起见，建议初学者使用GUI编译工具来编译.less文件，以下是一些可选GUI编译工具：</p>
+<ol>
+<li><p>koala(Win/Mac/Linux)</p>
+<p> 国人开发的LESSCSS/SASS编译工具。下载地址：<a target="_blank" rel="noopener" href="http://koala-app.com/index-zh.html">http://koala-app.com/index-zh.html</a></p>
+</li>
+<li><p>Codekit(Mac)</p>
+<p> 一款自动编译Less/Sass/Stylus/CoffeeScript/Jade/Haml的工具，含语法检查、图片优化、自动刷新等附加功能。下载地址<a target="_blank" rel="noopener" href="http://incident57.com/codekit/">http://incident57.com/codekit/</a></p>
+</li>
+<li><p>WinLess(Win)</p>
+<p> 一款LESS编译软件。下载地址<a target="_blank" rel="noopener" href="http://winless.org/">http://winless.org/</a></p>
+</li>
+<li><p>SimpleLess(Win/Mac/Linux)</p>
+<p> 一款LESS编译软件。下载地址<a target="_blank" rel="noopener" href="http://wearekiss.com/simpless">http://wearekiss.com/simpless</a></p>
+</li>
+</ol>
+<p><strong>Node.js库</strong></p>
+<p>LESSCSS官方有一款基于Node.js的库，用于编译.less文件。</p>
+<p>使用时，首先全局安装less（部分系统下可能需要在前面加上sudo切换为超级管理员权限）：</p>
+<pre><code>npm install -g less
+</code></pre>
+<p>接下来就可以使用lessc来编译.less文件了：</p>
+<pre><code>lessc example/example.less example/example.css
+</code></pre>
+<p>更多选项可以直接运行lessc查看说明。</p>
+<p><strong>浏览器端使用</strong></p>
+<p>LESSCSS也可以不经编译，直接在浏览器端使用。</p>
+<p>使用方法：</p>
+<ol>
+<li><p>下载LESSCSS的.js文件，例如lesscss-1.4.0.min.js。在页面中引入.less文件</p>
+<pre><code> &lt;link rel=&quot;stylesheet/less&quot; href=&quot;example.less&quot; /&gt;
+</code></pre>
+</li>
+<li><p>需要注意rel属性的值是stylesheet/less，而不stylesheet。</p>
+</li>
+<li><p>引入第1步下载的.js文件</p>
+<pre><code> &lt;script src=&quot;lesscss-1.4.0.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p> 需要特别注意的是，由于浏览器端使用时是使用ajax来拉取.less文件，因此直接在本机文件系统打开（即地址是file://开头）或者是有跨域的情况下会拉取不到.less文件，导致样式无法生效。</p>
+<p> 还有一种情况容易导致样式无法生效，就是部分服务器（以IIS居多）会对未知后缀的文件返回404，导致无法正常读取.less文件。解决方案是在服务器中为.less文件配置MIME值为text/css（具体方法请搜索）。或者还有一种更简单的方法，即是直接将.less文件改名为.css文件即可。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/05/10/LESS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cklkumnhj002md0uu408k21mq" data-title="LESS学习笔记" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/less/" rel="tag">less</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SASS学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/04/28/SASS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2017-04-28T05:06:29.000Z" itemprop="datePublished">2017-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/04/28/SASS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SASS学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一-什么是sass"><a href="#一-什么是sass" class="headerlink" title="一.什么是sass?"></a>一.什么是sass?</h3><ol>
+<li>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。</li>
+<li>SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</li>
+</ol>
+<h3 id="二-sass的使用"><a href="#二-sass的使用" class="headerlink" title="二.sass的使用"></a>二.sass的使用</h3><ol>
+<li><p>建议使用GUI编译工具来编译.scss文件，国人开发的LESSCSS/SASS编译工具。下载地址：<a target="_blank" rel="noopener" href="http://koala-app.com/index-zh.html">http://koala-app.com/index-zh.html</a></p>
+</li>
+<li><p>先在windows上安装Ruby，然后在WebStorm中配置sass。安装步骤见：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/537cea1dc3f8">http://www.jianshu.com/p/537cea1dc3f8</a></p>
+</li>
+</ol>
+<h3 id="三-基本用法"><a href="#三-基本用法" class="headerlink" title="三.基本用法"></a>三.基本用法</h3><p><strong>1.变量</strong></p>
+<p>sass允许使用变量，所有变量以$开头。</p>
+<pre><code>$blue :#1875e7;
+
+div &#123;
+    color:$blue;
+&#125;
+</code></pre>
+<p>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</p>
+<pre><code>$side : left;
+
+.rounded &#123;
+　　border-#&#123;$side&#125;-radius: 5px;
+&#125;
+</code></pre>
+<p><strong>2.计算功能</strong></p>
+<p>sass允许在代码中使用算式:</p>
+<pre><code>body&#123;
+    margin:(14px/2);
+    top:50px+100px;
+    right:$var * 10%;
+&#125;
+</code></pre>
+<p><strong>3.嵌套</strong></p>
+<p>sass允许选择器嵌套。比如，下面的css代码：</p>
+<pre><code>div h1&#123;
+    color:red;
+&#125;
+</code></pre>
+<p>可以写成：</p>
+<pre><code>div&#123;
+    h1&#123;
+      color:red;
+    &#125;
+ &#125;
+</code></pre>
+<p>属性也可以嵌套，比如border-color属性，可以写成：</p>
+<pre><code>p &#123;
+　　border: &#123;
+　　　　color: red;
+　　&#125;
+&#125;
+</code></pre>
+<p>注意，border后面必须加上冒号。</p>
+<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如a:hover伪类，可以写成：<br>　　a {<br>　　　　&amp;:hover { color: #ffb3ff; }<br>　　}</p>
+<p><strong>4.注释</strong></p>
+<p>SASS共有两种注释风格。<br>标准的CSS注释 /* comment */ ，会保留到编译后的文件。</p>
+<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
+<p>在/*后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
+<pre><code>/*! 
+　　重要注释！
+*/
+</code></pre>
+<h3 id="四-代码的重用"><a href="#四-代码的重用" class="headerlink" title="四.代码的重用"></a>四.代码的重用</h3><p><strong>1.继承</strong></p>
+<p>sass允许一个选择器，继承另一个选择器。比如，现有class1：</p>
+<pre><code>.class1 &#123;
+　　border: 1px solid #ddd;
+&#125;
+</code></pre>
+<p>class2要继承class1，就要使用@extend命令：</p>
+<pre><code>.class2 &#123;
+    @extend .class1;
+    font-size:120%;
+&#125;
+</code></pre>
+<p><strong>2.Mixin</strong></p>
+<p>Mixin有点像C语言的宏，是可以重用的代码块。</p>
+<p>使用@mixin命令，定义一个代码块。</p>
+<pre><code>@mixin left &#123;
+    float:left;
+    margin-left:10px;
+&#125;
+</code></pre>
+<p>使用@include命令，调用这个mixin。</p>
+<pre><code>div&#123;
+    @include left;
+&#125;
+</code></pre>
+<p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+<pre><code>@mixin left($value: 10px) &#123;
+    float: left;
+    margin-right: $value;
+&#125;
+</code></pre>
+<p>使用的时候，根据需要加入参数：</p>
+<pre><code>div &#123;
+　　@include left(20px);
+&#125;
+</code></pre>
+<p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+<pre><code>@mixin rounded($vert, $horz, $radius: 10px) &#123;
+　　　border-#&#123;$vert&#125;-#&#123;$horz&#125;-radius: $radius;
+　　　-moz-border-radius-#&#123;$vert&#125;#&#123;$horz&#125;: $radius;
+　　　-webkit-border-#&#123;$vert&#125;-#&#123;$horz&#125;-radius: $radius;
+　　&#125;
+</code></pre>
+<p>使用的时候，可以像下面这样调用：</p>
+<pre><code>#navbar li &#123; @include rounded(top, left); &#125;
+#footer &#123; @include rounded(top, left, 5px); &#125;
+</code></pre>
+<p><strong>3.颜色函数</strong></p>
+<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<pre><code>lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329
+grayscale(#cc3) // #808080
+complement(#cc3) // #33c
+</code></pre>
+<p><strong>4.导入文件</strong></p>
+<p>@import命令，用来插入外部文件。编译时会将@import的.scss文件合并进来只生成一个CSS文件。</p>
+<pre><code>@import &quot;path/filename.scss&quot;;
+</code></pre>
+<p>如果插入的是.css文件，则等同于css的import命令。导入的.css文件不会合并到编译后的文件中。</p>
+<pre><code>@import &quot;foo.css&quot;;
+</code></pre>
+<h3 id="五-高级用法"><a href="#五-高级用法" class="headerlink" title="五.高级用法"></a>五.高级用法</h3><p><strong>1.条件语句</strong></p>
+<p>@if可以用来判断：</p>
+<pre><code>p &#123;
+    @if 1 + 1 == 2 &#123; border: 1px solid; &#125;
+    @if 5 &lt; 3 &#123; border: 2px dotted; &#125;
+&#125;
+</code></pre>
+<p>配套的还有@else命令：</p>
+<pre><code>@if lightness($color) &gt; 30% &#123;
+　　background-color: #000;
+&#125; @else &#123;
+　　background-color: #fff;
+&#125;
+</code></pre>
+<p><strong>2.循环语句</strong></p>
+<p>sass支持for循环：</p>
+<pre><code>@for $i from 1 to 10 &#123;
+　　.border-#&#123;$i&#125; &#123;
+　　　　border: #&#123;$i&#125;px solid blue;
+　　　&#125;
+&#125;
+</code></pre>
+<p>也支持while循环：</p>
+<pre><code>$i: 6;
+@while $i &gt; 0 &#123;
+　　.item-#&#123;$i&#125; &#123; width: 2em * $i; &#125;
+　　$i: $i - 2;
+&#125;
+</code></pre>
+<p>each命令，作用与for类似：  </p>
+<pre><code>@each $member in a, b, c, d &#123;
+    　.#&#123;$member&#125; &#123;
+    　　　background-image:url(&quot;/image/#&#123;$member&#125;.jpg&quot;);
+    　&#125;
+ &#125;
+</code></pre>
+<p><strong>3.自定义函数</strong></p>
+<p>sass允许用户编写自己的函数。</p>
+<pre><code>@function double($n) &#123;
+    @return $n * 2;
+&#125;
+#sidebar &#123;
+    width: double(5px);
+&#125;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/04/28/SASS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cklkumni2004ud0uub8h8gumz" data-title="SASS学习笔记" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-用webpack2-6-1构建vue2-3-4单文件组件实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/03/30/%E7%94%A8webpack2-6-1%E6%9E%84%E5%BB%BAvue2-3-4%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/" class="article-date">
+  <time class="dt-published" datetime="2017-03-30T11:11:27.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/03/30/%E7%94%A8webpack2-6-1%E6%9E%84%E5%BB%BAvue2-3-4%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/">用webpack2.6.1构建vue2.3.4单文件组件实例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>1.初始化项目</strong></p>
+<p>首先新建一个vue-webpack文件夹，在该文件夹路径下进行初始化项目。初始化项目后将自动生成package.json文件（这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。）命令如下：</p>
+<pre><code>npm init -y 
+</code></pre>
+<p><strong>2.安装各种依赖项</strong></p>
+<p>a: 安装vue2.3.4</p>
+<pre><code>npm install --save vue
+</code></pre>
+<p>b: 安装最新版本的webpack以及webpack测试服务器</p>
+<pre><code>npm install --save-dev webpack webpack-dev-server
+</code></pre>
+<p>c: 安装babel，一般的浏览器是不认识es6语法的，babel的作用是将es6的语法编译成浏览器认识的语法</p>
+<pre><code>npm install --save-dev babel-core babel-loader babel-preset-es2015
+</code></pre>
+<p>d: 安装vue-loader用来解析vue的组件，.vue后缀的文件。</p>
+<pre><code>npm install --save-dev vue-loader vue-template-compiler
+</code></pre>
+<p>e: 安装css-loader file-loader解析CSS.</p>
+<pre><code>npm install --save-dev css-loader file-loader 
+</code></pre>
+<p><strong>3. 编写页面</strong></p>
+<p>在vue-webpack文件夹新建目录src，src目录下新建App.vue文件，代码如下：</p>
+<pre><code>&lt;template&gt;
+    &lt;div id=&quot;example&quot;&gt;
+        &lt;h1&gt;&#123;&#123; message &#125;&#125;&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    export default &#123;
+        data () &#123;
+            return &#123;
+                message: &#39;Hello World !&#39;
+            &#125;
+        &#125;
+    &#125;
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+    #example &#123;
+        background:#000000;
+    　　color:#fff;
+        height: 100vh;
+    &#125;
+&lt;/style&gt;
+</code></pre>
+<p>在src文件夹里新建main.js文件夹，代码如下：</p>
+<pre><code>/* 引入vue和主页 */
+import Vue from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+
+/* 实例化一个vue */
+new Vue(&#123;
+  el: &#39;#app&#39;,
+  render: h =&gt; h(App)
+&#125;)
+</code></pre>
+<p><strong>配置webpack</strong></p>
+<p>在vue-webpack文件夹下新建webpack.config.js文件，代码如下：</p>
+<pre><code>/* 引入操作路径模块和webpack */
+var path = require(&#39;path&#39;);
+var webpack = require(&#39;webpack&#39;);
+
+module.exports = &#123;
+    /* 输入文件 */
+    entry: &#39;./src/main.js&#39;,
+    output: &#123;
+        /* 输出目录，没有则新建 */
+        path: path.resolve(__dirname, &#39;./dist&#39;),
+        /* 静态目录，可以直接从这里取文件 */
+        publicPath: &#39;/dist/&#39;,
+        /* 文件名 */
+        filename: &#39;build.js&#39;
+    &#125;,
+    module: &#123;
+        rules: [
+            /* 用来解析vue后缀的文件 */
+            &#123;
+                test: /\.vue$/,
+                loader: &#39;vue-loader&#39;
+            &#125;,
+            /* 用babel来解析js文件并把es6的语法转换成浏览器认识的语法 */
+            &#123;
+                test: /\.js$/,
+                loader: &#39;babel-loader&#39;,
+                /* 排除模块安装目录的文件 */
+                exclude: /node_modules/
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<p><strong>打包项目</strong></p>
+<p>全局安装webpack</p>
+<pre><code>npm install -g webpack
+</code></pre>
+<p>用webpack命令进行打包项目</p>
+<pre><code>webpack
+</code></pre>
+<p>打包后在vue-webpack文件夹下会多出一个dist文件夹，查看里面会有build.js文件，里面的es6语法已经被转化了。</p>
+<p>在根目录下新建index.html，引入build.js</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;vue-webpack&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;section id=&quot;app&quot;&gt;&lt;/section&gt;
+    &lt;script src=&quot;./dist/build.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>项目目录结构</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack1.png"></p>
+<p><strong>热重载</strong></p>
+<p>由于每修改一次都要重新打包，于是需要线上的热重载，全局安装webpack-dev-server：</p>
+<pre><code>npm install -g webpack-dev-server 
+</code></pre>
+<p>使用webpack-dev-server命令运行：</p>
+<pre><code>webpack-dev-server 
+</code></pre>
+<p>等待程序运行完毕，在浏览器输入<a target="_blank" rel="noopener" href="http://localhost:8080/%E6%9F%A5%E7%9C%8B%E9%A1%B5%E9%9D%A2%E5%A6%82%E4%B8%8B%EF%BC%9A">http://localhost:8080/查看页面如下：</a></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/vue-webpack.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/03/30/%E7%94%A8webpack2-6-1%E6%9E%84%E5%BB%BAvue2-3-4%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/" data-id="cklkumnix008qd0uu03a76ggc" data-title="用webpack2.6.1构建vue2.3.4单文件组件实例" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-webpack入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/03/18/webpack%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2017-03-18T02:10:44.000Z" itemprop="datePublished">2017-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/03/18/webpack%E5%85%A5%E9%97%A8/">webpack入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-介绍webpack"><a href="#1-介绍webpack" class="headerlink" title="1.介绍webpack"></a>1.介绍webpack</h3><p>webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候在异步加载。通过loader的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
+<p>WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其打包为合适的格式以供浏览器使用。</p>
+<h3 id="2-安装webpack"><a href="#2-安装webpack" class="headerlink" title="2.安装webpack"></a>2.安装webpack</h3><p>安装之前需要安装node.js，因为node.js自带了npm(软件包管理器)，使用npm安装webpack。</p>
+<pre><code>npm install webpack -g
+</code></pre>
+<h3 id="3-创建项目"><a href="#3-创建项目" class="headerlink" title="3.创建项目"></a>3.创建项目</h3><p>a:新建一个demo文件夹</p>
+<p>例如：demo文件夹的路径为 D:\Webpack Project\demo</p>
+<p>b:在路径为D:\Webpack Project\demo下，使用 <strong>npm init</strong> 来创建一个package.json文件。这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。</p>
+<p>c:把webpack安装到当前的项目依赖中，在路径为D:\Webpack Project\demo下，使用 <strong>npm install webpack –save-dev</strong> 安装webpack</p>
+<p>d:在demo文件夹下新建index.html</p>
+<pre><code>&lt;html&gt;  
+    &lt;head&gt;  
+        &lt;meta charset=&quot;UTF-8&quot;&gt;  
+        &lt;title&gt;Document&lt;/title&gt;  
+    &lt;/head&gt;  
+    &lt;body&gt;  
+        &lt;script type=&quot;text/javascript&quot; src=&quot;bundle.js&quot;&gt;&lt;/script&gt;  
+    &lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+<p>e:在demo文件夹下新建一个main.js文件</p>
+<pre><code>document.write(&#39;&lt;h1&gt;Hello World !&lt;/h1&gt;&#39;);
+</code></pre>
+<p>f:在demo文件夹下新建一个webpack.config.js文件</p>
+<pre><code>module.exports = &#123;  
+  entry: &#39;./main.js&#39;,         //唯一入口文件 
+  output: &#123;  
+    filename: &#39;bundle.js&#39;     //打包后输出文件的文件名 
+  &#125;  
+&#125;; 
+</code></pre>
+<p>把main.js文件打包为bundle.js文件。其中bundle.js文件是Webpack生成出来的。</p>
+<p>g:打包，使用命令 <strong>webpack</strong> 来打包，然后使用浏览器打开index.html文件就能看到运行的结果了。</p>
+<p><strong>创建第二个 JS 文件</strong></p>
+<p>新建一个main2.js文件，代码如下所示：</p>
+<pre><code>document.write(&#39;&lt;h1&gt;Hello World&lt;/h1&gt;&#39;);
+</code></pre>
+<p>然后修改mian.js文件，代码如下所示：</p>
+<pre><code>document.write(require(&quot;./main1.js&quot;));
+</code></pre>
+<p>使用命令 webpack 来重新打包看到的结果是一样的。</p>
+<p><strong>loader</strong></p>
+<p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。所以如果我们需要在应用中添加 css 文件，就需要使用到 css-loader 和 style-loader，他们做两件不同的事情，css-loader 会遍历 CSS 文件，然后找到 url() 表达式然后处理他们，style-loader 会把原来的 CSS 代码插入页面中的一个 style 标签中。</p>
+<p>使用命令安装css-loader和style-loader</p>
+<pre><code>cnpm install css-loader style-loader
+</code></pre>
+<p>执行以上命令后，会再当前目录生成 node_modules 目录，它就是 css-loader 和 style-loader 的安装目录。</p>
+<p>接下来创建一个style.css文件，代码如下：<br>body {<br>    background: lightblue;<br>}</p>
+<p>修改main.js文件</p>
+<pre><code>require(&quot;!style/!css!./style.css&quot;);
+document.write(require(&quot;./main1.js&quot;));
+</code></pre>
+<p>修改webpack.config.js文件</p>
+<pre><code>module.exports = &#123;  
+  entry: &#39;./main.js&#39;,   
+  output: &#123;  
+    filename: &#39;bundle.js&#39;  
+  &#125;，
+  module:&#123;
+    rules:[
+    &#123;test:/\.css$/,loader:&#39;style-loader!css-loader&#39;&#125;
+    ]
+  &#125;  
+&#125;; 
+</code></pre>
+<p>重新使用 <strong>webpack</strong> 命令打包，结果和上面一样。</p>
+<p><strong>热重载</strong></p>
+<p>因为每次修改都需要重新打包浪费时间，所以需要线上的热重载。使用如下命令全局安装webpack-dev-server。</p>
+<pre><code>npm install -g webpack-dev-server
+</code></pre>
+<p>安装完成后使用如下命令运行：</p>
+<pre><code>webpack-dev-server
+</code></pre>
+<p>运行完毕，在浏览器中输入**<a target="_blank" rel="noopener" href="http://localhost:8080/webpack-dev-server/**%E6%9F%A5%E7%9C%8B%E9%A1%B5%E9%9D%A2%E3%80%82">http://localhost:8080/webpack-dev-server/**查看页面。</a><br>如果这时修改页面的的代码，不需要刷新浏览器就能自动更改。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/03/18/webpack%E5%85%A5%E9%97%A8/" data-id="cklkumnih006hd0uu5onrccxg" data-title="webpack入门" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信小程序合法域名校验出错解决办法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%88%E6%B3%95%E5%9F%9F%E5%90%8D%E6%A0%A1%E9%AA%8C%E5%87%BA%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2017-02-25T12:17:55.000Z" itemprop="datePublished">2017-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/02/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%88%E6%B3%95%E5%9F%9F%E5%90%8D%E6%A0%A1%E9%AA%8C%E5%87%BA%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">微信小程序合法域名校验出错解决办法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>合法域名校验错误如图：</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/1.png"></p>
+<p>注：合法域名校验错误原因是腾讯限制了请求服务器的地址，如果要使用wx.request(object)，里面的url必须在小程序后台配置。方法如下：</p>
+<p><strong>第一步:登陆小程序后台，点击“设置”，然后点击“开发设置”</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/2.png"></p>
+<p><strong>第二步：填入合法域名，需要备案过。</strong></p>
+<p><img src="https://yxyuxuan.github.io/WeiXinErrorImages/3.png"> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%88%E6%B3%95%E5%9F%9F%E5%90%8D%E6%A0%A1%E9%AA%8C%E5%87%BA%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" data-id="cklkumnis007yd0uu6z6sbd63" data-title="微信小程序合法域名校验出错解决办法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Flex布局" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/21/Flex%E5%B8%83%E5%B1%80/" class="article-date">
+  <time class="dt-published" datetime="2017-02-21T07:14:40.000Z" itemprop="datePublished">2017-02-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/02/21/Flex%E5%B8%83%E5%B1%80/">Flex布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-flex布局是什么？"><a href="#1-flex布局是什么？" class="headerlink" title="1.flex布局是什么？"></a>1.flex布局是什么？</h3><p>flex是flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活。</p>
+<p>任何一个容器都可以指定为flex布局</p>
+<pre><code>.box1&#123;  
+  display: flex;  
+&#125;  
+.box2&#123;  
+  display: inline-flex; 
+&#125;  
+.box3&#123;  
+    display: -webkit-flex; /* Safari ,Webkit内核的浏览器，必须加上-webkit前缀。*/  
+    display: flex;  
+&#125;  
+</code></pre>
+<p>注意：设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
+<h3 id="2-基本能概念"><a href="#2-基本能概念" class="headerlink" title="2.基本能概念"></a>2.基本能概念</h3><p>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
+<h3 id="3-容器的属性"><a href="#3-容器的属性" class="headerlink" title="3.容器的属性"></a>3.容器的属性</h3><ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+<h4 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h4><p>flex-direction属性决定主轴的方向（即项目的排列方向）。</p>
+<pre><code>.box &#123;  
+  flex-direction: row | row-reverse | column | column-reverse;  
+&#125;
+</code></pre>
+<ul>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
+</ul>
+<h4 id="3-2flex-wrap属性"><a href="#3-2flex-wrap属性" class="headerlink" title="3.2flex-wrap属性"></a>3.2flex-wrap属性</h4><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+<pre><code>.box&#123;  
+  flex-wrap: nowrap | wrap | wrap-reverse;  
+&#125; 
+</code></pre>
+<ul>
+<li>nowrap（默认）：不换行。 </li>
+<li>warp:换行，第一行在上方。</li>
+<li>warp-reverse:换行，第一行在下方。</li>
+</ul>
+<h4 id="3-3flex-flow"><a href="#3-3flex-flow" class="headerlink" title="3.3flex-flow"></a>3.3flex-flow</h4><p>flex-flow属性是flex-direction属性和flex-warp属性的简写形式，默认值为row nowarp。</p>
+<pre><code>.box &#123;  
+  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;  
+&#125; 
+</code></pre>
+<h4 id="3-4justify-content属性"><a href="#3-4justify-content属性" class="headerlink" title="3.4justify-content属性"></a>3.4justify-content属性</h4><p>justify-content属性定义了项目在主轴上的对齐方式。</p>
+<pre><code>.box&#123;
+    justify-content:flex-start | flex-end | center | space-between | space-around;
+&#125;
+</code></pre>
+<ul>
+<li>flex-start:（默认值）左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center：居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比边框的间隔大一倍。</li>
+</ul>
+<h4 id="3-5align-items属性"><a href="#3-5align-items属性" class="headerlink" title="3.5align-items属性"></a>3.5align-items属性</h4><p>align-items属性定义项目在交叉轴上如何对齐s<br>    .box {<br>      align-items: flex-start | flex-end | center | baseline | stretch;<br>    }  </p>
+<ul>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+<h4 id="3-6align-content属性"><a href="#3-6align-content属性" class="headerlink" title="3.6align-content属性"></a>3.6align-content属性</h4><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<pre><code>.box &#123;  
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;  
+&#125;  
+</code></pre>
+<ul>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+<h3 id="4-项目的属性"><a href="#4-项目的属性" class="headerlink" title="4.项目的属性"></a>4.项目的属性</h3><ol>
+<li>order</li>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-basis</li>
+<li>flex</li>
+<li>align-self</li>
+</ol>
+<h4 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h4><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<pre><code>.item &#123;  
+  order: &lt;integer&gt;;  
+&#125;  
+</code></pre>
+<h4 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h4><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+<pre><code>.item &#123;  
+  flex-grow: &lt;number&gt;; /* default 0 */  
+&#125;  
+</code></pre>
+<p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h4 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h4><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<pre><code>    .item &#123;  
+      flex-shrink: &lt;number&gt;; /* default 1 */  
+    &#125;  
+</code></pre>
+<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。</p>
+<h4 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h4><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+<pre><code>.item &#123;  
+  flex-basis: &lt;length&gt; | auto; /* default auto */  
+&#125;    
+</code></pre>
+<p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h4 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h4><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
+<pre><code>.item &#123;  
+  flex: none | [ &lt;&#39;flex-grow&#39;&gt; &lt;&#39;flex-shrink&#39;&gt;? || &lt;&#39;flex-basis&#39;&gt; ]  
+&#125;  
+</code></pre>
+<p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h4 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h4><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+<pre><code>.item &#123;  
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;  
+&#125;  
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/02/21/Flex%E5%B8%83%E5%B1%80/" data-id="cklkumngy000jd0uu140i22x6" data-title="Flex布局" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

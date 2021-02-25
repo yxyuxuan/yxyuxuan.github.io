@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-hucky-pre-commit问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/24/hucky-pre-commit%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2020-08-24T14:22:29.000Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/08/24/hucky-pre-commit%E9%97%AE%E9%A2%98/">关于husky &gt; pre-commit问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天入职新的公司，接手了一个新项目。git commit时遇到一个问题:  husky &gt; pre-commit (node v12.13.0) Stashing changes…，检查后了解到是项目中安装了husky。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;修改内容&quot;</span><br><span class="line">husky &gt; pre-commit (node v12.16.1)</span><br><span class="line">Stashing changes... [started]</span><br><span class="line">Stashing changes... [skipped]</span><br><span class="line">→ No partially staged files found...</span><br><span class="line">Running linters... [started]</span><br><span class="line">Running tasks for **/*.less [started]</span><br><span class="line">Running tasks for **/*.&#123;js,jsx&#125; [started]</span><br><span class="line">Running tasks for **/*.&#123;js,ts,tsx,json,jsx,less&#125; [started]</span><br><span class="line">stylelint --syntax less [started]</span><br><span class="line">npm run lint-staged:js [started]</span><br><span class="line">node ./scripts/lint-prettier.js [started]</span><br><span class="line">node ./scripts/lint-prettier.js [completed]</span><br><span class="line">git add [started]</span><br><span class="line">git add [completed]</span><br><span class="line">Running tasks for **/*.&#123;js,ts,tsx,json,jsx,less&#125; [completed]</span><br><span class="line">stylelint --syntax less [failed]</span><br><span class="line">→</span><br><span class="line">Running tasks for **/*.less [failed]</span><br><span class="line">→</span><br><span class="line">npm run lint-staged:js [failed]</span><br><span class="line">→</span><br><span class="line">Running tasks for **/*.&#123;js,jsx&#125; [failed]</span><br><span class="line">→</span><br><span class="line">Running linters... [failed]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<ol>
+<li><p>执行npm run lint ，根据提示修改错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run lint</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用git commit -m “” –no-verify ，绕过lint的检查。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;&quot; --no-verify</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>git hooks</strong></p>
+<p>如同其他许多的版本控制系统一样，Git 也具有在特定事件发生之前或之后执行特定脚本代码功能。</p>
+<p>在git中提供了hook,就是在触发代码提交,push等一系列操作的时候,提供了触发其他程序的钩子.</p>
+<p><code>hooks</code>默认路径是 <code>.git/hooks</code></p>
+<p><strong>husky</strong></p>
+<p>husky是一个npm包，安装后，可以很方便的在<code>package.json</code>配置<code>git hook</code> 脚本 。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json </span></span><br><span class="line"></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;lint&quot;: &quot;eslint src&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;husky&quot;: &#123;</span><br><span class="line">    &quot;hooks&quot;: &#123;</span><br><span class="line">      &quot;pre-commit&quot;: &quot;npm run lint&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>设置后，在每一次<code>git commit</code> 之前，都会执行一次对应的 hook 脚本<code>npm run lint</code> 。</p>
+<p>在安装 <code>husky</code> 的时候，<code>husky</code>会根据 package.json里的配置，在<code>.git/hooks</code> 目录生成<a href="https://link.zhihu.com/?target=https://git-scm.com/docs/githooks">所有</a>的 hook 脚本（如果你已经自定义了一个hook脚本，<code>husky</code>不会覆盖它）。然后根据<code>package.json</code>里的设置，执行对应的hook脚本。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/24/hucky-pre-commit%E9%97%AE%E9%A2%98/" data-id="cklkumnie0063d0uubczz90rl" data-title="关于husky &gt; pre-commit问题" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React中diff算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/17/React%E4%B8%ADdiff%E7%AE%97%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2020-08-17T02:34:47.000Z" itemprop="datePublished">2020-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/08/17/React%E4%B8%ADdiff%E7%AE%97%E6%B3%95/">React中diff算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Virtual DOM是什么？diff算法是什么？diff算法是怎样让Virtual DOM快速实现页面渲染的?</p>
+</blockquote>
+<h3 id="一-Virtual-DOM（虚拟DOM）"><a href="#一-Virtual-DOM（虚拟DOM）" class="headerlink" title="一. Virtual DOM（虚拟DOM）"></a>一. Virtual DOM（虚拟DOM）</h3><p>Virtual DOM（虚拟DOM）：是用JS对象来描述真实的DOM结构。当调用setState时会创建新的虚拟DOM树，新旧虚拟DOM树通过diff算法快速找出差异，将差异更新到真实的DOM树上。</p>
+<h3 id="二-diff算法"><a href="#二-diff算法" class="headerlink" title="二. diff算法"></a>二. diff算法</h3><h4 id="1-传统diff算法"><a href="#1-传统diff算法" class="headerlink" title="1. 传统diff算法"></a>1. 传统diff算法</h4><p>​    传统diff算法通过循环递归对节点进行一次对比，效率很低，算法复杂度达到O(n^3)，n是树中节点的总数。</p>
+<h4 id="2-React中的diff算法"><a href="#2-React中的diff算法" class="headerlink" title="2. React中的diff算法"></a>2. React中的diff算法</h4><p>​    React 通过制定策略，将 O(n^3) 复杂度的问题转换成 O(n) 复杂度的问题。</p>
+<p>​    diff 策略：</p>
+<p>​    (1). Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。</p>
+<p>​    (2). 拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。</p>
+<p>​    (3). 对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。</p>
+<p>   基于以上三个前提策略，React 分别对 tree diff、component diff 以及 element diff 进行算法优化，事实也证 明这三个前提策略是合理且准确的，它保证了整体界面构建的性能。</p>
+<h3 id="三-tree-diff"><a href="#三-tree-diff" class="headerlink" title="三. tree diff"></a>三. tree diff</h3><p>React 对树的算法进行了简洁明了的优化，即对树进行分层比较，两棵树只会对同一层次的节点进行比较。</p>
+<p>既然 DOM 节点跨层级的移动操作少到可以忽略不计，针对这一现象，React 通过 updateDepth 对 Virtual DOM 树进行层级控制，只会对相同颜色方框内的 DOM 节点进行比较，即同一个父节点下的所有子节点。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。这样只需要对树进行一次遍历，便能完成整个 DOM 树的比较。</p>
+<p>由于 React 只会简单的考虑同层级节点的位置变换，而对于不同层级的节点，只有创建和删除操作。</p>
+<h3 id="四-component-diff"><a href="#四-component-diff" class="headerlink" title="四. component diff"></a>四. component diff</h3><p>因为react通过组件化开发，在对比组件差异上也采用上述算法。即，同一层只要出现不是同一类型的组件，就替换该组件的所有子节点。对于同一类型的组件，则通过<code>shouldComponentUpdate</code>去判断是否需要通过<code>diff</code>进行分析。<code>shouldComponentUpdate</code>默认为true。</p>
+<h3 id="五-element-diff"><a href="#五-element-diff" class="headerlink" title="五. element diff"></a>五. element diff</h3><p>element diff主要是根据<code>mountIndex</code>和<code>lastIndex</code>进行比较，在确定是否移动 ，<code>mountIndex</code>是A节点在旧节点结合中的位置，<code>lastIndex</code>指访问过的节点，在旧集合中最右的位置，每次遍历都有可能会更新。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><ol>
+<li><p>遍历新节点集合</p>
+</li>
+<li><p>如果出现旧节点集合中有与当前指针所指新节点A相同的节点，则通过对比节点位置进行判断操作，对比<code>mountIndex</code>和<code>lastIndex</code>：</p>
+<p>如果<code>mountIndex&gt;=lastIndex</code>：不做移动操作。并把<code>lastIndex</code>更新为<code>mountIndex</code>。</p>
+<p>如果<code>mountIndex&lt;lastIndex</code>：移动。</p>
+</li>
+<li><p>如果新节点集合中有旧节点集合中不存在的节点，添加，更新<code>lastIndex</code>。</p>
+</li>
+<li><p>最后遍历旧节点集合，如果存在新节点集合上不存在的点，则将其删除。</p>
+</li>
+</ol>
+<p>至于为什么要比较<code>mountIndex</code>和<code>lastIndex</code>，是因为要保证当前要进行移动操作的节点一定要比<code>lastIndex</code>小，一是为了节约性能，二是为了使节点排序更有条理，如果不进行比较，看见有相同的节点就移动，整个队列就乱了套了。</p>
+<h2 id="六-总结"><a href="#六-总结" class="headerlink" title="六. 总结"></a>六. 总结</h2><ul>
+<li>React 通过制定大胆的 diff 策略，将 O(n3) 复杂度的问题转换成 O(n) 复杂度的问题；</li>
+<li>React 通过<strong>分层求异</strong>的策略，对 tree diff 进行算法优化；</li>
+<li>React 通过<strong>相同类生成相似树形结构，不同类生成不同树形结构</strong>的策略，对 component diff 进行算法优化；</li>
+<li>React 通过<strong>设置唯一 key</strong>的策略，对 element diff 进行算法优化；</li>
+<li>建议，在开发组件时，保持稳定的 DOM 结构会有助于性能的提升；</li>
+<li>建议，在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作，当节点数量过大或更新操作过于频繁时，在一定程度上会影响 React 的渲染性能。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/17/React%E4%B8%ADdiff%E7%AE%97%E6%B3%95/" data-id="cklkumnht003rd0uu1ddc436g" data-title="React中diff算法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-函数声明和函数表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/16/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%92%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2020-08-16T12:14:53.000Z" itemprop="datePublished">2020-08-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/08/16/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%92%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">函数声明和函数表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一、在Javascript中定义一个函数的四种方式："><a href="#一、在Javascript中定义一个函数的四种方式：" class="headerlink" title="一、在Javascript中定义一个函数的四种方式："></a>一、在Javascript中定义一个函数的四种方式：</h3><ul>
+<li>函数声明</li>
+<li>函数表达式</li>
+<li>ES6中的箭头函数</li>
+<li>new Function()</li>
+</ul>
+<h3 id="二、函数声明"><a href="#二、函数声明" class="headerlink" title="二、函数声明"></a>二、函数声明</h3><p>函数声明定义一个具有指定参数的函数。</p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params">[param,[, param,[..., param]]]</span>) </span>&#123;</span><br><span class="line">   [statements]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个被函数声明创建的函数是一个 Function 对象，具有 Function 对象的所有属性、方法和行为。查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function">Function</a> 以获取 function 的详细信息。</p>
+<p>默认情况下，函数是返回 undefined 的。想要返回一个其他的值，函数必须通过一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en/JavaScript/Reference/Statements/return">return</a> 语句指定返回值。</p>
+<p><strong>注意：</strong>使用函数声明创建的函数可以被提升，即在函数声明之前使用该函数。</p>
+<h3 id="三、函数表达式"><a href="#三、函数表达式" class="headerlink" title="三、函数表达式"></a>三、函数表达式</h3><p>function 关键字可以用来在一个表达式中定义一个函数。</p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> function_expression = <span class="function"><span class="keyword">function</span> [<span class="title">name</span>](<span class="params">[param1[, param2[, ..., paramN]]]</span>) </span>&#123;</span><br><span class="line">   statements</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用箭头函数，即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> function_expression = <span class="function">(<span class="params">[param1[, param2[, ..., paramN]]]</span>) =&gt;</span> &#123;</span><br><span class="line">   statements</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>函数表达式中的函数名(name)可以被省略。</li>
+<li>函数表达式定义的函数不会被提升，必须先声明在使用。</li>
+</ul>
+<h3 id="函数声明与函数表达式的区别"><a href="#函数声明与函数表达式的区别" class="headerlink" title="函数声明与函数表达式的区别"></a>函数声明与函数表达式的区别</h3><ol>
+<li>函数声明必须带有标识符（函数名称），函数表达式则可以省略<ul>
+<li>表达式里的名字不能在函数外面用，只能在函数内部用</li>
+<li>函数有一个name属性，指向紧跟在function关键字之后的那个函数名。如果函数表达式没有名字，那name属性指向变量名</li>
+</ul>
+</li>
+<li>函数声明会被预解析，函数表达式不会</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/16/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%92%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cklkumnim0075d0uu27amessa" data-title="函数声明和函数表达式" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React中的高阶组件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/16/React%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2020-07-16T07:18:55.000Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/07/16/React%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/">React中的高阶组件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>为了提高组件的复用率，可测试性，就要保证组件功能单一性；但若要满足复杂需求就要扩展功能单一的组件，在React里就有了HOC（Higher-Order-Components）的概念。</p>
+</blockquote>
+<p>定义：高阶组件是接受组件作为参数并且返回值为新组件的函数。简单来说高阶组件就是一个函数，传给它一个组件，它返回一个新的组件。</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//高阶组件</span></span><br><span class="line"><span class="keyword">const</span> HOC = <span class="function">(<span class="params">wrappedComponent</span>)=&gt;</span> </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">WrapperComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> newProps = &#123;</span><br><span class="line">				name: <span class="string">&quot;HOC&quot;</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span>(</span><br><span class="line">				&lt;wrappedComponent &#123;...this.props&#125; &#123;...newProps&#125;/&gt;</span><br><span class="line">			);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//普通组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WrappedComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;div&gt; hello world! &lt;/div&gt;</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> HOC(WrappedComponent)</span><br></pre></td></tr></table></figure>
+
+<p>React是单向数据流，子组件对父组件透明，如果父组件想要获取子组件的状态，那么就需要用到ref。</p>
+<p>ref的创建需用调用React.createRef()，然后将返回的对象作为子组件的props以ref传递：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ButtonComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>&#123;this.props.children&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  ref = React.createRef();</span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;ButtonComponent ref=&#123;<span class="built_in">this</span>.ref&#125;&gt;Click Me&lt;/FancyButton&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.ref.current);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h5><p>高阶组件就是一个函数，传给它一个组件，它返回一个新的组件。新的组件使用传入的组件作为子组件。</p>
+<p>高阶组件的作用是用于代码复用，可以把组件之间可复用的代码、逻辑抽离到高阶组件当中。新的组件和传入的组件通过 <code>props</code> 传递信息。</p>
+<p>高阶组件有助于提高我们代码的灵活性，逻辑的复用性。灵活和熟练地掌握高阶组件的用法需要经验的积累还有长时间的思考和练习。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/16/React%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/" data-id="cklkumnhy004bd0uuhor4e3pd" data-title="React中的高阶组件" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-HTTPS是怎样保证安全？" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/10/HTTPS%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F/" class="article-date">
+  <time class="dt-published" datetime="2020-07-10T03:34:58.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/07/10/HTTPS%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F/">HTTPS怎样保证安全连接？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>我们能看到HTTPS的网站，在浏览器的地址栏会出现一个带锁的标记，鼠标点击小锁提示连接是安全的，证书有效等信息。HTTPS是怎样保证连接安全的呢？</p>
+</blockquote>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/https-safe.png"></p>
+<h2 id="HTTP存在的问题："><a href="#HTTP存在的问题：" class="headerlink" title="HTTP存在的问题："></a>HTTP存在的问题：</h2><ol>
+<li><p><strong>窃听风险</strong>：通信使用明文（不加密），内容可能会被窃听(第三方可能获知通信内容)</p>
+</li>
+<li><p><strong>冒充风险</strong>：不验证通信方的身份，因此有可能遭遇伪装</p>
+</li>
+<li><p><strong>篡改风险</strong>：无法证明报文的完整性，所以有可能已遭篡改</p>
+</li>
+</ol>
+<h2 id="HTTPS："><a href="#HTTPS：" class="headerlink" title="HTTPS："></a>HTTPS：</h2><p>HTTPS并非是应用层一个新的协议，通常 HTTP 直接和 TCP 通信，HTTPS则先和<strong>安全层（SSL/TLS</strong>）通信，然后安全层再和 TCP 层通信。</p>
+<p>SSL/TLS协议就是为了解决上面提到的HTTP存在的问题而生的，下面我们来看一下它是怎么解决的:</p>
+<ol>
+<li><p>所有的信息都是加密传输的，第三方无法窃听。</p>
+</li>
+<li><p>配备身份验证，防止身份被冒充。</p>
+</li>
+<li><p>具有校验机制，一旦被篡改，通信双方会立刻发现。</p>
+</li>
+</ol>
+<h2 id="加密："><a href="#加密：" class="headerlink" title="加密："></a>加密：</h2><h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>加密和解密同用一个秘钥的方式称为 共享秘钥加密，也被叫做对称秘钥加密。</p>
+<p>对称加密的实现步骤：</p>
+<ul>
+<li><p>浏览器发送给服务端 <code>client_random</code> 和一系列加密方法</p>
+</li>
+<li><p>服务端发送给浏览器 <code>server_random</code>和加密方法</p>
+</li>
+<li><p>现有浏览器和服务器有了三个相同的凭证：<code>client_random</code>、<code>server_random</code>和加密方法 用加密方法把 <code>client_random</code>、<code>server_random</code> 两个随机数混合起来，生成秘钥，这个密钥就是浏览器和服务端通信的暗号。</p>
+</li>
+</ul>
+<p>存在的问题：</p>
+<p>​    第三方可以在中间获取到<code>client_random</code>、<code>server_random</code>和加密方法，由于这个加密方法同时可以解密，所以中间人可以成功对暗号进行解密，拿到数据，很容易就将这种加密方式破解了。</p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><ul>
+<li>浏览器发送给服务端 一系列加密方法</li>
+<li>服务端发送给浏览器 加密方法以及公钥</li>
+<li>然后浏览器通过公钥将数据加密传输给服务端，服务端收到数据使用私钥进行解密。服务端给浏览器发送数据，则使用私钥进行加密，浏览器收到服务端发送过来的数据，使用公钥进行解密。</li>
+</ul>
+<p>存在的问题：</p>
+<ol>
+<li><strong>非对称加密效率太低</strong>， 这会严重影响加解密的速度，进而影响到用户打开页面的速度。</li>
+<li><strong>无法保证服务器发送给浏览器的数据安全</strong>， 服务器的数据只能用私钥进行加密(因为如果它用公钥那么浏览器也没法解密啦)，中间人一旦拿到公钥，那么就可以对服务端传来的数据进行解密了，就这样又被破解了。</li>
+</ol>
+<h3 id="HTTPS使用对称加密和非对称加密结合"><a href="#HTTPS使用对称加密和非对称加密结合" class="headerlink" title="HTTPS使用对称加密和非对称加密结合"></a>HTTPS使用对称加密和非对称加密结合</h3><p>传输数据阶段依然使用对称加密，但是对称加密的秘钥我们采用非对称加密传输。</p>
+<ul>
+<li>浏览器向服务器发送client_random和加密方法列表。</li>
+<li>服务器接收到，返回server_random、加密方法以及公钥。</li>
+<li>浏览器接收，接着生成另一个随机数pre_master, 并且用公钥加密，传给服务器。(重点操作！)</li>
+<li>服务器用私钥解密这个被加密后的pre_master。</li>
+<li>到此为止，服务器和浏览器就有了相同的  <code>client_random</code>、<code>server_random</code> 和 <code>pre_master</code>, 然后服务器和浏览器会使用这三组随机数生成对称秘钥。有了对称秘钥之后，双方就可以使用对称加密的方式来传输数据了。</li>
+</ul>
+<h2 id="CA-数字证书"><a href="#CA-数字证书" class="headerlink" title="CA (数字证书)"></a>CA (数字证书)</h2><p>使用对称和非对称混合的方式，实现了数据的加密传输。但是这种仍然存在一个问题，服务器可能是被黑客冒充的。这样，浏览器访问的就是黑客的服务器，黑客可以在自己的服务器上实现公钥和私钥，而对浏览器来说，它并不完全知道现在访问的是这个是黑客的站点。</p>
+<p>服务器需要证明自己的身份，需要使用权威机构颁发的证书，这个权威机构就是 CA（Certificate Authority）， 颁发的证书就称为数字证书 (Digital Certificate)。</p>
+<p>对于浏览器来说，数字证书有两个作用：</p>
+<ol>
+<li>通过数字证书向浏览器证明服务器的身份</li>
+<li>数字证书里面包含了服务器公钥</li>
+</ol>
+<p>相对于不含数字证书的HTTPS请求流程，主要以下两点改动</p>
+<ol>
+<li>服务器没有直接返回公钥给浏览器，而是返回了数字证书，而公钥正是包含数字证书中的；</li>
+<li>在浏览器端多了一个证书验证的操作，验证了证书之后，才继续后序流程。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/HTTPS%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F/" data-id="cklkumnh2000vd0uubib9civt" data-title="HTTPS怎样保证安全连接？" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React中的Fragments" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/26/React%E4%B8%AD%E7%9A%84Fragments/" class="article-date">
+  <time class="dt-published" datetime="2020-06-26T05:48:37.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/06/26/React%E4%B8%AD%E7%9A%84Fragments/">React中的Fragments</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>React 中的一个常见模式是一个组件返回多个元素。Fragments 允许你将子列表分组，而无需向 DOM 添加额外节点。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;React.Fragment&gt;</span><br><span class="line">      &lt;ChildA &#x2F;&gt;</span><br><span class="line">      &lt;ChildB &#x2F;&gt;</span><br><span class="line">      &lt;ChildC &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;React.Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用一种新的，且更简短的语法来声明 Fragments，像空标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Columns extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;&gt;        </span><br><span class="line">        &lt;td&gt;Hello&lt;&#x2F;td&gt;</span><br><span class="line">        &lt;td&gt;World&lt;&#x2F;td&gt;</span><br><span class="line">      &lt;&#x2F;&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以像使用任何其他元素一样使用 <code>&lt;&gt; &lt;/&gt;</code>，但是它不支持 key 属性。若需使用key 属性可以使用&lt;React.Fragment&gt;&lt;/React.Fragment&gt;，<code>key</code> 是唯一可以传递给 <code>Fragment</code> 的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Glossary(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;dl&gt;</span><br><span class="line">      &#123;props.items.map(item &#x3D;&gt; (</span><br><span class="line">        &#x2F;&#x2F; 没有&#96;key&#96;，React 会发出一个关键警告</span><br><span class="line">        &lt;React.Fragment key&#x3D;&#123;item.id&#125;&gt;</span><br><span class="line">          &lt;dt&gt;&#123;item.term&#125;&lt;&#x2F;dt&gt;</span><br><span class="line">          &lt;dd&gt;&#123;item.description&#125;&lt;&#x2F;dd&gt;</span><br><span class="line">        &lt;&#x2F;React.Fragment&gt;</span><br><span class="line">      ))&#125;</span><br><span class="line">    &lt;&#x2F;dl&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/26/React%E4%B8%AD%E7%9A%84Fragments/" data-id="cklkumnhx0047d0uu2ykr0b89" data-title="React中的Fragments" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React中的Context" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/22/React%E4%B8%AD%E7%9A%84Context/" class="article-date">
+  <time class="dt-published" datetime="2020-06-22T10:18:05.000Z" itemprop="datePublished">2020-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/06/22/React%E4%B8%AD%E7%9A%84Context/">React Context</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。</p>
+</blockquote>
+<p>Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。</p>
+<p><strong>使用props进行数据传递如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;App.js</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Toolbar theme&#x3D;&quot;dark&quot; &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Toolbar.js</span><br><span class="line">function Toolbar(props) &#123;</span><br><span class="line">  &#x2F;&#x2F; Toolbar 组件接受一个额外的“theme”属性，然后传递给 ThemedButton 组件。  </span><br><span class="line">  &#x2F;&#x2F; 如果应用中每一个单独的按钮都需要知道 theme 的值，这会是件很麻烦的事，  </span><br><span class="line">  &#x2F;&#x2F; 因为必须将这个值层层传递所有组件。  </span><br><span class="line">  return (    </span><br><span class="line">    &lt;div&gt;</span><br><span class="line">     	&lt;ThemedButton theme&#x3D;&#123;props.theme&#125; &#x2F;&gt;</span><br><span class="line">   	&lt;&#x2F;div&gt; </span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ThemedButton.js</span><br><span class="line">class ThemedButton extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Button theme&#x3D;&#123;this.props.theme&#125; &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 context进行数据传递如下：</strong>    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ThemeContext.js</span><br><span class="line">&#x2F;&#x2F;使用createContext为theme 创建一个context。</span><br><span class="line">const ThemeContext &#x3D; React.createContext(&#123;</span><br><span class="line">    theme:&quot;light&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;App.js</span><br><span class="line">import ThemeContext from &quot;ThemeContext.js&quot;;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    &#x2F;&#x2F; 使用Provider将当前的theme的值传递给组件树，且通过value来改变theme的值。</span><br><span class="line">    &#x2F;&#x2F;接下来组件树接受的theme值为dark。    </span><br><span class="line">    return (</span><br><span class="line">      &lt;ThemeContext.Provider value&#x3D;&#123;&#123;theme: &quot;dark&quot;&#125;&#125;&gt;        </span><br><span class="line">          &lt;Toolbar &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;ThemeContext.Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Toolbar.js</span><br><span class="line">&#x2F;&#x2F;中间的组件不用向下传递theme了。</span><br><span class="line">function Toolbar() &#123;  </span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ThemedButton &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ThemedButton.js</span><br><span class="line">import ThemeContext from &quot;ThemeContext.js&quot;;</span><br><span class="line"></span><br><span class="line">function ThemedButton() &#123;</span><br><span class="line">  &#x2F;&#x2F; 使用Consumer获取theme的值，此时theme的值为dark。 </span><br><span class="line">  return (</span><br><span class="line">    &lt;ThemeContext.Consumer&gt;</span><br><span class="line">      &#123;value&#x3D;&gt; &lt;Button theme&#x3D;&#123;value.theme&#125; &#x2F;&gt; &#125;</span><br><span class="line">    &lt;&#x2F;ThemeContext.Consumer&gt;  </span><br><span class="line">  ) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用v16.8.0版本新增的Hooks中提出的useContext来更加便利的使用context：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ThemedButton.js</span><br><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import ThemeContext from &quot;ThemeContext.js&quot;;</span><br><span class="line"></span><br><span class="line">function ThemedButton() &#123;</span><br><span class="line">  &#x2F;&#x2F; 使用useContext获取theme的值。 </span><br><span class="line">  const value &#x3D; React.useContext(ThemeContext);</span><br><span class="line">  return (</span><br><span class="line">     &lt;Button theme&#x3D;&#123;value.theme&#125; &#x2F;&gt; </span><br><span class="line">  ) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/22/React%E4%B8%AD%E7%9A%84Context/" data-id="cklkumnhw0043d0uud1fuhh4r" data-title="React Context" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="react-Hooks" class="h-entry article article-type-react" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/10/Hooks/" class="article-date">
+  <time class="dt-published" datetime="2020-06-10T02:15:56.000Z" itemprop="datePublished">2020-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/06/10/Hooks/">React Hooks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>Hooks是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其它的 React 特性。</strong>第一次接触Hooks是因为新项目要求使用函数组件和hooks，就开始了hooks的学习和使用。</p>
+</blockquote>
+<h2 id="学习hooks前的注意"><a href="#学习hooks前的注意" class="headerlink" title="学习hooks前的注意"></a>学习hooks前的注意</h2><ol>
+<li><strong>完全可选的。</strong>无需重写任何已有代码就可以在一些组件中使用Hooks。若是用不到hooks，也不用去学习和使用它。</li>
+<li><strong>100%向后兼容的。</strong>Hook 不包含任何破坏性改动。</li>
+<li><strong>现在可用。</strong> Hook 已发布于 v16.8.0。</li>
+<li><strong>没有计划从React中移除class。</strong></li>
+<li><strong>Hooks 不会影响你对React概念的影响</strong>。Hooks 为已知的 React 概念提供了更直接的 API：props， state，context，refs 以及生命周期。</li>
+</ol>
+<h2 id="组件类的缺点"><a href="#组件类的缺点" class="headerlink" title="组件类的缺点"></a>组件类的缺点</h2><p>React 的核心是组件。v16.8 版本之前，组件的标准写法是类（class）。一个很简单的按钮组件类就有很多行代码，代码看起来很重。真实的 React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂。</p>
+<p>Redux 的作者 Dan Abramov <a target="_blank" rel="noopener" href="https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889">总结</a>了组件类的几个缺点。</p>
+<ul>
+<li>大型组件很难拆分和重构，也很难测试。</li>
+<li>业务逻辑分散在组件的各个方法之中，导致重复逻辑或关联逻辑。</li>
+<li>组件类引入了复杂的编程模式，比如 render props 和高阶组件。</li>
+</ul>
+<h2 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h2><p>React 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组合管道即可。 <strong>组件的最佳写法应该是函数，而不是类。</strong></p>
+<p>React 早就支持<a target="_blank" rel="noopener" href="https://reactjs.org/docs/components-and-props.html">函数组件</a></p>
+<p>但是，函数组件有重大限制，必须是纯函数，不能包含状态，也不支持生命周期方法，因此无法取代类。</p>
+<p><strong>React Hooks 的设计目的，就是加强版函数组件，完全不使用”类”，就能写出一个全功能的组件。</strong></p>
+<h2 id="Hooks-的含义"><a href="#Hooks-的含义" class="headerlink" title="Hooks 的含义"></a>Hooks 的含义</h2><p>Hook 这个单词的意思是”钩子”。</p>
+<p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码”钩”进来。</strong> React Hooks 就是那些钩子。</p>
+<p>你需要什么功能，就使用什么钩子。React 默认提供了一些常用钩子，你也可以封装自己的钩子。</p>
+<p>所有的钩子都是为函数引入外部功能，所以 React 约定，钩子一律使用<code>use</code>前缀命名，便于识别。</p>
+<h2 id="useState-：状态钩子"><a href="#useState-：状态钩子" class="headerlink" title="useState()：状态钩子"></a>useState()：状态钩子</h2><p><code>useState()</code>用于为函数组件引入状态（state）。纯函数不能有状态，所以把状态放在钩子里面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const Button &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const [buttonText, setButtonText] &#x3D; React.useState(&quot;Click me,   please&quot;);</span><br><span class="line"></span><br><span class="line">  const onChangeButtonText &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    setButtonText(&quot;Thanks, been clicked!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return  &lt;button  onClick&#x3D;&#123;onChangeButtonText&#125;&gt;&#123;buttonText&#125;&lt;&#x2F;button&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Button 组件是一个函数，内部使用<code>useState()</code>钩子引入状态。</p>
+<p><code>useState()</code>这个函数接受状态的初始值，作为参数，上例的初始值为按钮的文字。该函数返回一个数组，数组的第一个成员是一个变量（上例是<code>buttonText</code>），指向状态的当前值。第二个成员是一个函数，用来更新状态，约定是<code>set</code>前缀加上状态的变量名（上例是<code>setButtonText</code>）。</p>
+<h2 id="useEffect-：副作用钩子"><a href="#useEffect-：副作用钩子" class="headerlink" title="useEffect()：副作用钩子"></a>useEffect()：副作用钩子</h2><p><code>useEffect()</code>用来引入具有副作用（对环境的改变）的操作，最常见的就是向服务器请求数据。</p>
+<p>作为componentDidMount()使用，第二个参数使用[]。</p>
+<p>作为componentDidUpdate()使用，可在第二个参数数组中指定依赖。</p>
+<p>作为componentWillUnMount()使用，通过return函数使用，组件要卸载的时候执行。</p>
+<p>当多个useEffect存在时，按照顺序执行。</p>
+<p>放在<code>componentDidMount</code>里面的代码，现在可以放在<code>useEffect()</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useEffect(()  &#x3D;&gt;  &#123;</span><br><span class="line">  &#x2F;&#x2F; Async Action</span><br><span class="line">&#125;, [dependencies])</span><br></pre></td></tr></table></figure>
+
+<p><code>useEffect()</code>接受两个参数。第一个参数是一个函数，异步操作的代码放在里面。第二个参数是一个数组，用于给出 Effect 的依赖项，只要这个数组发生变化，<code>useEffect()</code>就会执行。第二个参数可以省略，这时每次组件渲染时，就会执行<code>useEffect()</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const Person &#x3D; (&#123; personId &#125;) &#x3D;&gt; &#123;</span><br><span class="line">  const [loading, setLoading] &#x3D; React.useState(true);</span><br><span class="line">  const [person, setPerson] &#x3D; React.useState(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">  React.useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    setLoading(true); </span><br><span class="line">    fetch(&#96;&#x2F;people&#x2F;$&#123;personId&#125;&#x2F;&#96;)</span><br><span class="line">      .then(response &#x3D;&gt; response.json())</span><br><span class="line">      .then(data &#x3D;&gt; &#123;</span><br><span class="line">        setPerson(data);</span><br><span class="line">        setLoading(false);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;, [personId])</span><br><span class="line"></span><br><span class="line">  if (loading &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">    return &lt;p&gt;Loading ...&lt;&#x2F;p&gt;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;p&gt;You&#39;re viewing: &#123;person.name&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p&gt;Height: &#123;person.height&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p&gt;Mass: &#123;person.mass&#125;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，每当组件参数<code>personId</code>发生变化，<code>useEffect()</code>就会执行。组件第一次渲染时，<code>useEffect()</code>也会执行。</p>
+<h2 id="useContext-：共享状态钩子"><a href="#useContext-：共享状态钩子" class="headerlink" title="useContext()：共享状态钩子"></a>useContext()：共享状态钩子</h2><p>如果需要在组件之间共享状态，可以使用<code>useContext()</code>。</p>
+<p>第一步就是使用 React Context API，在组件外部建立一个 Context</p>
+<p>//context.jsx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> AppContext = React.createContext(&#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>//app.jsx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;AppContext.Provider value&#x3D;&#123;&#123;</span><br><span class="line">  username: &#39;superawesome&#39;</span><br><span class="line">&#125;&#125;&gt;</span><br><span class="line">  &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">    &lt;Navbar&#x2F;&gt;</span><br><span class="line">    &lt;Messages&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;AppContext.Provider&gt;</span><br></pre></td></tr></table></figure>
+
+<p>//navbar.jsx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const Navbar &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; username &#125; &#x3D; React.useContext(AppContext);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;navbar&quot;&gt;</span><br><span class="line">      &lt;p&gt;AwesomeSite&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;&#123;username&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//message.jsx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const Messages &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; username &#125; &#x3D; React.useContext(AppContext)</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;messages&quot;&gt;</span><br><span class="line">      &lt;h1&gt;Messages&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;p&gt;1 message for &#123;username&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p className&#x3D;&quot;message&quot;&gt;useContext is awesome!&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useRef-在组件render时不变的值"><a href="#useRef-在组件render时不变的值" class="headerlink" title="useRef(): 在组件render时不变的值"></a>useRef(): 在组件render时不变的值</h2><p><code>useRef</code> 返回一个可变的 ref 对象，其 <code>.current</code> 属性被初始化为传入的参数（<code>initialValue</code>）。返回的 ref 对象在组件的整个生命周期内保持不变。</p>
+<ul>
+<li>useState/useReducer 每次render的时候state都会变。</li>
+<li>useMemo/useCallback 每次render的时候，依赖变了，state就会变。</li>
+<li>useRef, 每次render的时候都不会变。</li>
+</ul>
+<p>React 16.3 发布React.createRef()，并且是现在类组件中推荐使用的。</p>
+<p>Refs 是使用 <code>React.createRef()</code> 创建的，并通过 <code>ref</code> 属性附加到 React 元素。在构造组件时，通常将 Refs 分配给实例属性，以便可以在整个组件中引用它们。当 ref 被传递给 <code>render</code> 中的元素时，对该节点的引用可以在 ref 的 <code>current</code> 属性中被访问。</p>
+<p>React 会在组件挂载时给 <code>current</code> 属性传入 DOM 元素，并在组件卸载时传入 <code>null</code> 值。<code>ref</code>会在 <code>componentDidMount</code> 或 <code>componentDidUpdate</code> 生命周期钩子触发前更新。</p>
+<p>createRef 和 useRef 的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">function Search() &#123;</span><br><span class="line">  const inputRef &#x3D; React.createRef();</span><br><span class="line">  const onSearch &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    const searchValue &#x3D; inputRef.current.value</span><br><span class="line">    &#x2F;&#x2F;to search</span><br><span class="line">    console.log(searchValue);</span><br><span class="line">  &#125;;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Search&quot; ref&#x3D;&#123;inputRef&#125; &#x2F;&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;onSearch&#125;&gt;Search&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因为函数组件没有实例，如果想用ref获取子组件的实例，子组件组要写成类组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component, useEffect, useRef &#125; from &#39;react&#39;;</span><br><span class="line">function App() &#123;</span><br><span class="line">  const childRef &#x3D; useRef();</span><br><span class="line">  useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;useRef&#39;)</span><br><span class="line">    console.log(childRef.current)</span><br><span class="line">    childRef.current.handleLog();</span><br><span class="line">  &#125;, [])</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;Child ref&#x3D;&#123;childRef&#125; count&#x3D;&quot;1&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 因为函数组件没有实例，如果想用ref获取子组件的实例，子组件组要写成类组件</span><br><span class="line">class Child extends Component &#123;</span><br><span class="line">  handleLog &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Child Component&#39;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; count &#125; &#x3D; this.props;</span><br><span class="line">    return &lt;h2&gt;count: &#123; count &#125;&lt;&#x2F;h2&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useReducer-：action-钩子"><a href="#useReducer-：action-钩子" class="headerlink" title="useReducer()：action 钩子"></a>useReducer()：action 钩子</h2><p>React 本身不提供状态管理功能，通常需要使用外部库。这方面最常用的库是 Redux。</p>
+<p>Redux 的核心概念是，组件发出 action 与状态管理器通信。状态管理器收到 action 以后，使用 Reducer 函数算出新的状态，Reducer 函数的形式是<code>(state, action) =&gt; newState</code>。</p>
+<p><code>useReducers()</code>钩子用来引入 Reducer 功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const [state, dispatch] &#x3D; useReducer(reducer, initialState);</span><br></pre></td></tr></table></figure>
+
+<p>上面是<code>useReducer()</code>的基本用法，它接受 Reducer 函数和状态的初始值作为参数，返回一个数组。数组的第一个成员是状态的当前值，第二个成员是发送 action 的<code>dispatch</code>函数。</p>
+<p>下面是一个计数器的例子。用于计算状态的 Reducer 函数如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const myReducer &#x3D; (state, action) &#x3D;&gt; &#123;</span><br><span class="line">  switch(action.type)  &#123;</span><br><span class="line">    case(&#39;countUp&#39;):</span><br><span class="line">      return  &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        count: state.count + 1</span><br><span class="line">      &#125;</span><br><span class="line">    default:</span><br><span class="line">      return  state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  const [state, dispatch] &#x3D; useReducer(myReducer, &#123; count:   0 &#125;);</span><br><span class="line">  return  (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;countUp&#39; &#125;)&#125;&gt;</span><br><span class="line">        +1</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">      &lt;p&gt;Count: &#123;state.count&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 Hooks 可以提供共享状态和 Reducer 函数，所以它在这些方面可以取代 Redux。但是，它没法提供中间件（middleware）和时间旅行（time travel），如果你需要这两个功能，还是要用 Redux。</p>
+<h2 id="创建自己的-Hooks"><a href="#创建自己的-Hooks" class="headerlink" title="创建自己的 Hooks"></a>创建自己的 Hooks</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const usePerson &#x3D; (personId) &#x3D;&gt; &#123;</span><br><span class="line">  const [loading, setLoading] &#x3D; React.useState(true);</span><br><span class="line">  const [person, setPerson] &#x3D; React.useState(&#123;&#125;);</span><br><span class="line">  useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    setLoading(true);</span><br><span class="line">    fetch(&#96;&#x2F;people&#x2F;$&#123;personId&#125;&#x2F;&#96;)</span><br><span class="line">      .then(response &#x3D;&gt; response.json())</span><br><span class="line">      .then(data &#x3D;&gt; &#123;</span><br><span class="line">        setPerson(data);</span><br><span class="line">        setLoading(false);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;, [personId]);  </span><br><span class="line">  return [loading, person];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>usePerson()</code>就是一个自定义的 Hook。</p>
+<p>Person 组件就改用这个新的钩子，引入封装的逻辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const Person &#x3D; (&#123; personId &#125;) &#x3D;&gt; &#123;</span><br><span class="line">  const [loading, person] &#x3D; usePerson(personId);</span><br><span class="line"></span><br><span class="line">  if (loading &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">    return &lt;p&gt;Loading ...&lt;&#x2F;p&gt;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You&#39;re viewing: &#123;person.name&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;Height: &#123;person.height&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;Mass: &#123;person.mass&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/10/Hooks/" data-id="cklkumnh30011d0uu28xs2zq6" data-title="React Hooks" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React的事件机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/24/React%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2020-05-24T08:50:40.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/24/React%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">React的事件机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>React自身实现了一套自己的事件机制，包括事件注册、事件的合成、事件冒泡、事件派发等，虽然和原生的是两码事，但也是基于浏览器的事件机制下完成的。</p>
+</blockquote>
+<p>React 的所有事件并没有绑定到具体的dom节点上而是绑定在了document 上，然后由统一的事件处理程序来处理，同时也是基于浏览器的事件机制（冒泡），所有节点的事件都会在 document 上触发。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">class Test extends React.Component&#123;</span><br><span class="line">	componentDidMount()&#123; </span><br><span class="line">		document.getElementById(&#39;btn-reactandnative&#39;).addEventListener(&#39;click&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">            console.log(&#39;原生+react 事件:原生事件执行&#39;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleNativeAndReact &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;原生+react 事件:当前执行react事件&#39;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick&#x3D;(e)&#x3D;&gt;&#123;</span><br><span class="line">        console.log(&#39;button click&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return( </span><br><span class="line">            &lt;div className&#x3D;&quot;pageIndex&quot;&gt;</span><br><span class="line">                &lt;p&gt;react event!!!&lt;&#x2F;p&gt;</span><br><span class="line">                &lt;button id&#x3D;&quot;btn-confirm&quot; onClick&#x3D;&#123;this.handleClick&#125;&gt;react事件&lt;&#x2F;button&gt;</span><br><span class="line">                &lt;button id&#x3D;&quot;btn-reactandnative&quot; onClick&#x3D;&#123;this.handleNativeAndReact&#125;&gt;原生 + react 事件&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">		)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>btn#btn-confirm </code>绑定了合成事件，<code>btn#btn-reactandnative</code>绑定了原生的事件。</p>
+<p>只有原生的事件才会被绑到button上，合成事件在document上，由 dispatchEvent 统一去处理。</p>
+<p>React中所有事件均注册到了元素的最顶层-document 上 ，节点的事件由统一的入口处理。优点如下：</p>
+<ol>
+<li>减少内存消耗，提升性能，不需要注册那么多的事件了，一种事件类型只在 document 上注册一次</li>
+<li>统一规范，解决 ie 事件兼容问题，简化事件逻辑</li>
+<li>对开发者友好</li>
+</ol>
+<p>React v17 中，React 不会再将事件处理添加到 <code>document</code> 上，而是将事件处理添加到渲染 React 树的根 DOM 容器中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const rootNode &#x3D; document.getElementById(&#39;root&#39;);</span><br><span class="line">ReactDOM.render(&lt;App &#x2F;&gt;, rootNode);</span><br></pre></td></tr></table></figure>
+
+<p>在 React 16 及之前版本中，React 会对大多数事件进行 <code>document.addEventListener()</code> 操作。React v17 开始会通过调用 <code>rootNode.addEventListener()</code> 来代替。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/24/React%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" data-id="cklkumni1004qd0uud3sfd6zx" data-title="React的事件机制" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-雪碧图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/16/%E9%9B%AA%E7%A2%A7%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2020-05-16T12:14:23.000Z" itemprop="datePublished">2020-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/16/%E9%9B%AA%E7%A2%A7%E5%9B%BE/">雪碧图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>CSS雪碧 即CSS Sprite，也有人叫它CSS精灵，是一种CSS图像合并技术。该方法是将小图标和背景图像合并到一张图片上，然后利用css的背景定位来显示需要显示的图片部分，该图片使用CSS background和background-position属性渲染。</p>
+<p>优点：</p>
+<ol>
+<li>减少图片的字节；</li>
+<li>减少了网页的http请求；</li>
+<li>解决了网页设计师在图片命名的困扰，不需要对每张图进行命名；</li>
+<li>更换风格方便，只需要在一张上修改图片的颜色样式。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>耗费内存，影响浏览器的缩放功能，拼图维护比较麻烦，使CSS的编写变得困难。</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">42px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">34px</span>;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">amazon-sprite.png</span>);</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-position</span>: -<span class="number">8px</span> -<span class="number">335px</span> //雪碧图中的某个图标的位置</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/16/%E9%9B%AA%E7%A2%A7%E5%9B%BE/" data-id="cklkumnj00094d0uud0k3d2yk" data-title="雪碧图" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

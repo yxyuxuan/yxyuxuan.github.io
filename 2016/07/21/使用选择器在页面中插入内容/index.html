@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用选择器在页面中插入内容 | 于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1、使用选择器插入文字使用before选择器在元素前面插入内容，使用after在元素后面插入内容，在选择器content属性中定义要插入的内容。  例如对H2使用before选择器在H2的前面插入文字“Title”。 &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;  h2:before&amp;#123; content:&quot;Title&quot;; &amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用选择器在页面中插入内容">
+<meta property="og:url" content="http://example.com/2016/07/21/%E4%BD%BF%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:description" content="1、使用选择器插入文字使用before选择器在元素前面插入内容，使用after在元素后面插入内容，在选择器content属性中定义要插入的内容。  例如对H2使用before选择器在H2的前面插入文字“Title”。 &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;  h2:before&amp;#123; content:&quot;Title&quot;; &amp;#125;">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-07-21T15:45:28.000Z">
+<meta property="article:modified_time" content="2020-09-16T12:30:27.974Z">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-使用选择器在页面中插入内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/07/21/%E4%BD%BF%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%86%85%E5%AE%B9/" class="article-date">
+  <time class="dt-published" datetime="2016-07-21T15:45:28.000Z" itemprop="datePublished">2016-07-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用选择器在页面中插入内容
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1、使用选择器插入文字"><a href="#1、使用选择器插入文字" class="headerlink" title="1、使用选择器插入文字"></a>1、使用选择器插入文字</h2><p>使用before选择器在元素前面插入内容，使用after在元素后面插入内容，在选择器content属性中定义要插入的内容。</p>
+<p> 例如对H2使用before选择器在H2的前面插入文字“Title”。</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt; 
+h2:before&#123;
+content:&quot;Title&quot;;
+&#125;
+&lt;/style&gt; 
+</code></pre>
+<p> 并且我们还可以给他定义样式，进行美化操作。比如我们给“Title”的文字设置为白色，加上绿色的背景，内边距上下1像素左右5像素，外边距右边5像素，当然还可以设置他的字体等等。</p>
+<h3 id="1-2、排除一些不需要插入内容的元素"><a href="#1-2、排除一些不需要插入内容的元素" class="headerlink" title="1.2、排除一些不需要插入内容的元素"></a>1.2、排除一些不需要插入内容的元素</h3><p> 使用content属性的追加一个none属性值。比如：</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt; 
+h2.nocontent:before&#123;
+content:none;
+&#125;
+&lt;/style&gt;
+</code></pre>
+<h2 id="2、插入图片"><a href="#2、插入图片" class="headerlink" title="2、插入图片"></a>2、插入图片</h2><p>使用before或者after除了可以在元素前后插入文字之外还可以插入图片。</p>
+<p>在插入图片是需要使用URL指定图片的路径，比如在标题前插入一张图片！</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt; 
+h2:before&#123;
+content:url(1.gif);
+&#125;
+&lt;/style&gt;
+</code></pre>
+<h2 id="3、插入项目编号"><a href="#3、插入项目编号" class="headerlink" title="3、插入项目编号"></a>3、插入项目编号</h2><h3 id="3-1、在多个标题前加上连续编号"><a href="#3-1、在多个标题前加上连续编号" class="headerlink" title="3.1、在多个标题前加上连续编号"></a>3.1、在多个标题前加上连续编号</h3><p>在content属性中使用counter属性来正对对个项目追加连续的编号。</p>
+<p>使用方法：</p>
+<pre><code>元素:before&#123;
+content:counter(计数器名);
+&#125;
+</code></pre>
+<p>使用计数器来计算编号，计数器可以任意命名。</p>
+<p>除了使用计数器，还需要在元素的样式中追加对元素的（counter-increment）属性的指定为content属性值中所指定的计数器名称。</p>
+<pre><code>元素&#123;counter-increment:计数器名&#125;
+</code></pre>
+<h3 id="3-2、在项目编号中追加文字"><a href="#3-2、在项目编号中追加文字" class="headerlink" title="3.2、在项目编号中追加文字"></a>3.2、在项目编号中追加文字</h3><pre><code>h1:berore&#123;
+content：&amp;#39;第&amp;#39;counter（content属性值中所指定的计数器名称）&amp;#39;章&amp;#39;;&#125;
+</code></pre>
+<p>变成另一种效果！“第一章、第二章…”</p>
+<h3 id="3-3、指定编号的样式"><a href="#3-3、指定编号的样式" class="headerlink" title="3.3、指定编号的样式"></a>3.3、指定编号的样式</h3><p>比如给他在编号后面带一个“.”文字，并且设置编号的颜色为绿色，字体大小42像素。</p>
+<pre><code>h1:before&#123;
+content：counter（content属性值中所指定的计数器名称）&amp;#39;.&amp;#39;;
+color:green;
+font-size:42px;
+&#125;
+</code></pre>
+<h3 id="3-4、指定编号的种类"><a href="#3-4、指定编号的种类" class="headerlink" title="3.4、指定编号的种类"></a>3.4、指定编号的种类</h3><p>before和after不仅可以追加数字编号，还可以追加字母编号或者罗马数字编号。</p>
+<pre><code>content：counter（计数器名,编号种类） 
+</code></pre>
+<p>可以使用list-style-type属性的值来指定编号的种类。比如指定大写字母编号时，使用“upper-alpha”属性，指定大写罗马字母时使用“upper-roman”属性。</p>
+<pre><code>h1:before&#123;
+content：counter（计数器名,编号种类）&amp;#39;.&amp;#39;;
+color:green;
+font-size:42px;
+&#125;
+</code></pre>
+<h3 id="3-5、编号嵌套、重置编号"><a href="#3-5、编号嵌套、重置编号" class="headerlink" title="3.5、编号嵌套、重置编号"></a>3.5、编号嵌套、重置编号</h3><p>我们可以在大编号中华嵌套中编号，在中编号中又嵌入小编号！</p>
+<p> 1)、大编号中嵌入中编号</p>
+<p> 2)、counter-reset属性重置编号</p>
+<h3 id="3-6、中编号中嵌入大编号"><a href="#3-6、中编号中嵌入大编号" class="headerlink" title="3.6、中编号中嵌入大编号"></a>3.6、中编号中嵌入大编号</h3><pre><code>h2:before&#123;
+content:counter(大编号的计数器)&amp;#39;-&amp;#39;counter(中编号的计数器)
+&#125;
+</code></pre>
+<h3 id="3-7、在字符串两边嵌套文字符号"><a href="#3-7、在字符串两边嵌套文字符号" class="headerlink" title="3.7、在字符串两边嵌套文字符号"></a>3.7、在字符串两边嵌套文字符号</h3><p>可以使用content属性的open-quote属性值与close-quote属性值在字符串的两边添加诸如单引号、双引号之类的文字字符。 </p>
+<p>open-quote开始符号，close-quote结尾字符。</p>
+<p>quote字符类型（使用双引号（””）的时候需要使用转义字符“\”）</p>
+<p>示例：</p>
+<pre><code>&lt;style&gt;
+ h1:before&#123;
+ content:open-quote;
+&#125;
+ h1:after&#123;
+ content:close-quote;
+&#125;
+h1&#123;
+quote:&quot;(&quot; &quot;)&quot;;
+&#125;
+&lt;/style&gt;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/07/21/%E4%BD%BF%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%86%85%E5%AE%B9/" data-id="cklkumnij006rd0uu7vyl2vs5" data-title="使用选择器在页面中插入内容" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/26/position%E5%AE%9A%E4%BD%8D%E5%92%8Cz-index%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          position定位和z-index的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/02/Github-README%E4%B8%AD%E5%B1%95%E7%A4%BADemo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Github-README中展示Demo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

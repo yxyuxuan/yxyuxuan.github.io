@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/9/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Node-js中的GET-POST请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/24/Node-js%E4%B8%AD%E7%9A%84GET-POST%E8%AF%B7%E6%B1%82/" class="article-date">
+  <time class="dt-published" datetime="2016-10-24T10:56:47.000Z" itemprop="datePublished">2016-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/24/Node-js%E4%B8%AD%E7%9A%84GET-POST%E8%AF%B7%E6%B1%82/">Node.js中的GET/POST请求</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在很多场景中，我们的服务器都需要跟用户的浏览器打交道，如表单提交。<br>表单提交到服务器一般都使用GET/POST请求。</p>
+</blockquote>
+<h3 id="一-获取GET请求内容"><a href="#一-获取GET请求内容" class="headerlink" title="一.获取GET请求内容"></a>一.获取GET请求内容</h3><p>由于GET请求直接被嵌入在路径中，URL是完整的请求路径，包括了?后面的部分，因此你可以手动解析后面的内容作为GET请求的参数。<br>node.js中url模块中的parse函数提供了这个功能。</p>
+<pre><code>var http = require(&#39;http&#39;);
+var url = require(&#39;url&#39;);
+var util = require(&#39;util&#39;);
+
+http.createServer(function(req, res)&#123;
+    res.writeHead(200, &#123;&#39;Content-Type&#39;: &#39;text/plain&#39;&#125;);
+    res.end(util.inspect(url.parse(req.url, true)));
+&#125;).listen(3000);
+</code></pre>
+<p>在浏览器中访问<br><a target="_blank" rel="noopener" href="http://localhost:3000/user?name=w3c&amp;email=w3c@w3cschool.cc">http://localhost:3000/user?name=w3c&amp;email=w3c@w3cschool.cc</a> 然后查看返回结果为:</p>
+<pre><code>Url &#123;
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: &#39;?name=w3c&amp;email=w3c@w3cschool.cc&#39;,
+  query: &#123; name: &#39;w3c&#39;, email: &#39;w3c@w3cschool.cc&#39; &#125;,
+  pathname: &#39;/user&#39;,
+  path: &#39;/user?name=w3c&amp;email=w3c@w3cschool.cc&#39;,
+  href: &#39;/user?name=w3c&amp;email=w3c@w3cschool.cc&#39; &#125;
+</code></pre>
+<h3 id="二-获取POST请求内容"><a href="#二-获取POST请求内容" class="headerlink" title="二.获取POST请求内容"></a>二.获取POST请求内容</h3><p>POST请求的内容全部的都在请求体中，http.ServerRequest并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。比如上传文件，而很多时候我们可能并不需要理会请求体的内容，恶意的POST请求会大大消耗服务器的资源，所有node.js默认是不会解析请求体的，当你需要的时候，需要手动来做。</p>
+<pre><code>var http = require(&#39;http&#39;);
+var querystring = require(&#39;querystring&#39;);
+var util = require(&#39;util&#39;);
+
+http.createServer(function(req, res)&#123;
+    var post = &#39;&#39;;     //定义了一个post变量，用于暂存请求体的信息
+
+    req.on(&#39;data&#39;, function(chunk)&#123;  
+      
+    //通过req的data事件监听函数，每当接受到请求体的数据，就累加到post变量中
+    post += chunk;
+    &#125;);
+
+    req.on(&#39;end&#39;, function()&#123;    
+    //在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
+    post = querystring.parse(post);
+    res.end(util.inspect(post));
+    &#125;);
+&#125;).listen(3000);
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/24/Node-js%E4%B8%AD%E7%9A%84GET-POST%E8%AF%B7%E6%B1%82/" data-id="cklkumnhm002yd0uu1zfa85t5" data-title="Node.js中的GET/POST请求" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Node-js中的RESTful" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/24/Node-js%E4%B8%AD%E7%9A%84RESTful/" class="article-date">
+  <time class="dt-published" datetime="2016-10-24T10:54:13.000Z" itemprop="datePublished">2016-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/24/Node-js%E4%B8%AD%E7%9A%84RESTful/">Node.js中的RESTful</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一-什么是-REST？"><a href="#一-什么是-REST？" class="headerlink" title="一.什么是 REST？"></a>一.什么是 REST？</h3><p>REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。</p>
+<p>表述性状态转移是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是RESTful。需要注意的是，REST是设计风格而不是标准。REST通常基于使用HTTP，URI，和XML（标准通用标记语言下的一个子集）以及HTML（标准通用标记语言下的一个应用）这些现有的广泛流行的协议和标准。REST 通常使用 JSON 数据格式。</p>
+<h3 id="二-HTTP-方法"><a href="#二-HTTP-方法" class="headerlink" title="二.HTTP 方法"></a>二.HTTP 方法</h3><p>以下为 REST 基本架构的四个方法：</p>
+<ol>
+<li>GET - 用于获取数据。</li>
+<li>PUT - 用于添加数据。</li>
+<li>DELETE - 用于删除数据。</li>
+<li>POST - 用于更新或添加数据。</li>
+</ol>
+<h3 id="三-RESTful-Web-Services"><a href="#三-RESTful-Web-Services" class="headerlink" title="三.RESTful Web Services"></a>三.RESTful Web Services</h3><p>Web service是一个平台独立的，低耦合的，自包含的、基于可编程的web的应用程序，可使用开放的XML（标准通用标记语言下的一个子集）标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</p>
+<p>基于 REST 架构的 Web Services 即是 RESTful。</p>
+<p>由于轻量级以及通过 HTTP 直接传输数据的特性，Web 服务的 RESTful 方法已经成为最常见的替代方法。可以使用各种语言（比如 Java 程序、Perl、Ruby、Python、PHP 和 Javascript[包括 Ajax]）实现客户端。</p>
+<p>RESTful Web 服务通常可以通过自动客户端或代表用户的应用程序访问。但是，这种服务的简便性让用户能够与之直接交互，使用它们的 Web 浏览器构建一个 GET URL 并读取返回的内容。</p>
+<p>首先，创建一个 json 数据资源文件 users.json，内容如下：</p>
+<pre><code>&#123;
+   &quot;user1&quot; : &#123;
+   &quot;name&quot; : &quot;mahesh&quot;,
+   &quot;password&quot; : &quot;password1&quot;,
+   &quot;profession&quot; : &quot;teacher&quot;,
+   &quot;id&quot;: 1
+&#125;,
+&quot;user2&quot; : &#123;
+   &quot;name&quot; : &quot;suresh&quot;,
+   &quot;password&quot; : &quot;password2&quot;,
+   &quot;profession&quot; : &quot;librarian&quot;,
+   &quot;id&quot;: 2
+&#125;,
+&quot;user3&quot; : &#123;
+   &quot;name&quot; : &quot;ramesh&quot;,
+   &quot;password&quot; : &quot;password3&quot;,
+   &quot;profession&quot; : &quot;clerk&quot;,
+   &quot;id&quot;: 3
+   &#125;
+&#125;
+</code></pre>
+<p><strong>获取用户列表：</strong></p>
+<p>以下代码，我们创建了 RESTful API listUsers，用于读取用户的信息列表， server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&#39;express&#39;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+app.get(&#39;/listUsers&#39;, function (req, res) &#123;
+    fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &#39;utf8&#39;, function (err, data) &#123;
+       console.log( data );
+       res.end( data );
+   &#125;);
+&#125;)
+
+var server = app.listen(8081, function () &#123;
+
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+&#125;)
+</code></pre>
+<p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre>
+<p>在浏览器中访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/listUsers%EF%BC%8C%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">http://127.0.0.1:8081/listUsers，结果如下所示：</a></p>
+<pre><code>&#123;
+   &quot;user1&quot; : &#123;
+   &quot;name&quot; : &quot;mahesh&quot;,
+   &quot;password&quot; : &quot;password1&quot;,
+   &quot;profession&quot; : &quot;teacher&quot;,
+   &quot;id&quot;: 1
+&#125;,
+&quot;user2&quot; : &#123;
+   &quot;name&quot; : &quot;suresh&quot;,
+   &quot;password&quot; : &quot;password2&quot;,
+   &quot;profession&quot; : &quot;librarian&quot;,
+   &quot;id&quot;: 2
+&#125;,
+&quot;user3&quot; : &#123;
+   &quot;name&quot; : &quot;ramesh&quot;,
+   &quot;password&quot; : &quot;password3&quot;,
+   &quot;profession&quot; : &quot;clerk&quot;,
+   &quot;id&quot;: 3
+&#125;
+&#125;
+</code></pre>
+<p><strong>添加用户</strong></p>
+<p>以下代码，我们创建了 RESTful API addUser， 用于添加新的用户数据，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&#39;express&#39;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+//添加的新用户数据
+var user = &#123;
+  &quot;user4&quot; : &#123;
+  &quot;name&quot; : &quot;mohit&quot;,
+  &quot;password&quot; : &quot;password4&quot;,
+  &quot;profession&quot; : &quot;teacher&quot;,
+  &quot;id&quot;: 4
+ &#125;
+&#125;
+
+app.get(&#39;/addUser&#39;, function (req, res) &#123;
+// 读取已存在的数据
+fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &#39;utf8&#39;, function (err, data) &#123;
+   data = JSON.parse( data );
+   data[&quot;user4&quot;] = user[&quot;user4&quot;];
+   console.log( data );
+   res.end( JSON.stringify(data));
+&#125;);
+&#125;)
+
+var server = app.listen(8081, function () &#123;
+
+  var host = server.address().address
+  var port = server.address().port
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+&#125;)
+</code></pre>
+<p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+ 应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre>
+<p>在浏览器中访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/addUser%EF%BC%8C%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">http://127.0.0.1:8081/addUser，结果如下所示：</a></p>
+<pre><code>&#123; user1:
+   &#123; name: &#39;mahesh&#39;,
+     password: &#39;password1&#39;,
+     profession: &#39;teacher&#39;,
+     id: 1 &#125;,
+  user2:
+   &#123; name: &#39;suresh&#39;,
+     password: &#39;password2&#39;,
+     profession: &#39;librarian&#39;,
+     id: 2 &#125;,
+  user3:
+   &#123; name: &#39;ramesh&#39;,
+     password: &#39;password3&#39;,
+     profession: &#39;clerk&#39;,
+     id: 3 &#125;,
+  user4:
+       &#123; name: &#39;mohit&#39;,
+     password: &#39;password4&#39;,
+     profession: &#39;teacher&#39;,
+     id: 4 &#125; 
+&#125;
+</code></pre>
+<p><strong>显示用户详情</strong></p>
+<p>以下代码，我们创建了 RESTful API :id（用户id）， 用于读取指定用户的详细信息，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&#39;express&#39;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+app.get(&#39;/:id&#39;, function (req, res) &#123;
+// 首先我们读取已存在的用户
+fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &#39;utf8&#39;, function (err, data) &#123;
+   data = JSON.parse( data );
+   var user = data[&quot;user&quot; + req.params.id] 
+   console.log( user );
+   res.end( JSON.stringify(user));
+ &#125;);
+&#125;)
+
+var server = app.listen(8081, function () &#123;
+
+   var host = server.address().address
+   var port = server.address().port
+   console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+&#125;)
+</code></pre>
+<p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre>
+<p>在浏览器中访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/2%EF%BC%8C%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">http://127.0.0.1:8081/2，结果如下所示：</a></p>
+<pre><code>&#123;
+   &quot;name&quot;:&quot;suresh&quot;,
+   &quot;password&quot;:&quot;password2&quot;,
+   &quot;profession&quot;:&quot;librarian&quot;,
+   &quot;id&quot;:2
+&#125;
+</code></pre>
+<p><strong>删除用户</strong></p>
+<p>以下代码，我们创建了 RESTful API deleteUser， 用于删除指定用户的详细信息，以下实例中，用户 id 为 2，server.js 文件代码如下所示：</p>
+<pre><code>var express = require(&#39;express&#39;);
+var app = express();
+var fs = require(&quot;fs&quot;);
+
+var id = 2;
+
+app.get(&#39;/deleteUser&#39;, function (req, res) &#123;
+
+   // First read existing users.
+   fs.readFile( __dirname + &quot;/&quot; + &quot;users.json&quot;, &#39;utf8&#39;, function (err, data) &#123;
+       data = JSON.parse( data );
+       delete data[&quot;user&quot; + 2];
+   
+       console.log( data );
+       res.end( JSON.stringify(data));
+   &#125;);
+&#125;)
+
+var server = app.listen(8081, function () &#123;
+
+  var host = server.address().address
+  var port = server.address().port
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+&#125;)
+</code></pre>
+<p>接下来执行以下命令：</p>
+<pre><code>$ node server.js 
+应用实例，访问地址为 http://0.0.0.0:8081
+</code></pre>
+<p>在浏览器中访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/deleteUser%EF%BC%8C%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">http://127.0.0.1:8081/deleteUser，结果如下所示：</a></p>
+<pre><code>&#123; user1:
+   &#123; name: &#39;mahesh&#39;,
+     password: &#39;password1&#39;,
+     profession: &#39;teacher&#39;,
+     id: 1 &#125;,
+  user3:
+   &#123; name: &#39;ramesh&#39;,
+     password: &#39;password3&#39;,
+     profession: &#39;clerk&#39;,
+     id: 3 &#125; 
+&#125;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/24/Node-js%E4%B8%AD%E7%9A%84RESTful/" data-id="cklkumnhn0032d0uub9j8a0jw" data-title="Node.js中的RESTful" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Node-js中的events模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/23/Node-js%E4%B8%AD%E7%9A%84events%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2016-10-23T13:16:55.000Z" itemprop="datePublished">2016-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/23/Node-js%E4%B8%AD%E7%9A%84events%E6%A8%A1%E5%9D%97/">Node.js中的events模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p> <strong>注意：</strong></p>
+<ol>
+<li><p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
+</li>
+<li><p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-EventEmitter类"><a href="#一-EventEmitter类" class="headerlink" title="一.EventEmitter类"></a>一.EventEmitter类</h3><p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。可以通过require(“events”);来访问该模块。</p>
+<pre><code>// 引入 events 模块
+var events = require(&#39;events&#39;);
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+</code></pre>
+<p>EventEmitter 对象如果在实例化时发生错误，会触发 ‘error’ 事件。当添加新的监听器时，’newListener’ 事件会触发，当监听器被移除时，’removeListener’ 事件被触发。</p>
+<h3 id="二-EventEmitter-的用法："><a href="#二-EventEmitter-的用法：" class="headerlink" title="二.EventEmitter 的用法："></a>二.EventEmitter 的用法：</h3><pre><code>//event.js 文件
+var EventEmitter = require(&#39;events&#39;).EventEmitter; 
+var event = new EventEmitter(); 
+event.on(&#39;some_event&#39;, function() &#123; 
+    console.log(&#39;some_event 事件触发&#39;); 
+&#125;); 
+setTimeout(function() &#123; 
+    event.emit(&#39;some_event&#39;); 
+&#125;, 1000); 
+</code></pre>
+<p>执行结果如下：<br>运行这段代码，1 秒后控制台输出了 ‘some_event 事件触发’。其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。</p>
+<pre><code>$ node event.js 
+some_event 事件触发
+</code></pre>
+<p>EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。</p>
+<p>当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。<br>让我们以下面的例子解释这个过程：</p>
+<pre><code>//event.js 文件
+var events = require(&#39;events&#39;); 
+var emitter = new events.EventEmitter(); 
+emitter.on(&#39;someEvent&#39;, function(arg1, arg2) &#123; 
+    console.log(&#39;listener1&#39;, arg1, arg2); 
+&#125;); 
+emitter.on(&#39;someEvent&#39;, function(arg1, arg2) &#123; 
+    console.log(&#39;listener2&#39;, arg1, arg2); 
+&#125;); 
+emitter.emit(&#39;someEvent&#39;, &#39;arg1 参数&#39;, &#39;arg2 参数&#39;); 
+</code></pre>
+<p>执行以上代码，运行的结果如下：</p>
+<pre><code>$ node event.js 
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数
+</code></pre>
+<p>以上例子中，emitter 为事件 someEvent 注册了两个事件监听器，然后触发了 someEvent 事件。<br>运行结果中可以看到两个事件监听器回调函数被先后调用。 这就是EventEmitter最简单的用法。</p>
+<h3 id="三-EventEmitter-的属性"><a href="#三-EventEmitter-的属性" class="headerlink" title="三.EventEmitter 的属性"></a>三.EventEmitter 的属性</h3><p> EventEmitter 提供了多个属性，如 on 和 emit。on 函数用于绑定事件函数，emit 属性用于触发一个事件。接下来我们来具体看下 EventEmitter 的属性介绍。</p>
+<ol>
+<li><p>addListener(event, listener)<br>为指定事件添加一个监听器到监听器数组的尾部。</p>
+</li>
+<li><p>on(event, listener)<br>为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。</p>
+<pre><code> erver.on(&#39;connection&#39;, function (stream) &#123;
+     console.(&#39;someone connected!&#39;);
+ &#125;);
+</code></pre>
+</li>
+<li><p>once(event, listener)<br>为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。</p>
+<pre><code> server.once(&#39;connection&#39;, function (stream)&#123;
+     console.log(&#39;Ah, we have our first user!&#39;);
+ &#125;);
+</code></pre>
+</li>
+<li><p>removeListener(event, listener)<br>移除指定事件的某个监听器，监听器 必须是该事件已经注册过的监听器。</p>
+<pre><code> var callback = function(stream) &#123;
+        console.log(&#39;someone connected!&#39;);
+ &#125;;
+ server.on(&#39;connection&#39;, callback);
+ // ...
+ server.removeListener(&#39;connection&#39;, callback);
+</code></pre>
+</li>
+<li><p>removeAllListeners([event])<br>移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。</p>
+</li>
+<li><p>setMaxListeners(n)<br>默认情况下， EventEmitters 如果你添加的监听器超过 10 个就会输出警告信息。 setMaxListeners 函数用于提高监听器的默认限制的数量。</p>
+</li>
+<li><p>listeners(event)<br>返回指定事件的监听器数组。</p>
+</li>
+<li><p>emit(event, [arg1], [arg2], […])<br>按参数的顺序执行每个监听器，如果事件有注册监听返回 true，否则返回 false。</p>
+</li>
+</ol>
+<h3 id="四-继承-EventEmitter"><a href="#四-继承-EventEmitter" class="headerlink" title="四.继承 EventEmitter"></a>四.继承 EventEmitter</h3><ul>
+<li>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</li>
+</ul>
+<ul>
+<li>为什么要这样做呢？原因有两点：<br>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。<br>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/23/Node-js%E4%B8%AD%E7%9A%84events%E6%A8%A1%E5%9D%97/" data-id="cklkumnhp0039d0uu33922o89" data-title="Node.js中的events模块" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Node-js中的fs模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/21/Node-js%E4%B8%AD%E7%9A%84fs%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2016-10-21T14:14:51.000Z" itemprop="datePublished">2016-10-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/21/Node-js%E4%B8%AD%E7%9A%84fs%E6%A8%A1%E5%9D%97/">Node.js中的fs模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。</p>
+</blockquote>
+<h3 id="一-同步读文件"><a href="#一-同步读文件" class="headerlink" title="一.同步读文件"></a>一.同步读文件</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code> 你好，我是于禤。
+     Hello!my name is yuxuan.
+</code></pre>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+
+     var data = fs.readFileSync(&#39;input.txt&#39;);
+
+     console.log(data.toString());
+     console.log(&quot;程序执行结束!&quot;);
+</code></pre>
+</li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code> $ node main.js
+ 
+  你好，我是于禤。
+     Hello!my name is yuxuan.
+     程序执行结束!
+</code></pre>
+<h3 id="二-异步读文件"><a href="#二-异步读文件" class="headerlink" title="二.异步读文件"></a>二.异步读文件</h3></li>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code> 你好，我是于禤。
+        Hello!my name is yuxuan.
+</code></pre>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+
+     fs.readFile(&#39;input.txt&#39;, function (err, data) &#123;
+     if (err) return console.error(err);
+     console.log(data.toString());
+     &#125;);
+
+     console.log(&quot;程序执行结束!&quot;);
+</code></pre>
+</li>
+<li><p>以上代码执行结果如下：</p>
+<pre><code>  程序执行结束!
+       你好，我是于禤。
+     Hello!my name is yuxuan.
+</code></pre>
+<h3 id="三-写文件（fs-writeFile-）"><a href="#三-写文件（fs-writeFile-）" class="headerlink" title="三.写文件（fs.writeFile()）"></a>三.写文件（fs.writeFile()）</h3></li>
+<li><p>创建一个空文件 output.txt</p>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&#39;fs&#39;);
+
+     var data = &#39;Hello, Node.js&#39;;
+     fs.writeFile(&#39;output.txt&#39;, data, function (err) &#123;
+     if (err) &#123;
+         console.log(err);
+     &#125; else &#123;
+         console.log(&#39;ok.&#39;);
+     &#125;
+     &#125;);
+</code></pre>
+</li>
+<li><p>执行结果：空文件 output.txt里的内容变为Hello, Node.js。<br>writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
+</li>
+<li><p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
+<pre><code> var fs = require(&#39;fs&#39;);
+     var data = &#39;Hello, Node.js&#39;;
+     fs.writeFileSync(&#39;output.txt&#39;, data);
+</code></pre>
+</li>
+</ol>
+<h3 id="四-获取文件的详细信息（fs-stat-）"><a href="#四-获取文件的详细信息（fs-stat-）" class="headerlink" title="四.获取文件的详细信息（fs.stat()）"></a>四.获取文件的详细信息（fs.stat()）</h3><ol>
+<li><p>创建一个文件 input.txt ，内容如下：</p>
+<pre><code> 你好，我是于禤。
+     Hello!my name is yuxuan.
+</code></pre>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&#39;fs&#39;);
+
+     fs.stat(&#39;input.txt&#39;, function (err, stat) &#123;
+     if (err) &#123;
+     console.log(err);
+     &#125; else &#123;
+     // 是否是文件:
+     console.log(&#39;isFile: &#39; + stat.isFile());
+     // 是否是目录:
+     console.log(&#39;isDirectory: &#39; + stat.isDirectory());
+     if (stat.isFile()) &#123;
+         // 文件大小:
+         console.log(&#39;size: &#39; + stat.size);
+         // 创建时间, Date对象:
+         console.log(&#39;birth time: &#39; + stat.birthtime);
+         // 修改时间, Date对象:
+         console.log(&#39;modified time: &#39; + stat.mtime);
+         &#125;
+  &#125;
+     &#125;);
+</code></pre>
+</li>
+<li><p>运行结果如下：</p>
+<pre><code> isFile: true
+     isDirectory: false
+     size: 51
+     birth time: Thu Oct 20 2016 13:40:21 GMT+0800 (中国标准时间)
+     modified time: Thu Oct 20 2016 14:04:41 GMT+0800 (中国标准时间)
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/21/Node-js%E4%B8%AD%E7%9A%84fs%E6%A8%A1%E5%9D%97/" data-id="cklkumnhq003cd0uueldabyw4" data-title="Node.js中的fs模块" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-用Node-js实现HTTP服务器程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/21/%E7%94%A8Node-js%E5%AE%9E%E7%8E%B0HTTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2016-10-21T12:57:26.000Z" itemprop="datePublished">2016-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/21/%E7%94%A8Node-js%E5%AE%9E%E7%8E%B0HTTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F/">用Node.js实现HTTP服务器程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近在学习Node.js的基本模块,现用Node.js实现一个HTTP服务器程序</p>
+</blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li><p>要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。</p>
+</li>
+<li><p>request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；</p>
+</li>
+<li><p>response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。</p>
+</li>
+</ol>
+<hr>
+<h3 id="一-让我们先了解下-Node-js-应用是由哪几部分组成的："><a href="#一-让我们先了解下-Node-js-应用是由哪几部分组成的：" class="headerlink" title="一.让我们先了解下 Node.js 应用是由哪几部分组成的："></a>一.让我们先了解下 Node.js 应用是由哪几部分组成的：</h3><ol>
+<li><p><strong>引入 required 模块：</strong>我们可以使用 require 指令来载入 Node.js 模块。</p>
+</li>
+<li><p><strong>创建服务器</strong>：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
+</li>
+<li><p>**接收请求与响应请求:**服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
+</li>
+</ol>
+<h3 id="二-Node-js实现一个HTTP服务器程序的步骤："><a href="#二-Node-js实现一个HTTP服务器程序的步骤：" class="headerlink" title="二.Node.js实现一个HTTP服务器程序的步骤："></a>二.Node.js实现一个HTTP服务器程序的步骤：</h3><h4 id="1-引入requried模块："><a href="#1-引入requried模块：" class="headerlink" title="1. 引入requried模块："></a>1. 引入requried模块：</h4><p>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，实例如下:</p>
+<pre><code>var http = require(&quot;http&quot;);
+</code></pre>
+<h3 id="2-创建服务器，接收请求与响应请求："><a href="#2-创建服务器，接收请求与响应请求：" class="headerlink" title="2. 创建服务器，接收请求与响应请求："></a>2. 创建服务器，接收请求与响应请求：</h3><p>接下来我们使用 http.createServer() 方法创建服务器，并使用 listen 方法绑定 8080 端口。 函数通过 request, response 参数来接收和响应数据。实例如下：</p>
+<pre><code>// 创建http server，并传入回调函数:
+var server = http.createServer(function (request, response) &#123;
+      
+      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+      response.writeHead(200, &#123;&#39;Content-Type&#39;: &#39;text/html&#39;&#125;);
+
+      // 将HTTP响应的HTML内容写入response:
+      response.end(&#39;&lt;h1&gt;Hello world!&lt;/h1&gt;&#39;);
+&#125;);
+
+// 让服务器监听8080端口:
+server.listen(8080,&#39;127.0.0.1&#39;);
+
+//// 终端打印如下信息
+console.log(&#39;Server is running at http://127.0.0.1:8080/&#39;);
+</code></pre>
+<h3 id="3-在命令提示符下运行该程序，可以看到以下输出："><a href="#3-在命令提示符下运行该程序，可以看到以下输出：" class="headerlink" title="3. 在命令提示符下运行该程序，可以看到以下输出："></a>3. 在命令提示符下运行该程序，可以看到以下输出：</h3><pre><code>$ node hello.js 
+Server is running at http://127.0.0.1:8080/
+</code></pre>
+<h3 id="4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容："><a href="#4-不要关闭命令提示符，直接打开浏览器输入http-127-0-0-1-8080，即可看到服务器响应的内容：" class="headerlink" title="4. 不要关闭命令提示符，直接打开浏览器输入http://127.0.0.1:8080，即可看到服务器响应的内容："></a>4. 不要关闭命令提示符，直接打开浏览器输入<a href="http://127.0.0.1:8080，即可看到服务器响应的内容：">http://127.0.0.1:8080，即可看到服务器响应的内容：</a></h3><pre><code>Hello world!
+</code></pre>
+<h2 id="三-分析Node-js-的-HTTP-服务器"><a href="#三-分析Node-js-的-HTTP-服务器" class="headerlink" title="三.分析Node.js 的 HTTP 服务器"></a>三.分析Node.js 的 HTTP 服务器</h2><ul>
+<li>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。</li>
+</ul>
+<ul>
+<li>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/21/%E7%94%A8Node-js%E5%AE%9E%E7%8E%B0HTTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F/" data-id="cklkumniw008md0uu3pb8ahu4" data-title="用Node.js实现HTTP服务器程序" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Node-js中的Stream模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/20/Node-js%E4%B8%AD%E7%9A%84Stream%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2016-10-20T13:12:32.000Z" itemprop="datePublished">2016-10-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/20/Node-js%E4%B8%AD%E7%9A%84Stream%E6%A8%A1%E5%9D%97/">Node.js中的Stream模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>注意：</strong></p>
+<ol>
+<li><p>stream是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构。</p>
+</li>
+<li><p>什么是流？流是一种抽象的数据结构。想象水流，当在水管中流动时，就可以从某个地方（例如自来水厂）源源不断地到达另一个地方（比如你家的洗手池）。我们也可以把数据看成是数据流，比如你敲键盘的时候，就可以把每个字符依次连起来，看成字符流。这个流是从键盘输入到应用程序，实际上它还对应着一个名字：标准输入流（stdin）。</p>
+</li>
+<li><p>Node.js，Stream 有四种流类型：</p>
+</li>
+</ol>
+<ul>
+<li>Readable - 可读操作。</li>
+<li>Writable - 可写操作。</li>
+<li>Duplex - 可读可写操作.</li>
+<li>Transform - 操作被写入数据，然后读出结果。</li>
+</ul>
+<ol start="4">
+<li><p>所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：</p>
+<ul>
+<li>data - 当有数据可读时触发。</li>
+<li>end - 没有更多的数据可读时触发。</li>
+<li>error - 在接收和写入过程中发生错误时触发。</li>
+<li>finish - 所有数据已被写入到底层系统时触发。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="一-从流中读取数据"><a href="#一-从流中读取数据" class="headerlink" title="一.从流中读取数据"></a>一.从流中读取数据</h3><ol>
+<li><p>创建 input.txt 文件，内容如下：</p>
+<pre><code> hello world !
+</code></pre>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+     var data = &#39;&#39;;
+
+     // 创建可读流
+     var readerStream = fs.createReadStream(&#39;input.txt&#39;);
+
+     // 设置编码为 utf8。
+     readerStream.setEncoding(&#39;UTF8&#39;);
+
+     // 处理流事件 --&gt; data, end, and error
+     readerStream.on(&#39;data&#39;, function(chunk) &#123;
+        data += chunk;
+       &#125;);
+
+     readerStream.on(&#39;end&#39;,function()&#123;
+        console.log(data);
+     &#125;);
+
+     readerStream.on(&#39;error&#39;, function(err)&#123;
+        console.log(err.stack);
+     &#125;);
+
+        console.log(&quot;程序执行完毕&quot;);
+</code></pre>
+</li>
+</ol>
+<ol start="3">
+<li><p>以上代码执行结果如下：</p>
+<pre><code> 程序执行完毕
+     hello world !
+</code></pre>
+</li>
+</ol>
+<h3 id="二-写入流"><a href="#二-写入流" class="headerlink" title="二.写入流"></a>二.写入流</h3><ol>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+     var data = &#39;hello world !&#39;;
+
+     // 创建一个可以写入的流，写入到文件 output.txt 中
+     var writerStream = fs.createWriteStream(&#39;output.txt&#39;);
+
+     // 使用 utf8 编码写入数据
+     writerStream.write(data,&#39;UTF8&#39;);
+
+     // 标记文件末尾
+     writerStream.end();
+
+     // 处理流事件 --&gt; data, end, and error
+     writerStream.on(&#39;finish&#39;, function() &#123;
+     console.log(&quot;写入完成。&quot;);
+     &#125;);
+
+     writerStream.on(&#39;error&#39;, function(err)&#123;
+        console.log(err.stack);
+     &#125;);
+
+         console.log(&quot;程序执行完毕&quot;);
+</code></pre>
+</li>
+<li><p>以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：</p>
+<pre><code>    $ node main.js 
+     程序执行完毕
+     写入完成。
+</code></pre>
+</li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code> $ cat output.txt 
+     hello world !
+</code></pre>
+</li>
+</ol>
+<h3 id="三-管道流"><a href="#三-管道流" class="headerlink" title="三.管道流"></a>三.管道流</h3><p> 管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
+<p> 以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
+<ol>
+<li><p>设置 input.txt 文件内容如下：</p>
+<pre><code> Hello! my name is yuxuan.
+</code></pre>
+</li>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+
+     // 创建一个可读流
+     var readerStream = fs.createReadStream(&#39;input.txt&#39;);
+
+     // 创建一个可写流
+     var writerStream = fs.createWriteStream(&#39;output.txt&#39;);
+
+     // 管道读写操作
+     // 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
+     readerStream.pipe(writerStream);
+
+     console.log(&quot;程序执行完毕&quot;);
+</code></pre>
+</li>
+<li><p>代码执行结果如下：</p>
+<pre><code> $ node main.js 
+     程序执行完毕
+</code></pre>
+</li>
+<li><p>查看 output.txt 文件的内容：</p>
+<pre><code> $ cat output.txt 
+     Hello! my name is yuxuan.
+</code></pre>
+</li>
+</ol>
+<h3 id="四-链式流"><a href="#四-链式流" class="headerlink" title="四.链式流"></a>四.链式流</h3><ul>
+<li>链式是通过连接输出流到另外一个流并创建多个对个流操作链的机制。链式流一般用于管道操作。<br>接下来我们就是用管道和链式来压缩和解压文件。</li>
+</ul>
+<p><strong>a. 压缩文件</strong></p>
+<ol>
+<li><p>创建 compress.js 文件, 代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+     var zlib = require(&#39;zlib&#39;);
+
+     // 压缩 input.txt 文件为 input.txt.gz
+     fs.createReadStream(&#39;input.txt&#39;)
+     .pipe(zlib.createGzip())
+     .pipe(fs.createWriteStream(&#39;input.txt.gz&#39;));
+ 
+     console.log(&quot;文件压缩完成。&quot;);
+</code></pre>
+</li>
+<li><p>代码执行结果如下：</p>
+<pre><code> $ node compress.js 
+ 文件压缩完成。
+</code></pre>
+</li>
+<li><p>执行完以上操作后，我们可以看到当前目录下生成了 input.txt 的压缩文件 input.txt.gz。</p>
+</li>
+</ol>
+<p><strong>b. 解压该文件</strong></p>
+<ol>
+<li><p>创建 decompress.js 文件，代码如下：</p>
+<pre><code> var fs = require(&quot;fs&quot;);
+     var zlib = require(&#39;zlib&#39;);
+
+        // 解压 input.txt.gz 文件为 input.txt
+     fs.createReadStream(&#39;input.txt.gz&#39;)
+   .pipe(zlib.createGunzip())
+   .pipe(fs.createWriteStream(&#39;input.txt&#39;));
+
+     console.log(&quot;文件解压完成。&quot;);
+</code></pre>
+</li>
+<li><p>代码执行结果如下：</p>
+<pre><code> $ node decompress.js 
+  文件解压完成。
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/20/Node-js%E4%B8%AD%E7%9A%84Stream%E6%A8%A1%E5%9D%97/" data-id="cklkumnho0035d0uu0bjn6xsh" data-title="Node.js中的Stream模块" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React注意点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/19/React%E6%B3%A8%E6%84%8F%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2016-10-19T12:10:40.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/19/React%E6%B3%A8%E6%84%8F%E7%82%B9/">React注意点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>学习React时，碰到一些需要注意的地方。现整理如下：</strong></p>
+</blockquote>
+<h3 id="一-关于JSX-语法"><a href="#一-关于JSX-语法" class="headerlink" title="一.关于JSX 语法"></a>一.关于JSX 语法</h3><p>React 不是一定要使用 JSX 语法，可以直接使用原生 JS。JSX语法看上去像是在Javascript代码里直接写起了XML标签，实质上这只是一个语法糖，每一个XML标签都会被JSX转换工具转换成纯Javascript代码，所以建议使用 JSX 是因为它能精确定义和反应组件及属性的树状结构，使得组件的结构和组件之间的关系看上去更加清晰。方便MXML和XAML的开发人员 – 因为他们已经使用过类似的语法。</p>
+<h3 id="二-HTML-标签-和-React-组件"><a href="#二-HTML-标签-和-React-组件" class="headerlink" title="二.HTML 标签 和 React 组件"></a>二.HTML 标签 和 React 组件</h3><p>在JSX语法中，遇到HTML标签（以&lt;开头）就用HTML规则解析，遇到代码块（以{开头）就用JavaScript规则解析。React 可以渲染 HTML 标签 (strings) 或 React 组件 (classes)。</p>
+<p>要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。</p>
+<pre><code> var myDivElement=&lt;div className=&quot;foo&quot;/&gt;;
+
+ React.render(myDivElement,document.body);
+</code></pre>
+<p>要渲染 React 模块，只需创建一个大写字母开头的本地变量。</p>
+<pre><code>var MyComponent = React.createClass(&#123;/*...*/&#125;);
+var myElement = &lt;MyComponent someProperty=&#123;true&#125; /&gt;;
+React.render(myElement, document.body);
+React 的 JSX 里约定分别使用首字母大、小写来区分本地模块的类和 HTML 标签。
+</code></pre>
+<h3 id="三-不建议作为-XML-属性名"><a href="#三-不建议作为-XML-属性名" class="headerlink" title="三.不建议作为 XML 属性名"></a>三.不建议作为 XML 属性名</h3><p>由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。</p>
+<h3 id="四-大小写敏感"><a href="#四-大小写敏感" class="headerlink" title="四.大小写敏感"></a>四.大小写敏感</h3><p>上面说了JSX是一个XML语法的预处理器。 XML 语法对大小写敏感，所以习惯了HTML的同学要特别注意这点，否则折腾了半天，都不知道错在哪里。比如：</p>
+<pre><code>var Events = React.createClass(&#123;
+    clickHandler: function()&#123;
+        console.log(&#39;You got me!&#39;);
+    &#125;,
+    render: function()&#123;
+      return &lt;div onClick=&#123;this.clickHandler&#125;&gt;Hello, world!&lt;/div&gt;;
+    &#125;
+&#125;);
+ 
+React.render( &lt;Events /&gt;,document.body);
+</code></pre>
+<p>这里绑定click事件的onClick中C是大写的。</p>
+<h3 id="五-React-注释特点"><a href="#五-React-注释特点" class="headerlink" title="五.React 注释特点"></a>五.React 注释特点</h3><ol>
+<li>jsx 标签内容注释 <p name="123">hello{// 或 /**/}</p></li>
+<li>jsx 标签属性注释 &lt;p name=”123”{// /**/}&gt;123</p></li>
+<li>其实上面提到的大括号的内容都是js 可以参考求值表达式</li>
+</ol>
+<h3 id="六-React-Css样式与标签嵌套"><a href="#六-React-Css样式与标签嵌套" class="headerlink" title="六.React Css样式与标签嵌套"></a>六.React Css样式与标签嵌套</h3><ol>
+<li><p>定义方式与定义对象一样。 css的写法少有变化，属性值需要加引号，属性与属性之间使用逗号分隔，而不在是分号例如</p>
+<p>  var style={color:”red”, border:”1px #000 solid”}</p>
+</li>
+<li><p>样式的引用，React采用style的方式来引用样式；例如</p>
+  <div style={style}><HelloMessage /></div>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/19/React%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="cklkumni0004jd0uu8rs7d4j5" data-title="React注意点" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Git常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/10/12/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2016-10-12T11:52:30.000Z" itemprop="datePublished">2016-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/10/12/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Git是目前世界上最先进的分布式版本控制系统，关于Git的常用命令整理如下：</p>
+</blockquote>
+<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h3><pre><code>$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+</code></pre>
+<h3 id="2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："><a href="#2-通过git-init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：" class="headerlink" title="2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下："></a>2.通过git init命令把这个目录变成Git可以管理的仓库，在新建版本库路径下：</h3><pre><code>$ git init
+Initialized empty Git repository in /Users/michael/learngit/.git/
+</code></pre>
+<h3 id="3-添加文件到Git仓库，分两步："><a href="#3-添加文件到Git仓库，分两步：" class="headerlink" title="3.添加文件到Git仓库，分两步："></a>3.添加文件到Git仓库，分两步：</h3><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
+<pre><code>$ git add readme.txt
+</code></pre>
+<p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
+<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
+<pre><code>$ git commit -m &quot;wrote a readme file&quot;
+[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+</code></pre>
+<h3 id="4-要随时掌握工作区的状态，使用git-status命令。"><a href="#4-要随时掌握工作区的状态，使用git-status命令。" class="headerlink" title="4.要随时掌握工作区的状态，使用git status命令。"></a>4.要随时掌握工作区的状态，使用git status命令。</h3><pre><code>git diff readme.txt
+</code></pre>
+<p>如果git status告诉你有文件被修改过，可以用git diff readme.txt查看修改内容。</p>
+<h3 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5.版本回退"></a>5.版本回退</h3><pre><code>git log  //显示从最近到最远的提交日志，以便确定要回退到哪个版本，每次提交都有一个唯一的id。
+
+git reflog  //用来记录你的每一次命令，以便确定要回到未来的哪个版本。
+
+把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
+$ git reset --hard HEAD^
+HEAD is now at ea34578 add distributed
+</code></pre>
+<p>返回某个指定id号的那个版本的提交：</p>
+<pre><code>$ git reset --hard 3628164
+</code></pre>
+<p>查看readme.txt的内容是不是版本add distributed：</p>
+<pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software.
+</code></pre>
+<p>git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。</p>
+<p>例子：将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。</p>
+<pre><code>$ git checkout 09bd8cc1 hello.txt
+</code></pre>
+<h3 id="6-撤销修改"><a href="#6-撤销修改" class="headerlink" title="6.撤销修改"></a>6.撤销修改</h3><pre><code>git checkout -- file  //丢弃工作区的修改：
+
+$ git checkout -- readme.txt
+命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+git add到暂存区了，git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区，
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+</code></pre>
+<h3 id="7-删除文件"><a href="#7-删除文件" class="headerlink" title="7.删除文件"></a>7.删除文件</h3><p>一种是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
+<pre><code>$ git rm test.txt
+rm &#39;test.txt&#39;
+
+$ git commit -m &quot;remove test.txt&quot;
+[master d17efd8] remove test.txt
+1 file changed, 1 deletion(-)
+ 
+$ delete mode 100644 test.txt
+现在，文件就从版本库中被删除了。
+</code></pre>
+<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<pre><code>$ git checkout -- test.txt
+
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+</code></pre>
+<h3 id="8-远程仓库"><a href="#8-远程仓库" class="headerlink" title="8.远程仓库"></a>8.远程仓库</h3><h4 id="第一种：添加远程库："><a href="#第一种：添加远程库：" class="headerlink" title="第一种：添加远程库："></a>第一种：添加远程库：</h4><pre><code>  1.mkdir learngit
+
+  2.cd learngit
+
+  3.git init
+
+  4.添加文件
+
+  5.git add .
+
+  6.git commit -m &quot;test&quot;
+
+  7.在github上创建仓库，复制地址
+
+  8. git remote add origin git@github.com:michaelliao/learngit.git
+
+  9.git push -u origin master
+</code></pre>
+<p><strong>注意：</strong></p>
+<p>  若出错：fatal: refusing to merge unrelated histories</p>
+<p>  解决：git pull origin master –allow-unrelated-histories</p>
+<p>  //github仓库中存在本地项目中不存在的文件，发生了冲图，所以应该先将github上的仓库全部pull下来，让两个仓库相关联。</p>
+<p>  最后依次用命令：</p>
+<pre><code> git add .              
+ git commit -m &quot;commit2&quot;                    
+ git push origin master:master
+</code></pre>
+<h4 id="第二种：从远程克隆仓库"><a href="#第二种：从远程克隆仓库" class="headerlink" title="第二种：从远程克隆仓库"></a>第二种：从远程克隆仓库</h4><pre><code>  1.创建仓库，复制地址
+
+  2.克隆：git clone  git@github.com:michaelliao/learngit.git
+
+  3.添加文件
+
+  4.git add .
+
+  5.git commit -m &quot;test&quot;
+
+  6.git push -u origin master
+</code></pre>
+<h3 id="9-分支管理"><a href="#9-分支管理" class="headerlink" title="9.分支管理"></a>9.分支管理</h3><h4 id="a-创建与合并分支："><a href="#a-创建与合并分支：" class="headerlink" title="a.创建与合并分支："></a>a.创建与合并分支：</h4><pre><code>  1.创建分支：git branch dev
+
+  2.切换到分支：git checkout dev
+
+  创建+切换分支：git checkout -b dev
+
+  3.查看当前分支：gir branch 
+
+  4.将指定分支合并到当前分支,假如当前分支为:master：git merge dev
+
+  5.删除dev分支：git branch -d dev
+
+  强行删除，需要使用命令:git branch -D dev。
+</code></pre>
+<h4 id="b-解决冲突："><a href="#b-解决冲突：" class="headerlink" title="b.解决冲突："></a>b.解决冲突：</h4><ol>
+<li><p>用带参数的git log可以看到分支的合并情况：git log –graph –pretty=oneline –abbrev-commit<br>c.bug分支：修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
+</li>
+<li><p>把当前工作现场“储藏”起来：git stash。现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+</li>
+<li><p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；另一种方式是用git stash pop，恢复的同时把stash内容也删了。工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看。</p>
+</li>
+</ol>
+<h4 id="c-多人协作："><a href="#c-多人协作：" class="headerlink" title="c.多人协作："></a>c.多人协作：</h4><pre><code>  1.查看远程库的详细信息：git remote -v
+
+  2.推送分支：git push origin master
+
+  3.抓取分支：
+</code></pre>
+<p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<h3 id="10-标签管理："><a href="#10-标签管理：" class="headerlink" title="10.标签管理："></a>10.标签管理：</h3><h4 id="a-创建标签："><a href="#a-创建标签：" class="headerlink" title="a.创建标签："></a>a.创建标签：</h4><p>  首先，切换到需要打标签的分支上：git checkout branch-name然后打标签：git tag tag-name。git tag查看所有标签。</p>
+<p>  如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>  方法是找到历史提交的commit id，然后打上就可以了： </p>
+<pre><code>$git log --pretty=oneline --abbrev-commit
+
+6a5819e merged bug fix 101
+cc17032 fix bug 1017825a50 merge with no-ff
+6224937 add merge
+59bc1cb conflict fixed
+400b400 &amp; simple
+75a857c AND simple
+fec145a branch test
+d17efd8 remove test.txt
+...
+</code></pre>
+<p>比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：</p>
+<pre><code>$ git tag v0.9 6224937
+
+再用命令git tag查看标签.
+git show &lt;tagname&gt;查看标签信息
+
+创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164
+
+通过-s用私钥签名一个标签：
+$ git tag -s v0.2 -m &quot;signed version 0.2 released&quot; fec145a
+</code></pre>
+<h3 id="11-操作标签："><a href="#11-操作标签：" class="headerlink" title="11.操作标签："></a>11.操作标签：</h3><pre><code>命令git push origin &lt;tagname&gt;可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d &lt;tagname&gt;可以删除一个本地标签；
+
+命令git push origin :refs/tags/&lt;tagname&gt;可以删除一个远程标签。
+</code></pre>
+<h3 id="12-配置别名："><a href="#12-配置别名：" class="headerlink" title="12.配置别名："></a>12.配置别名：</h3><pre><code>$ git config --global alias.st status  //用st表示status
+
+然后用git st就可以查看状态。 
+</code></pre>
+<h3 id="13-忽略文件："><a href="#13-忽略文件：" class="headerlink" title="13.忽略文件："></a>13.忽略文件：</h3><p>大部分项目中，有些文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：</p>
+<p>在项目根目录创建.gitignore文件，在文件中列出不需要提交的文件名，文件夹名，每个一行，.gitignore文件需要提交，就像普通文件一样。</p>
+<p>通常会被ignore的文件有：</p>
+<ol>
+<li>log文件</li>
+<li>task runner builds</li>
+<li>node_modules等文件夹</li>
+<li>IDEs生成的文件</li>
+<li>个人笔记</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/10/12/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cklkumnh1000td0uuf31h8tj6" data-title="Git常用命令" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS3中box-sizing属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/09/18/CSS3%E4%B8%ADbox-sizing%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2016-09-18T12:36:11.000Z" itemprop="datePublished">2016-09-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/09/18/CSS3%E4%B8%ADbox-sizing%E5%B1%9E%E6%80%A7/">CSS3中box-sizing属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>简介：</strong></p>
+<p>box-sizing 属性允许您以特定的方式定义匹配某个区域的特定元素。</p>
+<p><strong>语法：</strong></p>
+<p>box-sizing：content-box | border-box 默认值：content-box</p>
+<p><strong>取值：</strong></p>
+<ol>
+<li><p>content-box，padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和，即 ( Element width = width + border + padding )。此属性表现为标准模式下的盒模型。</p>
+</li>
+<li><p>border-box，padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度，即 ( Element width = width )。此属性表现为怪异模式下的盒模型。</p>
+</li>
+</ol>
+<p><strong>示例：</strong></p>
+<ol>
+<li><p>content-box:</p>
+<p> .test1{ box-sizing:content-box; width:200px; padding:10px; border:15px solid #eee; }</p>
+</li>
+</ol>
+<blockquote>
+<p>实际宽度为：200+（10+10）+（15+15）， 内容宽度为：200 </p>
+</blockquote>
+<ol start="2">
+<li><p>border-box:</p>
+<p> .test2{ box-sizing:border-box; width:200px; padding:10px; border:15px solid #eee; }</p>
+</li>
+</ol>
+<blockquote>
+<p>实际宽度为：200， 内容宽度为：200-（10+10）-（15+15）</p>
+</blockquote>
+<p><strong>内核类型写法：</strong></p>
+<pre><code>Webkit(Chrome/Safari)-webkit-box-sizing
+
+Gecko(Firefox)-moz-box-sizing
+
+Presto(Opera)-o-box-sizing
+
+Trident(IE)IE8:-ms-box-sizing/IE9:box-sizing
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/09/18/CSS3%E4%B8%ADbox-sizing%E5%B1%9E%E6%80%A7/" data-id="cklkumngt0007d0uu5w4q6pge" data-title="CSS3中box-sizing属性" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS3新增的属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/09/17/CSS3%E6%96%B0%E5%A2%9E%E7%9A%84%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2016-09-17T11:57:02.000Z" itemprop="datePublished">2016-09-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2016/09/17/CSS3%E6%96%B0%E5%A2%9E%E7%9A%84%E5%B1%9E%E6%80%A7/">CSS3新增的属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>注意：</strong></p>
+<blockquote>
+<p>由于CSS5标准还未完全订下来，所以各种内核的浏览器都有自己的标准，为了不使属性混淆，所以各家在各自标准前加了一个前缀，</p>
+</blockquote>
+<blockquote>
+<p>如：</p>
+<p> -moz-  主要是firefox火狐</p>
+<p> -webikt-  主要是chrome谷歌</p>
+<p> -o-  主要是用于苹果机上的浏览器</p>
+</blockquote>
+<h2 id="一-box-shadow-阴影效果"><a href="#一-box-shadow-阴影效果" class="headerlink" title="一. box-shadow(阴影效果)"></a>一. box-shadow(阴影效果)</h2><p><strong>使用:</strong></p>
+<pre><code>box-shadow: 20px 10px 0 #000;
+-moz-box-shadow: 20px 10px 0 #000;
+-webkit-box-shadow: 20px 10px 0 #000;
+</code></pre>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF3.5, Safari 4, Chrome 3</p>
+</blockquote>
+<h2 id="二-border-colors-为边框设置多种颜色"><a href="#二-border-colors-为边框设置多种颜色" class="headerlink" title="二. border-colors(为边框设置多种颜色)"></a>二. border-colors(为边框设置多种颜色)</h2><p><strong>使用:</strong></p>
+<pre><code>border: 10px solid #000;
+-moz-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+</code></pre>
+<p><strong>说明:</strong></p>
+<blockquote>
+<p>颜色值数量不固定, 且FF的私有写法不支持缩写: -moz-border-colors: #333 #444 #555;</p>
+</blockquote>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF3+</p>
+</blockquote>
+<h2 id="三-boder-image-图片边框"><a href="#三-boder-image-图片边框" class="headerlink" title="三. boder-image(图片边框)"></a>三. boder-image(图片边框)</h2><p><strong>使用:</strong></p>
+<pre><code> -moz-border-image: url(exam.png) 20 20 20 20 repeat;
+ -webkit-border-image: url(exam.png) 20 20 20 20 repeat;
+</code></pre>
+<p><strong>说明:</strong></p>
+<blockquote>
+<p>(1). 20 20 20 20 —边框的宽度, 分别对应top, right, bottom, left边框, 改变宽度可以实现不同的效果;<br>(2). 边框图片效果(目前仅实现了两种):<br>   repeat — 边框图片会平铺, 类似于背景重复;<br>   stretch — 边框图片会以拉伸的方式来铺满整个边框;<br>(3). 必须将元素的边框厚度设置为非0非auto值.</p>
+</blockquote>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF 3.5, Safari 4, Chrome 3</p>
+</blockquote>
+<h2 id="四-text-shadow-文本阴影"><a href="#四-text-shadow-文本阴影" class="headerlink" title="四. text-shadow(文本阴影)"></a>四. text-shadow(文本阴影)</h2><p><strong>使用:</strong></p>
+<pre><code>text-shadow: [&lt;颜色&gt;&lt;水平偏移&gt;&lt;纵向偏移&gt;&lt;模糊半径&gt;] || [&lt;水平偏移&gt;&lt;纵向偏移&gt;&lt;模糊半径&gt;&lt;颜色&gt;];
+</code></pre>
+<p><strong>说明:</strong></p>
+<blockquote>
+<p>(1) &lt;颜色&gt;和&lt;模糊半径&gt;是可选的, 当&lt;颜色&gt;未指定时, 将使用文本颜色; 当&lt;模糊半径&gt;未指定时, 半径值为0;<br>(2) shadow可以是逗号分隔的列表, 如:<br>   text-shadow: 2px 2px 2px #ccc, 3px 3px 3px #ddd;<br>(3) 阴影效果会按照shadow list中指定的顺序应用到元素上;<br>(4) 这些阴影效果有可能相互重叠, 但不会叠加文本本身;<br>(5) 阴影可能会跑到容器的边界之外, 但不会影响容器的大小.</p>
+</blockquote>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF 3.5, Opera 10, Safari 4, Chrome 3</p>
+</blockquote>
+<h2 id="五-text-overflow-文本截断"><a href="#五-text-overflow-文本截断" class="headerlink" title="五. text-overflow(文本截断)"></a>五. text-overflow(文本截断)</h2><p><strong>使用:</strong></p>
+<pre><code>text-overflow: inherit | ellipsis | clip ;
+-o-text-overflow: inherit | ellipsis | clip;
+</code></pre>
+<p><strong>说明:</strong></p>
+<blockquote>
+<p>(1) 还有一个属性ellipsis-word, 但各浏览器均不支持.</p>
+</blockquote>
+<p><strong>支持:</strong> </p>
+<blockquote>
+<p> IE6+, Safari4, Chrome3, Opera10</p>
+</blockquote>
+<h2 id="六-word-wrap-自动换行"><a href="#六-word-wrap-自动换行" class="headerlink" title="六. word-wrap(自动换行)"></a>六. word-wrap(自动换行)</h2><p><strong>使用:</strong></p>
+<pre><code>word-wrap: normal | break-word;
+</code></pre>
+<p><strong>支持:</strong>    </p>
+<blockquote>
+<p>IE6+, FF 3.5, Safari 4, Chrome 3</p>
+</blockquote>
+<h2 id="七-border-radius-圆角边框"><a href="#七-border-radius-圆角边框" class="headerlink" title="七. border-radius(圆角边框)"></a>七. border-radius(圆角边框)</h2><p><strong>使用:</strong></p>
+<pre><code> -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+</code></pre>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF 3+, Safari 4, Chrome 3</p>
+</blockquote>
+<h2 id="八-opacity-不透明度"><a href="#八-opacity-不透明度" class="headerlink" title="八.  opacity(不透明度)"></a>八.  opacity(不透明度)</h2><p><strong>使用:</strong></p>
+<pre><code>opacity: 0.5;
+filter: alpha(opacity=50); /* for IE6, 7 */
+-ms-filter(opacity=50); /* for IE8 */
+</code></pre>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>all</p>
+</blockquote>
+<h2 id="九-box-sizing-控制盒模型的组成模式"><a href="#九-box-sizing-控制盒模型的组成模式" class="headerlink" title="九. box-sizing(控制盒模型的组成模式)"></a>九. box-sizing(控制盒模型的组成模式)</h2><p><strong>使用:</strong></p>
+<pre><code>box-sizing: content-box | border-box; // for opera
+-moz-box-sizing: content-box | border-box;
+-webkit-box-sizing: content-box | border-box;
+</code></pre>
+<p><strong>说明:</strong></p>
+<blockquote>
+<ol>
+<li>content-box:<br>使用此值时, 盒模型的组成模式是, 元素宽度 = content + padding + border;</li>
+<li>border-box:<br>使用此值时, 盒模型的组成模式是, 元素宽度 = content(即使设置了padding和border, 元素的宽度<br>也不会变)。</li>
+</ol>
+</blockquote>
+<p><strong>支持:</strong></p>
+<blockquote>
+<p>FF3+, Opera 10, Safari 4, Chrome 3</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2016/09/17/CSS3%E6%96%B0%E5%A2%9E%E7%9A%84%E5%B1%9E%E6%80%A7/" data-id="cklkumngw000dd0uu3mw1aeqv" data-title="CSS3新增的属性" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>于禤的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="于禤的博客">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="于禤的博客">
+<meta property="og:locale">
+<meta property="article:author" content="yuxuan">
+<meta property="article:tag" content="yuxuan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="于禤的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">于禤的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学习+记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-TCP-四次握手" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/14/TCP-%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-10-14T07:53:35.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/14/TCP-%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B/">TCP-四次握手</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>释放连接之前，在进行数据传送，都处于ESTABLISHED状态，即已建立连接。<br>书上说数据传输结束之后，通信的双方都可以释放连接。<br>这里演示的是客户端A主动释放连接。</p>
+</blockquote>
+<h2 id="TCP传输连接管理-连接释放-四次握手"><a href="#TCP传输连接管理-连接释放-四次握手" class="headerlink" title="TCP传输连接管理 - 连接释放 - 四次握手"></a>TCP传输连接管理 - 连接释放 - 四次握手</h2><p><img src="https://yxyuxuan.github.io/Markdown-repository/images/tcp-fourth-connect.png"></p>
+<h3 id="第一次握手"><a href="#第一次握手" class="headerlink" title="第一次握手"></a>第一次握手</h3><p>客户端A的应用程序先向其TCP发出释放报文段，并停止传输数据，主动关闭TCP连接。<br>A把释放报文段首部的 终止控制位<strong>FIN = 1</strong>，其序号 <strong>seq = u</strong>，u 等于已传送过来的数据的最后一个字节的序号加1。<br>此时，客户端A进入 FIN-WAIT-1状态。</p>
+<h3 id="第二次握手"><a href="#第二次握手" class="headerlink" title="第二次握手"></a><strong>第二次握手</strong></h3><p>服务器端B收到释放报文段后，发出确认，<strong>ACK=1</strong>，确认号是 <strong>ack = u+1</strong>，而这个确认报文段自己的序号是<strong>seq = v</strong> ，v等于B前面已经传送过的数据的最后一个字节的序号加 1 。<br>然后服务器B就进入到 CLOSE-WAIT状态，即等待关闭。<br>此时！！！ 处于<strong>半关闭</strong>状态。<br>即：A已经没有数据发送到B，但是B如果有数据要发送给A的话，A仍然要接收。<br>也就是说，A到B这个方向的连接已经关闭，B到A这个方向的连接并没有关闭，可能还要持续一段时间。</p>
+<h3 id="第三次握手"><a href="#第三次握手" class="headerlink" title="第三次握手"></a><strong>第三次握手</strong></h3><p>客户端A收到服务器端B的确认后，进入FIN-WAIT-2状态，等待B发出的连接释放报文段。<br>如果B已经没有数据要发送给A了，那么B就会发出释放报文段： <strong>FIN = 1，ACK = 1</strong>，假定B的序号 <strong>seq = w</strong>。B还必须重复上次已发送的确认号 <strong>ack = u+1</strong>。<br>这时，服务器B就进入 LAST-ACK状态了，即最后确认状态，等待A的确认。</p>
+<h3 id="第四次握手"><a href="#第四次握手" class="headerlink" title="第四次握手"></a><strong>第四次握手</strong></h3><p>客户端A收到服务器B发来的报文后，对此进行确认。在确认报文段，把 <strong>ACK = 1</strong>，序列号 <strong>seq = u+1</strong>，确认号 <strong>ack = w+1</strong>。<br>然后进入到TIME-WAIT（时间等待）状态。<br>注意，四次握手之后，连接并没有马上被释放掉。必须经过<strong>时间等待计时器</strong>设置的时间<strong>2MSL</strong>后，客户端才进入CLOSED状态。<br>MSL叫做<strong>最长报文段寿命</strong>，建议设置为<strong>两分钟</strong>。<br>设置两倍最长报文段寿命的目的是：<br>1.<strong>保证A发送的最后一个ACK报文段能够到达B</strong>。这个报文段<strong>可能会丢失</strong>，B收不到最后的确认，就会超时重传，然后A因为还没关闭，所以就能再次传送最后的ACK报文。<br>2.为了<strong>防止“已失效的请求连接报文段”出现在本次连接中</strong>，2MSL时间后，就可以是的本连接持续时间内所发生的所有报文段都从网络中消失。这样就可以使下一个新的连接中不会出现这种旧的连接请求报文段。</p>
+<h3 id="为什么建立连接是三次握手，而关闭连接却是四次挥手呢？"><a href="#为什么建立连接是三次握手，而关闭连接却是四次挥手呢？" class="headerlink" title="为什么建立连接是三次握手，而关闭连接却是四次挥手呢？"></a>为什么建立连接是三次握手，而关闭连接却是四次挥手呢？</h3><p>这是因为服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方是否现在关闭发送数据通道，需要上层应用来决定，因此，己方ACK和FIN一般都会分开发送。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/14/TCP-%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B/" data-id="cklkumni40054d0uu4s9tf77k" data-title="TCP-四次握手" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-TCP-三次握手" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/14/TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-10-14T06:43:20.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/14/TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">TCP-三次握手</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>TCP传输连接有三个阶段：连接建立、数据传送、连接释放。</p>
+</blockquote>
+<h2 id="在TCP连接建立过程中要解决三个问题："><a href="#在TCP连接建立过程中要解决三个问题：" class="headerlink" title="在TCP连接建立过程中要解决三个问题："></a>在TCP连接建立过程中要解决三个问题：</h2><p>1.要使每一方能够确知对方的存在。</p>
+<p> 2.要允许双方协商一些参数（比如最大窗口值、是否使用时间戳选项等） </p>
+<p>3.能够运输实体资源（比如缓存大小，连接表中的项目等）进行分配</p>
+<h2 id="使用三次握手的原因"><a href="#使用三次握手的原因" class="headerlink" title="使用三次握手的原因"></a>使用三次握手的原因</h2><p>首先我们需要知道为什么要有三次握手： 主要是为了防止已经失效的连接请求报文段突然又传送到了服务器B，从而发生错误。</p>
+<h2 id="TCP传输连接管理-连接建立-三次握手"><a href="#TCP传输连接管理-连接建立-三次握手" class="headerlink" title="TCP传输连接管理 - 连接建立 - 三次握手"></a>TCP传输连接管理 - 连接建立 - 三次握手</h2><blockquote>
+<p>客户端A，服务器端B</p>
+</blockquote>
+<p>AB都要先创建传输控制模块TCB。</p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/tcp-three-connect.png"></p>
+<h3 id="第一次握手："><a href="#第一次握手：" class="headerlink" title="第一次握手："></a><strong>第一次握手：</strong></h3><p>客户端向服务器端发起请求，<strong>同步位SYN=1，序列号seq = x</strong>。（SYN=1的报文段不能携带数据）<br>这时，客户端进入到 SYN-SENT状态，即同步已发送。</p>
+<h3 id="第二次握手"><a href="#第二次握手" class="headerlink" title="第二次握手"></a><strong>第二次握手</strong></h3><p>服务器B收到请求的报文段后，如同意建立连接，那么就向A发送确认。 <strong>同步位SYN=1，ACK=1，确认号ack=x+1</strong>，同时自己也选择一个初始的序列号 <strong>seq = y</strong>。<br>这时，服务器端进入SYN-RCVD状态，即同步收到。</p>
+<h3 id="第三次握手"><a href="#第三次握手" class="headerlink" title="第三次握手"></a><strong>第三次握手</strong></h3><p>客户端收到服务器端的确认之后还要给服务器发送确认。<strong>确认报文段 ACK = 1，确认号ack = y+1</strong>，自己的序列号<strong>seq = x+1</strong>。 此时连接建立，A进入ESTABLISHED状态，即连接已经建立。<br>当B收到A发来的确认报文时，也进入ESTABLISHED状态。</p>
+<p><strong>tcp三次握手的过程，accept发生在三次握手哪个阶段？</strong><br>发生在三次握手之后，三次握手完成后，客户端和服务器就建立了tcp连接。这时可以调用accept函数获得此连接。</p>
+<h3 id="TCP和UDP的区别？"><a href="#TCP和UDP的区别？" class="headerlink" title="TCP和UDP的区别？"></a>TCP和UDP的区别？</h3><ul>
+<li>TCP是基于连接的协议，也就是说，在正式收发数据前，必须和对方简历可靠的连接。一个TCP连接必须要经过三次“对话”才能建立起来</li>
+<li>UDP是与TCP相应的协议。他是面向非连接的协议，他不与对方建立连接，而是直接就把数据包发送过去了</li>
+<li>UDP适用于一次只传送少量数据，对可靠性要求不高的应用环境</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/14/TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/" data-id="cklkumni40051d0uu63srgi4j" data-title="TCP-三次握手" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-HTTP知识点整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/14/HTTP%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-10-14T04:52:33.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/14/HTTP%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">HTTP知识点整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是应用层上的一种客户端/服务端模型的通信协议,它由请求和响应构成。 </p>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。</p>
+<p>HTTP协议工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息。</p>
+</blockquote>
+<h2 id="HTTP特点"><a href="#HTTP特点" class="headerlink" title="HTTP特点"></a>HTTP特点</h2><ol>
+<li><p>协议：协议规定了通信双方必须遵循的数据传输格式，这样通信双方按照约定的格式才能准确的通信。 </p>
+</li>
+<li><p>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</p>
+</li>
+<li><p>灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
+</li>
+<li><p>无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
+</li>
+<li><p>无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</p>
+</li>
+<li><p>支持B/S及C/S模式。</p>
+</li>
+</ol>
+<p>HTTP使用<strong>统一资源标识符（Uniform Resource Identifiers, URI）</strong>来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息，<strong>URL,全称是Uniform Resource Locator, 中文叫统一资源定位符</strong>,是互联网上用来标识某一处资源的地址。</p>
+<h2 id="影响一个-HTTP-网络请求的因素主要有两个：带宽和延迟。"><a href="#影响一个-HTTP-网络请求的因素主要有两个：带宽和延迟。" class="headerlink" title="影响一个 HTTP 网络请求的因素主要有两个：带宽和延迟。"></a>影响一个 HTTP 网络请求的因素主要有两个：带宽和延迟。</h2><ul>
+<li><p><strong>带宽：</strong>如果说我们还停留在拨号上网的阶段，带宽可能会成为一个比较严重影响请求的问题，但是现在网络基础建设已经使得带宽得到极大的提升，我们不再会担心由带宽而影响网速，那么就只剩下延迟了。</p>
+</li>
+<li><p><strong>延迟：</strong></p>
+<ul>
+<li><p>浏览器阻塞（HOL blocking）：浏览器会因为一些原因阻塞请求。浏览器对于同一个域名，同时只能有 4 个连接（这个根据浏览器内核不同可能会有所差异），超过浏览器最大连接数限制，后续请求就会被阻塞。</p>
+</li>
+<li><p>DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。这个通常可以利用DNS缓存结果来达到减少这个时间的目的。</p>
+</li>
+<li><p>建立连接（Initial connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文，达到真正的建立连接，但是这些连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP1-0和HTTP1-1的一些区别"><a href="#HTTP1-0和HTTP1-1的一些区别" class="headerlink" title="HTTP1.0和HTTP1.1的一些区别"></a>HTTP1.0和HTTP1.1的一些区别</h2><p>HTTP1.0最早在网页中使用是在1996年，那个时候只是使用一些较为简单的网页上和网络请求上，而HTTP1.1则在1999年才开始广泛应用于现在的各大浏览器网络请求中，同时HTTP1.1也是当前使用最为广泛的HTTP协议。 主要区别主要体现在：</p>
+<ol>
+<li><p><strong>缓存处理</strong>，在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</p>
+</li>
+<li><p><strong>带宽优化及网络连接的使用</strong>，HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</p>
+</li>
+<li><p><strong>错误通知的管理</strong>，在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
+</li>
+<li><p><strong>Host头处理</strong>，在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</p>
+</li>
+<li><p><strong>长连接</strong>，HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</p>
+</li>
+</ol>
+<h2 id="HTTP2-0和HTTP1-X相比的新特性"><a href="#HTTP2-0和HTTP1-X相比的新特性" class="headerlink" title="HTTP2.0和HTTP1.X相比的新特性"></a>HTTP2.0和HTTP1.X相比的新特性</h2><ul>
+<li><p><strong>新的二进制格式</strong>（Binary Format），HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮，二进制协议解析起来更高效、“线上”更紧凑，更重要的是错误更少。</p>
+</li>
+<li><p><strong>多路复用</strong>（MultiPlexing），即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</p>
+</li>
+<li><p><strong>header压缩</strong>，如上文中所言，对前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。</p>
+</li>
+<li><p><strong>服务端推送</strong>（server push），同SPDY一样，HTTP2.0也具有server push功能。当浏览器请求一个网页时，服务器将会发回HTML，在服务器开始发送JavaScript、图片和CSS前，服务器需要等待浏览器解析HTML和发送所有内嵌资源的请求。服务器推送服务通过“推送”那些它认为客户端将会需要的内容到客户端的缓存中，以此来避免往返的延迟。</p>
+</li>
+</ul>
+<h2 id="HTTP之请求消息Request"><a href="#HTTP之请求消息Request" class="headerlink" title="HTTP之请求消息Request"></a>HTTP之请求消息Request</h2><p>客户端发送一个HTTP请求到服务器的请求消息包括以下格式：</p>
+<h5 id="请求行（request-line）、请求头部（header）、空行和请求数据四个部分组成。"><a href="#请求行（request-line）、请求头部（header）、空行和请求数据四个部分组成。" class="headerlink" title="请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。"></a>请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</h5><h5 id="第一部分：请求行，用来说明请求类型-要访问的资源以及所使用的HTTP版本"><a href="#第一部分：请求行，用来说明请求类型-要访问的资源以及所使用的HTTP版本" class="headerlink" title="第一部分：请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本."></a>第一部分：请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本.</h5><p>GET说明请求类型为GET, 访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。</p>
+<h5 id="第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息"><a href="#第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息" class="headerlink" title="第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息"></a>第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息</h5><p>从第二行起为请求头部，HOST将指出请求的目的地.User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础.该信息由你的浏览器来定义,并且在每个请求中自动发送</p>
+<h5 id="第三部分：空行，请求头部后面的空行是必须的"><a href="#第三部分：空行，请求头部后面的空行是必须的" class="headerlink" title="第三部分：空行，请求头部后面的空行是必须的"></a>第三部分：空行，请求头部后面的空行是必须的</h5><p>即使第四部分的请求数据为空，也必须有空行。</p>
+<h5 id="第四部分：请求数据也叫主体，可以添加任意的其他数据。"><a href="#第四部分：请求数据也叫主体，可以添加任意的其他数据。" class="headerlink" title="第四部分：请求数据也叫主体，可以添加任意的其他数据。"></a>第四部分：请求数据也叫主体，可以添加任意的其他数据。</h5><h2 id="HTTP之响应消息Response"><a href="#HTTP之响应消息Response" class="headerlink" title="HTTP之响应消息Response"></a>HTTP之响应消息Response</h2><p>一般情况下，服务器接收并处理客户端发过来的请求后会返回一个HTTP的响应消息。</p>
+<h5 id="HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。"><a href="#HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。" class="headerlink" title="HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。"></a>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</h5><h5 id="第一部分：状态行，由HTTP协议版本号，-状态码，-状态消息-三部分组成。"><a href="#第一部分：状态行，由HTTP协议版本号，-状态码，-状态消息-三部分组成。" class="headerlink" title="第一部分：状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。"></a>第一部分：状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。</h5><p>状态行，（HTTP/1.1）表明HTTP版本为1.1版本，状态码为200，状态消息为（ok）</p>
+<h5 id="第二部分：消息报头，用来说明客户端要使用的一些附加信息"><a href="#第二部分：消息报头，用来说明客户端要使用的一些附加信息" class="headerlink" title="第二部分：消息报头，用来说明客户端要使用的一些附加信息"></a>第二部分：消息报头，用来说明客户端要使用的一些附加信息</h5><p>Date:生成响应的日期和时间；Content-Type:指定了MIME类型的HTML(text/html),编码类型是UTF-8</p>
+<h5 id="第三部分：空行，消息报头后面的空行是必须的"><a href="#第三部分：空行，消息报头后面的空行是必须的" class="headerlink" title="第三部分：空行，消息报头后面的空行是必须的"></a>第三部分：空行，消息报头后面的空行是必须的</h5><h5 id="第四部分：响应正文，服务器返回给客户端的文本信息。"><a href="#第四部分：响应正文，服务器返回给客户端的文本信息。" class="headerlink" title="第四部分：响应正文，服务器返回给客户端的文本信息。"></a>第四部分：响应正文，服务器返回给客户端的文本信息。</h5><p>空行后面的html部分为响应正文。</p>
+<h2 id="请求和响应常见通用头："><a href="#请求和响应常见通用头：" class="headerlink" title="请求和响应常见通用头："></a><strong>请求和响应常见通用头</strong>：</h2><ul>
+<li>Content-type：请求体/响应体的类型，如：text/plain，application/json（json数据格式），application/xml（xml数据格式），</li>
+<li>Accept：说明接收的类型，可以多个值，用逗号分开</li>
+<li>Content-length： 请求体/响应体的长度，单位字节</li>
+<li>Content-Encoding：请求体/响应体的编码格式，如gzip，deflate</li>
+<li>Accept-Encoding： 告知对方我方接受的Content-Encoding</li>
+<li>ETag：给当前资源的标识，和Last-Modified，If-None-Match，If-Modified-since配合，用于缓存控制</li>
+<li>Cache-Control：取值一般为no-cache或max-age=xx，xx为整数，表示该资源缓存有效期（秒）</li>
+<li>Connection：链接的管理</li>
+<li>Transfer-Encoding：报文主体的传输编码方式</li>
+<li>Date：创建报文的时间</li>
+</ul>
+<p>常见的请求头：</p>
+<ol>
+<li>Authorization：用于设置身份认证信息</li>
+<li>Accept：可处理的媒体类型</li>
+<li>Accept-Encoding：可接收的内容编码</li>
+<li>Accept-Language：可接收的自然语言</li>
+<li>User-Agent：用户标识，如：OS和浏览器的类型和版本</li>
+<li>If-Modified-Since：值为上一次服务器返回的Last-Modified值，用于确认某个资源是否被更改过，没有更改过就从缓存中读取</li>
+<li>If-None-Match： 值为上一次服务器返回的TTag值，一般会和If-Modified-Since一起出现</li>
+<li>Cookie： 已有的Cookie</li>
+<li>Refer：表示请求引用自哪个地址，比如从A页面跳转到B页面时，值为页面A的地址</li>
+<li>Host：请求资源所在的服务器的主机和端口号</li>
+</ol>
+<p>常见的响应头：</p>
+<ol>
+<li>Date：服务器的日期</li>
+<li>Accept-Ranges：可接受的字节范围</li>
+<li>Last-Modified-Fied：该资源最后被修改的时间</li>
+<li>Transfer-Encoding： 取值一般为Chunked</li>
+<li>Set-Cookie：设置Cookie</li>
+<li>Location：重定向到另一个URL，如输入浏览器baidu.com回车，会自动跳到<a target="_blank" rel="noopener" href="https://www.baidu.com,就是通过响应头控制的./">https://www.baidu.com，就是通过响应头控制的。</a></li>
+<li>Server：后台服务器的信息</li>
+</ol>
+<ul>
+<li><p><strong>实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</strong></p>
+</li>
+<li><ul>
+<li>Allow：资源可支持的HTTP方法</li>
+<li>Content-Type：实体主类的类型</li>
+<li>Content-Encoding：实体主体适用的编码方式</li>
+<li>Content-Language：实体主体的自然语言</li>
+<li>Content-Length：实体主体的的字节数</li>
+<li>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h2><p>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。</p>
+<p>以下是 HTTP 请求/响应的步骤：</p>
+<h5 id="1、客户端连接到Web服务器"><a href="#1、客户端连接到Web服务器" class="headerlink" title="1、客户端连接到Web服务器"></a><strong>1、客户端连接到Web服务器</strong></h5><p>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。</p>
+<h5 id="2、发送HTTP请求"><a href="#2、发送HTTP请求" class="headerlink" title="2、发送HTTP请求"></a>2、发送HTTP请求</h5><p>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个<strong>请求报文由请求行、请求头部、空行和请求数据4部分组成</strong>。</p>
+<h5 id="3、服务器接受请求并返回HTTP响应"><a href="#3、服务器接受请求并返回HTTP响应" class="headerlink" title="3、服务器接受请求并返回HTTP响应"></a>3、服务器接受请求并返回HTTP响应</h5><p>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
+<h5 id="4、释放连接TCP连接"><a href="#4、释放连接TCP连接" class="headerlink" title="4、释放连接TCP连接"></a>4、释放连接TCP连接</h5><p>若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p>
+<h5 id="5、客户端浏览器解析HTML内容"><a href="#5、客户端浏览器解析HTML内容" class="headerlink" title="5、客户端浏览器解析HTML内容"></a>5、客户端浏览器解析HTML内容</h5><p>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
+<p>例如：在浏览器地址栏键入URL，按下回车之后会经历以下流程：</p>
+<p>1、读取缓存： 搜索自身的 DNS 缓存（Domain Name System 的缩写，作用就是根据域名查出IP地址。）。(如果 DNS 缓存中找到IP 地址就跳过了接下来解析 IP 地址步骤，直接访问该 IP 地址。) 如果在DNS缓存中没有找到对应的IP则浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;</p>
+<p>2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立TCP连接</p>
+<p>3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为TCP 三次握手的第三个报文的数据发送给服务器;</p>
+<p>4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;</p>
+<p>5、释放TCP连接;</p>
+<p>6、浏览器将该 html 文本并显示内容; 　</p>
+<p>HTTP中存在的问题：</p>
+<ol>
+<li>窃听风险：通信使用明文传输，内容可能会被窃听（第三方可能获知通信内容）</li>
+<li>冒充风险：不验证通信方的身份，因此有可能遭遇伪装。</li>
+<li>篡改风险：无法证明报文的完整性，所以有可能已遭篡改。</li>
+</ol>
+<p>HTTPS不是应用层一个新的协议，通常HTTP直接和TCP通信，HTTPS则是先和安全层（SSL/TLS）通信，然后安全层在和TCP层通信。SSL/TLS协议就是为了解决HTTP存在的问题而生的。解决方法：</p>
+<ol>
+<li>所有的信息都是加密传输，第三方无法窃听。</li>
+<li>配备身份验证，防止身份被冒充。</li>
+<li>具备校验机制，一旦被篡改，通信双方会立刻发现。</li>
+</ol>
+<p>加密和解密同用一个密钥的方式成为共享密钥加密也称为对称密钥加密。</p>
+<p>HTTPS使用对称加密和非对称加密结合。</p>
+<p>　</p>
+<h2 id="互联网的层划分"><a href="#互联网的层划分" class="headerlink" title="互联网的层划分"></a>互联网的层划分</h2><p><strong>七层</strong>划分为：<strong>应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</strong>。</p>
+<p><strong>五层</strong>划分为：<strong>应用层、传输层、网络层、数据链路层、物理层</strong>。</p>
+<p><strong>四层</strong>划分为：<strong>应用层、传输层、网络层、网络接口层</strong>。</p>
+<p><strong>应用层</strong>： 文件传输，电子邮件，文件服务，虚拟终端 TFTP，HTTP，SNMP，FTP，SMTP，DNS，Telnet</p>
+<p><strong>表示层</strong> ：数据格式化，代码转换，数据加密 没有协议</p>
+<p><strong>会话层</strong>： 解除或建立与别的接点的联系 没有协议</p>
+<p><strong>传输层</strong> ：提供端对端的接口 TCP，UDP</p>
+<p><strong>网络层</strong> ：为数据包选择路由 IP，ICMP，RIP，OSPF，BGP，IGMP</p>
+<p><strong>数据链路层</strong> ：传输有地址的帧以及错误检测功能 SLIP，CSLIP，PPP，ARP，RARP，MTU</p>
+<p><strong>物理层</strong>： 以二进制数据形式在物理媒体上传输数据 ISO2110，IEEE802，IEEE802.2</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/14/HTTP%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" data-id="cklkumnh3000zd0uuhqd07xp8" data-title="HTTP知识点整理" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SSR和CSR" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/09/18/SSR%E5%92%8CCSR/" class="article-date">
+  <time class="dt-published" datetime="2019-09-18T07:36:23.000Z" itemprop="datePublished">2019-09-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/09/18/SSR%E5%92%8CCSR/">客户端渲染（CSR）与服务端渲染（SSR）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>目前为止接触的项目开发均是前后端分离模式，前端利用从后台获取的数据渲染到页面上。之前用的基本都是客户端渲染，最近接触了服务端渲染。</p>
+<p>我到目前为止接触的项目开发均是前后端分离模式，前端利用从后台获取的数据渲染到页面上。之前用的基本都是客户端渲染，最近接触了服务端渲染。</p>
+<p>最近的开发使用了<a target="_blank" rel="noopener" href="https://nextjs.org/">Next.js</a>，Next是一个轻量级的React服务端渲染应用框架 。一直不是很清楚服务端渲染（server side render）和客户端（client side render）渲染的具体实现，于是网上搜罗了一番，下面简单记录一下。</p>
+</blockquote>
+<h2 id="一-客户端渲染（CSR）"><a href="#一-客户端渲染（CSR）" class="headerlink" title="一. 客户端渲染（CSR）"></a>一. 客户端渲染（CSR）</h2><p>客户端发起页面请求，服务端把页面（响应的字符串）发送给客户端，客户端从上到下依次解析，解析过程中，发现网络请求，再次向服务器发送网络请求，客服端拿到响应的结果，模板引擎渲染到HTML页面。</p>
+<p>优点：灵活，真正的前后端分离，方便于前后台各自更新维护。</p>
+<p>缺点: 对SEO不友好，增加了HTTP请求的次数，减缓了页面加载速度。</p>
+<h2 id="二-服务端渲染（SSR）"><a href="#二-服务端渲染（SSR）" class="headerlink" title="二. 服务端渲染（SSR）"></a>二. 服务端渲染（SSR）</h2><p>在后端看来，页面文件其实就是一个“字符串”，所以服务端完全可以在获取到HTML文件的内容之后经过一些处理再返回给客户端，也就说，服务端可以将数据插入到HTML 字符串中之后再返回给客户端 </p>
+<p>优点：对 SEO搜索引擎友好，减少了HTTP请求的次数，加速了页面初次渲染的速度</p>
+<p>缺点：不灵活，前后端耦合太深。</p>
+<p>在 SPA 模式下，所有的数据请求和 Dom 渲染都在浏览器端完成，所以当我们第一次访问页面的时候很可能会存在“白屏”等待，而服务端渲染所有数据请求和 html内容已在服务端处理完成，浏览器收到的是完整的 html 内容，可以更快的看到渲染内容，在服务端完成数据请求肯定是要比在浏览器端效率要高的多。</p>
+<h2 id="服务端渲染和客户端渲染结合"><a href="#服务端渲染和客户端渲染结合" class="headerlink" title="服务端渲染和客户端渲染结合"></a>服务端渲染和客户端渲染结合</h2><p>网站的流量来源主要还是靠搜索引擎，所以网站的 SEO 还是很重要的，而客户端渲染模式对搜索引擎不够友好，要想彻底解决这个问题只能采用服务端渲染。</p>
+<p>最好的方案就是服务端渲染和客户端渲染的结合，第一次访问页面是服务端渲染，基于第一次访问后续的交互就是客户端渲染的效果和体验，同时还不影响SEO效果。 </p>
+<h2 id="Next-js-中的服务端渲染和客户端渲染"><a href="#Next-js-中的服务端渲染和客户端渲染" class="headerlink" title="Next.js 中的服务端渲染和客户端渲染"></a>Next.js 中的服务端渲染和客户端渲染</h2><p>getiInitialProps 是 Next.js 最伟大的发明，它确定了一个规范，一个页面组件只要把访问 API 外部资源的代码放在 getInitialProps 中就足够，其余的不用管，Next.js 自然会在服务器端或者浏览器端调用 getInitialProps 来获取外部资源，并把外部资源以 props 的方式传递给页面组件。</p>
+<p>getInitialProps()是可以在服务端运行的，当页面第一次加载时，服务器收到请求，getInitialProps()会执行，getInitialProps()返回的数据，会序列化后添加到 <code>window.__NEXT_DATA__.props</code>上，写入HTML源码里，类似于。这样服务端的getInitialProps()就实现了把数据传送给了客户端。当我们通过Next.js的路由Link来进行页面跳转的时候，客户端就会从<code>window.__NEXT_DATA__</code>里获取数据渲染页面，就无需重新获取数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/18/SSR%E5%92%8CCSR/" data-id="cklkumni3004xd0uuhi8d9rwx" data-title="客户端渲染（CSR）与服务端渲染（SSR）" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-垂直居中的方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/09/16/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2019-09-16T12:13:48.000Z" itemprop="datePublished">2019-09-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/09/16/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95/">垂直居中的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="方法一：基于视口（浏览器窗口）的垂直居中"><a href="#方法一：基于视口（浏览器窗口）的垂直居中" class="headerlink" title="方法一：基于视口（浏览器窗口）的垂直居中"></a>方法一：基于视口（浏览器窗口）的垂直居中</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .wrapper &#123;</span><br><span class="line"><span class="css">      <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">1000px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">background</span>: <span class="number">#999</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="comment">/* 1vh = 1% * 视口高度 */</span></span></span><br><span class="line"><span class="css">      <span class="attribute">margin</span>: <span class="number">50vh</span> auto;</span></span><br><span class="line"><span class="css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        基于视口的垂直居中<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        不要求原生有固定的宽高。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        但是这种居中是在整个页面窗口内居中，不是基于父元素<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二：定宽居"><a href="#方法二：定宽居" class="headerlink" title="方法二：定宽居"></a>方法二：定宽居</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">      <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">margin-left</span>: -<span class="number">9rem</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">margin-top</span>: -<span class="number">5rem</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        要求原生有固定的宽高。<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        position: absolute;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        top和left 为 50%;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        margin上为高的一半<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        margin左为宽的一半<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法三：calc居中"><a href="#方法三：calc居中" class="headerlink" title="方法三：calc居中"></a>方法三：calc居中</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">      <span class="attribute">top</span>: <span class="built_in">calc</span>(<span class="number">50%</span> - <span class="number">5em</span>);</span></span><br><span class="line"><span class="css">      <span class="attribute">left</span>: <span class="built_in">calc</span>(<span class="number">50%</span> - <span class="number">9em</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        要求原生有固定的宽高。<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        position: absolute;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        top 为 calc(50% 剪 一半高)</span><br><span class="line">        left 为 calc(50% 剪 一半宽)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法四：transform居中"><a href="#方法四：transform居中" class="headerlink" title="方法四：transform居中"></a>方法四：transform居中</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">      <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        不要求原生有固定的宽高。<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        position: absolute;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        top和left 为 50%;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        transform: translate(-50%, -50%);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法五：flex居中方法一"><a href="#方法五：flex居中方法一" class="headerlink" title="方法五：flex居中方法一"></a>方法五：flex居中方法一</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .wrapper &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">1000px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">background</span>: <span class="number">#999</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">display</span>: flex;</span></span><br><span class="line">    &#125;</span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">margin</span>: auto;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        使用flex居中<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        父元素 display: flex; <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        居中块： margin: auto;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法六-flex居中方法二"><a href="#方法六-flex居中方法二" class="headerlink" title="方法六: flex居中方法二"></a>方法六: flex居中方法二</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>垂直居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .wrapper &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">1000px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">background</span>: <span class="number">#999</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="css">      <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">      <span class="comment">/* 盒子横轴的对齐方式 */</span></span></span><br><span class="line"><span class="css">      <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="css">      <span class="comment">/* 盒子纵轴的对齐方式 */</span></span></span><br><span class="line"><span class="css">      <span class="attribute">align-items</span>: center;</span></span><br><span class="line">    &#125;</span><br><span class="line">    .center &#123;</span><br><span class="line"><span class="css">      <span class="attribute">width</span>: <span class="number">18em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">height</span>: <span class="number">10em</span>;</span></span><br><span class="line"><span class="css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">      <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="css">      <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        使用flex居中<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        父元素 display: flex; <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        justify-content: center;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        align-items: center;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/16/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="cklkumniq007od0uuax7i9wzn" data-title="垂直居中的方法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-弹性布局Flex" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/27/%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80Flex/" class="article-date">
+  <time class="dt-published" datetime="2019-08-27T07:20:23.000Z" itemprop="datePublished">2019-08-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/27/%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80Flex/">弹性布局Flex</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>写了这末多项目了，每个项目的页面布局都离不开Flex布局，就连前段时间写的小程序项目都是用的Flex布局，下面简单整理一下Flex布局相关知识点。</p>
+</blockquote>
+<p>Flex 是 Flexible Box 的缩写，Flex Box布局称为<strong>Flex布局</strong>或<strong>弹性布局</strong>。</p>
+<p><strong>直接设置flex布局的元素称为flex容器，它里面的子元素称为flex项目。</strong></p>
+<p>Flex容器默认有两根轴，主轴和交叉轴，交叉轴垂直于主轴。</p>
+<h3 id="一-作用在flex容器上的相关属性"><a href="#一-作用在flex容器上的相关属性" class="headerlink" title="一. 作用在flex容器上的相关属性"></a>一. 作用在flex容器上的相关属性</h3><ol>
+<li><p>flex-direction</p>
+<p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>row</code>（默认值）：主轴为水平方向，起点在左端。</p>
+</li>
+<li><p><code>row-reverse</code>：主轴为水平方向，起点在右端。</p>
+</li>
+<li><p><code>column</code>：主轴为垂直方向，起点在上沿。</p>
+</li>
+<li><p><code>column-reverse</code>：主轴为垂直方向，起点在下沿。</p>
+</li>
+</ul>
+</li>
+<li><p>flex-wrap</p>
+<p>默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>nowrap</code>（默认）：不换行。</p>
+</li>
+<li><p><code>wrap</code>：换行，第一行在上方。</p>
+</li>
+<li><p><code>wrap-reverse</code>：换行，第一行在下方。</p>
+</li>
+</ul>
+</li>
+<li><p>flex-flow</p>
+<p><code>flex-flow</code>属性是<code>flex-direction</code>和<code>flex-wrap</code>的缩写，表示flex布局的flow流动特性，默认值为<code>row nowrap</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">flex-flow: &lt;‘flex-direction’&gt; || &lt;‘flex-wrap’&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;例子：</span><br><span class="line">.container &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-flow: row-reverse wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>justify-content </p>
+<p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>（默认值）：左对齐</li>
+<li><code>flex-end</code>：右对齐</li>
+<li><code>center</code>： 居中</li>
+<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
+<li><code>space-around</code>：每个项目两侧的间隔相等。项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+</li>
+<li><p>align-items</p>
+<p><code>align-items</code>中的<code>items</code>指的就是flex子项目，因此<code>align-items</code>指的就是flex子项目相对于flex容器在垂直方向（交叉轴）上的对齐方式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>：交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：交叉轴的终点对齐。</li>
+<li><code>center</code>：交叉轴的中点对齐。</li>
+<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
+<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+</li>
+<li><p>align-content</p>
+<p><code>align-content</code>可以看成和<code>justify-content</code>是相似且对立的属性，<code>justify-content</code>指明水平方向flex子项的对齐和分布方式，而<code>align-content</code>则是指明垂直方向每一行flex元素的对齐和分布方式。如果所有flex子项只有一行，则<code>align-content</code>属性是没有任何效果的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
+<li><code>center</code>：与交叉轴的中点对齐。</li>
+<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二-作用在子项目上的相关属性"><a href="#二-作用在子项目上的相关属性" class="headerlink" title="二. 作用在子项目上的相关属性"></a>二. 作用在子项目上的相关属性</h3><ol>
+<li><p>order</p>
+<p><code>order</code>属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>flex-grow</p>
+<p><code>flex-grow</code>属性定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>flex-shrink</p>
+<p><code>flex-shrink</code>属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。负值对该属性无效。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+</li>
+<li><p>flex-basis</p>
+<p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。</p>
+</li>
+<li><p>flex</p>
+<p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该属性有两个快捷值：<code>auto</code> (<code>1 1 auto</code>) 和 none (<code>0 0 auto</code>)。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+</li>
+<li><p>align-self</p>
+<p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h6 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h6><p>在Flex布局中，flex子元素的设置float，clear以及vertical-align属性都是没有用的。</p>
+<p>Flexbox布局最适合小规模布局（一维布局），而Grid布局则适用于更大规模的布局（二维布局）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/27/%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80Flex/" data-id="cklkumnir007vd0uu68lq0n7y" data-title="弹性布局Flex" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-懒加载和预加载" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/" class="article-date">
+  <time class="dt-published" datetime="2019-08-26T07:35:13.000Z" itemprop="datePublished">2019-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/">懒加载和预加载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近老大让我调整一下图片懒加载的视觉效果，作为一个电商平台，懒加载是非常重要的。我们使用的懒加载库<a target="_blank" rel="noopener" href="https://github.com/twobin/react-lazyload"><strong>react-lazyload</strong></a>，现在的浏览效果是要等到整个图片高度都完全出现在可视区域的时候图片才会加载出来，这样看着让人怀疑到是不是网络不好，用户体验很不好，后来仔细阅读了react-lazyload库，发现使用offset属性可以预加载出图片。例如，如果您想预加载一个组件，使它在viewport下面100px(offset=100)就加载该组件，让用户看不到延迟加载的效果。下面简单整理了一下懒加载和预加载。</p>
+</blockquote>
+<h3 id="一-懒加载"><a href="#一-懒加载" class="headerlink" title="一.懒加载"></a>一.懒加载</h3><h5 id="1-什么是懒加载？"><a href="#1-什么是懒加载？" class="headerlink" title="1. 什么是懒加载？"></a>1. 什么是懒加载？</h5><p>懒加载也称为延迟加载或惰性加载，一般指在长网页中延迟加载图像，是一种优化网页性能的方式。用户滚动到它们之前，可视区域外的图像不会加载。这与图像预加载相反，在长网页上使用延迟加载将使网页加载更快。在某些情况下，它还可以帮助减少服务器负载。常适用图片很多，页面很长的电商网站场景中。</p>
+<h5 id="2-使用懒加载的好处？"><a href="#2-使用懒加载的好处？" class="headerlink" title="2. 使用懒加载的好处？"></a>2. 使用懒加载的好处？</h5><ul>
+<li><strong>能提升用户的体验</strong>，不妨设想下，用户打开像手机淘宝长页面的时候，如果页面上所有的图片都需要加载，由于图片数目较大，等待时间很长，用户难免会心生抱怨，这就严重影响用户体验</li>
+<li><strong>减少无效资源的加载</strong>，这样能明显减少了服务器的压力和流量，也能够减小浏览器的负担。</li>
+<li><strong>防止并发加载的资源过多会阻塞js的加载</strong>，影响网站的正常使用。</li>
+</ul>
+<h5 id="3-懒加载的原理"><a href="#3-懒加载的原理" class="headerlink" title="3.懒加载的原理"></a>3.懒加载的原理</h5><p>首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Lazyload&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      .image-item &#123;</span><br><span class="line">	    display: block;</span><br><span class="line">	    margin-bottom: 50px;</span><br><span class="line">	    height: 200px;&#x2F;&#x2F;一定记得设置图片高度</span><br><span class="line">	&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;1.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;2.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;3.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;4.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;5.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;6.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;7.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;8.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;9.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;10.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;11.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&quot; class&#x3D;&quot;image-item&quot; lazyload&#x3D;&quot;true&quot;  data-original&#x3D;&quot;images&#x2F;12.png&quot;&#x2F;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var viewHeight &#x3D;document.documentElement.clientHeight&#x2F;&#x2F;获取可视区高度</span><br><span class="line">function lazyload()&#123;</span><br><span class="line">var eles&#x3D;document.querySelectorAll（&#39;img[data-original][lazyload]&#39;）</span><br><span class="line">Array.prototype.forEach.call(eles,function(item,index)&#123;</span><br><span class="line">var rect</span><br><span class="line">if(item.dataset.original&#x3D;&#x3D;&#x3D;&quot;&quot;)</span><br><span class="line">   return</span><br><span class="line">rect&#x3D;item.getBoundingClientRect()&#x2F;&#x2F; 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置</span><br><span class="line">if(rect.bottom&gt;&#x3D;0 &amp;&amp; rect.top &lt; viewHeight)&#123;</span><br><span class="line">!function()&#123;</span><br><span class="line">  var img&#x3D;new Image()</span><br><span class="line">  img.src&#x3D;item.dataset.original</span><br><span class="line">  img.onload&#x3D;function()&#123;</span><br><span class="line">    item.src&#x3D;img.src</span><br><span class="line">    &#125;</span><br><span class="line">item.removeAttribute（&quot;data-original&quot;）&#x2F;&#x2F;移除属性，下次不再遍历</span><br><span class="line">item.removeAttribute（&quot;lazyload&quot;）</span><br><span class="line">   &#125;()</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">lazyload()&#x2F;&#x2F;刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片</span><br><span class="line">document.addEventListener（&quot;scroll&quot;，lazyload)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-预加载"><a href="#二-预加载" class="headerlink" title="二. 预加载"></a>二. 预加载</h3><ol>
+<li><h5 id="什么是预加载？"><a href="#什么是预加载？" class="headerlink" title="什么是预加载？"></a>什么是预加载？</h5><p>预加载简单来说就是将所有所需的资源提前请求加载到本地，当用户需要查看时可直接从本地缓存中渲染</p>
+</li>
+<li><h5 id="为什么使用预加载？"><a href="#为什么使用预加载？" class="headerlink" title="为什么使用预加载？"></a>为什么使用预加载？</h5><p>图片预先加载到浏览器中，访问者便可顺利地在你的网站上冲浪，并享受到极快的加载速度。这对图片画廊及图片占据很大比例的网站来说十分有利，它保证了图片快速、无缝地发布，也可帮助用户在浏览你网站内容时获得更好的用户体验。</p>
+</li>
+</ol>
+<h5 id="预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。"><a href="#预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。" class="headerlink" title="预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。"></a>预加载和懒加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/26/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/" data-id="cklkumnit0085d0uuhfl58yrv" data-title="懒加载和预加载" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Object-assign-is-not-a-function" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/09/Object-assign-is-not-a-function/" class="article-date">
+  <time class="dt-published" datetime="2019-08-09T06:51:03.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/09/Object-assign-is-not-a-function/">Object.assign is not a function</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天安卓说发现低版本的手机打不开我写的h5页面，看了他电脑上的运行日志发现了问题，Uncaught TypeError: Object.assign is not a function</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">08-09 10:28:50.011 8628-8628&#x2F;com.cheezgroup.tosharing.intl I&#x2F;chromium: [INFO:CONSOLE(41480)] &quot;Uncaught TypeError: Object.assign is not a function&quot;, source: http:&#x2F;&#x2F;192.168.1.16:3000&#x2F;_next&#x2F;static&#x2F;development&#x2F;pages&#x2F;_app.js?ts&#x3D;1565317716331 (41480)</span><br></pre></td></tr></table></figure>
+
+<p>网上搜了一波，发现了问题是因为<a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a>是不能转换<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a>方法的。</p>
+<p>如果想让这Object.assign运行，必须使用<a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/6.26.3/babel-polyfill">babel-polyfill</a>，为当前环境提供一个polyfill，但是考虑到babel-polyfill太大，不建议安装。建议手动写一个polyfill文件，需要哪些polyfill就手动加上，然后在app.js中导入即可。</p>
+<p>然后找了一个polyfill如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">if (typeof Object.assign !&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">  Object.assign &#x3D; function(target) &#123;</span><br><span class="line">    &quot;use strict&quot;;</span><br><span class="line">    if (target &#x3D;&#x3D;&#x3D; null) &#123;</span><br><span class="line">      &#x2F;&#x2F; TypeError if undefined or null</span><br><span class="line">      throw new TypeError(&quot;Cannot convert undefined or null to object&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var to &#x3D; Object(target);</span><br><span class="line"></span><br><span class="line">    for (var index &#x3D; 1; index &lt; arguments.length; index++) &#123;</span><br><span class="line">      var nextSource &#x3D; arguments[index];</span><br><span class="line"></span><br><span class="line">      if (nextSource !&#x3D;&#x3D; null) &#123;</span><br><span class="line">        &#x2F;&#x2F; Skip over if undefined or null</span><br><span class="line">        for (var nextKey in nextSource) &#123;</span><br><span class="line">          &#x2F;&#x2F; Avoid bugs when hasOwnProperty is shadowed</span><br><span class="line">          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) &#123;</span><br><span class="line">            to[nextKey] &#x3D; nextSource[nextKey];</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return to;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行还是报错，发现网上大多数都是这样写的，没什么差别，老大说人家都能执行，你的不行肯定是在函数初始化的时候就错了，后来发现根本就没运行上面的代码，那就是判断条件可能出错了，做了如下修改，运行成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">if (!Object.prototype.assign || typeof Object.assign !&#x3D;&#x3D; &quot;function&quot;) &#123;</span><br><span class="line">  Object.assign &#x3D; function(target) &#123;</span><br><span class="line">    &quot;use strict&quot;;</span><br><span class="line">    if (target &#x3D;&#x3D;&#x3D; null) &#123;</span><br><span class="line">      &#x2F;&#x2F; TypeError if undefined or null</span><br><span class="line">      throw new TypeError(&quot;Cannot convert undefined or null to object&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var to &#x3D; Object(target);</span><br><span class="line"></span><br><span class="line">    for (var index &#x3D; 1; index &lt; arguments.length; index++) &#123;</span><br><span class="line">      var nextSource &#x3D; arguments[index];</span><br><span class="line"></span><br><span class="line">      if (nextSource !&#x3D;&#x3D; null) &#123;</span><br><span class="line">        &#x2F;&#x2F; Skip over if undefined or null</span><br><span class="line">        for (var nextKey in nextSource) &#123;</span><br><span class="line">          &#x2F;&#x2F; Avoid bugs when hasOwnProperty is shadowed</span><br><span class="line">          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) &#123;</span><br><span class="line">            to[nextKey] &#x3D; nextSource[nextKey];</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return to;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：多实践，多尝试，比较差异。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/09/Object-assign-is-not-a-function/" data-id="cklkumnhr003jd0uuekv37idx" data-title="Object.assign is not a function" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-changes-not-staged-for-commit错误的解决方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/16/changes-not-staged-for-commit%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2019-07-16T08:41:02.000Z" itemprop="datePublished">2019-07-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/16/changes-not-staged-for-commit%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">changes not staged for commit 错误的解决方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天想把本地的hexo文件夹提交到GitHub仓库，提交是成功了，但是发现主题文件夹themes/next文件为空，运行git status 时提示 changes not staged for commit:，下面记录一下解决的方法。</p>
+</blockquote>
+<p>通过查询得出了问题的原因是：如果git仓库下面还有另外一个clone过来的git仓库，那么上传到仓库的时候，其中的另一个克隆过来的文件夹一定是空的：</p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/images/2019-07-16-img.png"></p>
+<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>首先删除themes/next文件夹中的 .git文件</p>
+</li>
+<li><p>在hexo/根目录下删除仓库中的空文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;删除暂存区或分支上的文件</span><br><span class="line">git rm -r --cached &quot;themes&#x2F;next&quot;</span><br><span class="line"></span><br><span class="line">git commit -m &quot;remove empty themes&#x2F;next&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在hexo/根目录下重新提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;repush&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>至此到GitHub仓库中就能看到themes/next文件夹不是空的了。</p>
+<p>总结：因为该项目本身就是一个仓库，项目中clone 下来的主题文件也是一个 git 仓库，因此在该项目下正常的 git add . 是无法提交该项目下另一个clone过来的文件夹的，所以我们要做的就是删除项目下另一个clone的文件夹下的 .git 文件夹，这样就可以通过  git add . 提交该项目。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/16/changes-not-staged-for-commit%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" data-id="cklkumnic005td0uu1laeao2f" data-title="changes not staged for commit 错误的解决方法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-给博客添加评论功能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/" class="article-date">
+  <time class="dt-published" datetime="2019-07-16T03:44:12.000Z" itemprop="datePublished">2019-07-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/">给博客添加评论功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近在更新博客，顺便就加个评论的功能，网上找了许多的插件，来必力，畅言，友言等。我使用的是NexT主题，NexT主题集成了评论功能，这里选择的是来必力。</p>
+</blockquote>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/laibili-images/laibili-1.png"></p>
+<p>来必力使用社交网站账户登录，免去注册过程。提高用户的参与和沟通意愿。管理/删除我的评论内容。提供管理页面，管理网站文章及评论内容。没有匿名评论，支持邮箱账号注册评论。</p>
+<h4 id="添加步骤："><a href="#添加步骤：" class="headerlink" title="添加步骤："></a>添加步骤：</h4><ol>
+<li><p>在<a target="_blank" rel="noopener" href="https://livere.com/">来必力</a>的官网上注册账号。</p>
+</li>
+<li><p>获取data-uid</p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/laibili-images/laibili-2.png"></p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/laibili-images/laibili-3.png"></p>
+</li>
+<li><p>打开NexT主题的配置文件<code>_config.yml</code>，找到livere_uid，填写data-uid</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">livere_uid: MTAyMC80NTM0OS8yMTg2Mg&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到来必力，修改设置</p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/laibili-images/laibili-4.png"></p>
+</li>
+</ol>
+<p>最后重新生成和部署博客：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>至此就可以看到博客上的评论框了:</p>
+<p><img src="https://yxyuxuan.github.io/Markdown-repository/laibili-images/laibili-5.png"></p>
+<p>以上就是添加来必力评论的步骤。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/" data-id="cklkumniy008td0uueqjyb0dr" data-title="给博客添加评论功能" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX/" rel="tag">AJAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ant-Design/" rel="tag">Ant Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backbone/" rel="tag">Backbone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobx/" rel="tag">Mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SASS/" rel="tag">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/" rel="tag">less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/Ant-Design/" style="font-size: 10px;">Ant Design</a> <a href="/tags/Backbone/" style="font-size: 10px;">Backbone</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.75px;">CSS3</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Mobx/" style="font-size: 10px;">Mobx</a> <a href="/tags/Node-js/" style="font-size: 16.25px;">Node.js</a> <a href="/tags/React/" style="font-size: 18.75px;">React</a> <a href="/tags/SASS/" style="font-size: 10px;">SASS</a> <a href="/tags/Vue-js/" style="font-size: 12.5px;">Vue.js</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 10px;">正则</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/Backbone%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B0%8F%E7%BB%93/">Backbone框架的小结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84sort%E5%92%8ClocaleCompare%E6%8E%92%E5%BA%8F/">JS中的sort和localeCompare排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/JS%E4%B8%AD%E7%9A%84%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/">JS中的任务队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 yuxuan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
