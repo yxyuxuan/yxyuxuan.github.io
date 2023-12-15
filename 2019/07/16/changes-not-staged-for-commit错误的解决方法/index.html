@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yxyuxuan.github.io/Markdown-repository/images/2019-07-16-img.png">
 <meta property="article:published_time" content="2019-07-16T08:41:02.000Z">
-<meta property="article:modified_time" content="2020-07-02T06:37:46.339Z">
+<meta property="article:modified_time" content="2020-07-02T06:37:46.000Z">
 <meta property="article:author" content="yuxuan">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -246,10 +246,10 @@
 <li><p>首先删除themes/next文件夹中的 .git文件</p>
 </li>
 <li><p>在hexo/根目录下删除仓库中的空文件夹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;删除暂存区或分支上的文件</span><br><span class="line">git rm -r --cached &quot;themes&#x2F;next&quot;</span><br><span class="line"></span><br><span class="line">git commit -m &quot;remove empty themes&#x2F;next&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除暂存区或分支上的文件</span></span><br><span class="line"><span class="symbol">git</span> rm -r --cached <span class="string">&quot;themes/next&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">&quot;remove empty themes/next&quot;</span></span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push</span> origin master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在hexo/根目录下重新提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;repush&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">add</span> .</span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">&quot;repush&quot;</span></span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push</span> origin master</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>

@@ -1002,7 +1002,7 @@
 <li>对开发者友好</li>
 </ol>
 <p>React v17 中，React 不会再将事件处理添加到 <code>document</code> 上，而是将事件处理添加到渲染 React 树的根 DOM 容器中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const rootNode &#x3D; document.getElementById(&#39;root&#39;);</span><br><span class="line">ReactDOM.render(&lt;App &#x2F;&gt;, rootNode);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rootNode = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootNode);</span><br></pre></td></tr></table></figure>
 
 <p>在 React 16 及之前版本中，React 会对大多数事件进行 <code>document.addEventListener()</code> 操作。React v17 开始会通过调用 <code>rootNode.addEventListener()</code> 来代替。</p>
 

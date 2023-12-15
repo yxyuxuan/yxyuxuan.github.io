@@ -30,7 +30,7 @@
 <meta property="og:description" content="浅拷贝：复制变量的地址，所有地址对象都指向一个数据，而且所有地址对象都能修改这个数据。 深拷贝：复制变量的值。对于非基本类型的变量，可以通过递归至基本类型后，再复制。数组中可以使用slice和concat方法来进行深拷贝。 递归是什么？ 如果一个函数在内部调用自身本身，这个函数就是递归函数。  1、使用递归的方式实现深拷贝123456789101112131415161718&#x2F;&#x2F;使用递归的方式实">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-20T14:23:57.000Z">
-<meta property="article:modified_time" content="2020-09-16T12:36:32.106Z">
+<meta property="article:modified_time" content="2020-09-16T12:36:32.000Z">
 <meta property="article:author" content="yuxuan">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
 
 <h3 id="4、Object-assign-拷贝"><a href="#4、Object-assign-拷贝" class="headerlink" title="4、Object.assign()拷贝"></a>4、Object.assign()拷贝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当对象中只有一级属性，没有二级属性的时候，此方法为深拷贝，但是对象中有对象的时候，此方法，在二级属性以后就是浅拷贝。1</span><br></pre></td></tr></table></figure>
 
-<h3 id="5、lodash函数库实现深拷贝"><a href="#5、lodash函数库实现深拷贝" class="headerlink" title="5、lodash函数库实现深拷贝"></a>5、lodash函数库实现深拷贝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lodash很热门的函数库，提供了 lodash.cloneDeep()实现深拷贝</span><br></pre></td></tr></table></figure>
+<h3 id="5、lodash函数库实现深拷贝"><a href="#5、lodash函数库实现深拷贝" class="headerlink" title="5、lodash函数库实现深拷贝"></a>5、lodash函数库实现深拷贝</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">lodash</span>很热门的函数库，提供了 <span class="selector-tag">lodash</span><span class="selector-class">.cloneDeep</span>()实现深拷贝</span><br></pre></td></tr></table></figure>
 
 
     </div>

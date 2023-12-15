@@ -30,7 +30,7 @@
 <meta property="og:description" content="React自身实现了一套自己的事件机制，包括事件注册、事件的合成、事件冒泡、事件派发等，虽然和原生的是两码事，但也是基于浏览器的事件机制下完成的。  React 的所有事件并没有绑定到具体的dom节点上而是绑定在了document 上，然后由统一的事件处理程序来处理，同时也是基于浏览器的事件机制（冒泡），所有节点的事件都会在 document 上触发。 123456789101112131415">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-24T08:50:40.000Z">
-<meta property="article:modified_time" content="2020-10-24T08:53:51.142Z">
+<meta property="article:modified_time" content="2020-10-24T08:53:51.000Z">
 <meta property="article:author" content="yuxuan">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -250,7 +250,7 @@
 <li>对开发者友好</li>
 </ol>
 <p>React v17 中，React 不会再将事件处理添加到 <code>document</code> 上，而是将事件处理添加到渲染 React 树的根 DOM 容器中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const rootNode &#x3D; document.getElementById(&#39;root&#39;);</span><br><span class="line">ReactDOM.render(&lt;App &#x2F;&gt;, rootNode);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rootNode = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootNode);</span><br></pre></td></tr></table></figure>
 
 <p>在 React 16 及之前版本中，React 会对大多数事件进行 <code>document.addEventListener()</code> 操作。React v17 开始会通过调用 <code>rootNode.addEventListener()</code> 来代替。</p>
 
